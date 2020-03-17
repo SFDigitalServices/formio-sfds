@@ -2,10 +2,16 @@
 <html lang="en">
   <head>
     <title>Hello, world!</title>
-    <link rel="stylesheet" href="../src/scss/index.scss">
   </head>
-  <body>
-    <div id="formio"></div>
-    <script src="./test.js"></script>
+  <body class="debug">
+    <formio-sfds id="formio" data-resource="https://sfds.form.io/shawntest1"></formio-sfds>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const resource = params.get('resource')
+      if (resource) {
+        document.getElementById('formio').setAttribute('data-resource', resource)
+      }
+    </script>
+    <script src="../src/browser.js"></script>
   </body>
 </html>
