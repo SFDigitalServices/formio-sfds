@@ -1,0 +1,26 @@
+{
+  "name": "formio-sfds",
+  "version": "1.0.0",
+  "description": "form.io templates for the SF Design System",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "SFDigitalServices/formio-sfds",
+  "keywords": [
+    "formio",
+    "sf-design-system"
+  ],
+  "author": "San Francisco Digital Services",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0-alpha.3.2",
+    "sass": "^1.26.3",
+    "sf-design-system": "^1.2.6",
+    "standard": "^14.3.3"
+  },
+  "dependencies": {
+    "formiojs": "^4.9.0-rc.10"
+  }
+}
