@@ -2,10 +2,21 @@
   "name": "formio-sfds",
   "version": "1.0.0",
   "description": "form.io templates for the SF Design System",
-  "main": "index.js",
+  "source": "src/browser.js",
+  "browser": "dist/formio-sfds.js",
   "scripts": {
-    "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel examples/test.html --open",
+    "build": "parcel build src/browser.js",
+    "test": "echo 'WARNING: no tests specified'"
+  },
+  "browserslist": [
+    "> 1%",
+    "ie 11"
+  ],
+  "targets": {
+    "browser": {
+      "includeNodeModules": true
+    }
   },
   "repository": "SFDigitalServices/formio-sfds",
   "keywords": [
