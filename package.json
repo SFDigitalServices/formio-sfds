@@ -5,6 +5,7 @@
   "source": "src/browser.js",
   "browser": "dist/formio-sfds.js",
   "scripts": {
+    "lint": "standard src",
     "start": "parcel examples/test.html --open",
     "build": "parcel build src/browser.js",
     "test": "echo 'WARNING: no tests specified'"
