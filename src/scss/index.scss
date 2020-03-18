@@ -33,18 +33,25 @@ body.debug {
 
   #formio {
     @include debug(black);
+
     > * {
       @include debug(blue);
+
       > * {
         @include debug(red);
+
         > * {
           @include debug(orange);
+
           > * {
             @include debug(pink, black);
+
             > * {
               @include debug(green);
+
               > * {
                 @include debug(#ccc, black);
+
                 > * {
                   @include debug(#aaa, black);
                 }
