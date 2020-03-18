@@ -7,15 +7,15 @@
   "browser": "dist/formio-sfds.umd.js",
   "style": "dist/formio-sfds.css",
   "scripts": {
-    "build": "npm-run-all -p 'build-*'",
+    "build": "run-p 'build-*'",
     "build-css": "sass -I node_modules --style compressed src/scss/index.scss:$npm_package_style",
     "build-js": "rollup -c",
-    "lint": "npm-run-all -p 'lint-*'",
+    "lint": "run-p 'lint-*'",
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src",
     "prebuild": "rm -rf dist",
     "test": "echo 'WARNING: no tests!'",
-    "watch": "npm-run-all -p 'watch-*'",
+    "watch": "run-p 'watch-*'",
     "watch-css": "npm run build-css -- --watch",
     "watch-js": "rollup -c --watch"
   },
