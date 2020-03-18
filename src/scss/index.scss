@@ -1,0 +1,58 @@
+@import "sf-design-system/src/components/00-design-tokens/_variables.scss";
+@import "sf-design-system/src/components/00-design-tokens/_colors.scss";
+@import "sf-design-system/src/components/00-design-tokens/_functions.scss";
+@import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
+@import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
+@import "sf-design-system/src/components/00-design-tokens/_base.scss";
+@import "sf-design-system/src/components/00-design-tokens/_breakpoints.scss";
+@import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+
+@mixin debug($bg, $fg: white) {
+  border: 1px solid rgba($bg, 0.5);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: -1px;
+    left: 100%;
+    padding: 2px 4px;
+    background: rgba($bg, 0.5);
+    color: $fg;
+    content: attr(class);
+    display: block;
+    font-size: 10px;
+    line-height: 1em;
+    white-space: pre;
+  }
+}
+
+body.debug {
+  padding-right: 25vw;
+
+  #formio {
+    @include debug(black);
+    > * {
+      @include debug(blue);
+      > * {
+        @include debug(red);
+        > * {
+          @include debug(orange);
+          > * {
+            @include debug(pink, black);
+            > * {
+              @include debug(green);
+              > * {
+                @include debug(#ccc, black);
+                > * {
+                  @include debug(#aaa, black);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
