@@ -1,3 +1,1 @@
-module.exports = ctx => {
-  return ctx.element
-}
+export default ctx => ctx.element

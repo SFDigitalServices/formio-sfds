@@ -1,3 +1,5 @@
-module.exports = {
-  field: require('./field')
+import field from './field'
+
+export default {
+  field
 }
