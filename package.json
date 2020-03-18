@@ -14,6 +14,7 @@
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src",
     "prebuild": "rm -rf dist",
+    "test": "echo 'WARNING: no tests!'",
     "watch": "npm-run-all -p 'watch-*'",
     "watch-css": "npm run build-css -- --watch",
     "watch-js": "rollup -c --watch"
