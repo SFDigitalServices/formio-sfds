@@ -1,4 +1,5 @@
-module.exports = {
-  // align: require('./align'),
-  form: require('./form')
+import form from './form'
+
+export default {
+  form
 }
