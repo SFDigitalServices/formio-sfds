@@ -2,5 +2,7 @@ import templates from './templates'
 
 export default {
   framework: 'sfds',
-  templates
+  templates: {
+    sfds: templates
+  }
 }
