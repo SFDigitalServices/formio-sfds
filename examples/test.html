@@ -2,16 +2,23 @@
 <html lang="en">
   <head>
     <title>Hello, world!</title>
+    <link rel="stylesheet" href="https://unpkg.com/sf-design-system@latest/public/dist/css/all.css">
+    <link rel="stylesheet" href="../dist/formio-sfds.css">
   </head>
   <body class="debug">
-    <formio-sfds id="formio" data-resource="https://sfds.form.io/shawntest1"></formio-sfds>
-    <script>
-      const params = new URLSearchParams(location.search)
-      const resource = params.get('resource')
-      if (resource) {
-        document.getElementById('formio').setAttribute('data-resource', resource)
+    <div id="formio" data-resource="https://sfds.form.io/shawntest1"></div>
+    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
+    <script src="../dist/formio-sfds.umd.js"></script>
+    <script defer>
+      window.onload = () => {
+        Formio.use(FormioSFDS)
+
+        const root = document.getElementById('formio')
+        const resource = new URLSearchParams(location.search).get('res') || root.getAttribute('data-resource')
+        Formio.createForm(root, resource).then(form => {
+          console.log('ready!')
+        })
       }
     </script>
-    <script src="../src/browser.js"></script>
   </body>
 </html>
