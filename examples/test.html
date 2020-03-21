@@ -7,11 +7,22 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional" />
     <link rel="stylesheet" href="../dist/formio-sfds.css">
   </head>
-  <body class="debug">
+  <body>
     <div id="formio" data-resource="https://sfds.form.io/shawntest1"></div>
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
     <script src="../dist/formio-sfds.umd.js"></script>
     <script defer>
+      window.addEventListener('keyup', e => {
+        const active = document.activeElement
+        if (!active || active === document.body) {
+          switch (e.key) {
+            case 'D':
+              document.body.classList.toggle('debug')
+              break
+          }
+        }
+      })
+
       window.onload = () => {
         Formio.use(FormioSFDS)
 
