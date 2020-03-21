@@ -1,9 +1,11 @@
 @import "sf-design-system/src/components/00-design-tokens/_variables.scss";
 @import "sf-design-system/src/components/00-design-tokens/_colors.scss";
-@import "sf-design-system/src/components/00-design-tokens/_functions.scss";
-@import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
-@import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
-@import "sf-design-system/src/components/00-design-tokens/_base.scss";
+// @import "sf-design-system/src/components/00-design-tokens/_functions.scss";
+// @import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
+// @import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
+// @import "sf-design-system/src/components/00-design-tokens/_base.scss";
 @import "sf-design-system/src/components/00-design-tokens/_breakpoints.scss";
-@import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+// @import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+@import "./tokens";
+@import "./utilities";
 @import "./debug";

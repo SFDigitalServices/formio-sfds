@@ -1,0 +1,54 @@
+$CSS_EDGE_ALIAS: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+
+$CSS_CORNER_ALIAS: (
+  tr: top-right,
+  br: bottom-right,
+  bl: bottom-left,
+  tl: top-left,
+);
+
+$breakpoint-aliases: (
+  xs: $mq-tiny,
+  sm: $mq-small,
+  // narrow: $mq-narrow,
+  md: $mq-medium,
+  lg: $mq-wide,
+);
+
+$spacers: (
+  0: 0,
+  1: 10px,
+  2: 20px,
+  3: 40px,
+  4: 64px,
+  5: 96px,
+) !default;
+
+$breakpoint-variants: ('': null, );
+
+@each $key, $value in $breakpoint-aliases {
+  $breakpoint-variants: map-merge($breakpoint-variants, ('-#{$key}': $value, ));
+}
+
+@function spacer($index) {
+  @return map-get($spacers, $index);
+}
+
+@mixin breakpoint($name) {
+  $threshold: map-get($breakpoint-aliases, $name);
+
+  @if $threshold {
+    @media screen and (min-width: $threshold) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}
