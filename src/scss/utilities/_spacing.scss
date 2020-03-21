@@ -1,0 +1,21 @@
+@each $index, $space in $spacers {
+  @each $variant, $threshold in $breakpoint-variants {
+    $suffix: "#{$variant}-#{$index}";
+
+    @include breakpoint($threshold) {
+      .m#{$suffix} { margin: $space !important; }
+      .p#{$suffix} { padding: $space !important; }
+
+      @each $alias, $edge in $CSS_EDGE_ALIAS {
+        .m#{$alias}#{$suffix} { margin-#{$edge}: $space !important; }
+        .p#{$alias}#{$suffix} { padding-#{$edge}: $space !important; }
+
+        @if $space != 0 {
+          // .mt-n1 { margin-top: -$spacers[1]; }, etc.
+          .m#{$variant}#{$alias}-n#{$index} { margin-#{$edge}: -$space !important; }
+        }
+      }
+    }
+  }
+}
+
