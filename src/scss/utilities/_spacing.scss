@@ -15,7 +15,20 @@
           .m#{$variant}#{$alias}-n#{$index} { margin-#{$edge}: -$space !important; }
         }
       }
+
+      @each $alias, $edges in (x: (left, right), y: (top, bottom)) {
+        .m#{$alias}#{$suffix} {
+          @each $edge in $edges {
+            margin-#{$edge}: $space !important;
+          }
+        }
+
+        .p#{$alias}#{$suffix} {
+          @each $edge in $edges {
+            padding-#{$edge}: $space !important;
+          }
+        }
+      }
     }
   }
 }
-
