@@ -13,11 +13,11 @@ $CSS_CORNER_ALIAS: (
 );
 
 $breakpoint-aliases: (
-  tiny: $mq-tiny,
-  small: $mq-small,
-  narrow: $mq-narrow,
-  medium: $mq-medium,
-  wide: $mq-wide,
+  xs: $mq-tiny,
+  sm: $mq-small,
+  // narrow: $mq-narrow,
+  md: $mq-medium,
+  lg: $mq-wide,
 );
 
 $spacers: (
