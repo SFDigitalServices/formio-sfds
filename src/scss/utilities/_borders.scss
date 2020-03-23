@@ -1,0 +1,7 @@
+@each $key, $value in $border-widths {
+  .border-#{$key} { border: $value solid !important; }
+}
+
+@each $name, $value in $color-map {
+  .border-#{"" + $name} { border-color: $value !important; }
+}
