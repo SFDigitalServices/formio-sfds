@@ -36,6 +36,12 @@ $border-widths: (
   1: 3px,
 );
 
+$radii: (
+  0: 0,
+  1: 8px,
+  round: 1000px,
+);
+
 $font-weights: (
   light: $fw-light,
   regular: $fw-regular,
@@ -84,6 +90,14 @@ $breakpoint-variants: ('': null, );
 
 @function spacer($index) {
   @return map-get($spacers, $index);
+}
+
+@function border-width($index) {
+  @return map-get($border-widths, $index);
+}
+
+@function radius($index) {
+  @return map-get($radii, $index);
 }
 
 @mixin breakpoint($name-or-threshold) {
