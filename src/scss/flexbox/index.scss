@@ -1,0 +1,61 @@
+$FLEX-DIRECTIONS: (
+  column,
+  column-reverse,
+  row,
+  row-reverse,
+);
+
+$FLEX-WRAPS: (nowrap, wrap, wrap-reverse);
+
+$FLEX-ALIGN-ITEMS: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+);
+
+$FLEX-ALIGN-CONTENT: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+);
+
+$FLEX-JUSTIFY-CONTENT: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+
+@each $variant, $threshold in $breakpoint-variants {
+  @include breakpoint($threshold) {
+
+    .flex#{$variant}-auto { flex: 1 1 auto; }
+    .flex#{$variant}-no-shrink { flex-shrink: 0; }
+
+    @each $dir in $FLEX-DIRECTIONS {
+      .flex#{$variant}-#{$dir} { flex-direction: #{$dir} !important; }
+    }
+
+    @each $wrap in $FLEX-WRAPS {
+      .flex#{$variant}-#{$wrap} { flex-direction: #{$wrap} !important; }
+    }
+
+    @each $key, $value in $FLEX-ALIGN-ITEMS {
+      .flex#{$variant}-items-#{$key} { align-items: #{$value} !important; }
+    }
+
+    @each $key, $value in $FLEX-ALIGN-CONTENT {
+      .flex#{$variant}-content-#{$key} { align-content: #{$value} !important; }
+    }
+
+    @each $key, $value in $FLEX-JUSTIFY-CONTENT {
+      .flex#{$variant}-justify-#{$key} { justify-content: #{$value} !important; }
+    }
+  }
+}
