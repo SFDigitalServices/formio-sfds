@@ -1,0 +1,9 @@
+@each $variant, $threshold in $breakpoint-variants {
+  @include breakpoint($threshold) {
+    @for $cols from 1 through $grid-columns {
+      $width: $cols / $grid-columns * 100%;
+
+      .col#{$variant}-#{$cols} { width: $width !important; }
+    }
+  }
+}
