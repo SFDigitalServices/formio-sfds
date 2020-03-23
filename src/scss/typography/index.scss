@@ -3,7 +3,7 @@
 @each $variant, $threshold in $breakpoint-variants {
   @include breakpoint($threshold) {
     @each $align in (left, right, center) {
-      .align-#{$align} { text-align: $align !important; }
+      .align#{$variant}-#{$align} { text-align: $align !important; }
     }
   }
 }
