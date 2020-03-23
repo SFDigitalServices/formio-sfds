@@ -1,8 +1,10 @@
 <div class="form-group field-s08">
   <fieldset>
-    <legend>
-      {{ctx.t(ctx.component.label)}}
-    </legend>
+    {% if (!ctx.component.hideLabel) { %}
+      <legend>
+        {{ctx.t(ctx.component.label)}}
+      </legend>
+    {% } %}
     <div class="field-wrapper">
       {% ctx.values.forEach(function(item) { %}
         <label>
