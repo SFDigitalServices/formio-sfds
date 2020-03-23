@@ -13,3 +13,7 @@
     }
   }
 }
+
+@each $name, $value in (inherit: inherit, ) {
+  .fs-#{$name} { font-size: $value !important; }
+}
