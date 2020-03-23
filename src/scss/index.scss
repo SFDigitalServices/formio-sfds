@@ -6,7 +6,11 @@
 // @import "sf-design-system/src/components/00-design-tokens/_base.scss";
 @import "sf-design-system/src/components/00-design-tokens/_breakpoints.scss";
 // @import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+// variables
 @import "./tokens";
+// functions + mixins
+@import "./tools";
+// these are the actual styles
 @import "./debug";
 @import "./grid";
 @import "./flexbox";

@@ -1,0 +1,7 @@
+@function svg($data) {
+  @return url('data:image/svg+xml;utf8,#{$data}');
+}
+
+@function icon($content, $fill: $black) {
+  @return svg('<svg width="20" height="16" viewBox="0 0 20 16" fill="#{$fill}" xmlns="http://www.w3.org/2000/svg">#{$content}</svg>');
+}
