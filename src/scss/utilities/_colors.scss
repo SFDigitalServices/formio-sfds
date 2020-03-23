@@ -1,0 +1,4 @@
+@each $name, $value in $color-map {
+  .fg-#{"" + $name} { color: $value !important; }
+  .bg-#{"" + $name} { background-color: $value !important; }
+}
