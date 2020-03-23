@@ -12,6 +12,8 @@ $CSS_CORNER_ALIAS: (
   tl: top-left,
 );
 
+$grid-columns: 6 !default;
+
 $breakpoint-aliases: (
   xs: $mq-tiny,
   sm: $mq-small,
