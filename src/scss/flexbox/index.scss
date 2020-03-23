@@ -48,6 +48,7 @@ $FLEX-JUSTIFY-CONTENT: (
 
     @each $key, $value in $FLEX-ALIGN-ITEMS {
       .flex#{$variant}-items-#{$key} { align-items: #{$value} !important; }
+      .flex#{$variant}-self-#{$key} { align-self: #{$value} !important; }
     }
 
     @each $key, $value in $FLEX-ALIGN-CONTENT {
