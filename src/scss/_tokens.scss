@@ -78,8 +78,12 @@ $breakpoint-variants: ('': null, );
   @return map-get($spacers, $index);
 }
 
-@mixin breakpoint($name) {
-  $threshold: map-get($breakpoint-aliases, $name);
+@mixin breakpoint($name-or-threshold) {
+  $threshold: $name-or-threshold;
+
+  @if map-has-key($breakpoint-aliases, $name-or-threshold) {
+    $threshold: map-get($breakpoint-aliases, $name-or-threshold);
+  }
 
   @if $threshold {
     @media screen and (min-width: $threshold) {
