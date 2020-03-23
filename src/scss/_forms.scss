@@ -16,4 +16,26 @@
   appearance: none;
   padding: 0;
   margin: 0;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid $slate !important;
+  border-radius: radius(1) !important;
+  opacity: 1 !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &:checked {
+    border-width: border-width(1) !important;
+    background-image: svg-load('../icons/Check.svg', fill=$slate);
+  }
+
+  &:focus {
+    border-color: $bright-blue !important;
+  }
+
+  &:checked:focus {
+    background-color: $bright-blue !important;
+    background-image: svg-load('../icons/Check.svg', fill=$white);
+  }
 }

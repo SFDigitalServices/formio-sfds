@@ -1,4 +1,4 @@
-<div class="form-group field-s08 my-2">
+<div class="form-group mt-2">
   <fieldset>
     {% if (!ctx.component.hideLabel) { %}
       <legend>
@@ -7,22 +7,25 @@
     {% } %}
     <div class="field-wrapper">
       {% ctx.values.forEach(function(item) { %}
-        <label>
-          <{{ctx.input.type}}
-            ref="input"
-            {% for (var attr in ctx.input.attr) { %}
-            {{attr}}="{{ctx.input.attr[attr]}}"
-            {% } %}
-            value="{{item.value}}"
-            {% if (ctx.value && (ctx.value === item.value || (typeof ctx.value === 'object' && ctx.value.hasOwnProperty(item.value) && ctx.value[item.value]))) { %}
-              checked=true
-            {% } %}
-            {% if (item.disabled) { %}
-              disabled=true
-            {% } %}
-            id="{{ctx.id}}{{ctx.row}}-{{item.value}}"
-          >
-          <span class="inline-label">{{ctx.t(item.label)}}</span>
+        <label class="d-flex flex-items-center fs-inherit mb-3">
+          <div class="flex-shrink-0">
+            <{{ctx.input.type}}
+              class="input-checkbox position-relative d-block mr-2 mb-0"
+              ref="input"
+              {% for (var attr in ctx.input.attr) { %}
+              {{attr}}="{{ctx.input.attr[attr]}}"
+              {% } %}
+              value="{{item.value}}"
+              {% if (ctx.value && (ctx.value === item.value || (typeof ctx.value === 'object' && ctx.value.hasOwnProperty(item.value) && ctx.value[item.value]))) { %}
+                checked=true
+              {% } %}
+              {% if (item.disabled) { %}
+                disabled=true
+              {% } %}
+              id="{{ctx.id}}{{ctx.row}}-{{item.value}}"
+            >
+          </div>
+          <span class="flex-auto">{{ctx.t(item.label)}}</span>
         </label>
       {% }) %}
     </div>
