@@ -1,5 +1,11 @@
 .d1 { @include display-1; }
 
+.u { text-decoration: underline !important; }
+
+@each $name, $value in $font-weights {
+  .fw-#{$name} { font-weight: $value !important; }
+}
+
 @each $variant, $threshold in $breakpoint-variants {
   @include breakpoint($threshold) {
     @each $align in (left, right, center) {

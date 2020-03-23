@@ -36,6 +36,13 @@ $border-widths: (
   1: 3px,
 );
 
+$font-weights: (
+  light: $fw-light,
+  regular: $fw-regular,
+  medium: $fw-medium,
+  bold: $fw-bold,
+);
+
 $color-map: (
   white: $white,
   black: $black,
