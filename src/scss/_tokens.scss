@@ -31,6 +31,43 @@ $spacers: (
   5: 96px,
 ) !default;
 
+$border-widths: (
+  0: 0,
+  1: 3px,
+);
+
+$color-map: (
+  white: $white,
+  black: $black,
+  slate: $slate,
+  dark-blue: $dark-blue,
+  bright-blue: $bright-blue,
+  blue-1: $blue-1,
+  blue-2: $blue-2,
+  blue-3: $blue-3,
+  yellow-1: $yellow-1,
+  yellow-2: $yellow-2,
+  yellow-3: $yellow-3,
+  yellow-4: $yellow-4,
+  green-1: $green-1,
+  green-2: $green-2,
+  green-3: $green-3,
+  green-4: $green-4,
+  red-1: $red-1,
+  red-2: $red-2,
+  red-3: $red-3,
+  red-4: $red-4,
+  purple-1: $purple-1,
+  purple-2: $purple-2,
+  purple-3: $purple-3,
+  purple-4: $purple-4,
+  grey-1: $grey-1,
+  grey-2: $grey-2,
+  grey-3: $grey-3,
+  grey-4: $grey-4,
+  grey-5: $grey-5,
+);
+
 $breakpoint-variants: ('': null, );
 
 @each $key, $value in $breakpoint-aliases {
