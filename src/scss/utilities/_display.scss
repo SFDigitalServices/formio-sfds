@@ -1,0 +1,7 @@
+@each $display in (block, flex, inline, inline-block, inline-flex) {
+  @each $variant, $threshold in $breakpoint-variants {
+    @include breakpoint($threshold) {
+      .d#{$variant}-#{$display + ""} { display: $display !important; }
+    }
+  }
+}
