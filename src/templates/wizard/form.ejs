@@ -4,7 +4,23 @@
       {{ ctx.wizardHeader }}
     </div>
     <div class="col-md-3" ref="{{ ctx.wizardKey }}">
-      <div id="components" class="mb-3">
+      <div class="mb-3">
+        <div class="mb-4">
+          {% if (ctx.buttons.previous) { %}
+            <button class="sfgov-button my-0 p-0 border-0 bg-none fg-bright-blue" ref="{{ctx.wizardKey}}-previous">
+              <div class="d-flex flex-items-center">
+                <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
+                <span>{{ ctx.t('Back') }}</span>
+              </div>
+            </button>
+          {% } %}
+          {% var panel = ctx.panels[ctx.currentPage] %}
+          {% if (panel) { %}
+            <h1 class="d1 mr-n2">
+              {{ ctx.t(panel.title) }}
+            </h1>
+          {% } %}
+        </div>
         {{ ctx.components }}
       </div>
       {{ ctx.wizardNav }}
