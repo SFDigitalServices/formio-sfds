@@ -1,5 +1,15 @@
-@each $key, $value in $border-widths {
-  .border-#{$key} { border: $value solid !important; }
+@each $variant, $breakpoint in $breakpoint-variants {
+  @include breakpoint($breakpoint) {
+    @each $key, $value in $border-widths {
+      .border#{$variant}-#{$key} { border: $value solid !important; }
+
+      @each $edge in (top, right, bottom, left) {
+        .border#{$variant}-#{$edge}-#{$key} {
+          border-#{$edge}: $value solid !important;
+        }
+      }
+    }
+  }
 }
 
 @each $name, $value in $color-map {
