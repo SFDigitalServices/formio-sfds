@@ -1,6 +1,6 @@
 import { observe } from 'selector-observer'
-import arrowRight from './Arrow Right.svg'
-import arrowLeft from './Arrow Left.svg'
+import arrowRight from './Arrow-right.svg'
+import arrowLeft from './Arrow-left.svg'
 import close from './Close.svg'
 import document from './Document.svg'
 import info from './Info.svg'
