@@ -3,7 +3,7 @@
     {% ctx.panels.forEach(function(panel, index) { %}
       {% var active = ctx.currentPage === index; %}
       <li class="border-bottom-1 border-grey-3" {% if (active) { %} aria-current="page"{% } %}>
-        <span class="d-block pr-3 py-2 cursor-pointer{{ active ? ' fw-medium' : '' }}" ref="{{ ctx.wizardKey }}-link">
+        <span class="d-block pr-3 py-2 cursor-pointer{{ active ? ' fw-medium icon-pencil' : '' }}" ref="{{ ctx.wizardKey }}-link">
           {{ ctx.t(panel.title) }}
         </span>
       </li>
