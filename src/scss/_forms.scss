@@ -26,9 +26,24 @@
   }
 }
 
+// OOOF this is a hack FIXME FIXME
+.form-checkbox ~ [ref=messageContainer]:not(:empty) {
+  margin-top: -1 * spacer(2) !important;
+}
+
+.field-description,
+.tooltip {
+  color: rgba($slate, 0.65);
+}
+
 .formio-error-wrapper,
 .has-error {
   color: $red-3;
+
+  .field-description,
+  .tooltip {
+    color: inherit !important;
+  }
 
   input:not([type=button]),
   textarea {

@@ -1,4 +1,4 @@
-<div class="form-check checkbox my-3">
+<div class="form-checkbox mt-3 mb-3">
   <label class="d-flex flex-items-start fs-inherit fg-inherit">
     <div class="flex-shrink-0">
       <{{ ctx.input.type }}
@@ -17,7 +17,7 @@
       </span>
       {% var tooltip = ctx.component.tooltip %}
       {% if (tooltip) { %}
-        <div class="fg-slate-65">{{ ctx.t(tooltip) }}</div>
+        <div class="tooltip small mt-1">{{ ctx.t(tooltip) }}</div>
       {% } %}
     </div>
   </label>
