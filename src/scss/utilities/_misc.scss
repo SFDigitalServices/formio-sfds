@@ -7,3 +7,11 @@
   margin: 0;
   padding: 0;
 }
+
+@each $variant, $breakpoint in $breakpoint-variants {
+  @include breakpoint($breakpoint) {
+    @each $align in (top, bottom, middle, baseline) {
+      .v-align#{$variant}-#{$align} { vertical-align: $align !important; }
+    }
+  }
+}
