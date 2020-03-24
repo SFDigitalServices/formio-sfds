@@ -1,12 +1,10 @@
-<tr ref="row">
-  <td>
-    {{ctx.element}}
-  </td>
+<div class="d-flex flex-items-center flex-justify-start mb-1">
+  <div class="mr-1">{{ ctx.element }}</div>
   {% if (!ctx.disabled) { %}
-  <td>
-    <button type="button" class="btn btn-secondary" ref="removeRow">
-      <i class="{{ctx.iconClass('remove-circle')}}"></i>
-    </button>
-  </td>
+    <div>
+      <button type="button" class="border-0 bg-slate-65 py-1 m-0" ref="removeRow">
+        <span data-icon="delete"></span>
+      </button>
+    </div>
   {% } %}
-</tr>
+</div>

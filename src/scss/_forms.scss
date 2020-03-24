@@ -44,10 +44,25 @@
 .has-error {
   color: $red-3;
 
-  input[type=checkbox],
-  input[type=radio],
-  input[type=text],
+  input:not([type=button]),
   textarea {
     border-color: $red-3 !important;
+  }
+}
+
+label.field-required,
+.required label {
+  &::after {
+    display: inline-block;
+    content: "*";
+    color: $red-3;
+  }
+}
+
+[ref=element],
+.address-autocomplete-container {
+  input:not([type=button]),
+  textarea {
+    margin-bottom: spacer(1);
   }
 }
