@@ -1,16 +1,22 @@
 import { observe } from 'selector-observer'
-import ArrowRight from './Arrow Right.svg'
-import ArrowLeft from './Arrow Left.svg'
-import Info from './Info.svg'
-import Pencil from './Pencil.svg'
+import arrowRight from './Arrow Right.svg'
+import arrowLeft from './Arrow Left.svg'
+import close from './Close.svg'
+import document from './Document.svg'
+import info from './Info.svg'
+import pencil from './Pencil.svg'
 
 const icons = {
-  ArrowRight,
-  ArrowLeft,
-  Info,
-  Pencil,
-  active: Pencil,
-  error: Info
+  arrowRight,
+  arrowLeft,
+  close,
+  document,
+  info,
+  pencil,
+  active: pencil,
+  add: document,
+  error: info,
+  delete: close
 }
 
 export default icons
