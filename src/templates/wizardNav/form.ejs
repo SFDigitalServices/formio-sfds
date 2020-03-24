@@ -1,26 +1,20 @@
 {% var button_classes = 'sfgov-button mt-0 btn-sm' %}
 <div class="d-flex flex-justify-between" id="{{ ctx.wizardKey }}-nav">
-  <div class="">
+  <div class="flex-auto">
     {% if (ctx.buttons.previous) { %}
-      <div class="mr-1">
-        <button class="{{ button_classes }} sfgov-button-primary btn-prev" ref="{{ctx.wizardKey}}-previous">
-          {{ ctx.t('previous') }}
-        </button>
-      </div>
+      <button class="{{ button_classes }} sfgov-button-primary btn-prev mr-1" ref="{{ctx.wizardKey}}-previous">
+        {{ ctx.t('Previous') }}
+      </button>
     {% } %}
     {% if (ctx.buttons.next) { %}
-      <div class="mr-1">
-        <button class="{{ button_classes }} sfgov-button-primary btn-next" ref="{{ctx.wizardKey}}-next">
-          {{ ctx.t('Next') }}
-        </button>
-      </div>
+      <button class="{{ button_classes }} sfgov-button-primary btn-next mr-1" ref="{{ctx.wizardKey}}-next">
+        {{ ctx.t('Next') }}
+      </button>
     {% } %}
     {% if (ctx.buttons.submit) { %}
-      <div class="mr-1">
-        <button class="{{ button_classes }} sfgov-button-primary" ref="{{ctx.wizardKey}}-submit">
-          {{ ctx.t('submit') }}
-        </button>
-      </div>
+      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-submit">
+        {{ ctx.t('Submit') }}
+      </button>
     {% } %}
   </div>
 
