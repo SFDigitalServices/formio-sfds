@@ -1,22 +1,30 @@
-<ul class="list-inline" id="{{ ctx.wizardKey }}-nav">
+{% var button_classes = 'sfgov-button mt-0 py-1' %}
+<div class="d-flex flex-justify-between" id="{{ ctx.wizardKey }}-nav">
+  <div class="flex-auto">
+    {% if (ctx.buttons.previous) { %}
+      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-previous">
+        <span data-icon="prev" data-height="15" class="mr-1"></span>
+        {{ ctx.t('Previous') }}
+      </button>
+    {% } %}
+    {% if (ctx.buttons.next) { %}
+      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-next">
+        {{ ctx.t('Next') }}
+        <span data-icon="next" data-height="15" class="ml-1"></span>
+      </button>
+    {% } %}
+    {% if (ctx.buttons.submit) { %}
+      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-submit">
+        {{ ctx.t('Submit') }}
+      </button>
+    {% } %}
+  </div>
+
   {% if (ctx.buttons.cancel) { %}
-  <li class="list-inline-item">
-    <button class="btn btn-secondary btn-wizard-nav-cancel" ref="{{ctx.wizardKey}}-cancel">{{ctx.t('cancel')}}</button>
-  </li>
+    <div class="flex-self-end">
+      <button class="{{ button_classes }} bg-none fg-bright-blue border-none u" ref="{{ctx.wizardKey}}-cancel">
+        {{ ctx.t('Leave the form') }}
+      </button>
+    </div>
   {% } %}
-  {% if (ctx.buttons.previous) { %}
-  <li class="list-inline-item">
-    <button class="btn btn-primary btn-wizard-nav-previous" ref="{{ctx.wizardKey}}-previous">{{ctx.t('previous')}}</button>
-  </li>
-  {% } %}
-  {% if (ctx.buttons.next) { %}
-  <li class="list-inline-item">
-    <button class="btn btn-primary btn-wizard-nav-next" ref="{{ctx.wizardKey}}-next">{{ctx.t('next')}}</button>
-  </li>
-  {% } %}
-  {% if (ctx.buttons.submit) { %}
-  <li class="list-inline-item">
-    <button class="btn btn-primary btn-wizard-nav-submit" ref="{{ctx.wizardKey}}-submit">{{ctx.t('submit')}}</button>
-  </li>
-  {% } %}
-</ul>
+</div>

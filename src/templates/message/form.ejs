@@ -1,1 +1,4 @@
-<div class="form-text {{ctx.level}}">{{ctx.message}}</div>
+<div class="message message-{{ ctx.level }} small mb-3">
+  <span class="mr-1 d-inline-block v-align-center" data-icon="{{ ctx.level }}" data-width="13"></span>
+  {{ ctx.message }}
+</div>

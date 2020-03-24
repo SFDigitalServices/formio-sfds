@@ -1,0 +1,22 @@
+.d1 { @include display-1; }
+
+.big-description { @include big-description; }
+.small { @include small-text; }
+
+.u { text-decoration: underline !important; }
+
+@each $name, $value in $font-weights {
+  .fw-#{$name} { font-weight: $value !important; }
+}
+
+@each $variant, $threshold in $breakpoint-variants {
+  @include breakpoint($threshold) {
+    @each $align in (left, right, center) {
+      .align#{$variant}-#{$align} { text-align: $align !important; }
+    }
+  }
+}
+
+@each $name, $value in (inherit: inherit, ) {
+  .fs-#{$name} { font-size: $value !important; }
+}

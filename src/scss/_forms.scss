@@ -1,0 +1,54 @@
+.input-checkbox {
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid $slate !important;
+  border-radius: radius(1) !important;
+  opacity: 1 !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &:checked {
+    border-width: border-width(1) !important;
+    background-image: svg-load('../icons/Check.svg', fill=$slate);
+  }
+
+  &:focus {
+    border-color: $bright-blue !important;
+  }
+
+  &:checked:focus {
+    background-color: $bright-blue !important;
+    background-image: svg-load('../icons/Check.svg', fill=$white);
+  }
+}
+
+.formio-error-wrapper,
+.has-error {
+  color: $red-3;
+
+  input:not([type=button]),
+  textarea {
+    border-color: $red-3 !important;
+  }
+}
+
+label.field-required,
+.required label {
+  &::after {
+    display: inline-block;
+    content: "*";
+    color: $red-3;
+  }
+}
+
+[ref=element],
+.address-autocomplete-container {
+  input:not([type=button]),
+  textarea {
+    margin-bottom: spacer(1);
+  }
+}

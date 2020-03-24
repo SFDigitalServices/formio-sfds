@@ -1,0 +1,23 @@
+@each $variant, $breakpoint in $breakpoint-variants {
+  @include breakpoint($breakpoint) {
+    @each $key, $value in $border-widths {
+      .border#{$variant}-#{$key} { border: $value solid !important; }
+
+      @each $edge in (top, right, bottom, left) {
+        .border-#{$edge}#{$variant}-#{$key} {
+          border-#{$edge}: $value solid !important;
+        }
+      }
+    }
+
+    @each $index, $value in $radii {
+      .round#{$variant}-#{$index} { border-radius: $value !important; }
+    }
+  }
+}
+
+// These have to go *after* the above rules so that they take precedence over
+// the shorthand "border" declarations.
+@each $name, $value in $color-map {
+  .border-#{"" + $name} { border-color: $value !important; }
+}

@@ -12,6 +12,8 @@ $CSS_CORNER_ALIAS: (
   tl: top-left,
 );
 
+$grid-columns: 6 !default;
+
 $breakpoint-aliases: (
   xs: $mq-tiny,
   sm: $mq-small,
@@ -25,9 +27,62 @@ $spacers: (
   1: 10px,
   2: 20px,
   3: 40px,
-  4: 64px,
+  4: 60px,
   5: 96px,
 ) !default;
+
+$border-widths: (
+  0: 0,
+  1: 3px,
+);
+
+$radii: (
+  0: 0,
+  1: 8px,
+  round: 1000px,
+);
+
+$font-weights: (
+  light: $fw-light,
+  regular: $fw-regular,
+  medium: $fw-medium,
+  bold: $fw-bold,
+);
+
+$color-map: (
+  white: $white,
+  black: $black,
+  slate: $slate,
+  slate-65: rgba($slate, 0.65),
+  dark-blue: $dark-blue,
+  bright-blue: $bright-blue,
+  blue-1: $blue-1,
+  blue-2: $blue-2,
+  blue-3: $blue-3,
+  yellow-1: $yellow-1,
+  yellow-2: $yellow-2,
+  yellow-3: $yellow-3,
+  yellow-4: $yellow-4,
+  green-1: $green-1,
+  green-2: $green-2,
+  green-3: $green-3,
+  green-4: $green-4,
+  red-1: $red-1,
+  red-2: $red-2,
+  red-3: $red-3,
+  red-4: $red-4,
+  purple-1: $purple-1,
+  purple-2: $purple-2,
+  purple-3: $purple-3,
+  purple-4: $purple-4,
+  grey-1: $grey-1,
+  grey-2: $grey-2,
+  grey-3: $grey-3,
+  grey-4: $grey-4,
+  grey-5: $grey-5,
+  none: transparent,
+  inherit: inherit,
+);
 
 $breakpoint-variants: ('': null, );
 
@@ -39,8 +94,20 @@ $breakpoint-variants: ('': null, );
   @return map-get($spacers, $index);
 }
 
-@mixin breakpoint($name) {
-  $threshold: map-get($breakpoint-aliases, $name);
+@function border-width($index) {
+  @return map-get($border-widths, $index);
+}
+
+@function radius($index) {
+  @return map-get($radii, $index);
+}
+
+@mixin breakpoint($name-or-threshold) {
+  $threshold: $name-or-threshold;
+
+  @if map-has-key($breakpoint-aliases, $name-or-threshold) {
+    $threshold: map-get($breakpoint-aliases, $name-or-threshold);
+  }
 
   @if $threshold {
     @media screen and (min-width: $threshold) {

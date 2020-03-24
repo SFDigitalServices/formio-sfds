@@ -1,0 +1,17 @@
+.cursor-pointer { cursor: pointer !important; }
+
+.list-style-none,
+.list-style-none > li {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@each $variant, $breakpoint in $breakpoint-variants {
+  @include breakpoint($breakpoint) {
+    @each $align in (top, bottom, middle, baseline) {
+      .v-align#{$variant}-#{$align} { vertical-align: $align !important; }
+    }
+  }
+}

@@ -2,11 +2,10 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import jst from 'rollup-plugin-jst'
 import babel from 'rollup-plugin-babel'
+import svg from 'rollup-plugin-svgo'
 import pkg from './package.json'
 
 const commonPlugins = [
-  babel(),
-  resolve(),
   jst({
     templateOptions: {
       evaluate: /\{%([\s\S]+?)%\}/g,
@@ -14,7 +13,15 @@ const commonPlugins = [
       escape: /\{\{\{([\s\S]+?)\}\}\}/g,
       variable: 'ctx'
     }
-  })
+  }),
+  svg({
+    plugins: [
+      { removeViewBox: false },
+      { removeDimensions: true }
+    ]
+  }),
+  babel(),
+  resolve()
 ]
 
 export default [

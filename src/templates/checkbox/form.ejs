@@ -1,17 +1,18 @@
-<div class="form-check checkbox">
-  <label class="{{ctx.input.labelClass}} form-check-label">
-    <{{ctx.input.type}}
-      ref="input"
-      {% for (var attr in ctx.input.attr) { %}
-      {{attr}}="{{ctx.input.attr[attr]}}"
-      {% } %}
-      {% if (ctx.checked) { %}checked=true{% } %}
+<div class="form-check checkbox my-2">
+  <label class="d-flex flex-items-start fs-inherit fg-inherit">
+    <div class="flex-shrink-0">
+      <{{ ctx.input.type }}
+        class="input-checkbox position-relative d-block mr-2 mb-0"
+        ref="input"
+        {% for (var attr in ctx.input.attr) { %}
+          {{attr}}="{{ctx.input.attr[attr]}}"
+        {% } %}
+        value="{{ ctx.value }}"
+        {% if (ctx.input.checked) { %}checked{% } %}
       >
-    {% if (!ctx.self.labelIsHidden()) { %}<span>{{ctx.input.label}}</span>{% } %}
-    {% if (ctx.component.tooltip) { %}
-      <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted"></i>
-    {% } %}
-    {{ctx.input.content}}
-    </{{ctx.input.type}}>
+    </div>
+    <span class="flex-auto">
+      {{ ctx.t(ctx.input.label) }}
+    </span>
   </label>
 </div>

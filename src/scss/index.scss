@@ -1,11 +1,24 @@
+// SF design system imports
 @import "sf-design-system/src/components/00-design-tokens/_variables.scss";
 @import "sf-design-system/src/components/00-design-tokens/_colors.scss";
-// @import "sf-design-system/src/components/00-design-tokens/_functions.scss";
-// @import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
-// @import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
-// @import "sf-design-system/src/components/00-design-tokens/_base.scss";
+@import "sf-design-system/src/components/00-design-tokens/_functions.scss";
+@import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
+@import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
+@import "sf-design-system/src/components/00-design-tokens/_base.scss";
 @import "sf-design-system/src/components/00-design-tokens/_breakpoints.scss";
-// @import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+@import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+
+// variables
 @import "./tokens";
-@import "./utilities";
+
+// functions + mixins
+@import "./tools";
+
+// these are the actual styles
 @import "./debug";
+@import "./forms";
+@import "./grid";
+@import "./flexbox";
+@import "./layout";
+@import "./typography";
+@import "./utilities";
