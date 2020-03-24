@@ -1,5 +1,7 @@
 .d1 { @include display-1; }
+
 .big-description { @include big-description; }
+.small { @include small-text; }
 
 .u { text-decoration: underline !important; }
 
