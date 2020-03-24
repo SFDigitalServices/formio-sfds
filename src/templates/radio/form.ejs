@@ -1,9 +1,7 @@
 <div class="form-group mt-2">
   <fieldset>
     {% if (!ctx.component.hideLabel) { %}
-      <legend>
-        {{ctx.t(ctx.component.label)}}
-      </legend>
+      <legend>{{ ctx.t(ctx.component.label) }}</legend>
     {% } %}
     <div class="field-wrapper">
       {% ctx.values.forEach(function(item) { %}
