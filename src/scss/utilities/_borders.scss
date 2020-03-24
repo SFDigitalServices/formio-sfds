@@ -9,9 +9,15 @@
         }
       }
     }
+
+    @each $index, $value in $radii {
+      .round#{$variant}-#{$index} { border-radius: $value !important; }
+    }
   }
 }
 
+// These have to go *after* the above rules so that they take precedence over
+// the shorthand "border" declarations.
 @each $name, $value in $color-map {
   .border-#{"" + $name} { border-color: $value !important; }
 }
