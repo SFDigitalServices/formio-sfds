@@ -1,0 +1,8 @@
+.container {
+  margin: 0 spacer(2);
+
+  @include breakpoint(md) {
+    width: $mq-medium;
+    margin: 0 auto;
+  }
+}
