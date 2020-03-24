@@ -2,6 +2,7 @@
 
 {{ ctx.element }}
 
-{% if (ctx.component.description) { %}
-  <div class="form-text text-muted">{{ ctx.t(ctx.component.description) }}</div>
+{% var description = ctx.component.description || ctx.component.tooltip %}
+{% if (description) { %}
+  <div class="fg-slate-65">{{ ctx.t(description) }}</div>
 {% } %}
