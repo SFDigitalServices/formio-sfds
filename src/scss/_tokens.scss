@@ -80,6 +80,7 @@ $color-map: (
   grey-4: $grey-4,
   grey-5: $grey-5,
   none: transparent,
+  inherit: inherit,
 );
 
 $breakpoint-variants: ('': null, );
