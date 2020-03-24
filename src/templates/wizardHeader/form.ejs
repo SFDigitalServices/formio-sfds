@@ -2,10 +2,13 @@
   <ul class="list-style-none">
     {% ctx.panels.forEach(function(panel, index) { %}
       {% var active = ctx.currentPage === index; %}
-      <li class="border-bottom-1 border-grey-3" {% if (active) { %} aria-current="page"{% } %}>
-        <span class="d-block pr-3 py-2 cursor-pointer{{ active ? ' fw-medium icon-pencil' : '' }}" ref="{{ ctx.wizardKey }}-link">
+      <li class="d-flex flex-items-center border-bottom-1 border-grey-3" {% if (active) { %} aria-current="page"{% } %}>
+        <span class="flex-auto py-2 cursor-pointer{% if (active) { %} fw-medium{% } %}" ref="{{ ctx.wizardKey }}-link">
           {{ ctx.t(panel.title) }}
         </span>
+        {% if (active) { %}
+          <span data-icon="active" class="pr-1"></span>
+        {% } %}
       </li>
     {% }) %}
   </ul>
