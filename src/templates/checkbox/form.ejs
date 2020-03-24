@@ -1,11 +1,11 @@
-<div class="form-check checkbox">
-  <label class="d-flex flex-items-center fs-inherit mb-3">
+<div class="form-check checkbox my-3">
+  <label class="d-flex flex-items-center fs-inherit">
     <div class="flex-shrink-0">
       <{{ ctx.input.type }}
         class="input-checkbox position-relative d-block mr-2 mb-0"
         ref="input"
         {% for (var attr in ctx.input.attr) { %}
-        {{attr}}="{{ctx.input.attr[attr]}}"
+          {{attr}}="{{ctx.input.attr[attr]}}"
         {% } %}
         value="{{ ctx.value }}"
         {% if (ctx.input.checked) { %}checked{% } %}
