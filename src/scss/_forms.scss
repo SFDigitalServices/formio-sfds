@@ -37,7 +37,7 @@
 }
 
 label.field-required,
-.required label {
+.required .label-required {
   &::after {
     display: inline-block;
     content: "*";
