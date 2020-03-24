@@ -1,4 +1,5 @@
 import templates from './templates'
+import { observeIcons } from './icons'
 
 export default {
   framework: 'sfds',
@@ -6,3 +7,5 @@ export default {
     sfds: templates
   }
 }
+
+observeIcons()
