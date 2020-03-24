@@ -4,7 +4,7 @@
       .border#{$variant}-#{$key} { border: $value solid !important; }
 
       @each $edge in (top, right, bottom, left) {
-        .border#{$variant}-#{$edge}-#{$key} {
+        .border-#{$edge}#{$variant}-#{$key} {
           border-#{$edge}: $value solid !important;
         }
       }
