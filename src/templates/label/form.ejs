@@ -1,8 +1,6 @@
-{% if (ctx.component.type !== 'radio') { %}
-<label class="col-form-label {{ctx.label.className}}">
+<label class="{{ ctx.label.className }}">
   {{ ctx.t(ctx.component.label) }}
   {% if (ctx.component.tooltip) { %}
-    <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted"></i>
+    <i ref="tooltip" class="{{ ctx.iconClass('question-sign') }} text-muted"></i>
   {% } %}
 </label>
-{% } %}
