@@ -39,3 +39,9 @@
     background-image: svg-load('../icons/Check.svg', fill=$white);
   }
 }
+
+.icon-pencil {
+  background-image: svg-load('../icons/Pencil.svg', fill=$slate);
+  background-position: right center;
+  background-repeat: no-repeat;
+}
