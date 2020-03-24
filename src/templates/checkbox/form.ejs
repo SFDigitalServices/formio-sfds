@@ -11,8 +11,14 @@
         {% if (ctx.input.checked) { %}checked{% } %}
       >
     </div>
-    <span class="flex-auto label-required">
-      {{ ctx.t(ctx.input.label) }}
-    </span>
+    <div class="flex-auto">
+      <span class="label-required">
+        {{ ctx.t(ctx.input.label) }}
+      </span>
+      {% var tooltip = ctx.component.tooltip %}
+      {% if (tooltip) { %}
+        <div class="fg-slate-65">{{ ctx.t(tooltip) }}</div>
+      {% } %}
+    </div>
   </label>
 </div>
