@@ -45,6 +45,20 @@ label.field-required,
   }
 }
 
+// XXX there is no hook for this; it's in the JS
+.control-label--hidden {
+  display: none;
+}
+
+// spacing tweaks AHOY
+.formio-component-address,
+.formio-component-email,
+.formio-component-number,
+.formio-component-radio,
+.formio-component-textfield {
+  margin-bottom: spacer(3);
+}
+
 [ref=element],
 .address-autocomplete-container {
   input:not([type=button]),
