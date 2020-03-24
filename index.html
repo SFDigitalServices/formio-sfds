@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="dist/formio-sfds.css">
   </head>
   <body>
-    <div id="formio" data-resource="https://sfds.form.io/oewd-workers-families" class="p-3"></div>
+    <div class="container p-3">
+      <div id="formio" data-resource="https://sfds.form.io/oewd-workers-families"></div>
+      <div id="thanks" class="bg-green-2 round-1 p-3 my-3" hidden>
+        <h1 class="m-0">Thanks!</h1>
+      </div>
+    </div>
 
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
     <script src="dist/formio-sfds.umd.js"></script>
@@ -29,8 +34,16 @@
 
         const root = document.getElementById('formio')
         const resource = new URLSearchParams(location.search).get('res') || root.getAttribute('data-resource')
-        Formio.createForm(root, resource).then(form => {
+        Formio.createForm(root, resource, {
+          hooks: {
+            beforeSubmit: (submission, next) => {
+              document.getElementById('thanks').hidden = false
+              next(true)
+            }
+          }
+        }).then(form => {
           console.log('ready!', form)
+
           document.title = form.schema.title
         })
       }
