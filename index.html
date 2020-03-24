@@ -18,12 +18,14 @@
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
     <script src="dist/formio-sfds.umd.js"></script>
     <script defer>
+      const root = document.getElementById('formio')
+
       window.addEventListener('keyup', e => {
         const active = document.activeElement
         if (!active || active === document.body) {
           switch (e.key) {
             case 'D':
-              document.body.classList.toggle('debug')
+              root.classList.toggle('class-debug')
               break
           }
         }
@@ -32,7 +34,6 @@
       window.onload = () => {
         Formio.use(FormioSFDS)
 
-        const root = document.getElementById('formio')
         const resource = new URLSearchParams(location.search).get('res') || root.getAttribute('data-resource')
         Formio.createForm(root, resource, {
           hooks: {
