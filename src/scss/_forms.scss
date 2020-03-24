@@ -40,8 +40,14 @@
   }
 }
 
-.icon-pencil {
-  background-image: svg-load('../icons/Pencil.svg', fill=$slate);
-  background-position: right center;
-  background-repeat: no-repeat;
+.formio-error-wrapper,
+.has-error {
+  color: $red-3;
+
+  input[type=checkbox],
+  input[type=radio],
+  input[type=text],
+  textarea {
+    border-color: $red-3 !important;
+  }
 }
