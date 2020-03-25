@@ -3,7 +3,7 @@ import next from './Arrow-right.svg'
 import prev from './Arrow-left.svg'
 import close from './Close.svg'
 import document from './Document.svg'
-import info from './Info.svg'
+import alert from './Alert.svg'
 import pencil from './Pencil.svg'
 
 const icons = {
@@ -12,8 +12,8 @@ const icons = {
   close,
   delete: close,
   document,
-  error: info,
-  info,
+  error: alert,
+  alert,
   next,
   pencil,
   prev
