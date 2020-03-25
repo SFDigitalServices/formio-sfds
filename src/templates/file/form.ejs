@@ -1,47 +1,64 @@
 {% if (!ctx.self.imageUpload) { %}
-  <ul class="list-group list-group-striped">
-    <li class="list-group-item list-group-header hidden-xs hidden-sm">
-      <div class="row">
-        {% if (!ctx.disabled) { %}
-          <div class="col-md-1"></div>
-        {% } %}
-        <div class="col-md-{% if (ctx.self.hasTypes) { %}7{% } else { %}9{% } %}"><strong>{{ctx.t('File Name')}}</strong></div>
-        <div class="col-md-2"><strong>{{ctx.t('Size')}}</strong></div>
-        {% if (ctx.self.hasTypes) { %}
-          <div class="col-md-2"><strong>{{ctx.t('Type')}}</strong></div>
-        {% } %}
-      </div>
-    </li>
-    {% ctx.files.forEach(function(file) { %}
-      <li class="list-group-item">
-        <div class="row">
+  {% if (ctx.files.length) { %}
+    <table class="align-left">
+      <thead>
+        <tr>
+          <th class="col-md-{{ ctx.self.hasTypes ? 7 : 9 }}">
+            {{ ctx.t('File name') }}
+          </th>
+          <th class="col-md-2">
+            {{ ctx.t('Size') }}
+          </th>
+          {% if (ctx.self.hasTypes) { %}
+            <th class="col-md-2">
+              {{ ctx.t('Type') }}</strong>
+            </th>
+          {% } %}
           {% if (!ctx.disabled) { %}
-            <div class="col-md-1"><i class="{{ctx.iconClass('remove')}}" ref="removeLink"></i></div>
+            <th><!-- actions --></th>
           {% } %}
-          <div class="col-md-{% if (ctx.self.hasTypes) { %}7{% } else { %}9{% } %}">
-            {% if (ctx.component.uploadOnly) { %}
-              {{file.originalName || file.name}}
-            {% } else { %}
-              <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+        </tr>
+      </thead>
+      <tbody>
+        {% ctx.files.forEach(function(file) { %}
+          <tr>
+            <td class="pr-1">
+              {% if (ctx.component.uploadOnly) { %}
+                {{file.originalName || file.name}}
+              {% } else { %}
+                <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+              {% } %}
+            </td>
+            <td class="pr-1">
+              {{ ctx.fileSize(file.size) }}
+            </td>
+            {% if (ctx.self.hasTypes && !ctx.disabled) { %}
+              <td class="pr-1">
+                <select class="file-type" ref="fileType">
+                  {% ctx.component.fileTypes.map(function(type) { %}
+                    <option value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected"{% } %}>{{ type.label }}</option>
+                  {% }); %}
+                </select>
+              </div>
             {% } %}
-          </div>
-          <div class="col-md-2">{{ctx.fileSize(file.size)}}</div>
-          {% if (ctx.self.hasTypes && !ctx.disabled) { %}
-            <div class="col-md-2">
-              <select class="file-type" ref="fileType">
-                {% ctx.component.fileTypes.map(function(type) { %}
-                  <option class="test" value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected"{% } %}>{{ type.label }}</option>
-                {% }); %}
-              </select>
-            </div>
-          {% } %}
-          {% if (ctx.self.hasTypes && ctx.disabled) { %}
-          <div class="col-md-2">{{file.fileType}}</div>
-          {% } %}
-        </div>
-      </li>
-    {% }) %}
-  </ul>
+            {% if (ctx.self.hasTypes && ctx.disabled) { %}
+              <td class="pr-1">{{file.fileType}}</td>
+            {% } %}
+            {% if (!ctx.disabled) { %}
+              <td>
+                <button
+                  ref="removeLink"
+                  class="p-1 bg-slate-65 fg-white d-flex flex-items-center">
+                  <span data-icon="delete" class="d-flex flex-items-center mr-1"></span>
+                  <span>{{ ctx.t('Remove') }}</span>
+                </button>
+              </td>
+            {% } %}
+          </tr>
+        {% }) %}
+      </tbody>
+    </table>
+  {% } %}
 {% } else { %}
   <div>
     {% ctx.files.forEach(function(file) { %}
@@ -63,12 +80,15 @@
       <button class="btn btn-primary" ref="cameraButton"><i class="fa fa-camera"></i> {{ctx.t('Camera')}}</button>
     </div>
   {% } else if (!ctx.self.cameraMode) { %}
-    <div class="fileSelector" ref="fileDrop">
-      <i class="{{ctx.iconClass('cloud-upload')}}"></i> {{ctx.t('Drop files to attach,')}}
-        {% if (ctx.self.imageUpload) { %}
-          <a href="#" ref="toggleCameraMode"><i class="fa fa-camera"></i> {{ctx.t('Use Camera,')}}</a>
-        {% } %}
-        {{ctx.t('or')}} <a href="#" ref="fileBrowse" class="browse">{{ctx.t('browse')}}</a>
+    <div class="my-1">
+      <div class="fileSelector" ref="fileDrop">
+        <div class="align-center">
+          {{ ctx.t('Drop files to attach, or') }}
+          <button class="p-1 ml-1 mr-0 mb-0" ref="fileBrowse">
+            {{ ctx.t('Browse')}}
+          </button>
+        </div>
+      </div>
     </div>
   {% } else { %}
     <div>

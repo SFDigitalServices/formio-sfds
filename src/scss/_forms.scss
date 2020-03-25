@@ -42,7 +42,7 @@
  * state in component templates. If we can get that, we can vary
  * the margins of these elements there.
  */
-.form-checkbox ~ .messages:not(:empty) {
+.formio-error-wrapper .form-checkbox .messages {
   margin-top: -1 * spacer(2) !important;
 }
 
@@ -88,6 +88,7 @@ label.field-required,
 // spacing tweaks AHOY
 .formio-component-address,
 .formio-component-email,
+.formio-component-file,
 .formio-component-number,
 .formio-component-radio,
 .formio-component-textfield {
@@ -103,4 +104,11 @@ label.field-required,
     margin-bottom: 0;
     padding-bottom: spacer(2);
   }
+}
+
+.fileSelector {
+  background: $grey-1;
+  border: 1px dotted $grey-3;
+  border-radius: radius(1);
+  padding: spacer(2);
 }
