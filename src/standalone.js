@@ -3,5 +3,9 @@ import '../dist/formio-sfds.css'
 import FormioSFDS from './index.js'
 
 window.addEventListener('load', () => {
-  window.Formio.use(FormioSFDS)
+  const { Formio } = window
+
+  FormioSFDS.patch(Formio)
+
+  Formio.use(FormioSFDS)
 })
