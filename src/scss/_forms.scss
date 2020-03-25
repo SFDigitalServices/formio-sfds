@@ -26,9 +26,19 @@
   }
 }
 
-// OOOF this is a hack FIXME FIXME
-.form-checkbox ~ [ref=messageContainer]:not(:empty) {
+/**
+ * FIXME FIXME
+ *
+ * These awful hacks are due to not having access to the error
+ * state in component templates. If we can get that, we can vary
+ * the margins of these elements there.
+ */
+.form-checkbox ~ .messages:not(:empty) {
   margin-top: -1 * spacer(2) !important;
+}
+
+.formio-component-multiple.formio-error-wrapper > .messages {
+  margin-top: -1 * spacer(3) !important;
 }
 
 .field-description,
