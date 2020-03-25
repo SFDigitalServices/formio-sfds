@@ -71,7 +71,8 @@
 }
 
 label.field-required,
-.required .label-required {
+.required .label-required,
+.formio-component-radio.required legend {
   &::after {
     display: inline-block;
     content: "*";
