@@ -26,9 +26,34 @@
   }
 }
 
+/**
+ * FIXME FIXME
+ *
+ * These awful hacks are due to not having access to the error
+ * state in component templates. If we can get that, we can vary
+ * the margins of these elements there.
+ */
+.form-checkbox ~ .messages:not(:empty) {
+  margin-top: -1 * spacer(2) !important;
+}
+
+.formio-component-multiple.formio-error-wrapper > .messages {
+  margin-top: -1 * spacer(3) !important;
+}
+
+.field-description,
+.tooltip {
+  color: rgba($slate, 0.65);
+}
+
 .formio-error-wrapper,
 .has-error {
   color: $red-3;
+
+  .field-description,
+  .tooltip {
+    color: inherit !important;
+  }
 
   input:not([type=button]),
   textarea {
@@ -37,12 +62,26 @@
 }
 
 label.field-required,
-.required label {
+.required .label-required {
   &::after {
     display: inline-block;
     content: "*";
     color: $red-3;
   }
+}
+
+// XXX there is no hook for this; it's in the JS
+.control-label--hidden {
+  display: none;
+}
+
+// spacing tweaks AHOY
+.formio-component-address,
+.formio-component-email,
+.formio-component-number,
+.formio-component-radio,
+.formio-component-textfield {
+  margin-bottom: spacer(3);
 }
 
 [ref=element],

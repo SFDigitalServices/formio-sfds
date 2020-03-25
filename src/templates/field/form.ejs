@@ -2,6 +2,13 @@
 
 {{ ctx.element }}
 
-{% if (ctx.component.description) { %}
-  <div class="form-text text-muted">{{ ctx.t(ctx.component.description) }}</div>
+{% var description = ctx.component.description %}
+{% if (description) { %}
+  <div class="field-description">{{ ctx.t(description) }}</div>
+{% } %}
+{% if (ctx.component.type !== 'checkbox') { %}
+  {% var tooltip = ctx.component.tooltip %}
+  {% if (tooltip) { %}
+    <div class="tooltip">{{ ctx.t(tooltip) }}</div>
+  {% } %}
 {% } %}

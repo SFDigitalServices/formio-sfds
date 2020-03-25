@@ -1,10 +1,26 @@
 <div class="{{ ctx.className }}">
-  <div class="d-flex flex-column flex-md-row-reverse">
-    <div class="col-6 col-md-2">
+  <div class="d-flex flex-column flex-md-row-reverse flex-justify-between">
+    <div class="col-md-2">
       {{ ctx.wizardHeader }}
     </div>
-    <div class="col-6 col-md-4 pr-md-3" ref="{{ ctx.wizardKey }}">
-      <div id="components" class="mb-3">
+    <div class="col-md-3" ref="{{ ctx.wizardKey }}">
+      <div class="mb-3">
+        <div class="mb-4">
+          {% if (ctx.buttons.previous) { %}
+            <button class="sfgov-button my-0 p-0 border-0 bg-none fg-bright-blue" ref="{{ctx.wizardKey}}-previous">
+              <div class="d-flex flex-items-center">
+                <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
+                <span>{{ ctx.t('Back') }}</span>
+              </div>
+            </button>
+          {% } %}
+          {% var panel = ctx.panels[ctx.currentPage] %}
+          {% if (panel) { %}
+            <h1 class="d1 mr-n2">
+              {{ ctx.t(panel.title) }}
+            </h1>
+          {% } %}
+        </div>
         {{ ctx.components }}
       </div>
       {{ ctx.wizardNav }}

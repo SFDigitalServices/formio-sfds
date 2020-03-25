@@ -1,16 +1,12 @@
 {% var button_classes = 'sfgov-button mt-0 py-1' %}
 <div class="d-flex flex-justify-between" id="{{ ctx.wizardKey }}-nav">
   <div class="flex-auto">
-    {% if (ctx.buttons.previous) { %}
-      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-previous">
-        <span data-icon="prev" data-height="15" class="mr-1"></span>
-        {{ ctx.t('Previous') }}
-      </button>
-    {% } %}
     {% if (ctx.buttons.next) { %}
       <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-next">
-        {{ ctx.t('Next') }}
-        <span data-icon="next" data-height="15" class="ml-1"></span>
+        <div class="d-flex flex-items-center">
+          <span>{{ ctx.t('Next')}}</span>
+          <span data-icon="next" class="d-flex flex-items-center ml-1"></span>
+        </div>
       </button>
     {% } %}
     {% if (ctx.buttons.submit) { %}

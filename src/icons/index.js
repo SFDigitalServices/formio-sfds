@@ -26,16 +26,18 @@ function getIcon (name) {
   return icons[name]
 }
 
-function observeIcons() {
+function observeIcons () {
   observe('[data-icon]', {
     add (el) {
       const icon = getIcon(el.getAttribute('data-icon'))
       if (icon) {
         el.innerHTML = icon
         const svg = el.getElementsByTagName('svg')[0]
+        const viewBox = svg.getAttribute('viewBox') || ''
+        const defaultHeight = viewBox.split(' ')[3] || 20
         const desired = {
           width: el.getAttribute('data-width'),
-          height: el.getAttribute('data-height') || 16
+          height: el.getAttribute('data-height') || defaultHeight
         }
         if (desired.width) {
           svg.setAttribute('width', desired.width)
