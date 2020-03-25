@@ -94,10 +94,13 @@ label.field-required,
   margin-bottom: spacer(3);
 }
 
-[ref=element],
-.address-autocomplete-container {
-  input:not([type=button]),
-  textarea {
-    margin-bottom: spacer(1);
+.formio-component-address {
+  .formio-component {
+    label { @include small-text; }
+  }
+
+  .formio-component-textfield {
+    margin-bottom: 0;
+    padding-bottom: spacer(2);
   }
 }
