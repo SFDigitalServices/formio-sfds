@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Loading...</title>
+  </head>
+  <body>
+    <div class="container p-3">
+      <div id="formio" data-resource="https://sfds.form.io/oewd-workers-families"></div>
+      <div id="thanks" class="bg-green-2 round-1 p-3 my-3" hidden>
+        <h1 class="m-0">Thanks!</h1>
+      </div>
+    </div>
+
+    <script src="dist/formio-sfds.standalone.js"></script>
+    <script defer>
+      const root = document.getElementById('formio')
+
+      window.addEventListener('keyup', e => {
+        const active = document.activeElement
+        if (!active || active === document.body) {
+          switch (e.key) {
+            case 'D':
+              root.classList.toggle('class-debug')
+              break
+          }
+        }
+      })
+
+      window.onload = () => {
+        const resource = new URLSearchParams(location.search).get('res') || root.getAttribute('data-resource')
+        Formio.createForm(root, resource, {
+          hooks: {
+            beforeSubmit: (submission, next) => {
+              document.getElementById('thanks').hidden = false
+              next(true)
+            }
+          }
+        }).then(form => {
+          console.log('ready!', form)
+
+          document.title = form.schema.title
+        })
+      }
+    </script>
+  </body>
+</html>
