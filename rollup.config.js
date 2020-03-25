@@ -32,7 +32,6 @@ export default [
     input: 'src/standalone.js',
     plugins: [
       ...commonPlugins,
-      commonjs(),
       postcss({
         extensions: ['.css'],
         inject: true
