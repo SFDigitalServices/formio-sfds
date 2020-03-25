@@ -5,6 +5,9 @@ module.exports = {
       includePaths: ['node_modules'],
       outputStyle: process.env.NODE_ENV === 'production' ? 'condensed' : 'expanded'
     }),
+    require('postcss-inline-svg')({
+      removeFill: true
+    }),
     require('autoprefixer')()
   ]
 }
