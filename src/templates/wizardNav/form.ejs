@@ -17,7 +17,7 @@
   </div>
 
   {% if (ctx.buttons.cancel) { %}
-    <div class="flex-self-end">
+    <div class="flex-self-end" hidden>
       <button class="{{ button_classes }} bg-none fg-bright-blue border-none u" ref="{{ctx.wizardKey}}-cancel">
         {{ ctx.t('Leave the form') }}
       </button>
