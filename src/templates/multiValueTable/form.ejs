@@ -2,7 +2,10 @@
   {{ ctx.rows }}
   {% if (!ctx.disabled) { %}
     <button class="py-1 border-0 bg-slate" ref="addButton">
-      <span data-icon="add" class="mr-1"></span> {{ ctx.t(ctx.addAnother) }}
+      <div class="d-flex flex-items-center">
+        <div data-icon="add" data-height="19" class="d-flex flex-items-center mr-1"></div>
+        <span>{{ ctx.t(ctx.addAnother) }}</span>
+      </div>
     </button>
   {% } %}
 </div>

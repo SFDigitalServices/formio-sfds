@@ -5,10 +5,11 @@ import close from './Close.svg'
 import document from './Document.svg'
 import alert from './Alert.svg'
 import pencil from './Pencil.svg'
+import plus from './Plus.svg'
 
 const icons = {
   active: pencil,
-  add: document,
+  add: plus,
   close,
   delete: close,
   document,
@@ -16,6 +17,7 @@ const icons = {
   alert,
   next,
   pencil,
+  plus,
   prev
 }
 
