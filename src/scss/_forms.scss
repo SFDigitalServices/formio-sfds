@@ -98,7 +98,7 @@ label.field-required,
 
 .formio-component-address {
   .formio-component {
-    label { @include small-text; }
+    // label { @include small-text; }
   }
 
   .formio-component-textfield {
@@ -108,8 +108,11 @@ label.field-required,
 }
 
 .fileSelector {
-  background: $grey-1;
-  border: 1px dotted $grey-3;
-  border-radius: radius(1);
+  border: border-width(1) dashed $grey-3;
   padding: spacer(2);
+
+  &.fileDragOver {
+    background-color: $blue-1;
+    border-color: $grey-4;
+  }
 }
