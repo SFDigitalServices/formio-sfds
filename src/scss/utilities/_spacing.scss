@@ -12,7 +12,7 @@
 
         @if $space != 0 {
           // .mt-n1 { margin-top: -$spacers[1]; }, etc.
-          .m#{$variant}#{$alias}-n#{$index} { margin-#{$edge}: -$space !important; }
+          .m#{$alias}#{$variant}-n#{$index} { margin-#{$edge}: -$space !important; }
         }
       }
 
