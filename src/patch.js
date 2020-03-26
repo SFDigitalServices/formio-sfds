@@ -1,5 +1,12 @@
+const PATCHED = `sfds-patch-${Date.now()}`
+
 export default Formio => {
+  if (Formio[PATCHED]) {
+    return
+  }
+
   patchAddressSchema(Formio.Components.components.address)
+  Formio[PATCHED] = true
 }
 
 function patchAddressSchema (AddressComponent) {
