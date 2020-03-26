@@ -4,6 +4,7 @@
   border: border-width(1) solid $grey-3;
   padding: spacer(2);
   border-radius: radius(1);
+  margin-bottom: spacer(2);
 
   > * { margin: 0; }
   > * + * { margin-top: spacer(1); }
