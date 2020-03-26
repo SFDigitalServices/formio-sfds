@@ -1,1 +1,16 @@
 [hidden] { display: none !important; }
+
+.alert {
+  border: border-width(1) solid $grey-3;
+  padding: spacer(2);
+  border-radius: radius(1);
+
+  > * { margin: 0; }
+  > * + * { margin-top: spacer(1); }
+
+  &.alert-danger {
+    color: $red-3;
+    background-color: $red-1;
+    border-color: currentColor;
+  }
+}
