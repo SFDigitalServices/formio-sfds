@@ -91,9 +91,18 @@ label.field-required,
 .formio-component-file,
 .formio-component-number,
 .formio-component-radio,
+.formio-component-select,
 .formio-component-selectboxes,
 .formio-component-textfield {
   margin-bottom: spacer(3);
+
+  .well & {
+    margin-bottom: spacer(1);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .formio-component-address {
