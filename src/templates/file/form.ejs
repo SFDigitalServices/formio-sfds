@@ -3,17 +3,17 @@
   <table class="border-collapse align-left">
     <thead{% if ((ctx.files.length + ctx.statuses.length) === 0) { %} hidden{% } %}>
       <tr>
-        <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }}">
+        <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }} px-2">
           {{ ctx.t('File name') }}
         </th>
-        <th class="col-md-2">
+        <th class="col-md-2 px-2">
           {{ ctx.t('Size') }}
         </th>
-          <th class="col-md-1">
-            {% if (ctx.self.hasTypes) { %}
-              {{ ctx.t('Type') }}
-            {% } %}
-          </th>
+        <th class="col-md-1 px-2">
+          {% if (ctx.self.hasTypes) { %}
+            {{ ctx.t('Type') }}
+          {% } %}
+        </th>
         {% if (!ctx.disabled) { %}
           <th><!-- actions --></th>
         {% } %}
