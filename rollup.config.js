@@ -6,7 +6,7 @@ import svg from 'rollup-plugin-svgo'
 import postcss from 'rollup-plugin-postcss'
 import pkg from './package.json'
 
-const postcssPlugins = require('./postcss.config')
+const name = 'FormioSFDS'
 
 const commonPlugins = [
   jst({
@@ -39,7 +39,7 @@ export default [
     ],
     output: {
       format: 'umd',
-      name: 'FormioSFDS',
+      name,
       file: 'dist/formio-sfds.standalone.js'
     }
   },
@@ -47,7 +47,8 @@ export default [
     input: pkg.module,
     output: {
       format: 'umd',
-      name: 'FormioSFDS',
+      exports: 'named',
+      name,
       file: pkg.browser
     },
     plugins: [
@@ -63,6 +64,8 @@ export default [
     ],
     output: {
       format: 'cjs',
+      exports: 'named',
+      name,
       file: pkg.main
     }
   }
