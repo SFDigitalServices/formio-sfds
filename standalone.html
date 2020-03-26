@@ -11,33 +11,20 @@
 
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
     <script src="dist/formio-sfds.standalone.js"></script>
-    <script defer>
-      const root = document.getElementById('formio')
+    <script>
+      (() => {
+        const root = document.getElementById('formio')
 
-      window.addEventListener('keyup', e => {
-        const active = document.activeElement
-        if (!active || active === document.body) {
-          switch (e.key) {
-            case 'D':
-              root.classList.toggle('class-debug')
-              break
-          }
-        }
-      })
-
-      window.onload = () => {
         const params = new URLSearchParams(location.search || location.hash.substr(1))
         const renderMode = params.get('mode')
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        Formio.createForm(root, resource, {
-          renderMode
-        }).then(form => {
+        Formio.createForm(root, resource, { renderMode }).then(form => {
           console.log('ready!', form)
-
           document.title = form.schema.title
         })
-      }
+
+      })()
     </script>
   </body>
 </html>
