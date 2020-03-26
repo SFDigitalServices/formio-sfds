@@ -33,13 +33,7 @@
         const resource = params.get('res') || root.getAttribute('data-resource')
 
         Formio.createForm(root, resource, {
-          renderMode,
-          hooks: {
-            beforeSubmit: (submission, next) => {
-              document.getElementById('thanks').hidden = false
-              next(true)
-            }
-          }
+          renderMode
         }).then(form => {
           console.log('ready!', form)
 
