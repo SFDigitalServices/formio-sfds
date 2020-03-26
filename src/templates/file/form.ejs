@@ -1,67 +1,97 @@
 {% if (!ctx.self.imageUpload) { %}
-  {% if (ctx.files.length) { %}
-    <table class="border-collapse align-left">
-      <thead hidden>
+
+  <table class="border-collapse align-left">
+    <thead{% if ((ctx.files.length + ctx.statuses.length) === 0) { %} hidden{% } %}>
+      <tr>
+        <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }}">
+          {{ ctx.t('File name') }}
+        </th>
+        <th class="col-md-2">
+          {{ ctx.t('Size') }}
+        </th>
+          <th class="col-md-1">
+            {% if (ctx.self.hasTypes) { %}
+              {{ ctx.t('Type') }}
+            {% } %}
+          </th>
+        {% if (!ctx.disabled) { %}
+          <th><!-- actions --></th>
+        {% } %}
+      </tr>
+    </thead>
+    <tbody>
+
+      {% ctx.files.forEach(function(file) { %}
+        {% var cellClass = 'bg-green-1 px-2 py-1' %}
         <tr>
-          <th class="col-md-{{ ctx.self.hasTypes ? 7 : 9 }}">
-            {{ ctx.t('File name') }}
-          </th>
-          <th class="col-md-2">
-            {{ ctx.t('Size') }}
-          </th>
-          {% if (ctx.self.hasTypes) { %}
-            <th class="col-md-2">
-              {{ ctx.t('Type') }}</strong>
-            </th>
-          {% } %}
-          {% if (!ctx.disabled) { %}
-            <th><!-- actions --></th>
-          {% } %}
-        </tr>
-      </thead>
-      <tbody>
-        {% ctx.files.forEach(function(file) { %}
-          {% var cellClass = 'bg-green-1 px-2 py-1' %}
-          <tr>
-            <td class="{{ cellClass }}">
-              {% if (ctx.component.uploadOnly) { %}
-                {{file.originalName || file.name}}
-              {% } else { %}
-                <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
-              {% } %}
-            </td>
-            <td class="{{ cellClass }}">
-              {{ ctx.fileSize(file.size) }}
-            </td>
+          <td class="{{ cellClass }}">
+            {% if (ctx.component.uploadOnly) { %}
+              {{file.originalName || file.name}}
+            {% } else { %}
+              <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+            {% } %}
+          </td>
+          <td class="{{ cellClass }}">
+            {{ ctx.fileSize(file.size) }}
+          </td>
+          <td class="{{ cellClass }}">
             {% if (ctx.self.hasTypes && !ctx.disabled) { %}
-              <td class="{{ cellClass }}">
-                <select class="file-type" ref="fileType">
-                  {% ctx.component.fileTypes.map(function(type) { %}
-                    <option value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected"{% } %}>{{ type.label }}</option>
-                  {% }); %}
-                </select>
-              </div>
+              <select class="file-type" ref="fileType">
+                {% ctx.component.fileTypes.map(function(type) { %}
+                  <option value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected"{% } %}>{{ type.label }}</option>
+                {% }); %}
+              </select>
             {% } %}
             {% if (ctx.self.hasTypes && ctx.disabled) { %}
-              <td class="{{ cellClass }}">
-                {{ file.fileType }}
-              </td>
+              {{ file.fileType }}
             {% } %}
-            <td class="pl-1 v-align-center">
-              {% if (!ctx.disabled) { %}
-                <button
-                  ref="removeLink"
-                  aria-label="Remove"
-                  class="m-0 p-1 bg-slate-65 fg-white border-0 d-flex flex-items-center">
-                  <span data-icon="delete" class="d-flex flex-items-center"></span>
-                </button>
-              {% } %}
-            </td>
-          </tr>
-        {% }) %}
-      </tbody>
-    </table>
-  {% } %}
+          </td>
+          <td class="pl-1">
+            {% if (!ctx.disabled) { %}
+              <button
+                ref="removeLink"
+                aria-label="Remove"
+                class="m-0 p-1 bg-slate-65 fg-white border-0 d-flex flex-items-center">
+                <span data-icon="delete" class="d-flex flex-items-center"></span>
+              </button>
+            {% } %}
+          </td>
+        </tr>
+      {% }) %}
+
+      {% ctx.statuses.forEach(function(status) { %}
+        {% var cellBg = ctx.statuses.status === 'error' ? 'red' : 'yellow' %}
+        {% var cellClass = 'bg-' + cellBg + '-1 px-2 py-1' %}
+        <tr>
+          <td class="{{ cellClass }}">
+            {{ status.originalName }}
+          </td>
+          <td class="{{ cellClass }}">
+            {{ ctx.fileSize(status.size) }}
+          </td>
+          <td class="{{ cellClass }}">
+            {% if (status.status === 'progress') { %}
+              <div class="d-inline-flex bg-grey-3" style="min-width: 5rem; height: 1rem;">
+                <div class="bg-green-3" role="progressbar" aria-valuenow="{{ status.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ status.progress }}%;"></div>
+              </div>
+            {% } else { %}
+              {{ ctx.t(status.message) }}
+            {% } %}
+          </td>
+          <td class="pl-1">
+            <button class="m-0" ref="fileStatusRemove">remove</button>
+          </div>
+            <div class="row">
+              <div class="col-sm-12">
+              </div>
+            </div>
+          </div>
+        </tr>
+      {% }) %}
+
+    </tbody>
+  </table>
+
 {% } else { %}
   <div>
     {% ctx.files.forEach(function(file) { %}
@@ -76,6 +106,7 @@
     {% }) %}
   </div>
 {% } %}
+
 {% if (!ctx.disabled && (ctx.component.multiple || !ctx.files.length)) { %}
   {% if (ctx.self.useWebViewCamera) { %}
     <div class="fileSelector">
@@ -116,38 +147,4 @@
       <p>{{ctx.t("XHR2's upload progress isn't supported.")}}</p>
     {% } %}
   </div>
-{% } %}
-
-{% if (ctx.statuses.length) { %}
-  <table>
-    {% ctx.statuses.forEach(function(status) { %}
-      {% var cellBg = ctx.statuses.status === 'error' ? 'red' : 'yellow' %}
-      {% var cellClass = `bg-${cellBg}-1 px-2 py-1` %}
-      <tr>
-        <td class="{{ cellClass }}">
-          {{ status.originalName }}
-        </td>
-        <td class="{{ cellClass }}">
-          {{ ctx.fileSize(status.size) }}
-        </td>
-        <td class="{{ cellClass }}">
-          {% if (status.status === 'progress') { %}
-            <div class="d-inline-flex bg-grey-4">
-              <div class="bg-green-4" role="progressbar" aria-valuenow="{{ status.progress }}" aria-valuemin="0" aria-valuemax="100" style="height: 1rem; width: {{ status.progress }}%;"></div>
-            </div>
-          {% } else { %}
-            {{ ctx.t(status.message) }}</div>
-          {% } %}
-        </td>
-        <td class="pl-1">
-          <button ref="fileStatusRemove">remove</button>
-        </div>
-          <div class="row">
-            <div class="col-sm-12">
-            </div>
-          </div>
-        </div>
-      </tr>
-    {% }) %}
-  </table>
 {% } %}
