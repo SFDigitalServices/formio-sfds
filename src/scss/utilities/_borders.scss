@@ -21,3 +21,7 @@
 @each $name, $value in $color-map {
   .border-#{"" + $name} { border-color: $value !important; }
 }
+
+.border-collapse {
+  border-collapse: collapse !important;
+}

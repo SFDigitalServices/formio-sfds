@@ -4,7 +4,7 @@
     {% if (ctx.buttons.next) { %}
       <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-next">
         <div class="d-flex flex-items-center">
-          <span>{{ ctx.t('Next')}}</span>
+          <span>{{ ctx.t(ctx.currentPage === 0 ? 'Get started' : 'Next') }}</span>
           <span data-icon="next" class="d-flex flex-items-center ml-1"></span>
         </div>
       </button>
@@ -17,7 +17,7 @@
   </div>
 
   {% if (ctx.buttons.cancel) { %}
-    <div class="flex-self-end">
+    <div class="flex-self-end" hidden>
       <button class="{{ button_classes }} bg-none fg-bright-blue border-none u" ref="{{ctx.wizardKey}}-cancel">
         {{ ctx.t('Leave the form') }}
       </button>

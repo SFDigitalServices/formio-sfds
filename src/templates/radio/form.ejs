@@ -1,6 +1,6 @@
 <div class="form-group mt-2">
   <fieldset>
-    {% if (!ctx.component.hideLabel) { %}
+    {% if (!ctx.component.hideLabel && ctx.component.type !== 'selectboxes') { %}
       <legend>{{ ctx.t(ctx.component.label) }}</legend>
     {% } %}
     <div class="field-wrapper">
