@@ -93,10 +93,11 @@ label.field-required,
 .formio-component-radio,
 .formio-component-select,
 .formio-component-selectboxes,
-.formio-component-textfield {
+.formio-component-textfield,
+.formio-component-well {
   margin-bottom: spacer(3);
 
-  .well & {
+  .formio-component-well & {
     margin-bottom: spacer(1);
 
     &:last-child {
