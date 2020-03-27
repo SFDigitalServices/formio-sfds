@@ -23,7 +23,6 @@ import fieldset from './fieldset'
 import file from './file'
 import html from './html'
 import icon from './icon'
-import iconClass from './iconClass'
 import input from './input'
 import label from './label'
 import loader from './loader'
@@ -52,22 +51,9 @@ import well from './well'
 import wizard from './wizard'
 import wizardHeader from './wizardHeader'
 import wizardNav from './wizardNav'
-import cssClasses from './cssClasses'
+import transform from './transform'
 
 export default {
-  transform (type, text) {
-    if (!text) {
-      return text
-    }
-    switch (type) {
-      case 'class':
-        return this.cssClasses.hasOwnProperty(text.toString()) ? this.cssClasses[text.toString()] : text
-    }
-    return text
-  },
-  defaultIconset: 'fa',
-  iconClass,
-  cssClasses,
   address,
   builder,
   builderComponent,
@@ -114,6 +100,7 @@ export default {
   survey,
   tab,
   table,
+  transform,
   tree,
   ...treePartials,
   webform,

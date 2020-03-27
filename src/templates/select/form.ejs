@@ -5,11 +5,3 @@
   {{attr}}="{{ctx.input.attr[attr]}}"
   {% } %}
 >{{ctx.selectOptions}}</select>
-<input type="text"
-       class="formio-select-autocomplete-input"
-       ref="autocompleteInput"
-       {% if (ctx.input.attr.autocomplete) { %}
-       autocomplete="{{ctx.input.attr.autocomplete}}"
-       {% } %}
-       tabindex="-1"
-/>

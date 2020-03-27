@@ -1,8 +1,8 @@
-{% var button_classes = 'sfgov-button mt-0 py-1' %}
+{% var button_classes = 'mt-0 py-1' %}
 <div class="d-flex flex-justify-between" id="{{ ctx.wizardKey }}-nav">
   <div class="flex-auto">
     {% if (ctx.buttons.next) { %}
-      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-next">
+      <button class="{{ button_classes }} mr-1" ref="{{ctx.wizardKey}}-next">
         <div class="d-flex flex-items-center">
           <span>{{ ctx.t(ctx.currentPage === 0 ? 'Get started' : 'Next') }}</span>
           <span data-icon="next" class="d-flex flex-items-center ml-1"></span>
@@ -10,7 +10,7 @@
       </button>
     {% } %}
     {% if (ctx.buttons.submit) { %}
-      <button class="{{ button_classes }} sfgov-button-primary mr-1" ref="{{ctx.wizardKey}}-submit">
+      <button class="{{ button_classes }} mr-1" ref="{{ctx.wizardKey}}-submit">
         {{ ctx.t('Submit') }}
       </button>
     {% } %}
