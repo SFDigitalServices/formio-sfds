@@ -1,91 +1,67 @@
+import { observe } from 'selector-observer'
+import scrollIntoView from 'scroll-into-view-if-needed'
+
+const wrapperClass = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
+let util
 
 export default Formio => {
   if (Formio[PATCHED]) {
     return
   }
 
-  patchAddressSchema(Formio.Components.components.address)
+  util = window.FormioUtils
+  patch(Formio)
+
   Formio[PATCHED] = true
 }
 
-function patchAddressSchema (AddressComponent) {
-  const defaultSchema = AddressComponent.schema
+function patch (Formio) {
+  console.warn('Patching Formio.createForm() with SFDS behaviors...')
+  hook(Formio, 'createForm', (createForm, args) => {
+    return createForm(...args).then(form => {
+      console.info('SFDS form created!')
+      form.element.classList.add(wrapperClass, 'd-flex', 'flex-column-reverse', 'mb-4')
 
-  AddressComponent.schema = (...extend) => {
-    // Get the "base" schema
-    const schema = defaultSchema(...extend)
+      patchScrollOnPageNav(form)
 
-    // Overwrite the components array
-    //
-    // Note: if you provide `components: [...]` in the call to defaultSchema()
-    // above, the merge operation keeps some of the removed items, like the
-    // country input, intact.
-    schema.components = [
-      {
-        label: 'Address line 1',
-        tableView: false,
-        key: 'address1',
-        type: 'textfield',
-        input: true
-      },
-      {
-        label: 'Address line 2',
-        tableView: false,
-        key: 'address2',
-        type: 'textfield',
-        input: true
-      },
-      {
-        label: 'City',
-        tableView: false,
-        key: 'city',
-        type: 'textfield',
-        input: true
-      },
-      {
-        type: 'columns',
-        columns: [
-          {
-            width: 4,
-            components: [
-              {
-                label: 'State',
-                tableView: false,
-                key: 'state',
-                type: 'textfield',
-                input: true
-              }
-            ]
-          },
-          {
-            width: 2,
-            components: [
-              {
-                label: 'ZIP code',
-                tableView: false,
-                key: 'zip',
-                type: 'textfield',
-                input: true
-              }
-            ]
-          }
-        ]
-      }
-    ]
+      const model = { ...form.form }
+      patchAddressManualMode(model)
+      patchSelectMode(model)
+      form.form = model
 
-    return schema
-  }
-
-  // Lastly, redefine the getters for manualMode and manualModeEnabled so that
-  // the existing address component implementation only shows our inputs (and
-  // not the autocomplete UI)
-  Object.defineProperties(AddressComponent.prototype, {
-    manualMode: {
-      get () { return true }
-    },
-    manualModeEnabled: {
-      get () { return true }
-    }
+      return form
+    })
   })
+}
+
+function patchAddressManualMode (model) {
+  const addresses = util.searchComponents(model.components, { type: 'address' })
+  for (const component of addresses) {
+    // FIXME no combination of these seems to make the nested
+    // fields render...
+    component.mode = 'manual'
+    component.enableManualMode = true
+    component.manualMode = true
+  }
+}
+
+function patchSelectMode (model) {
+  const selects = util.searchComponents(model.components, { type: 'select' })
+  for (const component of selects) {
+    component.widget = 'html5'
+  }
+}
+
+function patchScrollOnPageNav (form) {
+  const scrollToForm = () => {
+    scrollIntoView(form.element, { behavior: 'smooth' })
+  }
+  form.on('nextPage', scrollToForm)
+  form.on('prevPage', scrollToForm)
+}
+
+function hook (obj, methodName, wrapper) {
+  const method = obj[methodName].bind(obj)
+  obj[methodName] = (...args) => wrapper.call(obj, method, args)
 }
