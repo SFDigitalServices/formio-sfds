@@ -42,13 +42,17 @@
   appearance: none;
   border-radius: 50%;
   border: 2px solid $slate;
-  box-shadow: none;
+  box-shadow: none !important;
   padding: 0;
   margin: 0;
   display: inline-block;
   position: relative;
   width: $radio-size;
   height: $radio-size;
+
+  &:focus {
+    border-color: $bright-blue;
+  }
 
   &:checked {
     &::after {
@@ -63,10 +67,6 @@
       background: $bright-blue;
       border-radius: 50%;
     }
-  }
-
-  &:focus {
-    border-color: $bright-blue;
   }
 }
 
