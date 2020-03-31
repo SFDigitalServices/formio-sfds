@@ -14,12 +14,15 @@
 // functions + mixins
 @import "./tools";
 
-// these are the actual styles
-@import "./debug";
-@import "./forms";
-@import "./grid";
-@import "./flexbox";
-@import "./layout";
-@import "./typography";
-@import "./utilities";
-@import "./overrides";
+// scope everything to the <div class="formio-form"> element rendered by formio.js
+.formio-form {
+  // these are the actual styles
+  @import "./debug";
+  @import "./forms";
+  @import "./grid";
+  @import "./flexbox";
+  @import "./layout";
+  @import "./typography";
+  @import "./utilities";
+  @import "./overrides";
+}
