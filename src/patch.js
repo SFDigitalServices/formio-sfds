@@ -1,4 +1,3 @@
-import { observe } from 'selector-observer'
 import scrollIntoView from 'scroll-into-view-if-needed'
 
 const wrapperClass = 'formio-sfds'
