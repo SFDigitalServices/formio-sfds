@@ -20,7 +20,12 @@ function patch (Formio) {
   hook(Formio, 'createForm', (createForm, args) => {
     return createForm(...args).then(form => {
       console.info('SFDS form created!')
-      form.element.classList.add(wrapperClass, 'd-flex', 'flex-column-reverse', 'mb-4')
+      form.element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+
+      const wrapper = document.createElement('div')
+      wrapper.className = wrapperClass
+      form.element.parentNode.insertBefore(wrapper, form.element)
+      wrapper.appendChild(form.element)
 
       patchScrollOnPageNav(form)
 
