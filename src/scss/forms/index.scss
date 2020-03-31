@@ -43,21 +43,17 @@ label.field-required,
 .formio-component-textfield,
 .formio-component-well {
   margin-bottom: spacer(3);
+}
 
-  .formio-component-well & {
-    margin-bottom: spacer(1);
+.formio-component-well .formio-component {
+  margin-bottom: spacer(1);
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
 .formio-component-address {
-  .formio-component {
-    // label { @include small-text; }
-  }
-
   .formio-component-textfield {
     margin-bottom: 0;
     padding-bottom: spacer(2);
