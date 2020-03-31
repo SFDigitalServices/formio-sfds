@@ -35,6 +35,40 @@
   }
 }
 
+.input-radio {
+  $radio-size: 44px;
+  $dot-inset: 8px;
+
+  appearance: none;
+  border-radius: 50%;
+  border: 2px solid $slate;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: $radio-size;
+  height: $radio-size;
+
+  &:checked {
+    &::after {
+      $dot-size: calc(100% - #{$dot-inset * 2});
+
+      content: "";
+      position: absolute;
+      top: $dot-inset;
+      left: $dot-inset;
+      width: $dot-size;
+      height: $dot-size;
+      background: $bright-blue;
+      border-radius: 50%;
+    }
+  }
+
+  &:focus {
+    border-color: $bright-blue;
+  }
+}
+
 /**
  * FIXME FIXME
  *
