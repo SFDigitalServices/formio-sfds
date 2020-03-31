@@ -1,0 +1,43 @@
+.btn {
+  appearance: none;
+  outline: none;
+  color: $white;
+  background: $bright-blue;
+  border: none;
+  border-radius: radius(1);
+  padding: spacer(1) spacer(2);
+
+  &:hover {
+    background: $dark-blue;
+  }
+}
+
+.btn-link {
+  color: $bright-blue;
+  background: transparent;
+
+  &:hover {
+    color: $dark-blue;
+    background: transparent;
+  }
+}
+
+.btn-border {
+  color: $bright-blue;
+  background: $white;
+  border: border-width(1) solid currentColor;
+
+  &:hover {
+    color: $dark-blue;
+  }
+}
+
+.btn-sm {
+  padding: spacer(1);
+}
+
+.btn-block {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

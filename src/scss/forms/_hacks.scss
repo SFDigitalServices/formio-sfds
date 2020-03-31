@@ -1,0 +1,16 @@
+// FIXME FIXME
+// These awful hacks are due to not having access to the error
+// state in component templates. If we can get that, we can vary
+// the margins of these elements there.
+.formio-error-wrapper .form-checkbox .messages {
+  margin-top: -1 * spacer(2) !important;
+}
+
+.formio-component-multiple.formio-error-wrapper > .messages {
+  margin-top: -1 * spacer(3) !important;
+}
+
+// XXX there is no hook for this; it's in the JS
+.control-label--hidden {
+  display: none;
+}
