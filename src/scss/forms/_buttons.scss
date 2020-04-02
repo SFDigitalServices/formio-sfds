@@ -18,6 +18,8 @@
   color: $bright-blue;
   background: transparent;
   text-decoration: underline;
+  padding-left: 0;
+  padding-right: 0;
 
   &:hover {
     color: $dark-blue;
@@ -33,14 +35,4 @@
   &:hover {
     color: $dark-blue;
   }
-}
-
-.btn-sm {
-  padding: spacer(1);
-}
-
-.btn-block {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
 }
