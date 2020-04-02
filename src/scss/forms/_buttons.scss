@@ -6,15 +6,18 @@
   border: none;
   border-radius: radius(1);
   padding: spacer(1) spacer(2);
+  margin: 0;
 
   &:hover {
     background: $dark-blue;
+    border: none;
   }
 }
 
 .btn-link {
   color: $bright-blue;
   background: transparent;
+  text-decoration: underline;
 
   &:hover {
     color: $dark-blue;
