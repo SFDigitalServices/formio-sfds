@@ -10,8 +10,12 @@
 
   &:hover {
     background: $dark-blue;
-    border: none;
   }
+}
+
+// FIXME this is a hack to work around sf.gov's CSS
+.page-node-type-form-page .form-page & button:hover {
+  border-bottom: none;
 }
 
 .btn-link {
