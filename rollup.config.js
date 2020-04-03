@@ -4,6 +4,7 @@ import jst from 'rollup-plugin-jst'
 import babel from 'rollup-plugin-babel'
 import svg from 'rollup-plugin-svgo'
 import postcss from 'rollup-plugin-postcss'
+import dsv from '@rollup/plugin-dsv'
 import pkg from './package.json'
 
 const name = 'FormioSFDS'
@@ -23,6 +24,7 @@ const commonPlugins = [
       { removeDimensions: true }
     ]
   }),
+  dsv(),
   babel(),
   resolve()
 ]
