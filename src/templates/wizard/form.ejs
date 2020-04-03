@@ -1,4 +1,4 @@
-<div class="{{ ctx.className }}">
+<div class="{{ ctx.className }} mb-3">
   <div class="d-flex flex-column flex-md-row-reverse flex-justify-between">
     <div class="col-md-2">
       {{ ctx.wizardHeader }}
@@ -21,10 +21,9 @@
             </h1>
           {% } %}
         </div>
-        <div class="mb-3">
+        <div class="components">
           {{ ctx.components }}
         </div>
-        <div ref="alert"></div>
       </div>
       {{ ctx.wizardNav }}
     </div>
