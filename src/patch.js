@@ -1,5 +1,8 @@
+import i18n from './i18n'
+
 const wrapperClass = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
+
 let util
 
 export default Formio => {
@@ -14,10 +17,16 @@ export default Formio => {
 }
 
 function patch (Formio) {
-  console.warn('Patching Formio.createForm() with SFDS behaviors...')
-  hook(Formio, 'createForm', (createForm, args) => {
-    return createForm(...args).then(form => {
-      console.info('SFDS form created!')
+  console.info('Patching Formio.createForm() with SFDS behaviors...')
+
+  hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
+    // get the default language from the element's (inherited) lang property
+    const { lang: language } = el.lang
+    // use the translations and language as the base, and merge the provided options
+    const opts = Object.assign({ i18n, language }, options)
+    return createForm(el, resource, opts).then(form => {
+      console.log('SFDS form created!')
+
       form.element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
 
       const wrapper = document.createElement('div')
