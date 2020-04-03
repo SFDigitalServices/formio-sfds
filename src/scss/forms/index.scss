@@ -1,0 +1,55 @@
+@import "./buttons";
+@import "./inputs";
+@import "./hacks";
+
+.field-description,
+.tooltip {
+  color: rgba($slate, 0.65);
+}
+
+.formio-error-wrapper,
+.has-error {
+  color: $red-3;
+
+  .field-description,
+  .tooltip {
+    color: inherit !important;
+  }
+
+  input:not([type=button]),
+  textarea {
+    border-color: $red-3 !important;
+  }
+}
+
+label.field-required,
+.required .label-required,
+.formio-component-radio.required legend {
+  &::after {
+    display: inline-block;
+    content: "*";
+    color: $red-3;
+  }
+}
+
+.formio-component {
+  margin-bottom: spacer(3);
+}
+
+.formio-component-well .formio-component {
+  margin-bottom: spacer(1);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.fileSelector {
+  border: border-width(1) dashed $grey-3;
+  padding: spacer(2);
+
+  &.fileDragOver {
+    background-color: $blue-1;
+    border-color: $grey-4;
+  }
+}

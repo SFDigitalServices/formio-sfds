@@ -1,6 +1,3 @@
-import { observe } from 'selector-observer'
-import scrollIntoView from 'scroll-into-view-if-needed'
-
 const wrapperClass = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 let util
@@ -21,9 +18,12 @@ function patch (Formio) {
   hook(Formio, 'createForm', (createForm, args) => {
     return createForm(...args).then(form => {
       console.info('SFDS form created!')
-      form.element.classList.add(wrapperClass, 'd-flex', 'flex-column-reverse', 'mb-4')
+      form.element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
 
-      patchScrollOnPageNav(form)
+      const wrapper = document.createElement('div')
+      wrapper.className = wrapperClass
+      form.element.parentNode.insertBefore(wrapper, form.element)
+      wrapper.appendChild(form.element)
 
       const model = { ...form.form }
       patchAddressManualMode(model)
@@ -51,14 +51,6 @@ function patchSelectMode (model) {
   for (const component of selects) {
     component.widget = 'html5'
   }
-}
-
-function patchScrollOnPageNav (form) {
-  const scrollToForm = () => {
-    scrollIntoView(form.element, { behavior: 'smooth' })
-  }
-  form.on('nextPage', scrollToForm)
-  form.on('prevPage', scrollToForm)
 }
 
 function hook (obj, methodName, wrapper) {

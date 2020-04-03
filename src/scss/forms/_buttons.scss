@@ -1,0 +1,42 @@
+.btn {
+  appearance: none;
+  outline: none;
+  color: $white;
+  background: $bright-blue;
+  border: none;
+  border-radius: radius(1);
+  padding: spacer(1) spacer(2);
+  margin: 0;
+
+  &:hover {
+    background: $dark-blue;
+  }
+}
+
+// FIXME this is a hack to work around sf.gov's CSS
+.page-node-type-form-page .form-page & button:hover {
+  border-bottom: none;
+}
+
+.btn-link {
+  color: $bright-blue;
+  background: transparent;
+  text-decoration: underline;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover {
+    color: $dark-blue;
+    background: transparent;
+  }
+}
+
+.btn-border {
+  color: $bright-blue;
+  background: $white;
+  border: border-width(1) solid currentColor;
+
+  &:hover {
+    color: $dark-blue;
+  }
+}
