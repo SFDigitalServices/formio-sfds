@@ -4,9 +4,7 @@
 @import "sf-design-system/src/components/00-design-tokens/_functions.scss";
 @import "sf-design-system/src/components/00-design-tokens/_mixins.scss";
 @import "sf-design-system/src/components/00-design-tokens/_typography-mixins.scss";
-@import "sf-design-system/src/components/00-design-tokens/_base.scss";
 @import "sf-design-system/src/components/00-design-tokens/_breakpoints.scss";
-@import "sf-design-system/src/components/00-design-tokens/_typography.scss";
 
 // variables
 @import "./tokens";
@@ -14,12 +12,18 @@
 // functions + mixins
 @import "./tools";
 
-// these are the actual styles
-@import "./debug";
-@import "./forms";
-@import "./grid";
-@import "./flexbox";
-@import "./layout";
-@import "./typography";
-@import "./utilities";
-@import "./overrides";
+// scope everything to the <div class="formio-sfds"> element rendered by formio.js
+.formio-sfds {
+  @import "sf-design-system/src/components/00-design-tokens/_base.scss";
+  @import "sf-design-system/src/components/00-design-tokens/_typography.scss";
+
+  // these are the actual styles
+  @import "./debug";
+  @import "./forms";
+  @import "./grid";
+  @import "./flexbox";
+  @import "./layout";
+  @import "./typography";
+  @import "./utilities";
+  @import "./overrides";
+}

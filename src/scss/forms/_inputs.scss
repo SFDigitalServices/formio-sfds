@@ -1,0 +1,71 @@
+.input-checkbox {
+  $checkbox-size: spacer(3);
+
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: $checkbox-size !important;
+  // the !important is necessary here because sf.gov's CSS sets
+  // `height: auto` with a higher specificity
+  height: $checkbox-size !important;
+
+  // FIXME: 2px is a magic number here
+  border: 2px solid $slate !important;
+  border-radius: radius(1) !important;
+
+  // This overrides sf-design-system's CSS that hides the input
+  // and renders the checkbox with `::before { content }`
+  opacity: 1 !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &:checked {
+    border-width: border-width(1) !important;
+    background-image: svg-load('../icons/Check.svg', fill=$slate);
+  }
+
+  &:focus {
+    border-color: $bright-blue !important;
+  }
+
+  &:checked:focus {
+    background-color: $bright-blue !important;
+    background-image: svg-load('../icons/Check.svg', fill=$white);
+  }
+}
+
+.input-radio {
+  $radio-size: 44px;
+  $dot-inset: 8px;
+
+  appearance: none;
+  border-radius: 50%;
+  border: 2px solid $slate;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: $radio-size;
+  height: $radio-size;
+
+  &:focus {
+    border-color: $bright-blue;
+  }
+
+  &:checked {
+    &::after {
+      $dot-size: calc(100% - #{$dot-inset * 2});
+
+      content: "";
+      position: absolute;
+      top: $dot-inset;
+      left: $dot-inset;
+      width: $dot-size;
+      height: $dot-size;
+      background: $bright-blue;
+      border-radius: 50%;
+    }
+  }
+}

@@ -8,7 +8,7 @@
         <label class="d-flex flex-items-center fs-inherit my-2">
           <div class="flex-shrink-0">
             <{{ctx.input.type}}
-              class="input-checkbox position-relative d-block mr-2 mb-0"
+              class="input-radio position-relative d-block mr-2 mb-0"
               ref="input"
               {% for (var attr in ctx.input.attr) { %}
               {{attr}}="{{ctx.input.attr[attr]}}"
@@ -23,7 +23,9 @@
               id="{{ctx.id}}{{ctx.row}}-{{item.value}}"
             >
           </div>
-          <span class="flex-auto">{{ctx.t(item.label)}}</span>
+          <span class="flex-auto">
+            {{ ctx.t(item.label) }}
+          </span>
         </label>
       {% }) %}
     </div>

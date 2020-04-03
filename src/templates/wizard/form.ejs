@@ -1,4 +1,4 @@
-<div class="{{ ctx.className }}">
+<div class="{{ ctx.className }} mb-3">
   <div class="d-flex flex-column flex-md-row-reverse flex-justify-between">
     <div class="col-md-2">
       {{ ctx.wizardHeader }}
@@ -7,7 +7,7 @@
       <div class="mb-3">
         <div class="mb-4">
           {% if (ctx.buttons.previous) { %}
-            <button class="my-0 p-0 border-0 bg-none fg-bright-blue" ref="{{ctx.wizardKey}}-previous">
+            <button class="btn btn-link" ref="{{ctx.wizardKey}}-previous">
               <div class="d-flex flex-items-center">
                 <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
                 <span>{{ ctx.t('Back') }}</span>
@@ -21,10 +21,9 @@
             </h1>
           {% } %}
         </div>
-        <div class="mb-3">
+        <div class="components">
           {{ ctx.components }}
         </div>
-        <div ref="alert"></div>
       </div>
       {{ ctx.wizardNav }}
     </div>
