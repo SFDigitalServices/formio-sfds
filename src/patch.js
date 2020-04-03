@@ -1,5 +1,3 @@
-import scrollIntoView from 'scroll-into-view-if-needed'
-
 const wrapperClass = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 let util
@@ -27,8 +25,6 @@ function patch (Formio) {
       form.element.parentNode.insertBefore(wrapper, form.element)
       wrapper.appendChild(form.element)
 
-      patchScrollOnPageNav(form)
-
       const model = { ...form.form }
       patchAddressManualMode(model)
       patchSelectMode(model)
@@ -55,14 +51,6 @@ function patchSelectMode (model) {
   for (const component of selects) {
     component.widget = 'html5'
   }
-}
-
-function patchScrollOnPageNav (form) {
-  const scrollToForm = () => {
-    scrollIntoView(form.element, { behavior: 'smooth' })
-  }
-  form.on('nextPage', scrollToForm)
-  form.on('prevPage', scrollToForm)
 }
 
 function hook (obj, methodName, wrapper) {
