@@ -1,15 +1,18 @@
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import jst from 'rollup-plugin-jst'
 import babel from 'rollup-plugin-babel'
-import svg from 'rollup-plugin-svgo'
-import postcss from 'rollup-plugin-postcss'
-import dsv from '@rollup/plugin-dsv'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
+import postcss from 'rollup-plugin-postcss'
+import svg from 'rollup-plugin-svgo'
+import resolve from '@rollup/plugin-node-resolve'
 
 const name = 'FormioSFDS'
 
 const commonPlugins = [
+  resolve(),
+  commonjs(),
+  json(),
   jst({
     templateOptions: {
       evaluate: /\{%([\s\S]+?)%\}/g,
@@ -24,9 +27,7 @@ const commonPlugins = [
       { removeDimensions: true }
     ]
   }),
-  dsv(),
-  babel(),
-  resolve()
+  babel()
 ]
 
 export default [
@@ -54,8 +55,7 @@ export default [
       file: pkg.browser
     },
     plugins: [
-      ...commonPlugins,
-      commonjs()
+      ...commonPlugins
     ]
   },
   {
