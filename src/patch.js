@@ -22,8 +22,7 @@ function patch (Formio) {
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
     const { lang: language } = el.lang
-    // use the translations and language as the base, and merge the provided options
-    const opts = Object.assign({ i18n, language }, options)
+    const opts = mergeObjects({ i18n, language }, options)
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
 
@@ -65,4 +64,15 @@ function patchSelectMode (model) {
 function hook (obj, methodName, wrapper) {
   const method = obj[methodName].bind(obj)
   obj[methodName] = (...args) => wrapper.call(obj, method, args)
+}
+
+function mergeObjects (a, b) {
+  for (const [key, value] of Object.entries(b)) {
+    if (a[key] instanceof Object && value instanceof Object) {
+      a[key] = mergeObjects(a[key], value)
+    } else {
+      a[key] = value
+    }
+  }
+  return a
 }
