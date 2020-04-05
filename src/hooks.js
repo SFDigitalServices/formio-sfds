@@ -54,8 +54,8 @@ const namedBuilders = {
       console.info('validating at:', url, 'with data:', data)
       getJSON(url, data, { method })
         .then(res => {
-          console.info('validated:', res)
-          next()
+          console.info('validation response:', res)
+          return next(res.errors || res.error)
         })
         .catch(next)
     }
