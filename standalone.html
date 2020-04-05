@@ -25,7 +25,7 @@
         const hooks = tryParse(params.get('hooks'))
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        const options = { language, renderMode, hooks }
+        const options = { language, renderMode, hooks, prefill: 'querystring' }
         Formio.createForm(root, resource, options).then(form => {
           console.log('form ready:', form)
           document.title = form.schema.title

@@ -45,6 +45,25 @@ function patch (Formio) {
       patchSelectMode(model)
       form.form = model
 
+      if (opts.data) {
+        form.submission = { data: opts.data }
+      }
+
+      if (opts.prefill === 'querystring') {
+        console.info('submission before prefill:', form.submission)
+        const qs = new URLSearchParams(window.location.search)
+        const data = {}
+        for (const [key, value] of qs.entries()) {
+          if (key in form.submission.data) {
+            data[key] = value
+          } else {
+            console.warn('ignoring querystring key "%s": "%s"', key, value)
+          }
+        }
+        console.info('prefill submission data:', data)
+        form.submission = { data }
+      }
+
       return form
     })
   })
