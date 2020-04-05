@@ -31,7 +31,7 @@
           }
         }
 
-        const options = { language, hooks }
+        const options = { language, hooks, prefill: 'querystring' }
         Formio.createForm(root, resource, options).then(form => {
           console.log('form ready:', form)
           document.title = form.schema.title
