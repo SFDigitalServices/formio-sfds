@@ -31,7 +31,9 @@
   "author": "San Francisco Digital Services",
   "license": "MIT",
   "dependencies": {
-    "formiojs": "^4.9.0-rc.10"
+    "formiojs": "^4.9.0-rc.10",
+    "interpolate": "^0.1.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
