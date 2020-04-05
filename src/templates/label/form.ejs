@@ -1,4 +1,4 @@
-{% if (ctx.component.type !== 'radio' && ctx.component.type !== 'checkbox') { %}
+{% if (['button', 'checkbox', 'radio'].indexOf(ctx.component.type) === -1) { %}
   <label class="{{ ctx.label.className }}">
     {{ ctx.t(ctx.component.label) }}
     {% if (ctx.component.tooltip) { %}
