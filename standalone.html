@@ -22,12 +22,22 @@
         const params = new URLSearchParams(location.search || location.hash.substr(1))
         const language = params.get('lang')
         const renderMode = params.get('mode')
+        const hooks = tryParse(params.get('hooks'))
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        Formio.createForm(root, resource, { language, renderMode }).then(form => {
-          console.log('ready!', form)
+        const options = { language, renderMode, hooks }
+        Formio.createForm(root, resource, options).then(form => {
+          console.log('form ready:', form)
           document.title = form.schema.title
         })
+
+        function tryParse(str) {
+          if (!str) return
+          try { return JSON.parse(str) }
+          catch (error) {
+            console.error('Unable to parse JSON:', str)
+          }
+        }
 
       })()
     </script>

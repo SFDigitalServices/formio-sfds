@@ -1,4 +1,5 @@
 import i18n from './i18n'
+import buildHooks from './hooks'
 
 const wrapperClass = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -24,6 +25,11 @@ function patch (Formio) {
     const { lang: language } = el.lang
     // use the translations and language as the base, and merge the provided options
     const opts = Object.assign({ i18n, language }, options)
+
+    if (opts.hooks instanceof Object) {
+      opts.hooks = buildHooks(opts.hooks)
+    }
+
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
 
