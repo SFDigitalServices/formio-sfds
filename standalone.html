@@ -24,7 +24,16 @@
         const renderMode = params.get('mode')
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        Formio.createForm(root, resource, { language, renderMode }).then(form => {
+        const options = { language, renderMode }
+        options.i18n = {
+          en: {
+            Submit: 'Join waitlist'
+          },
+          zh: {
+            Submit: '[join waitlist]'
+          }
+        }
+        Formio.createForm(root, resource, options).then(form => {
           console.log('ready!', form)
           document.title = form.schema.title
         })
