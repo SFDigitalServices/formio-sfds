@@ -1,0 +1,11 @@
+#!/bin/bash
+version=${1:-prompt}
+if [ "$version" == "prompt" ]; then
+  read -p "Next version ('patch', 'minor', 'major', '3.0.0', etc.): " version
+fi
+if [ "$version" == "" ]; then
+  echo "No version specified; aborting!"
+  exit 1
+fi
+tag=$(npm version --no-git-tag-version "$version")
+git commit -m "bump: $tag" package*.json

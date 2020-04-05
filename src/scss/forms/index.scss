@@ -36,6 +36,11 @@ label.field-required,
   margin-bottom: spacer(3);
 }
 
+.formio-component-content,
+.formio-component-htmlelement {
+  margin-bottom: 0;
+}
+
 .formio-component-well .formio-component {
   margin-bottom: spacer(1);
 
