@@ -30,6 +30,11 @@ function patch (Formio) {
       opts.hooks = buildHooks(opts.hooks)
     }
 
+    let eventHandlers = {}
+    if (opts.on instanceof Object) {
+      eventHandlers = buildHooks(opts.on)
+    }
+
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
 
@@ -40,10 +45,16 @@ function patch (Formio) {
       form.element.parentNode.insertBefore(wrapper, form.element)
       wrapper.appendChild(form.element)
 
+      // Note: we create a shallow copy of the form model so the .form setter
+      // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
       patchAddressManualMode(model)
       patchSelectMode(model)
       form.form = model
+
+      for (const [event, handler] of Object.entries(eventHandlers)) {
+        form.on(event, handler)
+      }
 
       if (opts.data) {
         form.submission = { data: opts.data }
