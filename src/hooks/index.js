@@ -102,7 +102,11 @@ const namedBuilders = {
       }
       console.warn('redirect data:', data)
       const url = getURL(data)
-      window.location = window.prompt('redirect:', url) || '#'
+      if (url) {
+        window.location = url
+      } else {
+        console.warn('no redirect URL!', url)
+      }
     }
   },
 
