@@ -1,4 +1,7 @@
-import URI from 'uri-template-lite'
+// ugh, FIXME! this pollutes the global namespace
+import 'uri-template-lite'
+
+const { URI } = window
 
 export { uriTemplate, interp }
 
