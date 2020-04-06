@@ -33,6 +33,7 @@
   "dependencies": {
     "formiojs": "^4.9.0-rc.10",
     "interpolate": "^0.1.0",
+    "rollup-plugin-terser": "^5.3.0",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
