@@ -24,7 +24,10 @@
         const language = params.get('lang')
         const on = tryParse(params.get('on')) || {
           submit: {
-            redirect: '/hurricane/?token={token}'
+            redirect: {
+              url: 'schedule.html{?firstName,lastName,email,phone}&field:7514073={token}'
+              // &field:7515237={addressLine1}&field:7515246={addressZip}&field:7515239={birthDate}&field:7515244={birthSex}
+            }
           }
         }
         const hooks = tryParse(params.get('hooks')) || {
