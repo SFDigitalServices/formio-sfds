@@ -60,19 +60,35 @@ function patch (Formio) {
         form.submission = { data: opts.data }
       }
 
-      if (opts.prefill === 'querystring') {
+      if (opts.prefill) {
         console.info('submission before prefill:', form.submission)
-        const qs = new URLSearchParams(window.location.search)
-        const data = {}
-        for (const [key, value] of qs.entries()) {
-          if (key in form.submission.data) {
-            data[key] = value
-          } else {
-            console.warn('ignoring querystring key "%s": "%s"', key, value)
-          }
+        let params
+        switch (opts.prefill) {
+          case 'querystring':
+            params = new URLSearchParams(window.location.search)
+            break
+          case 'hash':
+            params = new URLSearchParams(window.location.hash.substr(1))
+            break
+          default:
+            if (opts.prefill instanceof URLSearchParams) {
+              params = opts.prefill
+            } else {
+              console.warn('Unrecognized prefill option value: "%s"', opts.prefill)
+            }
         }
-        console.info('prefill submission data:', data)
-        form.submission = { data }
+        if (params) {
+          const data = {}
+          for (const [key, value] of params.entries()) {
+            if (key in form.submission.data) {
+              data[key] = value
+            } else {
+              console.warn('ignoring querystring key "%s": "%s"', key, value)
+            }
+          }
+          console.info('prefill submission data:', data)
+          form.submission = { data }
+        }
       }
 
       return form

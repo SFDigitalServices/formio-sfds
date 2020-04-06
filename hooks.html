@@ -22,16 +22,20 @@
         const params = new URLSearchParams(location.search || location.hash.substr(1))
         const resource = params.get('res') || root.getAttribute('data-resource')
         const language = params.get('lang')
+        const on = tryParse(params.get('on')) || {
+          submit: {
+            redirect: '/hurricane/?token={token}'
+          }
+        }
         const hooks = tryParse(params.get('hooks')) || {
           beforeSubmit: {
-            validateWithService: {
-              url: params.get('serviceURL') || 'https://unpkg.com/{firstName}/package.json',
+            validateDSW: {
               method: 'GET'
             }
           }
         }
 
-        const options = { language, hooks, prefill: 'querystring' }
+        const options = { language, hooks, on, prefill: params }
         Formio.createForm(root, resource, options).then(form => {
           console.log('form ready:', form)
           document.title = form.schema.title
