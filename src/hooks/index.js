@@ -100,6 +100,7 @@ const namedBuilders = {
         }
         data.mapped = mapped
       }
+      console.warn('redirect data:', data)
       const url = getURL(data)
       window.location = window.prompt('redirect:', url) || '#'
     }
