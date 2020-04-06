@@ -3,8 +3,14 @@ import 'whatwg-fetch'
 
 const { fetch } = window
 
+// for JSON over HTTP
 const CONTENT_TYPE_HEADER = 'Content-Type'
 const JSON_CONTENT_TYPE = 'application/json'
+
+// jsend statuses: <https://github.com/omniti-labs/jsend>
+const STATUS_SUCCESS = 'success'
+const STATUS_FAIL = 'fail'
+const STATUS_ERROR = 'error'
 
 export default function buildHooks (specs) {
   const hooks = {}
@@ -34,6 +40,55 @@ function buildHook (spec) {
 
 const namedBuilders = {
 
+  validateDSW (options) {
+    const {
+      serviceURL = 'https://my-json-server.typicode.com/SFDigitalServices/placeholder-data/dsw/{dsw}',
+      method = 'POST',
+      messages = {}
+    } = options
+
+    const {
+      noToken: ERROR_NO_TOKEN = ({ response: { data } }) => `No token found in: ${JSON.stringify(data)}`,
+      ineligible: ERROR_INELIGIBLE = 'The provided DSW "{submission.data.dsw}" is invalid or ineligible.',
+      unknown: ERROR_UNKNOWN = 'An unknown error occurred when validating your DSW.'
+    } = messages
+
+    const getServiceURL = createTemplate(serviceURL)
+    return (submission, next) => {
+      const { data: subData } = submission
+      const url = getServiceURL(subData)
+      console.info('validating at:', url, 'with data:', subData)
+
+      getJSON(url, subData, { method })
+        .then(res => {
+          console.info('validation response:', res)
+          const interpolations = { submission, response: res }
+
+          const { status, data = {} } = res
+          if (status === STATUS_SUCCESS) {
+            if (data.token) {
+              submission.data.token = data.token
+            } else {
+              next({ message: interp(ERROR_NO_TOKEN, interpolations) })
+            }
+            return next()
+          } else if (status === STATUS_FAIL) {
+            return next({ message: interp(ERROR_INELIGIBLE, interpolations) })
+          }
+
+          console.warn('assuming "%s" status:', STATUS_ERROR, status)
+          next({ message: data.error || interp(ERROR_UNKNOWN, interpolations) })
+        })
+        .catch(error => {
+          if (error instanceof Object) {
+            next(error)
+          } else {
+            next({ message: error || interp(ERROR_UNKNOWN, {}) })
+          }
+        })
+    }
+  },
+
   /**
    * This is a generic HTTP service validator, which takes the form.io
    * submission data and sends it to an external service URL, then either
@@ -46,7 +101,11 @@ const namedBuilders = {
    * as-is.
    */
   validateWithService (options) {
-    const { url: urlTemplate, method = 'POST' } = options
+    const {
+      url: urlTemplate,
+      method = 'POST',
+      messages = {}
+    } = options
     const getServiceURL = createTemplate(urlTemplate)
     return (submission, next) => {
       const { data } = submission
@@ -55,6 +114,11 @@ const namedBuilders = {
       getJSON(url, data, { method })
         .then(res => {
           console.info('validation response:', res)
+          if (Object.keys(res).length === 0) {
+            return next({
+              message: messages.empty || 'Empty response'
+            })
+          }
           return next(res.errors || res.error)
         })
         .catch(next)
@@ -140,5 +204,9 @@ function getJSON (url, data, options = {}) {
 }
 
 function createTemplate (template) {
-  return data => interpolate(template, data)
+  return data => interp(template, data)
+}
+
+function interp (template, data) {
+  return (typeof template === 'function') ? template(data) : interpolate(template, data)
 }
