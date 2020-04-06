@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-import { createTemplate } from './template'
+import { uriTemplate } from './template'
 import validateDSW from './validateDSW'
 import getJSON from './getJSON'
 
@@ -49,7 +49,7 @@ const namedBuilders = {
       method = 'POST',
       messages = {}
     } = options
-    const getServiceURL = createTemplate(urlTemplate)
+    const getServiceURL = uriTemplate(urlTemplate)
     return (submission, next) => {
       const { data } = submission
       const url = getServiceURL(data)
@@ -85,8 +85,16 @@ const namedBuilders = {
    *   }
    * }
    */
-  redirect (url) {
-    const getURL = createTemplate(url)
+  redirect (optionsOrURL) {
+    let getURL
+    if (typeof optionsOrURL === 'string') {
+      getURL = uriTemplate(optionsOrURL)
+    } else if (optionsOrURL instanceof Object) {
+      const { url } = optionsOrURL
+      getURL = uriTemplate(url)
+    } else {
+      throw new Error(`Invalid redirect options: expected string or object with "url" key, but got: ${JSON.stringify(optionsOrURL)}`)
+    }
     return submission => {
       const url = getURL(submission.data)
       window.location = url
