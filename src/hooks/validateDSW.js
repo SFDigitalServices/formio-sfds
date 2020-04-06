@@ -1,4 +1,4 @@
-import { createTemplate, interp } from './template'
+import { uriTemplate, interp } from './template'
 import getJSON from './getJSON'
 
 // jsend statuses: <https://github.com/omniti-labs/jsend>
@@ -19,7 +19,7 @@ export default function validateDSW (options) {
     unknown: ERROR_UNKNOWN = 'An unknown error occurred when validating your DSW.'
   } = messages
 
-  const getServiceURL = createTemplate(serviceURL)
+  const getServiceURL = uriTemplate(serviceURL)
   return (submission, next) => {
     const { data: subData } = submission
     const url = getServiceURL(subData)
