@@ -9,7 +9,8 @@
   <body>
     <div class="page-node-type-form-page">
       <div class="form-page">
-        <div id="formio" class="container p-3" data-resource="https://sfds.form.io/dsw-verification"></div>
+        <div id="formio" class="container p-3"
+          data-resource="https://sfds.form.io/covid-19-test-intake"></div>
       </div>
     </div>
 
@@ -22,18 +23,30 @@
         const params = new URLSearchParams(location.search || location.hash.substr(1))
         const resource = params.get('res') || root.getAttribute('data-resource')
         const language = params.get('lang')
-        const on = tryParse(params.get('on')) || {
-          submit: {
-            redirect: {
-              url: 'schedule.html{?firstName,lastName,email,phone}&field:7514073={token}'
-              // &field:7515237={addressLine1}&field:7515246={addressZip}&field:7515239={birthDate}&field:7515244={birthSex}
-            }
-          }
-        }
+
         const hooks = tryParse(params.get('hooks')) || {
           beforeSubmit: {
             validateDSW: {
-              method: 'GET'
+              serviceURL: 'https://verify-microservice-py-stage.herokuapp.com/citytest/grant/{dsw}',
+              method: 'POST'
+            }
+          }
+        }
+
+        const on = tryParse(params.get('on')) || {
+          submit: {
+            redirect: {
+              url: '/hurricane/{?firstName,lastName,mapped*}',
+              map: {
+                preferredEmail: 'email',
+                preferredPhone: 'phone',
+                dsw:          'field:7514073',
+                token:        'field:7521384',
+                addressLine1: 'field:7515237',
+                addressZip:   'field:7515246',
+                birthDate:    'field:7515239',
+                birthSex:     'field:7515244'
+              }
             }
           }
         }
