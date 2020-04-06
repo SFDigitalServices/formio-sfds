@@ -34,8 +34,6 @@ const commonPlugins = [
   prod ? terser() : null
 ].filter(Boolean)
 
-const sourcemap = prod ? true : false
-
 export default [
   {
     input: 'src/standalone.js',
@@ -50,7 +48,7 @@ export default [
       format: 'umd',
       name,
       file: 'dist/formio-sfds.standalone.js',
-      sourcemap
+      sourcemap: prod
     }
   },
   {
@@ -60,7 +58,7 @@ export default [
       exports: 'named',
       name,
       file: pkg.browser,
-      sourcemap
+      sourcemap: prod
     },
     plugins: [
       ...commonPlugins
@@ -77,7 +75,7 @@ export default [
       exports: 'named',
       name,
       file: pkg.main,
-      sourcemap
+      sourcemap: prod
     }
   }
 ]
