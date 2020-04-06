@@ -86,18 +86,22 @@ const namedBuilders = {
    * }
    */
   redirect (optionsOrURL) {
-    let getURL
-    if (typeof optionsOrURL === 'string') {
-      getURL = uriTemplate(optionsOrURL)
-    } else if (optionsOrURL instanceof Object) {
-      const { url } = optionsOrURL
-      getURL = uriTemplate(url)
-    } else {
-      throw new Error(`Invalid redirect options: expected string or object with "url" key, but got: ${JSON.stringify(optionsOrURL)}`)
-    }
+    const options = (typeof optionsOrURL === 'string') ? { url: optionsOrURL } : optionsOrURL
+    const { url, map } = options
+    const getURL = uriTemplate(url)
     return submission => {
-      const url = getURL(submission.data)
-      window.location = url
+      const { data } = submission
+      if (map) {
+        const mapped = {}
+        for (const [sourceKey, destKey] of Object.entries(map)) {
+          if (sourceKey in data) {
+            mapped[destKey] = data[sourceKey]
+          }
+        }
+        data.mapped = mapped
+      }
+      const url = getURL(data)
+      window.location = window.prompt('redirect:', url)
     }
   },
 
