@@ -1,5 +1,7 @@
+$input-size: 44px;
+
 .input-checkbox {
-  $checkbox-size: spacer(3);
+  $checkbox-size: $input-size;
 
   appearance: none;
   padding: 0;
@@ -36,7 +38,7 @@
 }
 
 .input-radio {
-  $radio-size: 44px;
+  $radio-size: $input-size;
   $dot-inset: 8px;
 
   appearance: none;
