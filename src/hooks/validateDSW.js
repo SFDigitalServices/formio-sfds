@@ -1,4 +1,5 @@
-import { interp } from './template'
+import { createTemplate, interp } from './template'
+import getJSON from './getJSON'
 
 // jsend statuses: <https://github.com/omniti-labs/jsend>
 const STATUS_SUCCESS = 'success'
