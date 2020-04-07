@@ -10,13 +10,14 @@
     <div class="page-node-type-form-page">
       <div class="form-page">
         <div id="formio" class="container p-3"
-          data-resource="https://sfds.form.io/covid-19-test-intake"></div>
+          data-resource="https://sfds.form.io/covid-19-test-intake">
+        </div>
+        <details style="margin: 20px 40px;">
+          <summary>JSON options string</summary>
+          <pre id="json-options"></pre>
+        </details>
       </div>
     </div>
-    <details style="margin: 4rem;">
-      <summary>JSON options string</summary>
-      <pre id="json-options"></pre>
-    </details>
 
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
     <script src="dist/formio-sfds.standalone.js"></script>
