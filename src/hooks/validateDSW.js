@@ -39,11 +39,11 @@ export default function validateDSW (options) {
           }
           return next()
         } else if (status === STATUS_FAIL) {
-          return next({ message: interp(ERROR_INELIGIBLE, interpolations) })
+          return next({ message: data.message || interp(ERROR_INELIGIBLE, interpolations) })
+        } else {
+          console.warn('assuming "%s" status:', STATUS_ERROR, status)
+          next({ message: data.message || interp(ERROR_UNKNOWN, interpolations) })
         }
-
-        console.warn('assuming "%s" status:', STATUS_ERROR, status)
-        next({ message: data.error || interp(ERROR_UNKNOWN, interpolations) })
       })
       .catch(error => {
         if (error instanceof Object) {
