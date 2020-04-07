@@ -1,3 +1,4 @@
+import interpolate from 'interpolate'
 // ugh, FIXME! this pollutes the global namespace
 import 'uri-template-lite'
 
@@ -11,5 +12,5 @@ function uriTemplate (template) {
 }
 
 function interp (template, data) {
-  return (typeof template === 'function') ? template(data) : URI.expand(template, data)
+  return (typeof template === 'function') ? template(data) : interpolate(template, data)
 }
