@@ -31,6 +31,9 @@ function patch (Formio) {
       const { element } = form
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+      if (options.googleTranslate === false) {
+        element.classList.add('notranslate')
+      }
 
       let wrapper = element.closest(`.${WRAPPER_CLASS}`)
       if (!wrapper) {

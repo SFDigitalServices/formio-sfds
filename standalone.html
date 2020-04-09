@@ -25,6 +25,7 @@
         const resource = params.get('res') || root.getAttribute('data-resource')
 
         const options = { language, renderMode }
+        options.googleTranslate = false
         options.i18n = {
           en: { Submit: 'Join waitlist' },
           es: { Submit: '$t(Join waitlist)' },
