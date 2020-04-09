@@ -1,6 +1,6 @@
 {% if (ctx.component.type !== 'radio' && ctx.component.type !== 'checkbox') { %}
   <label class="{{ ctx.label.className }}">
-    {{ ctx.t(ctx.component.label) }}
+    <b>{{ ctx.t([`${ctx.component.key}_label`, ctx.component.label]) }}</b>
     {% if (ctx.component.tooltip) { %}
       <i ref="tooltip" class="{{ ctx.iconClass('question-sign') }} text-muted"></i>
     {% } %}
