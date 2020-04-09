@@ -21,7 +21,7 @@ function patch (Formio) {
 
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
-    const { lang: language } = el.lang
+    const { lang: language } = el.lang || document.documentElement.lang
     const opts = mergeObjects({ i18n, language }, options)
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
