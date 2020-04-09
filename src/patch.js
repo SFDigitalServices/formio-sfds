@@ -27,7 +27,6 @@ function patch (Formio) {
 
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
-      forms.push(form)
 
       const { element } = form
 
@@ -46,6 +45,9 @@ function patch (Formio) {
       patchAddressManualMode(model)
       patchSelectMode(model)
       form.form = model
+
+      updateLanguage(form)
+      forms.push(form)
 
       return form
     })
@@ -75,12 +77,8 @@ function patchSelectMode (model) {
 
 function patchLanguageObserver () {
   const observer = new window.MutationObserver(mutations => {
-    // console.info('lang attribute changed:', mutations)
     for (const form of forms) {
-      const closestLangElement = form.element.closest('[lang]')
-      if (closestLangElement) {
-        form.language = closestLangElement.getAttribute('lang')
-      }
+      updateLanguage(form)
     }
   })
 
@@ -91,6 +89,13 @@ function patchLanguageObserver () {
   })
 
   return observer
+}
+
+function updateLanguage (form) {
+  const closestLangElement = form.element.closest('[lang]')
+  if (closestLangElement) {
+    form.language = closestLangElement.getAttribute('lang')
+  }
 }
 
 function hook (obj, methodName, wrapper) {
