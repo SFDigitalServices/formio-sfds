@@ -1,9 +1,10 @@
 import i18n from './i18n'
 
-const wrapperClass = 'formio-sfds'
+const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
 let util
+const forms = []
 
 export default Formio => {
   if (Formio[PATCHED]) {
@@ -23,15 +24,23 @@ function patch (Formio) {
     // get the default language from the element's (inherited) lang property
     const { lang: language } = el.lang || document.documentElement.lang
     const opts = mergeObjects({ i18n, language }, options)
+
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
+      forms.push(form)
 
-      form.element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+      const { element } = form
 
-      const wrapper = document.createElement('div')
-      wrapper.className = wrapperClass
-      form.element.parentNode.insertBefore(wrapper, form.element)
-      wrapper.appendChild(form.element)
+      element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+
+      let wrapper = element.closest(`.${WRAPPER_CLASS}`)
+      if (!wrapper) {
+        // only create a wrapper if it's not already wrapped
+        wrapper = document.createElement('div')
+        wrapper.className = WRAPPER_CLASS
+        element.parentNode.insertBefore(wrapper, element)
+        wrapper.appendChild(element)
+      }
 
       const model = { ...form.form }
       patchAddressManualMode(model)
@@ -41,6 +50,9 @@ function patch (Formio) {
       return form
     })
   })
+
+  // this goes last so that if it fails it doesn't break everything else
+  patchLanguageObserver()
 }
 
 function patchAddressManualMode (model) {
@@ -59,6 +71,26 @@ function patchSelectMode (model) {
   for (const component of selects) {
     component.widget = 'html5'
   }
+}
+
+function patchLanguageObserver () {
+  const observer = new window.MutationObserver(mutations => {
+    // console.info('lang attribute changed:', mutations)
+    for (const form of forms) {
+      const closestLangElement = form.element.closest('[lang]')
+      if (closestLangElement) {
+        form.language = closestLangElement.getAttribute('lang')
+      }
+    }
+  })
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang'],
+    subtree: true
+  })
+
+  return observer
 }
 
 function hook (obj, methodName, wrapper) {
