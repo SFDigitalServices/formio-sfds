@@ -24,7 +24,13 @@ const commonPlugins = [
   svg({
     plugins: [
       { removeViewBox: false },
-      { removeDimensions: true }
+      { removeDimensions: true },
+      {
+        addClassesToSVGElement: {
+          // this tells Google Translate not to try to translate our <svg> elements
+          className: 'notranslate'
+        }
+      }
     ]
   }),
   babel()
