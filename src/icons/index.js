@@ -33,6 +33,7 @@ function observeIcons () {
     add (el) {
       const icon = getIcon(el.getAttribute('data-icon'))
       if (icon) {
+        el.classList.add('notranslate')
         el.innerHTML = icon
         const svg = el.getElementsByTagName('svg')[0]
         const viewBox = svg.getAttribute('viewBox') || ''

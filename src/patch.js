@@ -1,9 +1,10 @@
 import i18n from './i18n'
 
-const wrapperClass = 'formio-sfds'
+const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
 let util
+const forms = []
 
 export default Formio => {
   if (Formio[PATCHED]) {
@@ -19,28 +20,60 @@ export default Formio => {
 function patch (Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
+  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
+    const bound = t.bind(this)
+    if (Array.isArray(keys)) {
+      const last = keys.length - 1
+      const fallback = (key, index) => {
+        const value = bound(key, params)
+        return value === key ? (index === last) ? value : '' : value
+      }
+      return keys.reduce((value, key, index) => {
+        return value || fallback(key, index)
+      }, '')
+    } else {
+      return bound(keys, params)
+    }
+  })
+
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
-    const { lang: language } = el.lang
+    const language = el.lang || document.documentElement.lang
     const opts = mergeObjects({ i18n, language }, options)
+
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
 
-      form.element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+      const { element } = form
 
-      const wrapper = document.createElement('div')
-      wrapper.className = wrapperClass
-      form.element.parentNode.insertBefore(wrapper, form.element)
-      wrapper.appendChild(form.element)
+      element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+      if (options.googleTranslate === false) {
+        element.classList.add('notranslate')
+      }
+
+      let wrapper = element.closest(`.${WRAPPER_CLASS}`)
+      if (!wrapper) {
+        // only create a wrapper if it's not already wrapped
+        wrapper = document.createElement('div')
+        wrapper.className = WRAPPER_CLASS
+        element.parentNode.insertBefore(wrapper, element)
+        wrapper.appendChild(element)
+      }
 
       const model = { ...form.form }
       patchAddressManualMode(model)
       patchSelectMode(model)
       form.form = model
 
+      updateLanguage(form)
+      forms.push(form)
+
       return form
     })
   })
+
+  // this goes last so that if it fails it doesn't break everything else
+  patchLanguageObserver()
 }
 
 function patchAddressManualMode (model) {
@@ -61,9 +94,34 @@ function patchSelectMode (model) {
   }
 }
 
+function patchLanguageObserver () {
+  const observer = new window.MutationObserver(mutations => {
+    for (const form of forms) {
+      updateLanguage(form)
+    }
+  })
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang'],
+    subtree: true
+  })
+
+  return observer
+}
+
+function updateLanguage (form) {
+  const closestLangElement = form.element.closest('[lang]')
+  if (closestLangElement) {
+    form.language = closestLangElement.getAttribute('lang')
+  }
+}
+
 function hook (obj, methodName, wrapper) {
-  const method = obj[methodName].bind(obj)
-  obj[methodName] = (...args) => wrapper.call(obj, method, args)
+  const method = obj[methodName]
+  obj[methodName] = function (...args) {
+    return wrapper.call(this, method, args)
+  }
 }
 
 function mergeObjects (a, b) {

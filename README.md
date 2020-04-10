@@ -83,10 +83,32 @@ If you're using a CommonJS bundler like webpack, browserify, et al:
 ## `Formio.createForm()` improvements
 * Address components are made to enable the undocumented "manual" mode, which
   displays a standard address form with multiple inputs.
+
 * Select components are made to always use the `html5` "widget", which is just
   an HTML `<select>` input
+
 * Form elements are wrapped automatically in `<div class="formio-sfds">`, which
   allows the element itself to receive styles defined in the [scoped CSS](#scoped-css).
+
+* If `options.googleTranslate === false`, then the `notranslate` class is added
+  to the form element wrapper to prevent Google Translate from touching it.
+
+
+### Localization
+Localization of form field labels and descriptions can be implemented without
+having to keep form.io and the English equivalent in sync with string IDs in
+the format `{key}_label` (for field labels) and `{key}_description` (for field
+descriptions). For example, given this translation spreadsheet:
+
+| String | en | es |
+| :--- | :--- | :-- |
+| `homeAddress_label` | Home address | Dirección de casa |
+
+...a field with an API key of `homeAddress` will get the spreadsheet
+value, _regardless of the label's value in form.io_.
+
+The same rule applies for HTML content components, which can be overridden
+using the `{key}_content` string ID.
 
 ## Icons
 SFDS icons are rendered with a [selector

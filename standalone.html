@@ -25,13 +25,12 @@
         const resource = params.get('res') || root.getAttribute('data-resource')
 
         const options = { language, renderMode }
+        options.googleTranslate = false
         options.i18n = {
-          en: {
-            Submit: 'Join waitlist'
-          },
-          zh: {
-            Submit: '[join waitlist]'
-          }
+          en: { Submit: 'Join waitlist' },
+          es: { Submit: '$t(Join waitlist)' },
+          tl: { Submit: '$t(Join waitlist)' },
+          zh: { Submit: '$t(Join waitlist)' }
         }
         Formio.createForm(root, resource, options).then(form => {
           console.log('ready!', form)
