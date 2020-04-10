@@ -20,6 +20,22 @@ export default Formio => {
 function patch (Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
+  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
+    const bound = t.bind(this)
+    if (Array.isArray(keys)) {
+      const last = keys.length - 1
+      const fallback = (key, index) => {
+        const value = bound(key, params)
+        return value === key ? (index === last) ? value : '' : value
+      }
+      return keys.reduce((value, key, index) => {
+        return value || fallback(key, index)
+      }, '')
+    } else {
+      return bound(keys, params)
+    }
+  })
+
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang
@@ -102,8 +118,10 @@ function updateLanguage (form) {
 }
 
 function hook (obj, methodName, wrapper) {
-  const method = obj[methodName].bind(obj)
-  obj[methodName] = (...args) => wrapper.call(obj, method, args)
+  const method = obj[methodName]
+  obj[methodName] = function (...args) {
+    return wrapper.call(this, method, args)
+  }
 }
 
 function mergeObjects (a, b) {
