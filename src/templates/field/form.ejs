@@ -2,13 +2,18 @@
 
 {{ ctx.element }}
 
-{% var description = ctx.component.description %}
-{% if (description) { %}
-  <div class="field-description">{{ ctx.t(description) }}</div>
-{% } %}
 {% if (ctx.component.type !== 'checkbox') { %}
-  {% var tooltip = ctx.component.tooltip %}
-  {% if (tooltip) { %}
-    <div class="tooltip">{{ ctx.t(tooltip) }}</div>
+  {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+  {% if (description) { %}
+    <div class="field-description">
+      {{ description }}
+    </div>
   {% } %}
+
+  <!--
+  {% var tooltip = ctx.t([`${ctx.component.key}_tooltip`, ctx.component.tooltip]) %}
+  {% if (tooltip) { %}
+    <div class="tooltip">{{ tooltip }}</div>
+  {% } %}
+  -->
 {% } %}
