@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "form.io templates for the SF Design System",
   "module": "src/index.js",
   "main": "dist/formio-sfds.cjs.js",
@@ -14,7 +14,7 @@
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src",
     "test": "echo 'WARNING: no tests!'",
-    "update-translations": "bin/get-translations > src/i18n/translations.json",
+    "update-translations": "script/get-translations > src/i18n/translations.json",
     "watch": "npm run build-css && run-p 'watch-*'",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch"

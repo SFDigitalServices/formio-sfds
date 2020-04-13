@@ -20,22 +20,6 @@ export default Formio => {
 function patch (Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
-  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
-    const bound = t.bind(this)
-    if (Array.isArray(keys)) {
-      const last = keys.length - 1
-      const fallback = (key, index) => {
-        const value = bound(key, params)
-        return value === key ? (index === last) ? value : '' : value
-      }
-      return keys.reduce((value, key, index) => {
-        return value || fallback(key, index)
-      }, '')
-    } else {
-      return bound(keys, params)
-    }
-  })
-
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang
@@ -71,6 +55,8 @@ function patch (Formio) {
       return form
     })
   })
+
+  patchI18nMultipleKeys(Formio)
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
@@ -133,4 +119,37 @@ function mergeObjects (a, b) {
     }
   }
   return a
+}
+
+function patchI18nMultipleKeys (Formio) {
+  /*
+   * Patch the base Component class's t() method to support multiple key
+   * fallbacks as the first argument. As of 4.10.0-beta.3.1, form.io's
+   * implementation treats the first argument as a string even if it's an Array,
+   * which means that in a template, this call:
+   *
+   * ```js
+   * ctx.t(['some.nonexistent.key', ''])
+   * ```
+   *
+   * Will render the string "some.nonexistent.key,". The trailing comma is from
+   * the array being coerced to a string in the last line here:
+   *
+   * <https://github.com/formio/formio.js/blob/58996eac1207803cb597b4ab7c3abc6636078c72/src/components/_classes/component/Component.js#L707-L708>
+   */
+  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
+    const bound = t.bind(this)
+    if (Array.isArray(keys)) {
+      const last = keys.length - 1
+      const fallback = (key, index) => {
+        const value = bound(key, params)
+        return value === key ? (index === last) ? value : '' : value
+      }
+      return keys.reduce((value, key, index) => {
+        return value || fallback(key, index)
+      }, '')
+    } else {
+      return bound(keys, params)
+    }
+  })
 }
