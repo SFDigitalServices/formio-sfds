@@ -14,7 +14,7 @@
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src",
     "test": "echo 'WARNING: no tests!'",
-    "update-translations": "bin/get-translations > src/i18n/translations.json",
+    "update-translations": "script/get-translations > src/i18n/translations.json",
     "watch": "npm run build-css && run-p 'watch-*'",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch"
