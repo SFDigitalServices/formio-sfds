@@ -90,7 +90,7 @@ const namedBuilders = {
     const { url, map } = options
     const getURL = uriTemplate(url)
     return submission => {
-      const { data } = submission
+      const data = Object.assign({ _id: submission._id }, submission.data)
       if (map) {
         const mapped = {}
         for (const [sourceKey, destKey] of Object.entries(map)) {
