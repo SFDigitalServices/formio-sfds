@@ -3,7 +3,7 @@
     <div class="col-md-2">
       {{ ctx.wizardHeader }}
     </div>
-    <div class="col-md-3" ref="{{ ctx.wizardKey }}">
+    <div class="col-md-3">
       <div class="mb-3">
         <div class="mb-4">
           {% if (ctx.buttons.previous) { %}
@@ -21,7 +21,7 @@
             </h1>
           {% } %}
         </div>
-        <div class="components">
+        <div class="components" ref="{{ ctx.wizardKey }}">
           {{ ctx.components }}
         </div>
       </div>
