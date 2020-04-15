@@ -35,18 +35,14 @@ $select-border-width: 2px;
     border-color: color(bright-blue);
   }
 
-  &[aria-expanded=true] .ui {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
   .#{$choices-selector}__list--single {
     padding: 0;
   }
 
   .#{$choices-selector}__list--dropdown {
     border-width: $select-border-width;
-    border-top-width: 0;
+    border-radius: radius(1);
+    top: 0;
     margin-top: 0;
 
     .#{$choices-selector}__input {
