@@ -1,4 +1,5 @@
 import i18n from './i18n'
+import buildHooks from './hooks'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -23,7 +24,17 @@ function patch (Formio) {
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang
+    // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n, language }, options)
+
+    if (opts.hooks instanceof Object) {
+      opts.hooks = buildHooks(opts.hooks)
+    }
+
+    let eventHandlers = {}
+    if (opts.on instanceof Object) {
+      eventHandlers = buildHooks(opts.on)
+    }
 
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
@@ -44,10 +55,51 @@ function patch (Formio) {
         wrapper.appendChild(element)
       }
 
+      // Note: we create a shallow copy of the form model so the .form setter
+      // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
       patchAddressManualMode(model)
       patchSelectMode(model)
       form.form = model
+
+      for (const [event, handler] of Object.entries(eventHandlers)) {
+        form.on(event, handler)
+      }
+
+      if (opts.data) {
+        form.submission = { data: opts.data }
+      }
+
+      if (opts.prefill) {
+        console.info('submission before prefill:', form.submission)
+        let params
+        switch (opts.prefill) {
+          case 'querystring':
+            params = new URLSearchParams(window.location.search)
+            break
+          case 'hash':
+            params = new URLSearchParams(window.location.hash.substr(1))
+            break
+          default:
+            if (opts.prefill instanceof URLSearchParams) {
+              params = opts.prefill
+            } else {
+              console.warn('Unrecognized prefill option value: "%s"', opts.prefill)
+            }
+        }
+        if (params) {
+          const data = {}
+          for (const [key, value] of params.entries()) {
+            if (key in form.submission.data) {
+              data[key] = value
+            } else {
+              console.warn('ignoring querystring key "%s": "%s"', key, value)
+            }
+          }
+          console.info('prefill submission data:', data)
+          form.submission = { data }
+        }
+      }
 
       updateLanguage(form)
       forms.push(form)

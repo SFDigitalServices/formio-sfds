@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Loading...</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://sf.gov/sites/default/files/css/css_agj0hHq_5HVrrndLMoscH8SQhKRwitxKeDC_Y2RXMOc.css?q8589x">
+  </head>
+  <body>
+    <div class="page-node-type-form-page">
+      <div class="form-page">
+        <div id="formio" class="container p-3"
+          data-resource="https://sfds.form.io/covid-19-test-intake">
+        </div>
+        <details style="margin: 20px 40px;">
+          <summary>JSON options string</summary>
+          <pre id="json-options"></pre>
+        </details>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
+    <script src="dist/formio-sfds.standalone.js"></script>
+    <script>
+      (() => {
+        const root = document.getElementById('formio')
+
+        const params = new URLSearchParams(location.search || location.hash.substr(1))
+        const resource = params.get('res') || root.getAttribute('data-resource')
+
+        const hooks = tryParse(params.get('hooks')) || {
+          beforeSubmit: {
+            validateDSW: {
+              serviceURL: 'https://verify-microservice-py-stage.herokuapp.com/citytest/grant/{dsw}',
+              method: 'POST'
+            }
+          }
+        }
+
+        const on = tryParse(params.get('on')) || {
+          submit: {
+            redirect: {
+              url: '/hurricane/{?firstName,lastName,mapped*}',
+              map: {
+                preferredEmail: 'email',
+                preferredPhone: 'phone',
+                dsw:          'field:7514073',
+                token:        'field:7521384',
+                addressLine1: 'field:7515237',
+                addressZip:   'field:7515246',
+                birthDate:    'field:7515239',
+                birthSex:     'field:7515244'
+              }
+            }
+          }
+        }
+
+        const options = { hooks, on, prefill: 'querystring' }
+        document.getElementById('json-options').innerText = JSON.stringify(options, null, 2)
+        options.prefill = params
+
+        Formio.createForm(root, resource, options).then(form => {
+          console.log('form ready:', form)
+          document.title = form.schema.title
+        })
+
+        function tryParse(str) {
+          if (!str) return
+          try { return JSON.parse(str) }
+          catch (error) {
+            console.error('Unable to parse JSON:', str)
+          }
+        }
+
+      })()
+    </script>
+  </body>
+</html>
