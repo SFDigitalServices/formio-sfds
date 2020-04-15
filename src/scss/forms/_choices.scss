@@ -54,4 +54,10 @@ $select-border-width: 2px;
       box-shadow: none !important;
     }
   }
+
+  .#{$choices-selector}__item {
+    &.has-no-choices {
+      color: color(slate-65);
+    }
+  }
 }
