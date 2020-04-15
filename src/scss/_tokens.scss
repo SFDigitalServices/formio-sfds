@@ -90,6 +90,10 @@ $breakpoint-variants: ('': null, );
   $breakpoint-variants: map-merge($breakpoint-variants, ('-#{$key}': $value, ));
 }
 
+@function color($name) {
+  @return map-get($color-map, $name);
+}
+
 @function spacer($index) {
   @return map-get($spacers, $index);
 }
