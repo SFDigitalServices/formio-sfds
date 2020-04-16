@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "form.io templates for the SF Design System",
   "module": "src/index.js",
   "main": "dist/formio-sfds.cjs.js",
@@ -31,6 +31,7 @@
   "author": "San Francisco Digital Services",
   "license": "MIT",
   "dependencies": {
+    "choices.js": "^9.0.1",
     "formiojs": "^4.9.0-rc.10"
   },
   "devDependencies": {
