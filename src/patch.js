@@ -128,7 +128,13 @@ function patchAddressManualMode (model) {
 function patchSelectMode (model) {
   const selects = util.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
-    component.widget = 'html5'
+    if (component.tags.includes('autocomplete')) {
+      component.customOptions = Object.assign({
+        shouldSort: true
+      }, component.customOptions)
+    } else {
+      component.widget = 'html5'
+    }
   }
 }
 
