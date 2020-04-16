@@ -22,9 +22,10 @@
         const params = new URLSearchParams(location.search || location.hash.substr(1))
         const language = params.get('lang')
         const renderMode = params.get('mode')
+        const hooks = tryParse(params.get('hooks'))
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        const options = { language, renderMode }
+        const options = { language, renderMode, hooks, prefill: params }
         options.googleTranslate = false
         options.i18n = {
           en: { Submit: 'Join waitlist' },
@@ -32,10 +33,19 @@
           tl: { Submit: '$t(Join waitlist)' },
           zh: { Submit: '$t(Join waitlist)' }
         }
+
         Formio.createForm(root, resource, options).then(form => {
-          console.log('ready!', form)
+          console.log('form ready:', form)
           document.title = form.schema.title
         })
+
+        function tryParse(str) {
+          if (!str) return
+          try { return JSON.parse(str) }
+          catch (error) {
+            console.error('Unable to parse JSON:', str)
+          }
+        }
 
       })()
     </script>

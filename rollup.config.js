@@ -4,9 +4,12 @@ import json from '@rollup/plugin-json'
 import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
-import svg from 'rollup-plugin-svgo'
 import resolve from '@rollup/plugin-node-resolve'
+import svg from 'rollup-plugin-svgo'
+import { terser } from 'rollup-plugin-terser'
 
+const { NODE_ENV = 'development' } = process.env
+const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
 
 const commonPlugins = [
@@ -27,8 +30,9 @@ const commonPlugins = [
       { removeDimensions: true }
     ]
   }),
-  babel()
-]
+  babel(),
+  prod ? terser() : null
+].filter(Boolean)
 
 export default [
   {
@@ -43,7 +47,8 @@ export default [
     output: {
       format: 'umd',
       name,
-      file: 'dist/formio-sfds.standalone.js'
+      file: 'dist/formio-sfds.standalone.js',
+      sourcemap: prod
     }
   },
   {
@@ -52,7 +57,8 @@ export default [
       format: 'umd',
       exports: 'named',
       name,
-      file: pkg.browser
+      file: pkg.browser,
+      sourcemap: prod
     },
     plugins: [
       ...commonPlugins
@@ -68,7 +74,8 @@ export default [
       format: 'cjs',
       exports: 'named',
       name,
-      file: pkg.main
+      file: pkg.main,
+      sourcemap: prod
     }
   }
 ]
