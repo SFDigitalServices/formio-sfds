@@ -90,7 +90,7 @@ export default class AddressComponent extends Container {
           data: { values: COUNTRIES },
           defaultValue: 'us',
           input: true,
-          customConditional: ({ self }) => self.parent.component.showCountry
+          customConditional: ({ self }) => self.parent && self.parent.component.showCountry
         }
       ]
     })
