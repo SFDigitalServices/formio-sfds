@@ -58,7 +58,6 @@ function patch (Formio) {
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
-      patchAddressManualMode(model)
       patchSelectMode(model)
       form.form = model
 
@@ -114,21 +113,10 @@ function patch (Formio) {
   patchLanguageObserver()
 }
 
-function patchAddressManualMode (model) {
-  const addresses = util.searchComponents(model.components, { type: 'address' })
-  for (const component of addresses) {
-    // FIXME no combination of these seems to make the nested
-    // fields render...
-    component.mode = 'manual'
-    component.enableManualMode = true
-    component.manualMode = true
-  }
-}
-
 function patchSelectMode (model) {
   const selects = util.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
-    if (component.tags.includes('autocomplete')) {
+    if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
         shouldSort: true
       }, component.customOptions)

@@ -7,6 +7,7 @@ module.exports = {
       includePaths: ['node_modules'],
       outputStyle: NODE_ENV === 'production' ? 'compressed' : 'expanded'
     }),
+    require('postcss-import')(),
     require('postcss-inline-svg')({
       removeFill: true
     }),

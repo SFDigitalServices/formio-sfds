@@ -71,3 +71,43 @@ input[type=radio] {
     }
   }
 }
+
+.input-group {
+  display: flex;
+
+  .input-group-prepend,
+  .input-group-append {
+    background: $grey-3;
+    flex-shrink: 0;
+    padding: 0 spacer(1);
+    display: flex;
+    align-items: center;
+    border: 2px solid $slate;
+  }
+
+  .input-group-append {
+    border-top-right-radius: radius(1);
+    border-bottom-right-radius: radius(1);
+    border-left-width: 0;
+  }
+
+  .input-group-prepend {
+    border-top-left-radius: radius(1);
+    border-bottom-left-radius: radius(1);
+    border-right-width: 0;
+  }
+
+  .form-input {
+    flex: auto;
+
+    &:first-child input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
