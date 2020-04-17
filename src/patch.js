@@ -120,7 +120,7 @@ function patch (Formio) {
 function patchSelectMode (model) {
   const selects = util.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
-    if (component.tags.includes('autocomplete')) {
+    if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
         shouldSort: true
       }, component.customOptions)
