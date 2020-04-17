@@ -1,5 +1,6 @@
 import i18n from './i18n'
 import buildHooks from './hooks'
+import { dependencies } from '../package.json'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -14,6 +15,9 @@ export default Formio => {
 
   util = window.FormioUtils
   patch(Formio)
+
+  const { flatpickr: flatpickrVersion } = dependencies
+  loadStylesheet(`https://unpkg.com/flatpickr@${flatpickrVersion}/dist/flatpickr.min.css`)
 
   Formio[PATCHED] = true
 }
@@ -210,4 +214,10 @@ function patchI18nMultipleKeys (Formio) {
       return bound(keys, params)
     }
   })
+}
+
+function loadStylesheet (url) {
+  const link = document.createElement('link')
+  link.rel = url
+  return document.head.appendChild(link)
 }
