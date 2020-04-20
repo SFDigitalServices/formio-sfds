@@ -29,6 +29,7 @@ const commonPlugins = [
       { removeViewBox: false },
       { removeDimensions: true },
       {
+        // remove fill attributes from all elements
         removeAttributesBySelector: {
           selector: '[fill]',
           attributes: ['fill']
@@ -37,6 +38,7 @@ const commonPlugins = [
       {
         addAttributesToSVGElement: {
           attributes: [
+            // add fill="currentColor" to <svg>
             { fill: 'currentColor' }
           ]
         }
