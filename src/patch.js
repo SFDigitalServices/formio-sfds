@@ -1,4 +1,5 @@
 import i18n from './i18n'
+import { observe } from 'selector-observer'
 import buildHooks from './hooks'
 
 const WRAPPER_CLASS = 'formio-sfds'
@@ -14,6 +15,8 @@ export default Formio => {
 
   util = window.FormioUtils
   patch(Formio)
+
+  patchDateTimeSuffix()
 
   Formio[PATCHED] = true
 }
@@ -196,6 +199,21 @@ function patchI18nMultipleKeys (Formio) {
       }, '')
     } else {
       return bound(keys, params)
+    }
+  })
+}
+
+function patchDateTimeSuffix () {
+  observe('.formio-component-datetime', {
+    add (el) {
+      const group = el.querySelector('.input-group')
+      if (!group) return
+      const text = group.querySelector('.input-group-append')
+      if (text) {
+        text.classList.remove('input-group-append')
+        text.classList.add('input-group-prepend')
+        group.insertBefore(text, group.firstChild)
+      }
     }
   })
 }
