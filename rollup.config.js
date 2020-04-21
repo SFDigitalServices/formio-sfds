@@ -27,7 +27,22 @@ const commonPlugins = [
   svg({
     plugins: [
       { removeViewBox: false },
-      { removeDimensions: true }
+      { removeDimensions: true },
+      {
+        // remove fill attributes from all elements
+        removeAttributesBySelector: {
+          selector: '[fill]',
+          attributes: ['fill']
+        }
+      },
+      {
+        addAttributesToSVGElement: {
+          attributes: [
+            // add fill="currentColor" to <svg>
+            { fill: 'currentColor' }
+          ]
+        }
+      }
     ]
   }),
   babel(),
