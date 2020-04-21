@@ -1,5 +1,7 @@
-import AddressComponent from './address'
+import address from './address'
+import state from './state'
 
 export default {
-  address: AddressComponent
+  address,
+  state
 }
