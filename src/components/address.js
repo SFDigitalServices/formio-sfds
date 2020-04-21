@@ -1,9 +1,5 @@
 const { container: Container } = window.Formio.Components.components
 
-const STATES = [{ label: 'California', value: 'CA' }]
-
-const COUNTRIES = [{ label: 'United States', value: 'US' }]
-
 export default class AddressComponent extends Container {
   static schema (rest) {
     return Container.schema({
@@ -46,13 +42,7 @@ export default class AddressComponent extends Container {
                   label: 'State',
                   tableView: false,
                   key: 'state',
-                  type: 'select',
-                  input: true,
-                  widget: 'html5',
-                  dataSrc: 'values',
-                  data: {
-                    values: STATES
-                  },
+                  type: 'state',
                   validate: { required: true }
                 }
               ]
