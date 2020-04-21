@@ -1,3 +1,7 @@
 <div ref="{{ ctx.nestedKey }}" class="formio-component formio-component-well bg-blue-1 p-2 round-1">
+  {% var desc = ctx.t([`${ctx.component.key}_tooltip`, ctx.component.tooltip]) %}
+  {% if (desc) { %}
+    <p class="description mt-0 mb-1">{{ help }}</p>
+  {% } %}
   {{ ctx.children }}
 </div>
