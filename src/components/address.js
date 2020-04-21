@@ -51,7 +51,7 @@ export default class AddressComponent extends Container {
               width: 6,
               components: [
                 {
-                  label: 'ZIP Code',
+                  label: 'ZIP code',
                   tableView: false,
                   key: 'zip',
                   type: 'textfield',
@@ -62,25 +62,12 @@ export default class AddressComponent extends Container {
                     pattern: '([0-9]{5}(-[0-9]{4})?)?'
                   },
                   errors: {
-                    pattern:
-                      'Please enter a 5-digit <a href="https://en.wikipedia.org/wiki/ZIP_Code">ZIP code</a>'
+                    pattern: 'Please enter a 5-digit <a href="https://en.wikipedia.org/wiki/ZIP_Code">ZIP code</a>'
                   }
                 }
               ]
             }
           ]
-        },
-        {
-          label: 'Country',
-          tableView: false,
-          key: 'country',
-          type: 'select',
-          dataSrc: 'values',
-          widget: 'html5',
-          data: { values: COUNTRIES },
-          defaultValue: 'us',
-          input: true,
-          customConditional: ({ self }) => self.parent && self.parent.component.showCountry
         }
       ]
     })
