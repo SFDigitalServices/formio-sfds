@@ -1,5 +1,6 @@
 @import "./buttons";
 @import "./choices";
+@import "./file";
 @import "./inputs";
 @import "./hacks";
 
@@ -47,15 +48,5 @@ label.field-required,
 
   &:last-child {
     margin-bottom: 0;
-  }
-}
-
-.fileSelector {
-  border: border-width(1) dashed $grey-3;
-  padding: spacer(2);
-
-  &.fileDragOver {
-    background-color: $blue-1;
-    border-color: $grey-4;
   }
 }
