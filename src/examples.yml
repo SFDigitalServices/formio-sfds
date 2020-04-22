@@ -55,7 +55,7 @@
       tooltip: And this is the tooltip
 
 - id: columns-2
-  title: 2-column layout
+  title: Columns (2)
   components:
     - type: columns
       columns:
@@ -69,7 +69,7 @@
               label: Field 2
 
 - id: columns-3
-  title: 3-column layout
+  title: Columns (3)
   components:
     - type: columns
       columns:
