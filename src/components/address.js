@@ -34,6 +34,7 @@ export default class AddressComponent extends Container {
         },
         {
           type: 'columns',
+          key: 'stateAndZip',
           columns: [
             {
               width: 6,
@@ -52,18 +53,8 @@ export default class AddressComponent extends Container {
               components: [
                 {
                   label: 'ZIP code',
-                  tableView: false,
                   key: 'zip',
-                  type: 'textfield',
-                  input: true,
-                  validate: {
-                    required: true,
-                    maxLength: 10,
-                    pattern: '([0-9]{5}(-[0-9]{4})?)?'
-                  },
-                  errors: {
-                    pattern: 'Please enter a 5-digit <a href="https://en.wikipedia.org/wiki/ZIP_Code">ZIP code</a>'
-                  }
+                  type: 'zip'
                 }
               ]
             }
