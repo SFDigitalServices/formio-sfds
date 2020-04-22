@@ -1,7 +1,7 @@
 const { container: Container } = window.Formio.Components.components
 
 export default class AddressComponent extends Container {
-  static schema (rest) {
+  static schema (...extend) {
     return Container.schema({
       type: 'customAddress',
       label: 'Address',
@@ -70,7 +70,7 @@ export default class AddressComponent extends Container {
           ]
         }
       ]
-    })
+    }, ...extend)
   }
 
   get defaultSchema () {
