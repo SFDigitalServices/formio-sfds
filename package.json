@@ -47,6 +47,7 @@
     "@rollup/plugin-dsv": "^2.0.1",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
+    "@rollup/plugin-yaml": "^2.1.0",
     "autoprefixer": "^9.7.4",
     "dotenv": "^8.2.0",
     "google-spreadsheet": "^3.0.10",

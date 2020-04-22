@@ -7,6 +7,7 @@ import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import svg from 'rollup-plugin-svgo'
 import { terser } from 'rollup-plugin-terser'
+import yaml from '@rollup/plugin-yaml'
 
 const { NODE_ENV = 'development' } = process.env
 const prod = NODE_ENV === 'production'
@@ -91,6 +92,17 @@ export default [
       name,
       file: pkg.main,
       sourcemap: prod
+    }
+  },
+  {
+    input: 'src/kitchen-sink.js',
+    plugins: [
+      ...commonPlugins,
+      yaml()
+    ],
+    output: {
+      format: 'umd',
+      file: 'dist/kitchen-sink.js'
     }
   }
 ]
