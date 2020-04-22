@@ -16,8 +16,12 @@ function main () {
   for (const example of examples) {
     const node = template.content.cloneNode(true).firstElementChild
     root.appendChild(node)
-    const form = createForm(example, node)
-    forms.push(form)
+    try {
+      const form = createForm(example, node)
+      forms.push(form)
+    } catch (error) {
+      node.querySelector('form').innerHTML = createError(error)
+    }
   }
 
   const { hash } = window.location
@@ -34,10 +38,19 @@ function main () {
 function createForm (example, node) {
   const { id, title } = example
   node.id = id
-  node.querySelector('[data-placeholder=title]').innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
+  const heading = node.querySelector('[data-placeholder=title]')
+  heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
-  console.info('Mounting example:', example, 'to', node)
+  // console.info('Mounting example:', example, 'to', node)
 
   const model = Object.assign({}, defaults, example)
-  return Formio.createForm(node.querySelector('form'), model)
+  const form = node.querySelector('form')
+  return Formio.createForm(form, model)
+    .catch(error => {
+      form.innerHTML = createError(error)
+    })
+}
+
+function createError (error) {
+  return `<div role="alert" class="round-1 fg-red-4 bg-red-1"><pre class="p-1 m-0">${error.stack}</pre></div>`
 }
