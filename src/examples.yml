@@ -15,14 +15,13 @@
       description: This is the description
       multiple: true
 
-- id: address
-  title: Address (custom component)
+- id: checkbox
+  title: Checkbox
   components:
-    - type: address
-      label: This is the label
-      description: This is the description
+    - type: checkbox
+      label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
+      description: And this is the description
       tooltip: And this is the tooltip
-      multiple: true
 
 - id: radio
   title: Radio
@@ -39,10 +38,59 @@
         - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
           value: 3
 
-- id: checkbox
-  title: Checkbox
+- id: us-state
+  title: U.S. state select (custom component)
   components:
-    - type: checkbox
-      label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
-      description: And this is the description
+    - type: state
+      label: This is the label
+      description: This is the description
       tooltip: And this is the tooltip
+
+- id: zip-code
+  title: ZIP code
+  components:
+    - type: zip
+      label: This is the label
+      description: This is the description
+      tooltip: And this is the tooltip
+
+- id: columns-2
+  title: 2-column layout
+  components:
+    - type: columns
+      columns:
+        - width: 3
+          components:
+            - type: textfield
+              label: Field 1
+        - width: 3
+          components:
+            - type: textfield
+              label: Field 2
+
+- id: columns-3
+  title: 3-column layout
+  components:
+    - type: columns
+      columns:
+        - width: 2
+          components:
+            - type: textfield
+              label: Field 1
+        - width: 2
+          components:
+            - type: textfield
+              label: Field 2
+        - width: 2
+          components:
+            - type: textfield
+              label: Field 3
+
+- id: address
+  title: Address (custom component)
+  components:
+    - type: address
+      label: This is the label
+      description: This is the description
+      tooltip: And this is the tooltip
+      multiple: true
