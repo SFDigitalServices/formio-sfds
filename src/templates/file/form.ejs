@@ -25,10 +25,11 @@
         {% var cellClass = 'bg-green-1' %}
         <tr>
           <td class="{{ cellClass }}">
+            <span class="fg-green-2 mr-1" data-icon="check"></span>
             {% if (ctx.component.uploadOnly) { %}
               {{file.originalName || file.name}}
             {% } else { %}
-              <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+              <a class="fg-bright-blue u cursor-pointer" href="{{file.url || ''}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
             {% } %}
           </td>
           <td class="{{ cellClass }}">
