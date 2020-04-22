@@ -8,7 +8,7 @@ const defaults = {
 
 main()
 
-async function main () {
+function main () {
   const template = document.getElementById('form-template')
   const root = template.parentNode
   const forms = []
@@ -16,7 +16,7 @@ async function main () {
   for (const example of examples) {
     const node = template.content.cloneNode(true).firstElementChild
     root.appendChild(node)
-    const form = await createForm(example, node)
+    const form = createForm(example, node)
     forms.push(form)
   }
 
@@ -36,7 +36,7 @@ function createForm (example, node) {
   node.id = id
   node.querySelector('[data-placeholder=title]').innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
-  console.warn('Mounting example:', example, 'to', node)
+  console.info('Mounting example:', example, 'to', node)
 
   const model = Object.assign({}, defaults, example)
   return Formio.createForm(node.querySelector('form'), model)
