@@ -9,7 +9,7 @@
         <th class="col-md-2">
           {{ ctx.t('Size') }}
         </th>
-        <th class="col-md-1">
+        <th class="col-md-2">
           {% if (ctx.self.hasTypes) { %}
             {{ ctx.t('Type') }}
           {% } %}
@@ -22,14 +22,18 @@
     <tbody>
 
       {% ctx.files.forEach(function(file) { %}
-        {% var cellClass = 'bg-green-1' %}
+        {% var cellClass = '' %}
         <tr>
-          <td class="{{ cellClass }}">
-            <span class="fg-green-2 mr-1" data-icon="check"></span>
+          <td class="{{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
             {% if (ctx.component.uploadOnly) { %}
               {{file.originalName || file.name}}
             {% } else { %}
-              <a class="fg-bright-blue u cursor-pointer" href="{{file.url || ''}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+              <div class="d-flex flex-items-center">
+                <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
+                <a class="fg-bright-blue u cursor-pointer" href="{{file.url || ''}}" target="_blank" ref="fileLink">
+                  <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
+                </a>
+              </div>
             {% } %}
           </td>
           <td class="{{ cellClass }}">
@@ -47,12 +51,12 @@
               {{ file.fileType }}
             {% } %}
           </td>
-          <td class="px-1 text-align-center">
+          <td class="text-align-right pr-0">
             {% if (!ctx.disabled) { %}
               <button
                 ref="removeLink"
                 aria-label="Remove"
-                class="m-0 bg-slate-65 fg-white border-0 d-flex flex-items-center">
+                class="m-0 p-1 bg-slate-65 fg-white border-0 d-flex flex-items-center">
                 <span data-icon="delete" class="d-flex flex-items-center"></span>
               </button>
             {% } %}
