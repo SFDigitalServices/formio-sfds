@@ -2,6 +2,7 @@ import { observe } from 'selector-observer'
 import next from './Arrow-right.svg'
 import prev from './Arrow-left.svg'
 import calendar from './Calendar.svg'
+import check from './Check.svg'
 import close from './Close.svg'
 import document from './Document.svg'
 import alert from './Alert.svg'
@@ -12,6 +13,7 @@ const icons = {
   active: pencil,
   add: plus,
   calendar,
+  check,
   close,
   delete: close,
   document,
