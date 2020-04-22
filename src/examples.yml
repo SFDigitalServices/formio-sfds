@@ -38,3 +38,11 @@
           value: 2
         - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
           value: 3
+
+- id: checkbox
+  title: Checkbox
+  components:
+    - type: checkbox
+      label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
+      description: And this is the description
+      tooltip: And this is the tooltip
