@@ -8,16 +8,34 @@
   </head>
   <body>
     <div class="page-node-type-form-page">
-      <div class="form-page">
-        <div class="container p-3 formio-sfds">
-          <h1>Examples</h1>
+      <div class="form-page formio-sfds">
+        <h1><code>formio-sfds@<span data-package="version">0.0.0</span></code></h1>
 
-          <template id="form-template">
-            <section class="example">
-              <h2 class="h3" data-placeholder="title"></h2>
-              <form></form>
-            </section>
-          </template>
+        <div class="d-flex flex-column flex-md-row">
+
+          <div class="pr-md-4 position-relative">
+
+            <h2 class="h2 mt-2">Examples</h1>
+
+            <div style="position: sticky; top: 0;">
+              <ul id="example-links" class="list-style-none">
+                <template id="example-link">
+                  <li>
+                    <a slot="link" class="d-block py-1"></a>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-2 pt-1">
+            <template id="form-template">
+              <section class="example">
+                <h2 class="h3" slot="title"></h2>
+                <form slot="form"></form>
+              </section>
+            </template>
+          </div>
         </div>
       </div>
     </div>

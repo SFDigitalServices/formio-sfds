@@ -1,4 +1,5 @@
 import examples from './examples.yml'
+import pkg from '../package.json'
 
 const { Formio } = window
 
@@ -9,13 +10,29 @@ const defaults = {
 main()
 
 function main () {
-  const template = document.getElementById('form-template')
-  const root = template.parentNode
+  for (const el of document.querySelectorAll('[data-package]')) {
+    el.textContent = pkg[el.getAttribute('data-package')]
+  }
+
+  const formTemplate = document.getElementById('form-template')
+  const linkTemplate = document.getElementById('example-link')
   const forms = []
 
+  examples.sort((a, b) => {
+    return (a.title && b.title)
+      ? a.title.localeCompare(b.title)
+      : 0
+  })
+
   for (const example of examples) {
-    const node = template.content.cloneNode(true).firstElementChild
-    root.appendChild(node)
+    const linkItem = linkTemplate.content.cloneNode(true).firstElementChild
+    const link = linkItem.querySelector('[slot=link]')
+    link.href = `#${example.id}`
+    link.textContent = example.title || example.id
+    linkTemplate.parentNode.appendChild(linkItem)
+
+    const node = formTemplate.content.cloneNode(true).firstElementChild
+    formTemplate.parentNode.appendChild(node)
     try {
       const form = createForm(example, node)
       forms.push(form)
@@ -38,7 +55,7 @@ function main () {
 function createForm (example, node) {
   const { id, title } = example
   node.id = id
-  const heading = node.querySelector('[data-placeholder=title]')
+  const heading = node.querySelector('[slot=title]')
   heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
   // console.info('Mounting example:', example, 'to', node)
