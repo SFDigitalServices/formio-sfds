@@ -1,15 +1,15 @@
 import examples from './examples.yml'
 import pkg from '../package.json'
 
-const { Formio } = window
-
-const defaults = {
-  display: 'form'
-}
-
 main()
 
 function main () {
+  const { Formio } = window
+
+  const defaults = {
+    display: 'form'
+  }
+
   for (const el of document.querySelectorAll('[data-package]')) {
     el.textContent = pkg[el.getAttribute('data-package')]
   }
@@ -50,24 +50,24 @@ function main () {
       window.location = hash
     }
   }
-}
 
-function createForm (example, node) {
-  const { id, title } = example
-  node.id = id
-  const heading = node.querySelector('[slot=title]')
-  heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
+  function createForm (example, node) {
+    const { id, title } = example
+    node.id = id
+    const heading = node.querySelector('[slot=title]')
+    heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
-  // console.info('Mounting example:', example, 'to', node)
+    // console.info('Mounting example:', example, 'to', node)
 
-  const model = Object.assign({}, defaults, example)
-  const form = node.querySelector('form')
-  return Formio.createForm(form, model)
-    .catch(error => {
-      form.innerHTML = createError(error)
-    })
-}
+    const model = Object.assign({}, defaults, example)
+    const form = node.querySelector('form')
+    return Formio.createForm(form, model)
+      .catch(error => {
+        form.innerHTML = createError(error)
+      })
+  }
 
-function createError (error) {
-  return `<div role="alert" class="round-1 fg-red-4 bg-red-1"><pre class="p-1 m-0">${error.stack}</pre></div>`
+  function createError (error) {
+    return `<div role="alert" class="round-1 fg-red-4 bg-red-1"><pre class="p-1 m-0">${error.stack}</pre></div>`
+  }
 }
