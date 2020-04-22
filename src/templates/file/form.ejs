@@ -1,15 +1,15 @@
 {% if (!ctx.self.imageUpload) { %}
 
-  <table class="border-collapse align-left">
+  <table class="align-left">
     <thead{% if ((ctx.files.length + ctx.statuses.length) === 0) { %} hidden{% } %}>
       <tr>
-        <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }} px-2">
+        <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }}">
           {{ ctx.t('File name') }}
         </th>
-        <th class="col-md-2 px-2">
+        <th class="col-md-2">
           {{ ctx.t('Size') }}
         </th>
-        <th class="col-md-1 px-2">
+        <th class="col-md-2">
           {% if (ctx.self.hasTypes) { %}
             {{ ctx.t('Type') }}
           {% } %}
@@ -22,13 +22,18 @@
     <tbody>
 
       {% ctx.files.forEach(function(file) { %}
-        {% var cellClass = 'bg-green-1 px-2 py-1' %}
+        {% var cellClass = '' %}
         <tr>
-          <td class="{{ cellClass }}">
+          <td class="{{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
             {% if (ctx.component.uploadOnly) { %}
               {{file.originalName || file.name}}
             {% } else { %}
-              <a href="{{file.url || '#'}}" target="_blank" ref="fileLink">{{file.originalName || file.name}}</a>
+              <div class="d-flex flex-items-center">
+                <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
+                <a class="fg-bright-blue u cursor-pointer" href="{{file.url || ''}}" target="_blank" ref="fileLink">
+                  <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
+                </a>
+              </div>
             {% } %}
           </td>
           <td class="{{ cellClass }}">
@@ -46,7 +51,7 @@
               {{ file.fileType }}
             {% } %}
           </td>
-          <td class="pl-1">
+          <td class="text-align-right pr-0">
             {% if (!ctx.disabled) { %}
               <button
                 ref="removeLink"
@@ -61,7 +66,7 @@
 
       {% ctx.statuses.forEach(function(status) { %}
         {% var cellBg = ctx.statuses.status === 'error' ? 'red' : 'yellow' %}
-        {% var cellClass = 'bg-' + cellBg + '-1 px-2 py-1' %}
+        {% var cellClass = 'bg-' + cellBg + '-1' %}
         <tr>
           <td class="{{ cellClass }}">
             {{ status.originalName }}
@@ -118,7 +123,7 @@
       <div class="fileSelector" ref="fileDrop">
         <div class="align-center">
           {{ ctx.t('Drop files to attach, or') }}
-          <button class="p-1 ml-1 mr-0 mb-0" ref="fileBrowse">
+          <button class="ml-1 mr-0 mb-0" ref="fileBrowse">
             {{ ctx.t('Browse')}}
           </button>
         </div>

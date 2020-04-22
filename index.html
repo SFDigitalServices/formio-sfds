@@ -1,55 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <title>Loading...</title>
+    <title>formio-sfds</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://unpkg.com/sf-design-system@latest/public/dist/css/all.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional" />
-    <link rel="stylesheet" href="dist/formio-sfds.css">
+    <link rel="stylesheet" href="https://sf.gov/sites/default/files/css/css_agj0hHq_5HVrrndLMoscH8SQhKRwitxKeDC_Y2RXMOc.css?q8589x">
   </head>
   <body>
-    <div class="container p-3">
-      <div id="formio" data-resource="https://sfds.form.io/oewd-workers-families"></div>
-      <div id="thanks" class="bg-green-2 round-1 p-3 my-3" hidden>
-        <h1 class="m-0">Thanks!</h1>
+    <div class="page-node-type-form-page">
+      <div class="form-page">
+        <div class="container p-3 formio-sfds">
+          <h1>Examples</h1>
+
+          <template id="form-template">
+            <section class="example">
+              <h2 class="h3" data-placeholder="title"></h2>
+              <form></form>
+            </section>
+          </template>
+        </div>
       </div>
     </div>
 
-    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
-    <script src="dist/formio-sfds.umd.js"></script>
-    <script defer>
-      const root = document.getElementById('formio')
-
-      window.addEventListener('keyup', e => {
-        const active = document.activeElement
-        if (!active || active === document.body) {
-          switch (e.key) {
-            case 'D':
-              root.classList.toggle('class-debug')
-              break
-          }
-        }
-      })
-
-      window.onload = () => {
-        FormioSFDS.patch(Formio)
-        Formio.use(FormioSFDS)
-
-        const resource = new URLSearchParams(location.search).get('res') || root.getAttribute('data-resource')
-        Formio.createForm(root, resource, {
-          hooks: {
-            beforeSubmit: (submission, next) => {
-              document.getElementById('thanks').hidden = false
-              next(true)
-            }
-          }
-        }).then(form => {
-          console.log('ready!', form)
-
-          document.title = form.schema.title
-        })
-      }
-    </script>
+    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.js"></script>
+    <script src="dist/formio-sfds.standalone.js"></script>
+    <script src="dist/kitchen-sink.js"></script>
   </body>
 </html>

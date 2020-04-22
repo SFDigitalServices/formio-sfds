@@ -1,0 +1,25 @@
+.formio-component-file {
+  table {
+    th,
+    td {
+      background: transparent;
+      padding: spacer(1);
+      border: 0;
+      border-bottom: 3px solid $grey-2;
+    }
+
+    tr > * + * {
+      padding-left: spacer(1);
+    }
+  }
+}
+
+.fileSelector {
+  border: border-width(1) dashed $grey-2;
+  padding: spacer(2);
+
+  &.fileDragOver {
+    background-color: $blue-1;
+    border-color: $grey-4;
+  }
+}
