@@ -1,5 +1,7 @@
 # formio-sfds
-[Form.io] templates for the SF Design System
+This is a [Form.io] theme for the [SF Design System](https://sfdigitalservices.github.io/sf-design-system/).
+
+👉 See [DEVELOP.md](DEVELOP.md#readme) for development documentation.
 
 ## Usage
 There are a couple of different ways to use this package in your app:
