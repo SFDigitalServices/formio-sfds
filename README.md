@@ -81,8 +81,6 @@ If you're using a CommonJS bundler like webpack, browserify, et al:
     ```
 
 ## `Formio.createForm()` improvements
-* Address components are made to enable the undocumented "manual" mode, which
-  displays a standard address form with multiple inputs.
 
 * Select components are made to always use the `html5` "widget", which is just
   an HTML `<select>` input
@@ -93,6 +91,16 @@ If you're using a CommonJS bundler like webpack, browserify, et al:
 * If `options.googleTranslate === false`, then the `notranslate` class is added
   to the form element wrapper to prevent Google Translate from touching it.
 
+## Custom components
+
+* `address` fields are rendered as multiple text and number inputs with address
+  lines (1 and 2), city, state and zip code.
+
+* Fields with type `state` render an HTML `<select>` input with the 50 U.S.
+  states.
+
+* Fields with type `zip` render a ZIP code input field that validates against a
+  5-digit number or a ZIP+4 pattern (e.g. `94110-1234`).
 
 ### Localization
 Localization of form field labels and descriptions can be implemented without
