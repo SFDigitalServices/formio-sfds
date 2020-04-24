@@ -111,8 +111,9 @@ From there you can navigate to any of the HTML files and then click the <kbd>Vie
 Raw</kbd> link to render the examples live.
 
 **Note:** unpkg.com will strip the query string from any URL you give it, but
-query string parameters can be passed to those URLs (one, upon loading) via the
+query string parameters can be passed to those URLs (once, on load) via the
 hash. In other words, just replace the `?` in your query string with `#`.
+Remember: You'll need to refresh the page after changing the hash!
 
 [declarative hooks]: ../#declarative-hooks
 [form.io form schema]: https://github.com/formio/formio.js/wiki/Form-JSON-Schema
