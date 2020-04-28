@@ -1,11 +1,13 @@
 nav {
-    margin-top: 10rem;
-    color: rgba($slate, 0.6);
-    span[data-icon] {
-        margin-left: -30px;
-        color: $slate;
-    }
-    .fw-medium {
-        color: $slate;
-    }
+  margin-top: 10rem;
+  color: rgba($slate, 0.6);
+
+  span[data-icon] {
+    margin-left: -30px;
+    color: $slate;
+  }
+
+  .fw-medium {
+    color: $slate;
+  }
 }
