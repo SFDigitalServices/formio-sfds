@@ -1,6 +1,8 @@
+import defaultTranslations from './i18n'
 import { observe } from 'selector-observer'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
+import loadTranslations from './i18n/load'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -24,11 +26,20 @@ export default Formio => {
 function patch (Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
-  hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
+  hook(Formio, 'createForm', async (createForm, args) => {
+    const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang
     // use the translations and language as the base, and merge the provided options
-    const opts = mergeObjects({ i18n, language }, options)
+    const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
+
+    const { t18n: translations } = options
+    if (translations) {
+      console.info('loading translations:', translations)
+      const i18n = await loadTranslations(translations)
+      console.info('loaded translations:', i18n)
+      opts.i18n = mergeObjects({}, opts.i18n, i18n)
+    }
 
     if (opts.hooks instanceof Object) {
       opts.hooks = buildHooks(opts.hooks)
@@ -39,7 +50,8 @@ function patch (Formio) {
       eventHandlers = buildHooks(opts.on)
     }
 
-    return createForm(el, resource, opts).then(form => {
+    const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
+    return createForm(el, ...rest).then(form => {
       console.log('SFDS form created!')
 
       const { element } = form
