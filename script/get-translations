@@ -2,10 +2,15 @@
 require('dotenv').config()
 
 const { GoogleSpreadsheet } = require('google-spreadsheet')
-const { GOOGLE_AUTH_CREDS_PATH, GOOGLE_SHEET_ID } = process.env
+
+const {
+  GOOGLE_AUTH_CREDS_PATH,
+  GOOGLE_SHEET_ID = '1lA0Oagh6jCY_vw8FDMws8UjmSmVxlECNLk_DZVsk1YQ'
+} = process.env
+
 const [
   sheetId = GOOGLE_SHEET_ID,
-  worksheets = ['Pre-approval', 'Generic forms']
+  worksheets = 'Generic forms'
 ] = process.argv.slice(2)
 
 if (!GOOGLE_AUTH_CREDS_PATH) {
@@ -26,7 +31,7 @@ async function main () {
   const i18n = {}
 
   for (const [index, sheet] of Object.entries(doc.sheetsByIndex)) {
-    if (worksheets.includes(index) || worksheets.includes(sheet.title)) {
+    if (worksheets === '*' || worksheets.includes(index) || worksheets.includes(sheet.title)) {
       console.warn('Loading sheet #%d: "%s"...', index, sheet.title)
     } else {
       console.warn('Skipping sheet #%d: "%s"', index, sheet.title)
@@ -49,6 +54,8 @@ async function main () {
         if (row[locale]) {
           if (key) i18n[locale][key] = trim(row[locale])
           if (locale !== 'en') i18n[locale][row.en] = trim(row[locale])
+        } else if (key && locale === 'en') {
+          i18n.en[key] = trim(row[locale])
         } else {
           console.warn('string "%s" missing locale "%s"', key, locale)
         }
