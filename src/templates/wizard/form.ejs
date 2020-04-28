@@ -1,24 +1,24 @@
 <div class="{{ ctx.className }} mb-3">
-  <div class="d-flex flex-column flex-md-row-reverse flex-justify-between">
+  <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
     <div class="col-md-2">
       {{ ctx.wizardHeader }}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="mb-3">
         <div class="mb-4">
           {% if (ctx.buttons.previous) { %}
-            <button class="btn btn-link" ref="{{ctx.wizardKey}}-previous">
-              <div class="d-flex flex-items-center">
-                <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
-                <span>{{ ctx.t('Back') }}</span>
-              </div>
-            </button>
+          <button class="btn btn-link" ref="{{ctx.wizardKey}}-previous">
+            <div class="d-flex flex-items-center">
+              <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
+              <span>{{ ctx.t('Back') }}</span>
+            </div>
+          </button>
           {% } %}
           {% var panel = ctx.panels[ctx.currentPage] %}
           {% if (panel) { %}
-            <h1 class="d1 mr-n2">
-              {{ ctx.t(panel.title) }}
-            </h1>
+          <h1 class="d1 mr-n2">
+            {{ ctx.t(panel.title) }}
+          </h1>
           {% } %}
         </div>
         <div class="components" ref="{{ ctx.wizardKey }}">

@@ -1,15 +1,16 @@
 <nav aria-label="navigation" id="{{ ctx.wizardKey }}-header">
   <ul class="list-style-none mb-3">
     {% ctx.panels.forEach(function(panel, index) { %}
-      {% var active = ctx.currentPage === index; %}
-      <li class="d-flex flex-items-center border-bottom-1 border-grey-3" {% if (active) { %} aria-current="page"{% } %}>
-        <span class="flex-auto py-1 py-md-2 cursor-pointer{% if (active) { %} fw-medium{% } %}" ref="{{ ctx.wizardKey }}-link">
-          {{ ctx.t(panel.title) }}
-        </span>
-        {% if (active) { %}
-          <span data-icon="active" class="pr-1"></span>
-        {% } %}
-      </li>
+    {% var completed = index < ctx.currentPage; %}
+    {% var active = index === ctx.currentPage; %}
+    <li class="d-flex flex-items-center" {% if (active) { %} aria-current="page" {% } %}>
+      {% if (active) { %}
+      <span data-icon="check" class="pr-1"></span>
+      {% } %}
+      <span class="flex-auto py-1 cursor-pointer{% if (active || completed) { %} fw-medium{% } %}">
+        {{ ctx.t(panel.title) }}
+      </span>
+    </li>
     {% }) %}
   </ul>
 </nav>
