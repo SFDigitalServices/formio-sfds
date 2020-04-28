@@ -1,5 +1,5 @@
 import { uriTemplate, interp } from './template'
-import getJSON from './getJSON'
+import { getJSON } from '../utils'
 
 // jsend statuses: <https://github.com/omniti-labs/jsend>
 const STATUS_SUCCESS = 'success'

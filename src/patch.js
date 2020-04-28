@@ -1,5 +1,5 @@
-import i18n from './i18n'
 import { observe } from 'selector-observer'
+import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 
 const WRAPPER_CLASS = 'formio-sfds'
@@ -157,17 +157,6 @@ function hook (obj, methodName, wrapper) {
   obj[methodName] = function (...args) {
     return wrapper.call(this, method, args)
   }
-}
-
-function mergeObjects (a, b) {
-  for (const [key, value] of Object.entries(b)) {
-    if (a[key] instanceof Object && value instanceof Object) {
-      a[key] = mergeObjects(a[key], value)
-    } else {
-      a[key] = value
-    }
-  }
-  return a
 }
 
 function patchI18nMultipleKeys (Formio) {
