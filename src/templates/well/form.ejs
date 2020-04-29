@@ -1,3 +1,5 @@
-<div ref="{{ ctx.nestedKey }}" class="formio-component formio-component-well bg-blue-1 p-2 round-1">
+{% var visible = ctx.component.properties.visible !== "false" %}
+<div ref="{{ ctx.nestedKey }}"
+  class="formio-component{% if (visible) { %} formio-component-well bg-blue-1 p-2 round-1{% } %}">
   {{ ctx.children }}
 </div>
