@@ -1,5 +1,7 @@
 nav {
-  margin-top: 10rem;
+  @media (min-width: $mq-medium) {
+    margin-top: 10rem;
+  }
   color: rgba($slate, 0.6);
 
   span[data-icon] {
