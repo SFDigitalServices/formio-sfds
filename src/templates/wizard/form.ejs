@@ -6,14 +6,6 @@
     <div class="col-md-4">
       <div class="mb-3">
         <div class="mb-4">
-          {% if (ctx.buttons.previous) { %}
-          <button class="btn btn-link" ref="{{ctx.wizardKey}}-previous">
-            <div class="d-flex flex-items-center">
-              <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
-              <span>{{ ctx.t('Back') }}</span>
-            </div>
-          </button>
-          {% } %}
           {% var panel = ctx.panels[ctx.currentPage] %}
           {% if (panel) { %}
           <h1 class="d1 mr-n2">
