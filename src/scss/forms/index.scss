@@ -1,6 +1,7 @@
 @import "./buttons";
 @import "./choices";
 @import "./file";
+@import "./fieldsets";
 @import "./inputs";
 @import "./hacks";
 @import "./navigation";
@@ -19,7 +20,7 @@
     color: inherit !important;
   }
 
-  input:not([type=button]),
+  input:not([type="button"]),
   textarea {
     border-color: $red-3 !important;
   }
