@@ -9,7 +9,7 @@
           {% var panel = ctx.panels[ctx.currentPage] %}
           {% if (panel) { %}
           <h1 class="d1 mr-n2">
-            {{ ctx.t(panel.title) }}
+            {{ ctx.t(panel.properties.displayTitle || panel.title) }}
           </h1>
           {% } %}
         </div>
