@@ -27,8 +27,10 @@
         const renderMode = params.get('mode')
         const hooks = tryParse(params.get('hooks'))
         const resource = params.get('res') || root.getAttribute('data-resource')
+        const unlockNavigation = true
 
-        const options = { language, renderMode, hooks, prefill: params }
+        const options = { language, renderMode, hooks, unlockNavigation, prefill: params }
+
         options.googleTranslate = false
         options.i18n = {
           en: { Submit: 'Join waitlist' },

@@ -7,7 +7,8 @@
       {% if (active) { %}
       <span data-icon="check" class="pr-1"></span>
       {% } %}
-      <span class="flex-auto py-1 cursor-pointer{% if (active || completed) { %} fw-medium{% } %}">
+      <span class="flex-auto py-1 cursor-pointer{% if (active || completed) { %} fw-medium{% } %}"
+        {% if (ctx.options.unlockNavigation) { %} ref="{{ ctx.wizardKey }}-link" {% } %}>
         {{ ctx.t(panel.properties.displayTitle || panel.title) }}
       </span>
     </li>
