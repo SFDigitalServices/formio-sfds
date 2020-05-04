@@ -33,12 +33,18 @@ function patch (Formio) {
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
 
-    const { t18n: translations } = options
+    const { i18n: translations } = options
     if (translations) {
       console.info('loading translations:', translations)
-      const i18n = await loadTranslations(translations)
-      console.info('loaded translations:', i18n)
-      opts.i18n = mergeObjects({}, opts.i18n, i18n)
+      try {
+        const i18n = await loadTranslations(translations)
+        console.info('loaded translations:', i18n)
+        opts.i18n = mergeObjects({}, opts.i18n, i18n)
+        opts.googleTranslate = false
+      } catch (error) {
+        console.warn('Unable to load translations from:', translations, error)
+        opts.googleTranslate = true
+      }
     }
 
     if (opts.hooks instanceof Object) {
