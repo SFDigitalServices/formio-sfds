@@ -19,6 +19,8 @@
       </span>
     </li>
 
+    {% } else { // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place %}
+    <span ref="{{ ctx.wizardKey }}-link"></span>
     {% } %}
 
     {% }) %}
