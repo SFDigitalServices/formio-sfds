@@ -21,7 +21,11 @@ export default Formio => {
   Formio[PATCHED] = true
 }
 
-function patch (Formio) {
+function scrollToTop() {
+  window.scroll(0, 0)
+}
+
+function patch(Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
@@ -41,6 +45,9 @@ function patch (Formio) {
 
     return createForm(el, resource, opts).then(form => {
       console.log('SFDS form created!')
+
+      form.on('nextPage', scrollToTop)
+      form.on('prevPage', scrollToTop)
 
       const { element } = form
 
