@@ -1,12 +1,15 @@
+{% var panel = ctx.panels[ctx.currentPage] %}
+
 <div class="{{ ctx.className }} mb-3">
   <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
     <div class="col-md-2">
+      {% if (!(panel.properties.hideSidebar && panel.properties.hideSidebar === "true")) { %}
       {{ ctx.wizardHeader }}
+      {% } %}
     </div>
     <div class="col-md-4">
       <div class="mb-3">
         <div class="mb-4">
-          {% var panel = ctx.panels[ctx.currentPage] %}
           {% if (panel) { %}
           <h1 class="d1 mr-n2">
             {{ ctx.t(panel.properties.displayTitle || panel.title) }}
