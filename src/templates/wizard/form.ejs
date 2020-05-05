@@ -3,7 +3,7 @@
 <div class="{{ ctx.className }} mb-3">
   <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
     <div class="col-md-2">
-      {% if (!(panel.properties.hideSidebar && panel.properties.hideSidebar === "true")) { %}
+      {% if (!panel.properties.hideSidebar || panel.properties.hideSidebar !== "true") { %}
       {{ ctx.wizardHeader }}
       {% } %}
     </div>
