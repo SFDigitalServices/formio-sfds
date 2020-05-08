@@ -2,7 +2,7 @@
 
 {{ ctx.element }}
 
-{% if (ctx.component.type !== 'checkbox') { %}
+{% if (['address', 'checkbox', 'well'].indexOf(ctx.component.type) === -1) { %}
   {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
   {% if (description) { %}
     <div class="field-description">

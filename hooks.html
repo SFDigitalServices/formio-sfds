@@ -55,9 +55,8 @@
           }
         }
 
-        const options = { hooks, on, prefill: 'querystring' }
+        const options = { hooks, on, prefill: params }
         document.getElementById('json-options').innerText = JSON.stringify(options, null, 2)
-        options.prefill = params
 
         Formio.createForm(root, resource, options).then(form => {
           console.log('form ready:', form)
