@@ -32,7 +32,15 @@
             <template id="form-template">
               <section class="example">
                 <h2 class="h3" slot="title"></h2>
-                <form slot="form"></form>
+                <div class="d-flex">
+                  <form class="flex-auto" slot="form"></form>
+                  <div class="ml-2">
+                    <label class="fg-grey-4">
+                      Submission data:
+                    </label>
+                    <textarea name="data" class="border-grey-4" style="width: 16em; resize: vertical;"></textarea>
+                  </div>
+                </div>
               </section>
             </template>
           </div>
@@ -42,6 +50,6 @@
 
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.js"></script>
     <script src="dist/formio-sfds.standalone.js"></script>
-    <script src="dist/kitchen-sink.js"></script>
+    <script src="dist/examples.js"></script>
   </body>
 </html>

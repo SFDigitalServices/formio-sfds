@@ -41,15 +41,16 @@ function main () {
     }
   }
 
-  const { hash } = window.location
-  if (hash) {
-    const target = document.querySelector(hash)
-    if (target && target.scrollIntoView) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    } else if (target) {
-      window.location = hash
+  Promise.all(forms).then(() => {
+    console.info('%d forms loaded!', forms.length)
+    const { hash } = window.location
+    if (hash) {
+      const target = document.querySelector(hash)
+      if (target) {
+        window.location = hash
+      }
     }
-  }
+  })
 
   function createForm (example, node) {
     const { id, title } = example
@@ -57,11 +58,21 @@ function main () {
     const heading = node.querySelector('[slot=title]')
     heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
+    const dataField = node.querySelector('[name=data]')
+
     // console.info('Mounting example:', example, 'to', node)
 
     const model = Object.assign({}, defaults, example)
     const form = node.querySelector('form')
-    return Formio.createForm(form, model)
+    return Formio.createForm(form, null, model)
+      .then(formio => {
+        const offset = dataField.offsetHeight - dataField.clientHeight
+        formio.on('change', () => {
+          dataField.value = JSON.stringify(formio.submission.data, null, 2)
+          dataField.style.height = 'auto'
+          dataField.style.height = `${dataField.scrollHeight + offset}px`
+        })
+      })
       .catch(error => {
         form.innerHTML = createError(error)
       })
