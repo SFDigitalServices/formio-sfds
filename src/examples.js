@@ -64,7 +64,7 @@ function main () {
 
     const model = Object.assign({}, defaults, example)
     const form = node.querySelector('form')
-    return Formio.createForm(form, model)
+    return Formio.createForm(form, null, model)
       .then(formio => {
         const offset = dataField.offsetHeight - dataField.clientHeight
         formio.on('change', () => {
