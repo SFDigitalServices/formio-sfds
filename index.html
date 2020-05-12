@@ -32,7 +32,15 @@
             <template id="form-template">
               <section class="example">
                 <h2 class="h3" slot="title"></h2>
-                <form slot="form"></form>
+                <div class="d-flex">
+                  <form class="flex-auto" slot="form"></form>
+                  <div class="ml-2">
+                    <label class="fg-grey-4">
+                      Form data:
+                    </label>
+                    <textarea name="data" style="width: 16em; resize: vertical;"></textarea>
+                  </div>
+                </div>
               </section>
             </template>
           </div>
