@@ -95,14 +95,14 @@ export default [
     }
   },
   {
-    input: 'src/kitchen-sink.js',
+    input: 'src/examples.js',
     plugins: [
       ...commonPlugins,
       yaml()
     ],
     output: {
       format: 'umd',
-      file: 'dist/kitchen-sink.js'
+      file: 'dist/examples.js'
     }
   }
 ]
