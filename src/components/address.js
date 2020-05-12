@@ -1,5 +1,7 @@
 const { container: Container } = window.Formio.Components.components
 
+const componentClass = 'mb-1'
+
 export default class AddressComponent extends Container {
   static schema (...extend) {
     return Container.schema({
@@ -7,43 +9,44 @@ export default class AddressComponent extends Container {
       label: 'Address',
       key: 'address',
       hideLabel: false,
-      showCountry: false,
+      tableView: true,
       components: [
         {
           label: 'Address line 1',
-          tableView: false,
           key: 'line1',
           type: 'textfield',
           input: true,
+          customClass: componentClass,
           validate: { required: true }
         },
         {
           label: 'Address line 2',
-          tableView: false,
           key: 'line2',
           type: 'textfield',
+          customClass: componentClass,
           input: true
         },
         {
           label: 'City',
-          tableView: false,
           key: 'city',
           type: 'textfield',
+          customClass: componentClass,
           input: true,
           validate: { required: true }
         },
         {
           type: 'columns',
-          key: 'stateAndZip',
+          customClass: 'mb-0',
           columns: [
             {
               width: 6,
               components: [
                 {
                   label: 'State',
-                  tableView: false,
                   key: 'state',
                   type: 'state',
+                  customClass: 'mb-0',
+                  input: true,
                   validate: { required: true }
                 }
               ]
@@ -54,7 +57,9 @@ export default class AddressComponent extends Container {
                 {
                   label: 'ZIP code',
                   key: 'zip',
-                  type: 'zip'
+                  type: 'zip',
+                  customClass: 'mb-0',
+                  input: true
                 }
               ]
             }
@@ -69,6 +74,6 @@ export default class AddressComponent extends Container {
   }
 
   get templateName () {
-    return 'well'
+    return 'address'
   }
 }
