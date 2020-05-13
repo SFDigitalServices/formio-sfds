@@ -67,7 +67,7 @@
       {% ctx.files.forEach(function(file) { %}
       {% var cellClass = '' %}
       <tr>
-        <td class="filename {{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
+        <td class="filename bg-green-1 {{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
           {% if (ctx.component.uploadOnly) { %}
           {{file.originalName || file.name}}
           {% } else { %}
@@ -79,7 +79,7 @@
           </div>
           {% } %}
         </td>
-        <td class="size text-align-right {{ cellClass }}">
+        <td class="size text-align-right bg-green-1 {{ cellClass }}">
           {{ ctx.fileSize(file.size) }}
         </td>
         {% if (ctx.self.hasTypes && !ctx.disabled) { %}
@@ -133,7 +133,7 @@
 
 {% ctx.statuses.forEach(function(status) { %}
 {% if (status.status === 'error' || status.status === 'warning') { %}
-<div class="status-error bg-red-4 fg-white">
+<div class="status-error bg-red-4 fg-white round-1">
   {{ctx.t('There was an error uploading the file.')}}
 </div>
 {% } %}
