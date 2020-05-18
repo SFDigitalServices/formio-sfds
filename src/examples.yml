@@ -62,10 +62,12 @@
         - width: 3
           components:
             - type: textfield
+              key: a
               label: Field 1
         - width: 3
           components:
             - type: textfield
+              key: b
               label: Field 2
 
 - id: columns-3
@@ -76,15 +78,19 @@
         - width: 2
           components:
             - type: textfield
+              key: a
               label: Field 1
         - width: 2
           components:
             - type: textfield
+              key: b
               label: Field 2
         - width: 2
           components:
-            - type: textfield
+            - type: number
+              key: c
               label: Field 3
+              defaultValue: 10
 
 - id: address
   title: Address (custom component)
