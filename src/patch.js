@@ -3,6 +3,9 @@ import { observe } from 'selector-observer'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import 'flatpickr/dist/l10n/es'
+// import 'flatpickr/dist/l10n/tl'
+import 'flatpickr/dist/l10n/zh'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -15,9 +18,10 @@ export default Formio => {
     return
   }
 
-  util = window.FormioUtils
-  patch(Formio)
+  const { FormioUtils } = window
+  util = FormioUtils
 
+  patch(Formio)
   patchDateTimeSuffix()
 
   Formio[PATCHED] = true
@@ -131,6 +135,8 @@ function patch (Formio) {
 
   patchI18nMultipleKeys(Formio)
 
+  patchDateTimeLocale(Formio)
+
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
 }
@@ -222,5 +228,13 @@ function patchDateTimeSuffix () {
         group.insertBefore(text, group.firstChild)
       }
     }
+  })
+}
+
+function patchDateTimeLocale (Formio) {
+  hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
+    this.component.widget.locale = this.options.language
+    console.info('patched Datetime widget.locale:', this.component.widget)
+    return attach(...args)
   })
 }
