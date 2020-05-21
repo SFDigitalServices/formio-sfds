@@ -13,7 +13,7 @@
       <span data-icon="check" class="pr-1 fg-slate"></span>
       {% } %}
 
-      <span class="flex-auto py-1 cursor-pointer{% if (active || completed) { %} fw-medium fg-slate{% } %}"
+      <span class="flex-auto py-1 {% if (active || completed) { %} fw-medium fg-slate{% } %}"
         {% if (ctx.options.unlockNavigation) { %} ref="{{ ctx.wizardKey }}-link" {% } %}>
         {{ ctx.t(panel.properties.displayTitle || panel.title) }}
       </span>
