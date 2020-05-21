@@ -233,8 +233,9 @@ function patchDateTimeSuffix () {
 
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
-    this.component.widget.locale = this.options.language
-    console.info('patched Datetime widget.locale:', this.component.widget)
+    if (this.options.language) {
+      this.component.widget.locale = this.options.language
+    }
     return attach(...args)
   })
 }
