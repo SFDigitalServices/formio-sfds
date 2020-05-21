@@ -3,6 +3,9 @@ import { observe } from 'selector-observer'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import 'flatpickr/dist/l10n/es'
+// import 'flatpickr/dist/l10n/tl'
+import 'flatpickr/dist/l10n/zh'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -15,9 +18,10 @@ export default Formio => {
     return
   }
 
-  util = window.FormioUtils
-  patch(Formio)
+  const { FormioUtils } = window
+  util = FormioUtils
 
+  patch(Formio)
   patchDateTimeSuffix()
 
   Formio[PATCHED] = true
@@ -131,6 +135,8 @@ function patch (Formio) {
 
   patchI18nMultipleKeys(Formio)
 
+  patchDateTimeLocale(Formio)
+
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
 }
@@ -174,7 +180,7 @@ function updateLanguage (form) {
 function hook (obj, methodName, wrapper) {
   const method = obj[methodName]
   obj[methodName] = function (...args) {
-    return wrapper.call(this, method, args)
+    return wrapper.call(this, method.bind(this), args)
   }
 }
 
@@ -195,18 +201,17 @@ function patchI18nMultipleKeys (Formio) {
    * <https://github.com/formio/formio.js/blob/58996eac1207803cb597b4ab7c3abc6636078c72/src/components/_classes/component/Component.js#L707-L708>
    */
   hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
-    const bound = t.bind(this)
     if (Array.isArray(keys)) {
       const last = keys.length - 1
       const fallback = (key, index) => {
-        const value = bound(key, params)
+        const value = t(key, params)
         return value === key ? (index === last) ? value : '' : value
       }
       return keys.reduce((value, key, index) => {
         return value || fallback(key, index)
       }, '')
     } else {
-      return bound(keys, params)
+      return t(keys, params)
     }
   })
 }
@@ -223,5 +228,13 @@ function patchDateTimeSuffix () {
         group.insertBefore(text, group.firstChild)
       }
     }
+  })
+}
+
+function patchDateTimeLocale (Formio) {
+  hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
+    this.component.widget.locale = this.options.language
+    console.info('patched Datetime widget.locale:', this.component.widget)
+    return attach(...args)
   })
 }

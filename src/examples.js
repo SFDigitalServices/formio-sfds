@@ -1,3 +1,4 @@
+import { mergeObjects } from './utils'
 import examples from './examples.yml'
 import pkg from '../package.json'
 
@@ -6,8 +7,18 @@ main()
 function main () {
   const { Formio } = window
 
-  const defaults = {
-    display: 'form'
+  const defaultOptions = {
+    display: 'form',
+    // XXX this should not be required, but it is
+    language: 'en'
+  }
+
+  const { search, hash } = window.location
+  const query = search || (hash ? hash.substr(1) : null)
+  if (query) {
+    for (const [key, value] of new URLSearchParams(query).entries()) {
+      defaultOptions[key] = value
+    }
   }
 
   for (const el of document.querySelectorAll('[data-package]')) {
@@ -53,18 +64,17 @@ function main () {
   })
 
   function createForm (example, node) {
-    const { id, title } = example
+    const { id, title, form } = example
     node.id = id
     const heading = node.querySelector('[slot=title]')
     heading.innerHTML = `<a href="#${id}" class="fg-grey-4 no-u">#</a> ${title || id}`
 
     const dataField = node.querySelector('[name=data]')
 
-    // console.info('Mounting example:', example, 'to', node)
-
-    const model = Object.assign({}, defaults, example)
-    const form = node.querySelector('form')
-    return Formio.createForm(form, null, model)
+    const options = mergeObjects({}, defaultOptions, example.options)
+    console.warn('options:', options)
+    const element = node.querySelector('form')
+    return Formio.createForm(element, form, options)
       .then(formio => {
         const offset = dataField.offsetHeight - dataField.clientHeight
         formio.on('change', () => {

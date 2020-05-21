@@ -1,72 +1,81 @@
 - id: single-file
   title: Single file upload
-  components:
-    - type: file
-      storage: base64
-      label: This is the label
-      description: This is the description
+  form:
+    components:
+      - type: file
+        storage: base64
+        label: This is the label
+        description: This is the description
 
 - id: multi-file
   title: Multiple file upload
-  components:
-    - type: file
-      storage: base64
-      label: This is the label
-      description: This is the description
-      multiple: true
+  form:
+    components:
+      - type: file
+        storage: base64
+        label: This is the label
+        description: This is the description
+        multiple: true
 
 - id: checkbox
   title: Checkbox
-  components:
-    - type: checkbox
-      label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
-      description: And this is the description
-      tooltip: And this is the tooltip
+  form:
+    components:
+      - type: checkbox
+        label: This is a long label, and it should wrap nicely alongside the checkbox with the description below it.
+        description: And this is the description
+        tooltip: And this is the tooltip
 
 - id: radio
   title: Radio
-  components:
-    - type: radio
-      label: This is the label
-      description: And this is the description
-      tooltip: And this is the tooltip
-      values:
-        - label: Option 1
-          value: 1
-        - label: Option 2 (blah)
-          value: 2
-        - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
-          value: 3
+  form:
+    components:
+      - type: radio
+        label: This is the label
+        description: And this is the description
+        tooltip: And this is the tooltip
+        values:
+          - label: Option 1
+            value: 1
+          - label: Option 2 (blah)
+            value: 2
+          - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
+            value: 3
 
 - id: us-state
   title: U.S. state select (custom component)
-  components:
-    - type: state
-      label: This is the label
-      description: This is the description
-      tooltip: And this is the tooltip
+  form:
+    components:
+      - type: state
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
 
 - id: zip-code
   title: ZIP code
-  components:
-    - type: zip
-      label: This is the label
-      description: This is the description
-      tooltip: And this is the tooltip
+  form:
+    components:
+      - type: zip
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
 
 - id: columns-2
   title: Columns (2)
-  components:
-    - type: columns
-      columns:
-        - width: 3
-          components:
-            - type: textfield
-              label: Field 1
-        - width: 3
-          components:
-            - type: textfield
-              label: Field 2
+  form:
+    components:
+      - type: columns
+        columns:
+          - width: 3
+            components:
+              - type: textfield
+                key: a
+                label: Field 1
+          - width: 3
+            components:
+              - type: textfield
+                key: b
+                label: Field 2
 
 - id: columns-3
   title: Columns (3)
@@ -76,21 +85,80 @@
         - width: 2
           components:
             - type: textfield
+              key: a
               label: Field 1
         - width: 2
           components:
             - type: textfield
+              key: b
               label: Field 2
         - width: 2
           components:
-            - type: textfield
+            - type: number
+              key: c
               label: Field 3
+              defaultValue: 10
 
 - id: address
   title: Address (custom component)
-  components:
-    - type: address
-      label: This is the label
-      description: This is the description
-      tooltip: And this is the tooltip
-      multiple: true
+  form:
+    components:
+      - type: address
+        label: This is the label
+        description: This is the description
+        tooltip: And this is the tooltip
+        multiple: true
+
+- id: day-default
+  title: Day (default)
+  form:
+    components:
+      - type: day
+        label: This is the label
+        description: This is the description
+
+- id: datetime-date-only
+  title: Date (no time)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+        enableTime: false
+
+- id: datetime-default
+  title: Date & time
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+
+- id: datetime-spanish
+  title: Date & time (Spanish)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: es
+
+- id: datetime-chinese
+  title: Date & time (Chinese)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: zh
+
+- id: datetime-time-only
+  title: Time (no date)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+        enableDate: false
