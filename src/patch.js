@@ -37,8 +37,8 @@ function patch (Formio) {
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
 
-    if (typeof options.i18n === 'string') {
-      const { i18n: translationsURL } = options
+    if (typeof opts.i18n === 'string') {
+      const { i18n: translationsURL } = opts
       console.info('loading translations form:', translationsURL)
       try {
         const i18n = await loadTranslations(translationsURL)
@@ -68,7 +68,7 @@ function patch (Formio) {
       const { element } = form
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
-      if (options.googleTranslate === false) {
+      if (opts.googleTranslate === false) {
         element.classList.add('notranslate')
       }
 
@@ -233,8 +233,9 @@ function patchDateTimeSuffix () {
 
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
-    this.component.widget.locale = this.options.language
-    console.info('patched Datetime widget.locale:', this.component.widget)
+    if (this.options.language) {
+      this.component.widget.locale = this.options.language
+    }
     return attach(...args)
   })
 }
