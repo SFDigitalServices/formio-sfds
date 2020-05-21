@@ -144,6 +144,16 @@
   options:
     language: es
 
+- id: datetime-chinese
+  title: Date & time (Chinese)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: zh
+
 - id: datetime-time-only
   title: Time (no date)
   form:
