@@ -174,7 +174,7 @@ function updateLanguage (form) {
 function hook (obj, methodName, wrapper) {
   const method = obj[methodName]
   obj[methodName] = function (...args) {
-    return wrapper.call(this, method, args)
+    return wrapper.call(this, method.bind(this), args)
   }
 }
 
@@ -195,18 +195,17 @@ function patchI18nMultipleKeys (Formio) {
    * <https://github.com/formio/formio.js/blob/58996eac1207803cb597b4ab7c3abc6636078c72/src/components/_classes/component/Component.js#L707-L708>
    */
   hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
-    const bound = t.bind(this)
     if (Array.isArray(keys)) {
       const last = keys.length - 1
       const fallback = (key, index) => {
-        const value = bound(key, params)
+        const value = t(key, params)
         return value === key ? (index === last) ? value : '' : value
       }
       return keys.reduce((value, key, index) => {
         return value || fallback(key, index)
       }, '')
     } else {
-      return bound(keys, params)
+      return t(keys, params)
     }
   })
 }
