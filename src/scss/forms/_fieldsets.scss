@@ -18,3 +18,10 @@ fieldset {
     }
   }
 }
+
+.formio-component-radio {
+  fieldset label {
+    letter-spacing: 0;
+    line-height: 24px;
+  }
+}
