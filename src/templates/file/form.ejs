@@ -73,9 +73,9 @@
           {% } else { %}
           <div class="d-flex flex-items-center">
             <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
-            <a class="fg-bright-blue u cursor-pointer" href="{{file.url || ''}}" target="_blank" ref="fileLink">
-              <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
-            </a>
+
+            <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
+
           </div>
           {% } %}
         </td>
