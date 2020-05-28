@@ -1,6 +1,5 @@
 <nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-65">
-  {{ debugger }}
-  <a href="{{ ctx.form.properties.backURL}}">{{ ctx.form.properties.backTitle}}</a>
+  <a href="{{ ctx.options.properties.backURL}}">{{ ctx.options.properties.backTitle}}</a>
   <ul class="list-style-none mb-3">
     {% ctx.panels.forEach(function(panel, index) { %}
 
@@ -15,8 +14,12 @@
       <span data-icon="square" class="pr-1 fg-slate"></span>
       {% } %}
 
-      <span class="flex-auto py-1 {% if (active || completed) { %} fw-medium fg-slate{% } %}"
-        {% if (ctx.options.unlockNavigation) { %} ref="{{ ctx.wizardKey }}-link" {% } %}>
+      {% var color = active || completed ? "fg-slate" : ""  %}
+      {% var style = active ? "fw-medium" : completed ? "u" : "" %}
+
+
+      <span class="flex-auto py-1 {{ color }} {{ style }}" {% if (ctx.options.unlockNavigation) { %}
+        ref="{{ ctx.wizardKey }}-link" {% } %}>
         {{ ctx.t(panel.properties.displayTitle || panel.title) }}
       </span>
     </li>
