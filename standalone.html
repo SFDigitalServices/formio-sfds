@@ -34,10 +34,13 @@
       const hooks = tryParse(params.get('hooks'))
       const resource = params.get('res') || root.getAttribute('data-resource')
       const unlockNavigation = true
+      const properties = {
+        backURL: "https://sf.gov/apply-building-permit",
+        backTitle: "Apply for a building permit"
+      }
+      const googleTranslate = false
 
-      const options = { language, renderMode, hooks, unlockNavigation, i18n, prefill: params }
-
-      options.googleTranslate = false
+      const options = { language, renderMode, hooks, unlockNavigation, i18n, googleTranslate, properties, prefill: params }
 
       Formio.createForm(root, resource, options).then(form => {
         console.log('form ready:', form)

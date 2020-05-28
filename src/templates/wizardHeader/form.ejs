@@ -1,4 +1,6 @@
 <nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-65">
+  {{ debugger }}
+  <a href="{{ ctx.form.properties.backURL}}">{{ ctx.form.properties.backTitle}}</a>
   <ul class="list-style-none mb-3">
     {% ctx.panels.forEach(function(panel, index) { %}
 
@@ -10,7 +12,7 @@
     <li class="d-flex flex-items-center" {% if (active) { %} aria-current="page" {% } %}>
 
       {% if (active) { %}
-      <span data-icon="check" class="pr-1 fg-slate"></span>
+      <span data-icon="square" class="pr-1 fg-slate"></span>
       {% } %}
 
       <span class="flex-auto py-1 {% if (active || completed) { %} fw-medium fg-slate{% } %}"
