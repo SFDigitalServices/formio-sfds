@@ -1,7 +1,7 @@
 import 'whatwg-fetch'
 import { uriTemplate } from './template'
 import validateDSW from './validateDSW'
-import getJSON from './getJSON'
+import { getJSON } from '../utils'
 
 export default function buildHooks (specs) {
   const hooks = {}

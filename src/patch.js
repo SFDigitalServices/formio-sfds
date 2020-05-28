@@ -1,6 +1,8 @@
-import i18n from './i18n'
+import defaultTranslations from './i18n'
 import { observe } from 'selector-observer'
+import { mergeObjects } from './utils'
 import buildHooks from './hooks'
+import loadTranslations from './i18n/load'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -28,11 +30,27 @@ function scrollToTop() {
 function patch(Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
-  hook(Formio, 'createForm', (createForm, [el, resource, options = {}]) => {
+  hook(Formio, 'createForm', async (createForm, args) => {
+    const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang
     // use the translations and language as the base, and merge the provided options
-    const opts = mergeObjects({ i18n, language }, options)
+    const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
+
+    if (typeof options.i18n === 'string') {
+      const { i18n: translationsURL } = options
+      console.info('loading translations form:', translationsURL)
+      try {
+        const i18n = await loadTranslations(translationsURL)
+        console.info('loaded translations:', i18n)
+        opts.i18n = mergeObjects({}, opts.i18n, i18n)
+      } catch (error) {
+        console.warn('Unable to load translations from:', translationsURL, error)
+        // FIXME: we may want to explicitly *allow* Google Translate (even if
+        // it's been disabled) for this form if translations fail to load.
+        // opts.googleTranslate = true
+      }
+    }
 
     if (opts.hooks instanceof Object) {
       opts.hooks = buildHooks(opts.hooks)
@@ -43,7 +61,8 @@ function patch(Formio) {
       eventHandlers = buildHooks(opts.on)
     }
 
-    return createForm(el, resource, opts).then(form => {
+    const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
+    return createForm(el, ...rest).then(form => {
       console.log('SFDS form created!')
 
       form.on('nextPage', scrollToTop)
@@ -164,17 +183,6 @@ function hook (obj, methodName, wrapper) {
   obj[methodName] = function (...args) {
     return wrapper.call(this, method, args)
   }
-}
-
-function mergeObjects (a, b) {
-  for (const [key, value] of Object.entries(b)) {
-    if (a[key] instanceof Object && value instanceof Object) {
-      a[key] = mergeObjects(a[key], value)
-    } else {
-      a[key] = value
-    }
-  }
-  return a
 }
 
 function patchI18nMultipleKeys (Formio) {
