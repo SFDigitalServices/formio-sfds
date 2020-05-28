@@ -14,8 +14,23 @@
       <span data-icon="square" class="pr-1 fg-slate"></span>
       {% } %}
 
-      {% var color = active || completed ? "fg-slate" : ""  %}
-      {% var style = active ? "fw-medium" : completed ? "u" : "" %}
+      <!-- {% var color = active || completed ? "fg-slate" : ""  %} -->
+      <!-- {% var style = active ? "fw-medium" : completed ? "u" : "" %} -->
+      {% if (active || completed) {
+        color = "fg-slate";
+      } else {
+        color = "";
+      }
+      %}
+
+      {% if (active){
+        style = "fw-medium";
+        } else if (completed){ 
+          style = "u";
+        } else {
+          "";
+        }
+      %}
 
 
       <span class="flex-auto py-1 {{ color }} {{ style }}" {% if (ctx.options.unlockNavigation) { %}
