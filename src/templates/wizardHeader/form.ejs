@@ -16,19 +16,17 @@
 
       <!-- {% var color = active || completed ? "fg-slate" : ""  %} -->
       <!-- {% var style = active ? "fw-medium" : completed ? "u" : "" %} -->
-      {% if (active || completed) {
+      {% var color;
+        if (active || completed) {
         color = "fg-slate";
-      } else {
-        color = "";
-      }
+        } 
       %}
 
-      {% if (active){
+      {% var style;
+        if (active){
         style = "fw-medium";
         } else if (completed){ 
           style = "u";
-        } else {
-          "";
         }
       %}
 
