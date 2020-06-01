@@ -63,6 +63,11 @@ function patch (Formio) {
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
     return createForm(el, ...rest).then(form => {
+      if (opts.formioSFDSOptOut === true) {
+        console.log('SFDS form opted out:', opts, el)
+        return form
+      }
+
       console.log('SFDS form created!')
 
       const { element } = form
