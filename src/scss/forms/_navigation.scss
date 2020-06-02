@@ -1,6 +1,8 @@
 nav {
   @media (min-width: $mq-medium) {
     margin-top: 10rem;
+    position: sticky;
+    top: 170px;
   }
 
   span[data-icon] {
