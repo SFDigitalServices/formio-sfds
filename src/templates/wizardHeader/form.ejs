@@ -1,6 +1,6 @@
-<nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-65">
+<nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-70">
   <a class="back-link fg-black fw-medium" href="{{ ctx.options.properties.backURL}}">{{ ctx.options.properties.backTitle}}</a>
-  <ul class="panel-list list-style-none">
+  <ul class="panel-list list-style-none mt-1">
     {% ctx.panels.forEach(function(panel, index) { %}
 
     {% var completed = index < ctx.currentPage; %}
