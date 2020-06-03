@@ -18,7 +18,7 @@
       {% var style = active ? "fw-medium" : completed ? "u" : "" %}
 
 
-      <span class="flex-auto py-1 {{ color }} {{ style }}" {% if (ctx.options.unlockNavigation) { %}
+      <span class="flex-auto py-1 {{ color }} {{ style }}" {% if (completed || ctx.options.unlockNavigation) { %}
         ref="{{ ctx.wizardKey }}-link" {% } %}>
         {{ ctx.t(panel.properties.displayTitle || panel.title) }}
       </span>
