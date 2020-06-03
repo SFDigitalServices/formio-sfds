@@ -83,7 +83,7 @@ function patch(Formio) {
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
       form.on('nextPage', turnWarningOn)
-      form.on('submitDone', turnWarningOff)
+      form.on('submit', turnWarningOff)
 
       const { element } = form
 
