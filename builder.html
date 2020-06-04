@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Loading...</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://unpkg.com/formiojs@latest/dist/formio.builder.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@latest/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="formio"></div>
+    <pre id="schema"></pre>
+
+    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.js"></script>
+    <script src="dist/formio-sfds.builder.js"></script>
+    <script defer>
+      (() => {
+        const root = document.getElementById('formio')
+        const schema = document.getElementById('schema')
+        const options = {
+        }
+
+        Formio.builder(root, {}, FormioSFDS.options).then(builder => {
+          builder.on('saveComponent', () => {
+            schema.value = JSON.stringify(builder.schema, null, 2)
+          })
+        })
+
+      })()
+    </script>
+  </body>
+</html>

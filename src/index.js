@@ -1,14 +1,15 @@
 import components from './components'
 import patch from './patch'
 import templates from './templates'
-import { observeIcons } from './icons'
+import options from './options'
 import 'regenerator-runtime'
 
 const framework = 'sfds'
 
 const plugin = {
-  framework,
   components,
+  framework,
+  options,
   templates: {
     [framework]: templates
   }
