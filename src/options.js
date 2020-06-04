@@ -2,8 +2,8 @@ export default {
   builder: {
     premium: false,
     sfds: {
-      title: 'SFDS fields',
-      weight: 90,
+      title: 'SF.gov',
+      weight: 15,
       components: {
         name: {
           title: 'Name',
