@@ -162,3 +162,38 @@
         label: This is the label
         description: This is the description
         enableDate: false
+
+- id: select-basic
+  title: Select (basic)
+  form:
+    components:
+      - type: select
+        label: This is the label
+        description: This is the description
+        dataSrc: values
+        data:
+          values:
+            - label: One
+              value: 1
+            - label: Two
+              value: 2
+            - label: Three
+              value: 3
+
+- id: select-autocomplete
+  title: Select (auto-complete)
+  form:
+    components:
+      - type: select
+        label: This is the label
+        description: This is the description
+        tags: [autocomplete]
+        dataSrc: values
+        data:
+          values:
+            - label: One
+              value: 1
+            - label: Two
+              value: 2
+            - label: Three
+              value: 3
