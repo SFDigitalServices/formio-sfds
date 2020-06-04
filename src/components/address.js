@@ -12,7 +12,7 @@ export default class AddressComponent extends Container {
       tableView: true,
       components: [
         {
-          label: 'Address line 1',
+          label: 'Line 1',
           key: 'line1',
           type: 'textfield',
           input: true,
@@ -20,7 +20,7 @@ export default class AddressComponent extends Container {
           validate: { required: true }
         },
         {
-          label: 'Address line 2',
+          label: 'Line 2',
           key: 'line2',
           type: 'textfield',
           customClass: componentClass,
@@ -36,6 +36,7 @@ export default class AddressComponent extends Container {
         },
         {
           type: 'columns',
+          hideLabel: true,
           customClass: 'mb-0',
           columns: [
             {
@@ -67,6 +68,15 @@ export default class AddressComponent extends Container {
         }
       ]
     }, ...extend)
+  }
+
+  static get builderInfo () {
+    return {
+      title: 'Address',
+      group: 'sfds',
+      icon: 'home',
+      schema: AddressComponent.schema()
+    }
   }
 
   get defaultSchema () {

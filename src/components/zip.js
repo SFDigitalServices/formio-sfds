@@ -4,6 +4,7 @@ export default class ZIPCode extends TextField {
   static schema (...extend) {
     return TextField.schema({
       // these are schema fields that should be overridden
+      type: 'zip',
       key: 'zip',
       validate: {
         required: true,
@@ -14,6 +15,14 @@ export default class ZIPCode extends TextField {
         pattern: 'Please enter a 5-digit <a href="https://en.wikipedia.org/wiki/ZIP_Code">ZIP code</a>'
       }
     }, ...extend)
+  }
+
+  static get builderInfo () {
+    return {
+      title: 'ZIP code',
+      group: 'sfds',
+      schema: ZIPCode.schema()
+    }
   }
 
   get defaultSchema () {
