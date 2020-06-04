@@ -8,4 +8,4 @@ const { Formio } = window
 patch(Formio)
 Formio.use(FormioSFDS)
 
-window.FormioSFDS = FormioSFDS
+export default FormioSFDS
