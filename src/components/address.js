@@ -74,7 +74,7 @@ export default class AddressComponent extends Container {
     return {
       title: 'Address',
       group: 'sfds',
-      icon: 'home',
+      icon: '',
       schema: AddressComponent.schema()
     }
   }
