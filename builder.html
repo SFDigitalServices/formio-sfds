@@ -17,10 +17,8 @@
       (() => {
         const root = document.getElementById('formio')
         const schema = document.getElementById('schema')
-        const options = {
-        }
 
-        Formio.builder(root, {}, FormioSFDS.options).then(builder => {
+        Formio.builder(root, {}, {}).then(builder => {
           builder.on('saveComponent', () => {
             schema.value = JSON.stringify(builder.schema, null, 2)
           })
