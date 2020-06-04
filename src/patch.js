@@ -4,9 +4,11 @@ import { observeIcons } from './icons'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import { dependencies } from '../package.json'
+
 import 'flatpickr/dist/l10n/es'
-// import 'flatpickr/dist/l10n/tl'
 import 'flatpickr/dist/l10n/zh'
+// import 'flatpickr/dist/l10n/tl'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -17,6 +19,12 @@ const forms = []
 export default Formio => {
   if (Formio[PATCHED]) {
     return
+  }
+
+  const { formiojs: formioVersion } = dependencies
+
+  if (formioVersion && Formio.version !== formioVersion.replace(/^\^/, '')) {
+    console.warn('Formio.version "%s" does not match formio-sfds expected: "%s"', Formio.version, formioVersion)
   }
 
   const { FormioUtils } = window
