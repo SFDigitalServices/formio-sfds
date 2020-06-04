@@ -95,6 +95,17 @@ export default [
     }
   },
   {
+    input: 'src/builder.js',
+    plugins: [
+      ...commonPlugins
+    ],
+    output: {
+      format: 'umd',
+      name,
+      file: 'dist/formio-sfds.builder.js'
+    }
+  },
+  {
     input: 'src/examples.js',
     plugins: [
       ...commonPlugins,
