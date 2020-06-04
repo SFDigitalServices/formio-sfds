@@ -1,5 +1,6 @@
-import defaultTranslations from './i18n'
 import { observe } from 'selector-observer'
+import defaultTranslations from './i18n'
+import { observeIcons } from './icons'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
@@ -25,6 +26,7 @@ export default Formio => {
   patchDateTimeSuffix()
 
   Formio[PATCHED] = true
+  observeIcons()
 }
 
 function patch (Formio) {

@@ -16,5 +16,3 @@ const plugin = {
 
 export default plugin
 export { patch }
-
-observeIcons()
