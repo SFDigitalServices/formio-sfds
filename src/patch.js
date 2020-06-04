@@ -11,12 +11,12 @@ import 'flatpickr/dist/l10n/zh'
 // import 'flatpickr/dist/l10n/tl'
 
 const WRAPPER_CLASS = 'formio-sfds'
-const PATCHED = `sfds-patch-${Date.now()}`
+const PATCHED = Symbol(WRAPPER_CLASS)
 
 let util
 const forms = []
 
-export default Formio => {
+export default (Formio, options = {}) => {
   if (Formio[PATCHED]) {
     return
   }
@@ -30,14 +30,14 @@ export default Formio => {
   const { FormioUtils } = window
   util = FormioUtils
 
-  patch(Formio)
-  patchDateTimeSuffix()
+  patch(Formio, options)
 
   Formio[PATCHED] = true
-  observeIcons()
 }
 
-function patch (Formio) {
+export { hook }
+
+function patch (Formio, patchOptions = {}) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', async (createForm, args) => {
@@ -94,7 +94,9 @@ function patch (Formio) {
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
-      patchSelectMode(model)
+      if (patchOptions.selectMode !== false) {
+        patchSelectMode(model)
+      }
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -143,12 +145,34 @@ function patch (Formio) {
     })
   })
 
-  patchI18nMultipleKeys(Formio)
+  const {
+    icons = true,
+    i18nMultipleKeys = true,
+    dateTimeLocale = true,
+    dateTimeSuffix = true,
+    languageObserver = true
+  } = patchOptions
 
-  patchDateTimeLocale(Formio)
+  if (i18nMultipleKeys) {
+    patchI18nMultipleKeys(Formio)
+  }
 
-  // this goes last so that if it fails it doesn't break everything else
-  patchLanguageObserver()
+  if (dateTimeLocale) {
+    patchDateTimeLocale(Formio)
+  }
+
+  if (dateTimeSuffix) {
+    patchDateTimeSuffix()
+  }
+
+  if (languageObserver) {
+    // this goes last so that if it fails it doesn't break everything else
+    patchLanguageObserver()
+  }
+
+  if (icons) {
+    observeIcons()
+  }
 }
 
 function patchSelectMode (model) {

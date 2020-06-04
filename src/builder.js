@@ -1,14 +1,19 @@
 import FormioSFDS, { patch } from '.'
+import { hook } from './patch'
 
 delete FormioSFDS.templates
 
 const { Formio } = window
 
-// FIXME: this hack appears to be necessary to override the form builder
-// default options
-Formio.FormBuilder.options = FormioSFDS.options
+patch(Formio, {
+  icons: false
+})
 
-patch(Formio)
+hook(Formio.FormBuilder.prototype, 'create', function (create, args) {
+  this.options = FormioSFDS.options
+  return create(args)
+})
+
 Formio.use(FormioSFDS)
 
 export default FormioSFDS
