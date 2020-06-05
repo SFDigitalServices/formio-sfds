@@ -1,5 +1,5 @@
 import FormioSFDS, { patch } from '.'
-import { hook } from './patch'
+// import { hook } from './patch'
 
 delete FormioSFDS.templates
 
@@ -9,10 +9,12 @@ patch(Formio, {
   icons: false
 })
 
+/*
 hook(Formio.FormBuilder.prototype, 'create', function (create, args) {
   this.options = FormioSFDS.options
   return create(args)
 })
+*/
 
 Formio.use(FormioSFDS)
 
