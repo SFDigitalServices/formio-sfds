@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://sf.gov/sites/default/files/css/css_agj0hHq_5HVrrndLMoscH8SQhKRwitxKeDC_Y2RXMOc.css?q8589x">
   </head>
   <body>
-    <div class="page-node-type-form-page">
+    <div class="page-node-type-form-page sfgov-translate-lang-es" lang="en">
       <div class="form-page">
         <div id="formio" class="container p-3" data-resource="https://sfds.form.io/workers-families-first"></div>
       </div>
@@ -26,8 +26,19 @@
         const hooks = tryParse(params.get('hooks'))
         const resource = params.get('res') || root.getAttribute('data-resource')
 
-        const options = { language, renderMode, hooks, i18n, prefill: params }
-        options.googleTranslate = false
+        const options = {
+          language,
+          renderMode,
+          hooks,
+          i18n,
+          prefill: params,
+          googleTranslate: params.get('googleTranslate') === 'true'
+        }
+
+        if (params.lang && params.langMode === 'dom') {
+          document.documentElement.setAttribute('lang', language)
+          delete options.language
+        }
 
         Formio.createForm(root, resource, options).then(form => {
           console.log('form ready:', form)
