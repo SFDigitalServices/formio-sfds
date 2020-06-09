@@ -176,7 +176,7 @@ function patchLanguageObserver () {
 }
 
 function updateLanguage (form) {
-  const closestLangElement = form.element.closest('[lang]')
+  const closestLangElement = form.element.closest('[lang]:not([class*=sfgov-translate-lang-])')
   if (closestLangElement) {
     form.language = closestLangElement.getAttribute('lang')
   }

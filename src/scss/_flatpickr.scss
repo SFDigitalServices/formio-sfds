@@ -1,0 +1,7 @@
+@import url(flatpickr/dist/flatpickr.min.css);
+
+// this fixes a bug with the year
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  display: inline-block !important;
+  margin-right: 20px !important;
+}
