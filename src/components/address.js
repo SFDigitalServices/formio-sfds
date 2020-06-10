@@ -1,58 +1,52 @@
 const { container: Container } = window.Formio.Components.components
 
-const STATES = [{ label: 'California', value: 'CA' }]
-
-const COUNTRIES = [{ label: 'United States', value: 'US' }]
+const componentClass = 'mb-1'
 
 export default class AddressComponent extends Container {
-  static schema (rest) {
+  static schema (...extend) {
     return Container.schema({
       type: 'customAddress',
       label: 'Address',
       key: 'address',
       hideLabel: false,
-      showCountry: false,
+      tableView: true,
       components: [
         {
           label: 'Address line 1',
-          tableView: false,
           key: 'line1',
           type: 'textfield',
           input: true,
+          customClass: componentClass,
           validate: { required: true }
         },
         {
           label: 'Address line 2',
-          tableView: false,
           key: 'line2',
           type: 'textfield',
+          customClass: componentClass,
           input: true
         },
         {
           label: 'City',
-          tableView: false,
           key: 'city',
           type: 'textfield',
+          customClass: componentClass,
           input: true,
           validate: { required: true }
         },
         {
           type: 'columns',
+          customClass: 'mb-0',
           columns: [
             {
               width: 6,
               components: [
                 {
                   label: 'State',
-                  tableView: false,
                   key: 'state',
-                  type: 'select',
+                  type: 'state',
+                  customClass: 'mb-0',
                   input: true,
-                  widget: 'html5',
-                  dataSrc: 'values',
-                  data: {
-                    values: STATES
-                  },
                   validate: { required: true }
                 }
               ]
@@ -61,39 +55,18 @@ export default class AddressComponent extends Container {
               width: 6,
               components: [
                 {
-                  label: 'ZIP Code',
-                  tableView: false,
+                  label: 'ZIP code',
                   key: 'zip',
-                  type: 'textfield',
-                  input: true,
-                  validate: {
-                    required: true,
-                    maxLength: 10,
-                    pattern: '([0-9]{5}(-[0-9]{4})?)?'
-                  },
-                  errors: {
-                    pattern:
-                      'Please enter a 5-digit <a href="https://en.wikipedia.org/wiki/ZIP_Code">ZIP code</a>'
-                  }
+                  type: 'zip',
+                  customClass: 'mb-0',
+                  input: true
                 }
               ]
             }
           ]
-        },
-        {
-          label: 'Country',
-          tableView: false,
-          key: 'country',
-          type: 'select',
-          dataSrc: 'values',
-          widget: 'html5',
-          data: { values: COUNTRIES },
-          defaultValue: 'us',
-          input: true,
-          customConditional: ({ self }) => self.parent && self.parent.component.showCountry
         }
       ]
-    })
+    }, ...extend)
   }
 
   get defaultSchema () {
@@ -101,6 +74,6 @@ export default class AddressComponent extends Container {
   }
 
   get templateName () {
-    return 'well'
+    return 'address'
   }
 }

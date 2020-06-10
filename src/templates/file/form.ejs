@@ -1,6 +1,6 @@
 {% if (!ctx.self.imageUpload) { %}
 
-  <table class="align-left">
+  <table class="align-left mt-0 mb-2">
     <thead{% if ((ctx.files.length + ctx.statuses.length) === 0) { %} hidden{% } %}>
       <tr>
         <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }}">

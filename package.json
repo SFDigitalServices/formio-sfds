@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "4.2.3",
+  "version": "5.0.0",
   "description": "form.io templates for the SF Design System",
   "module": "src/index.js",
   "main": "dist/formio-sfds.cjs.js",
@@ -32,6 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "choices.js": "^9.0.1",
+    "flatpickr": "^4.6.3",
     "formiojs": "^4.9.0-rc.10",
     "interpolate": "^0.1.0",
     "rollup-plugin-terser": "^5.3.0",
