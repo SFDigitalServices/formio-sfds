@@ -263,6 +263,6 @@ function getFlatpickrLocale (lang) {
     // XXX This is a fix for the mapping of Drupal language codes to Google Translate's here:
     // <https://github.com/SFDigitalServices/sfgov/blob/2b52656f27be3aa392b5161937c6c81b79861fa6/web/themes/custom/sfgovpl/includes/html.inc#L119>
     // The problem we're solving here is that flatpickr doesn't recognize "zh-hant".
-    'zh-hant': 'zh-tw'
+    'zh-hant': 'zh'
   }[lang.toLowerCase()] || lang.split('-')[0]
 }
