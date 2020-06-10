@@ -3,6 +3,7 @@ import { observe } from 'selector-observer'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+// import i18nextLanguageDetector from 'i18next-browser-languagedetector'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
 import 'flatpickr/dist/l10n/zh'
@@ -239,7 +240,7 @@ function patchDateTimeSuffix () {
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
     if (this.options.language) {
-      this.component.widget.locale = this.options.language
+      this.component.widget.locale = getFlatpickrLocale(this.options.language)
     }
     return attach(...args)
   })
@@ -255,4 +256,13 @@ function disableGoogleTranslate (el) {
   // Microsoft, Google, et al; see:
   // <https://www.w3.org/International/questions/qa-translate-flag.en>
   el.setAttribute('translate', 'no')
+}
+
+function getFlatpickrLocale (lang) {
+  return {
+    // XXX This is a fix for the mapping of Drupal language codes to Google Translate's here:
+    // <https://github.com/SFDigitalServices/sfgov/blob/2b52656f27be3aa392b5161937c6c81b79861fa6/web/themes/custom/sfgovpl/includes/html.inc#L119>
+    // The problem we're solving here is that flatpickr doesn't recognize "zh-hant".
+    'zh-hant': 'zh-TW'
+  }[lang.toLowerCase()] || lang.split('-')[0]
 }
