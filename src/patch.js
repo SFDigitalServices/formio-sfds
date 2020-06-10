@@ -74,7 +74,7 @@ function patch (Formio) {
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
       if (opts.googleTranslate === false) {
-        element.classList.add('notranslate')
+        disableGoogleTranslate(element)
       }
 
       let wrapper = element.closest(`.${WRAPPER_CLASS}`)
@@ -243,4 +243,16 @@ function patchDateTimeLocale (Formio) {
     }
     return attach(...args)
   })
+
+  observe('.flatpickr-calendar', {
+    add: disableGoogleTranslate
+  })
+}
+
+function disableGoogleTranslate (el) {
+  // Google Translate
+  el.classList.add('notranslate')
+  // Microsoft, Google, et al; see:
+  // <https://www.w3.org/International/questions/qa-translate-flag.en>
+  el.setAttribute('translate', 'no')
 }
