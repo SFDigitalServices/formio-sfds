@@ -27,7 +27,26 @@ export default Formio => {
   Formio[PATCHED] = true
 }
 
-function patch (Formio) {
+function scrollToTop() {
+  window.scroll(0, 0)
+}
+
+// Prevent users from navigating away and losing their entries.
+let warnBeforeLeaving = false
+function turnWarningOn() {
+  warnBeforeLeaving = true
+}
+function turnWarningOff() {
+  warnBeforeLeaving = false
+}
+window.addEventListener('beforeunload', (event) => {
+  if (warnBeforeLeaving) {
+    // Most browsers will show a default message instead of this one.
+    event.returnValue = 'Leave site? Changes you made may not be saved.'
+  }
+})
+
+function patch(Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', async (createForm, args) => {
@@ -69,6 +88,11 @@ function patch (Formio) {
       }
 
       console.log('SFDS form created!')
+
+      form.on('nextPage', scrollToTop)
+      form.on('prevPage', scrollToTop)
+      form.on('nextPage', turnWarningOn)
+      form.on('submit', turnWarningOff)
 
       const { element } = form
 
