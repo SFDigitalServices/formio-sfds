@@ -3,10 +3,9 @@ import { observe } from 'selector-observer'
 import { mergeObjects } from './utils'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
-// import i18nextLanguageDetector from 'i18next-browser-languagedetector'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
-import 'flatpickr/dist/l10n/zh'
+import 'flatpickr/dist/l10n/zh-tw'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -263,6 +262,6 @@ function getFlatpickrLocale (lang) {
     // XXX This is a fix for the mapping of Drupal language codes to Google Translate's here:
     // <https://github.com/SFDigitalServices/sfgov/blob/2b52656f27be3aa392b5161937c6c81b79861fa6/web/themes/custom/sfgovpl/includes/html.inc#L119>
     // The problem we're solving here is that flatpickr doesn't recognize "zh-hant".
-    'zh-hant': 'zh'
+    'zh-hant': 'zh-tw'
   }[lang.toLowerCase()] || lang.split('-')[0]
 }
