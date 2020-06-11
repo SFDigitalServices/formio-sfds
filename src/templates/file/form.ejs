@@ -42,7 +42,7 @@
 
 {% if (!ctx.self.imageUpload) { %}
 
-<table>
+<table class="align-left mt-0 mb-2">
   <thead{% if ((ctx.files.length + ctx.statuses.length) === 0) { %} hidden{% } %}>
     <tr>
       <th class="col-md-{{ ctx.self.hasTypes ? 2 : 3 }}">
@@ -62,73 +62,73 @@
       </th>
       {% } %}
     </tr>
-    </thead>
-    <tbody>
-      {% ctx.files.forEach(function(file) { %}
-      {% var cellClass = '' %}
-      <tr>
-        <td class="filename bg-green-1 {{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
-          {% if (ctx.component.uploadOnly) { %}
-          {{file.originalName || file.name}}
-          {% } else { %}
-          <div class="d-flex flex-items-center">
-            <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
+  </thead>
+  <tbody>
+    {% ctx.files.forEach(function(file) { %}
+    {% var cellClass = '' %}
+    <tr>
+      <td class="filename bg-green-1 {{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
+        {% if (ctx.component.uploadOnly) { %}
+        {{file.originalName || file.name}}
+        {% } else { %}
+        <div class="d-flex flex-items-center">
+          <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
 
-            <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
+          <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
 
-          </div>
-          {% } %}
-        </td>
-        <td class="size text-align-right bg-green-1 {{ cellClass }}">
-          {{ ctx.fileSize(file.size) }}
-        </td>
-        {% if (ctx.self.hasTypes && !ctx.disabled) { %}
-        <td class="{{ cellClass }}">
-          <select class="file-type" ref="fileType">
-            {% ctx.component.fileTypes.map(function(type) { %}
-            <option value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected" {% } %}>
-              {{ type.label }}</option>
-            {% }); %}
-          </select>
-          {% } %}
-          {% if (ctx.self.hasTypes && ctx.disabled) { %}
-          {{ file.fileType }}
-        </td>
+        </div>
         {% } %}
-        <td class="remove text-align-right pr-0">
-          {% if (!ctx.disabled) { %}
-          <button ref="removeLink" aria-label="Remove"
-            class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
-            <span data-icon="delete" class="d-flex flex-items-center"></span>
-          </button>
-          {% } %}
-        </td>
-      </tr>
-      {% }) %}
-
-      {% ctx.statuses.forEach(function(status) { %}
-      {% if (status.status === 'progress') { %}
-      <tr>
-        <td class="filename">
-          {{ status.originalName }}
-        </td>
-        <td class="size text-align-right">
-          {{ status.progress }}%
-          of
-          {{ ctx.fileSize(status.size) }}
-        </td>
-        <td class="remove text-align-right pr-0">
-          {% if (!ctx.disabled) { %}
-          <button ref="fileStatusRemove" aria-label="Remove"
-            class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
-            <span data-icon="delete" class="d-flex flex-items-center"></span>
-          </button>
-          {% } %}
-        </td>
-      </tr>
+      </td>
+      <td class="size text-align-right bg-green-1 {{ cellClass }}">
+        {{ ctx.fileSize(file.size) }}
+      </td>
+      {% if (ctx.self.hasTypes && !ctx.disabled) { %}
+      <td class="{{ cellClass }}">
+        <select class="file-type" ref="fileType">
+          {% ctx.component.fileTypes.map(function(type) { %}
+          <option value="{{ type.value }}" {% if (type.label === file.fileType) { %}selected="selected" {% } %}>
+            {{ type.label }}</option>
+          {% }); %}
+        </select>
+        {% } %}
+        {% if (ctx.self.hasTypes && ctx.disabled) { %}
+        {{ file.fileType }}
+      </td>
       {% } %}
-      {% }) %}
-    </tbody>
+      <td class="remove text-align-right pr-0">
+        {% if (!ctx.disabled) { %}
+        <button ref="removeLink" aria-label="Remove"
+          class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
+          <span data-icon="delete" class="d-flex flex-items-center"></span>
+        </button>
+        {% } %}
+      </td>
+    </tr>
+    {% }) %}
+
+    {% ctx.statuses.forEach(function(status) { %}
+    {% if (status.status === 'progress') { %}
+    <tr>
+      <td class="filename">
+        {{ status.originalName }}
+      </td>
+      <td class="size text-align-right">
+        {{ status.progress }}%
+        of
+        {{ ctx.fileSize(status.size) }}
+      </td>
+      <td class="remove text-align-right pr-0">
+        {% if (!ctx.disabled) { %}
+        <button ref="fileStatusRemove" aria-label="Remove"
+          class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
+          <span data-icon="delete" class="d-flex flex-items-center"></span>
+        </button>
+        {% } %}
+      </td>
+    </tr>
+    {% } %}
+    {% }) %}
+  </tbody>
 </table>
 
 {% ctx.statuses.forEach(function(status) { %}

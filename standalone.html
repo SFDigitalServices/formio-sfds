@@ -5,13 +5,10 @@
   <title>Loading...</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet"
-    href="https://sf.gov/sites/default/files/css/css_tapi1dXrMXCVexRBH_J8sbMleg6570eiohsL6J_w18Y.css">
-  <link rel="stylesheet"
-    href="https://sf.gov/sites/default/files/css/css_Mq_8mlFSit3pht3tEH1HfSn5Em_cgGYwZyDnnBhhGrM.css">
+  <link rel="stylesheet" href="https://sf.gov/sites/default/files/css/css_tapi1dXrMXCVexRBH_J8sbMleg6570eiohsL6J_w18Y.css">
+  <link rel="stylesheet" href="https://sf.gov/sites/default/files/css/css_Mq_8mlFSit3pht3tEH1HfSn5Em_cgGYwZyDnnBhhGrM.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional">
 </head>
 
 <body>
@@ -34,13 +31,25 @@
       const hooks = tryParse(params.get('hooks'))
       const resource = params.get('res') || root.getAttribute('data-resource')
       const unlockNavigation = true
-      const properties = {
-        backURL: "https://sf.gov/apply-building-permit",
-        backTitle: "Apply for a building permit"
-      }
-      const googleTranslate = false
 
-      const options = { language, renderMode, hooks, unlockNavigation, i18n, googleTranslate, properties, prefill: params }
+      const options = {
+        language,
+        renderMode,
+        hooks,
+        unlockNavigation,
+        i18n,
+        googleTranslate: params.get('googleTranslate') === 'true',
+        prefill: params,
+        properties: tryParse(params.get('properties')) || {
+          backURL: "https://sf.gov/apply-building-permit",
+          backTitle: "Apply for a building permit"
+        }
+      }
+
+      if (language && params.get('langMode') === 'dom') {
+        document.documentElement.setAttribute('lang', language)
+        delete options.language
+      }
 
       Formio.createForm(root, resource, options).then(form => {
         console.log('form ready:', form)

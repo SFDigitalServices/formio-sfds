@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "4.2.0",
+  "version": "6.0.0",
   "description": "form.io templates for the SF Design System",
   "module": "src/index.js",
   "main": "dist/formio-sfds.cjs.js",
@@ -32,6 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "choices.js": "^9.0.1",
+    "flatpickr": "^4.6.3",
     "formiojs": "^4.9.26",
     "interpolate": "^0.1.0",
     "rollup-plugin-terser": "^5.3.0",
@@ -41,7 +42,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.1",
-    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "@csstools/postcss-sass": "^4.0.0",
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-dsv": "^2.0.1",
