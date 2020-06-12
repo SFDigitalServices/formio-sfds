@@ -1,11 +1,6 @@
-import i18next from 'i18next'
-import getJSON from './utils'
-
 let translationForm
 
 const { Formio } = window
-
-window.i18next = i18next
 
 Formio.createForm(document.getElementById('edit-form'), {
   components: [
@@ -69,38 +64,27 @@ Formio.createForm(document.getElementById('edit-form'), {
     } = submission.data
 
     const element = document.getElementById('translation-form')
-    element.hidden = false
+    // element.hidden = false
     element.setAttribute('lang', lang)
 
-    getJSON(translationsUrl).then(translations => {
-      console.info('loaded translations:', translations)
-
-      i18next.init({
-        debug: true,
-        lng: lang,
-        resources: translations,
-        missingKeyHandler (...args) {
-          console.error('Missing key:', args)
+    Formio.createForm(element, formUrl, {
+      i18n: translationsUrl,
+      language: lang
+    }).then(form => {
+      Object.assign(form.options.i18next.options, {
+        saveMissing: true,
+        missingKeyHandler (lng, ns, key, fallback, updateMissing, options) {
+          console.error('Missing key: "%s"', key, options)
         },
-        missingInterpolationHandler (...args) {
-          console.error('Missing interpolation:', args)
+        missingInterpolationHandler (text, value, options) {
+          console.error('Missing interpolation: "%s"', text, value, options)
         }
       })
-        .then(() => {
-          console.log('i18next initialized:', i18next)
-          i18next.initialized = true
 
-          console.log('Hello, world!', i18next.t('Hello, world!'))
+      console.log('form created with options:', form.options)
+      translationForm = form
 
-          Formio.createForm(element, formUrl, {
-            i18next,
-            i18nReady: true,
-            language: lang
-          }).then(form => {
-            console.log('form created with options:', form.options)
-            translationForm = form
-          })
-        })
+      form.redraw()
     })
   })
 
