@@ -80,8 +80,9 @@ npm package for every push that passes the [CI
 workflow](../.github/workflows/ci.yml). The name of the branch determines the
 "type" of release:
 
-- Merges to `master` will release new versions to the `latest` (default)
-  dist-tag if the `version` field in `package.json` has been incremented.
+- Merges to the default branch (`main`) will release new versions to the
+  `latest` (default) dist-tag if the `version` field in `package.json` has been
+  incremented.
 - Pushes to `release-<version>` will publish npm releases to the `next`
   dist-tag with versions in the form `<version>-rc.<sha>`, where `<sha>` is the
   7-character commit SHA.
