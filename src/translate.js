@@ -99,6 +99,17 @@ Formio.createForm(document.getElementById('edit-form'), {
       lang
     } = submission.data
 
+    const params = { formUrl, translationsUrl, lang }
+    if (window.location.hash) {
+      console.info('replacing URL hash:', window.location.hash, params)
+      window.location.hash = new URLSearchParams(params).toString()
+    } else {
+      if (window.location.search) {
+        console.info('replacing query string:', window.location.search, params)
+      }
+      window.history.replaceState(params, '', `?${new URLSearchParams(params).toString()}`)
+    }
+
     const element = document.getElementById('translation-form')
     // element.hidden = false
     element.setAttribute('lang', lang)
