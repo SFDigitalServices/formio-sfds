@@ -88,7 +88,7 @@ Formio.createForm(document.getElementById('edit-form'), {
   ]
 }, {
   // options
-  prefill: 'querystring'
+  prefill: 'url'
 }).then(editForm => {
   editForm.on('submit', submission => {
     errorList.innerHTML = ''
