@@ -166,7 +166,7 @@ Formio.createForm(document.getElementById('edit-form'), {
     })
   })
 
-  if (window.location.search) {
+  if (window.location.search || window.location.hash) {
     editForm.submit()
   }
 })
