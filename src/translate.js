@@ -1,7 +1,13 @@
 import i18next from 'i18next'
 import loadTranslations from './i18n/load'
+import formioFieldDisplay from 'formiojs/components/_classes/component/editForm/Component.edit.display'
 
 const I18N_SERVICE_URL = 'https://i18n-microservice-js.herokuapp.com'
+
+const formioFieldsByType = formioFieldDisplay.reduce((map, field) => {
+  map[field.key] = field
+  return map
+}, {})
 
 const languages = {
   en: 'English',
@@ -14,28 +20,40 @@ const errorTable = document.getElementById('errors')
 const errorList = errorTable.querySelector('tbody')
 
 const columns = [
-  ['string', s => `<code>${s}</code>`, 'String'],
-  // ['value', s => `<code>${s}</code>`, 'Translation'],
-  ['message', s => s, 'Message'],
-  ['link', ({ title, href, path }) => `&ldquo;${title}&rdquo; (${path})`, 'Component']
+  ['String', d => formatString(d.string), 'String'],
+  ['Message', d => d.message],
+  ['Location', ({ loc }) => {
+    if (loc instanceof Object) {
+      const { text, href } = loc
+      return href ? `<a href="${href}">${text}</a>` : text
+    } else {
+      return loc
+    }
+  }]
 ]
 
 const loadingIndicator = document.getElementById('loading')
 
 const thead = errorTable.querySelector('thead').appendChild(document.createElement('tr'))
-for (const [key, format, heading] of columns) { // eslint-disable-line no-unused-vars
+for (const [heading, format] of columns) { // eslint-disable-line no-unused-vars
   const th = document.createElement('th')
   th.className = 'align-left p-1'
-  th.textContent = heading || key
+  th.textContent = heading
   thead.appendChild(th)
 }
 
-const { Formio, FormioUtils } = window
+const { Formio } = window
 
 const fields = [
-  field('label'),
+  field('label', (label, component) => {
+    if (component.type === 'panel') {
+      return [{ value: component.title, path: 'title' }]
+    } else if (label && !component.hideLabel) {
+      return [{ value: component.label, path: 'label' }]
+    }
+  }),
   field('description'),
-  field('tooltip'),
+  field('content'),
   field('data', (data, component) => {
     const { dataSrc, template } = component
     const { values } = data
@@ -203,6 +221,7 @@ Formio.createForm(document.getElementById('edit-form'), {
     const {
       formUrl,
       sheetId,
+      spreadsheetUrl,
       translationsVersion,
       translationsUrl,
       lang
@@ -232,15 +251,14 @@ Formio.createForm(document.getElementById('edit-form'), {
       console.info('translations:', translations)
 
       if (!translations[lang]) {
-        listError({
+        report({
           lang,
           string: lang,
-          value: undefined,
-          link: {
+          message: `Missing "${lang}" language code column`,
+          loc: {
             title: 'Translations',
-            href: translationsUrl
-          },
-          message: `Missing "${lang}" language code column`
+            href: spreadsheetUrl
+          }
         })
       } else {
         return Formio.createForm(element, formUrl, {
@@ -248,25 +266,23 @@ Formio.createForm(document.getElementById('edit-form'), {
           language: lang
         })
           .then(form => {
-            FormioUtils.eachComponent(form.form.components, component => {
+            eachComponent(form.form.components, (component, index, parents) => {
+              console.log('component:', component, parents)
+
               const allStrings = fields.reduce((all, getStrings) => {
                 const strings = getStrings(component).filter(data => data && data.value)
                 return all.concat(strings)
               }, [])
 
-              for (const { path, value } of allStrings) {
-                const translated = form.i18next.t(value)
-                if (translated === value && lang !== 'en') {
-                  listError({
+              for (const str of allStrings) {
+                const translated = form.i18next.t(str.value)
+                if (translated === str.value && lang !== 'en') {
+                  report({
                     lang,
-                    string: value,
+                    string: str.value,
                     value: '',
                     message: 'Missing translation',
-                    link: {
-                      title: component.label || `Key: "${component.key}"`,
-                      href: `#component-${component.key}`,
-                      path
-                    }
+                    loc: `${linkToComponent(component, parents)} → <b>${fieldDescription(str.path)}</b>`
                   })
                 }
               }
@@ -285,23 +301,23 @@ Formio.createForm(document.getElementById('edit-form'), {
   }
 })
 
-function listError (data) {
+function report (error) {
   const row = document.createElement('tr')
-  for (const [key, format] of columns) {
+  for (const [title, format] of columns) {
     const cell = document.createElement('td')
     cell.className = 'border-top-1 border-grey-1 p-1'
-    cell.setAttribute('data-key', key)
-    cell.innerHTML = data[key] ? format(data[key]) : ''
+    cell.setAttribute('data-key', title)
+    cell.innerHTML = format(error)
     row.appendChild(cell)
   }
   errorList.appendChild(row)
 }
 
-function field (key, get) {
+function field (path, get) {
   if (get) {
-    return component => (key in component) ? get(component[key], component) || [] : []
+    return component => (path in component) ? get(component[path], component) || [] : []
   } else {
-    return component => (key in component) ? [{ value: component[key], path: key }] : []
+    return component => (path in component) ? [{ value: component[path], path }] : []
   }
 }
 
@@ -329,8 +345,8 @@ function getSpreadsheetUrl (sheetId) {
   return `https://docs.google.com/spreadsheets/d/${sheetId}/edit#gid=0`
 }
 
-function calculatedSpreadsheetUrl ({ data: { sheetId } }) {
-  return sheetId ? getSpreadsheetUrl(sheetId) : ''
+function calculatedSpreadsheetUrl ({ data: { sheetsUrl, sheetId } }) {
+  return sheetsUrl || (sheetId ? getSpreadsheetUrl(sheetId) : '')
 }
 
 function calculatedTranslationsUrl ({ data: { sheetId, translationsVersion } }) {
@@ -341,4 +357,73 @@ function formatQueryString (data) {
   return new URLSearchParams(data).toString()
     .replace(/%3A/g, ':')
     .replace(/%2F/g, '/')
+}
+
+function eachComponent (components, iter, parents = []) {
+  for (const [index, component] of Object.entries(components)) {
+    const next = iter(component, index, parents || [])
+    if (next === true) return component
+    else if (next === false) return
+    const children = component.components || component.columns
+    if (children && children.length) {
+      eachComponent(children, iter, parents.concat(component))
+    }
+  }
+}
+
+function linkToComponent (component, parents = []) {
+  const cond = formatConditional(component)
+  const typeSuffix = cond ? `, ${cond}` : ''
+  const label = formatComponentLabel(component)
+  const typeDesc = `${getComponentName(component.type)}${typeSuffix}`
+  const text = label ? `${label} (${typeDesc})` : typeDesc
+  if (parents.length > 0) {
+    const [parent, ...rest] = parents
+    return `${linkToComponent(parent, rest)} →<br>${text}`
+  }
+  return text
+}
+
+function formatComponentLabel (component) {
+  const { type } = component
+  if (type === 'htmlelement' || type === 'textarea') {
+    return ''
+  } else {
+    return `"${component.title || component.label || component.key}"`
+  }
+}
+
+function formatConditional (component) {
+  const { customConditional, conditional } = component
+  const cond = customConditional || (conditional && conditional.show ? conditional : null)
+  return cond
+    ? `<u title="${JSON.stringify(cond, null, 2).replace(/"/g, '&quot;')}">conditional</u>`
+    : ''
+}
+
+function getComponentName (type) {
+  const { builderInfo = {} } = Formio.Components.components[type]
+  return builderInfo.title || type
+}
+
+function fieldDescription (type) {
+  const field = formioFieldsByType[type]
+  if (!field) {
+    console.warn('no field def for "%s"', type, formioFieldsByType)
+  }
+  return (field && field.label) || camelCase(type)
+}
+
+function formatString (str) {
+  // eslint-disable-next-line no-unused-vars
+  const [_, leading, inner, trailing] = str.match(/^(\s*)(.+)(\s*)$/, str)
+  return `&ldquo;${formatGremlins(leading)}${inner}${formatGremlins(trailing)}&rdquo;`
+}
+
+function formatGremlins (str) {
+  return str ? `<pre class="d-inline-block bg-red">${str}</pre>` : ''
+}
+
+function camelCase (str) {
+  return str.charAt(0).toUpperCase() + str.substr(1)
 }
