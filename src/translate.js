@@ -27,7 +27,7 @@ const errorList = errorTable.querySelector('tbody')
 
 const columns = [
   ['String', d => formatString(d.string), 'String'],
-  ['Message', d => d.message],
+  // ['Message', d => d.message],
   ['Location', ({ loc }) => {
     if (loc instanceof Object) {
       const { text, href } = loc
@@ -60,7 +60,6 @@ const fields = [
   }),
   field('description'),
   field('content'),
-  field('prefix'),
   field('suffix'),
   field('values', (values, component) => fieldValues(values, 'values', 'label')),
   field('data', (data, component) => {
