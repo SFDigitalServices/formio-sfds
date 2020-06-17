@@ -16,6 +16,12 @@ const languages = {
   tl: 'Tagalog'
 }
 
+const falseNegatives = {
+  es: {
+    No: true
+  }
+}
+
 const errorTable = document.getElementById('errors')
 const errorList = errorTable.querySelector('tbody')
 
@@ -54,19 +60,33 @@ const fields = [
   }),
   field('description'),
   field('content'),
+  field('values', (values, component) => fieldValues(values, 'values', 'label')),
   field('data', (data, component) => {
     const { dataSrc, template } = component
     const { values } = data
     if (dataSrc === 'values' && values) {
       const match = template.match(/{{\s*item\.(\w+)\s*}}/)
       const labelProperty = match ? match[0] : 'label'
-      return values.map((value, index) => {
-        return {
-          value: value[labelProperty],
-          path: `data.values[${index}].${labelProperty}`
-        }
-      })
+      return fieldValues(values, 'data.values', labelProperty)
     }
+  }),
+  field('validate', ({ customMessage, custom }, component) => {
+    const strings = []
+    if (customMessage) {
+      strings.push({ value: customMessage, path: 'validate.customMessage' })
+    }
+    if (custom) {
+      const possibleStrings = custom.match(/"([^"]+)"/g) || []
+      for (const possibleString in possibleStrings) {
+        if (possibleString && !/^\d+$/.test(possibleString)) {
+          strings.push({ value: possibleString, path: 'validate.custom (string)' })
+        }
+      }
+    }
+    return strings
+  }),
+  field('customError', (customError, component) => {
+    return customError ? [{ value: customError, path: 'customError' }] : []
   })
 ]
 
@@ -239,7 +259,7 @@ Formio.createForm(document.getElementById('edit-form'), {
     }
 
     const element = document.getElementById('translation-form')
-    // element.hidden = false
+    element.hidden = false
     element.setAttribute('lang', lang)
 
     if (!translationsUrl) {
@@ -267,7 +287,7 @@ Formio.createForm(document.getElementById('edit-form'), {
         })
           .then(form => {
             eachComponent(form.form.components, (component, index, parents) => {
-              console.log('component:', component, parents)
+              // console.log('component:', component, parents)
 
               const allStrings = fields.reduce((all, getStrings) => {
                 const strings = getStrings(component).filter(data => data && data.value)
@@ -277,6 +297,10 @@ Formio.createForm(document.getElementById('edit-form'), {
               for (const str of allStrings) {
                 const translated = form.i18next.t(str.value)
                 if (translated === str.value && lang !== 'en') {
+                  if (falseNegatives[lang] && falseNegatives[lang][str.value] === true) {
+                    console.warn(`Possible false negative: "${str.value}" in English is the same in ${languages[lang]}`)
+                    continue
+                  }
                   report({
                     lang,
                     string: str.value,
@@ -287,8 +311,6 @@ Formio.createForm(document.getElementById('edit-form'), {
                 }
               }
             })
-
-            form.detach()
           })
       }
     })
@@ -319,6 +341,13 @@ function field (path, get) {
   } else {
     return component => (path in component) ? [{ value: component[path], path }] : []
   }
+}
+
+function fieldValues (values, path, property) {
+  return values.map((value, index) => ({
+    value: value[property],
+    path: `${path}[${index}].${property}`
+  }))
 }
 
 function getSheetId (urlOrId) {
@@ -364,7 +393,10 @@ function eachComponent (components, iter, parents = []) {
     const next = iter(component, index, parents || [])
     if (next === true) return component
     else if (next === false) return
-    const children = component.components || component.columns
+    let children = component.components
+    if (!children && component.columns) {
+      children = component.columns.reduce((list, column) => list.concat(column.components), [])
+    }
     if (children && children.length) {
       eachComponent(children, iter, parents.concat(component))
     }
@@ -389,7 +421,8 @@ function formatComponentLabel (component) {
   if (type === 'htmlelement' || type === 'textarea') {
     return ''
   } else {
-    return `"${component.title || component.label || component.key}"`
+    const label = component.title || component.label || component.key || component.type
+    return label ? `"${label}"` : '<u>???</u>'
   }
 }
 
@@ -402,16 +435,16 @@ function formatConditional (component) {
 }
 
 function getComponentName (type) {
-  const { builderInfo = {} } = Formio.Components.components[type]
+  const { builderInfo = {} } = Formio.Components.components[type] || {}
   return builderInfo.title || type
 }
 
 function fieldDescription (type) {
   const field = formioFieldsByType[type]
   if (!field) {
-    console.warn('no field def for "%s"', type, formioFieldsByType)
+    // console.warn('no field def for "%s"', type, formioFieldsByType)
   }
-  return (field && field.label) || camelCase(type)
+  return (field && field.label) || type
 }
 
 function formatString (str) {
@@ -422,8 +455,4 @@ function formatString (str) {
 
 function formatGremlins (str) {
   return str ? `<pre class="d-inline-block bg-red">${str}</pre>` : ''
-}
-
-function camelCase (str) {
-  return str.charAt(0).toUpperCase() + str.substr(1)
 }
