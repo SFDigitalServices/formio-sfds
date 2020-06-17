@@ -60,6 +60,8 @@ const fields = [
   }),
   field('description'),
   field('content'),
+  field('prefix'),
+  field('suffix'),
   field('values', (values, component) => fieldValues(values, 'values', 'label')),
   field('data', (data, component) => {
     const { dataSrc, template } = component
