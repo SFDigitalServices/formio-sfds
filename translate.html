@@ -10,20 +10,35 @@
       <div class="p-3">
         <div class="d-flex">
           <div class="col-3 pr-3">
-            <h2>Form config</h2>
-            <div id="edit-form"></div>
+            <details open>
+              <summary><h2 class="d-inline-block m-0">Form config</h2></summary>
+              <div id="edit-form"></div>
+            </details>
+
+            <details>
+              <summary><h3 class="d-inline-block m-0">Translation data</h3></summary>
+              <textarea class="mt-2" id="translation-data" disabled style="resize: vertical;" rows="50"></textarea>
+            </details>
           </div>
           <div class="col-3">
-            <h2>Possible issues</h2>
-            <table id="errors">
-              <thead></thead>
-              <tbody>
-              </tbody>
-              <tfoot id="loading" hidden>
-                <tr><td>Loading...</td></tr>
-              </tfoot>
-            </table>
-            <div id="translation-form" hidden></div>
+            <details open>
+              <summary><h2 class="d-inline-block m-0">Possible issues</h2></summary>
+              <table id="errors">
+                <thead></thead>
+                <tbody>
+                </tbody>
+                <tfoot id="loading" hidden>
+                  <tr><td>Loading...</td></tr>
+                </tfoot>
+              </table>
+            </details>
+
+            <details class="mt-4">
+              <summary><h2 class="d-inline-block m-0">View the form</h2></summary>
+              <div class="mt-2 border-1 border-grey-1 p-2">
+                <div id="translation-form"></div>
+              </div>
+            </details>
           </div>
         </div>
       </div>

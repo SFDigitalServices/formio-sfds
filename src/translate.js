@@ -261,7 +261,6 @@ Formio.createForm(document.getElementById('edit-form'), {
     }
 
     const element = document.getElementById('translation-form')
-    element.hidden = false
     element.setAttribute('lang', lang)
 
     if (!translationsUrl) {
@@ -270,7 +269,7 @@ Formio.createForm(document.getElementById('edit-form'), {
     }
 
     await loadTranslations(translationsUrl).then(translations => {
-      console.info('translations:', translations)
+      document.getElementById('translation-data').value = JSON.stringify(translations, null, 2)
 
       if (!translations[lang]) {
         report({
@@ -297,8 +296,14 @@ Formio.createForm(document.getElementById('edit-form'), {
               }, [])
 
               for (const str of allStrings) {
-                const translated = form.i18next.t(str.value)
+                const translated = translations[lang][str.value] || form.t(str.value)
                 if (translated === str.value && lang !== 'en') {
+                  const overrideKey = `${component.key}_${str.path}`
+                  const override = form.i18next.t(overrideKey)
+                  if (override && override !== overrideKey) {
+                    console.warn('Found override for "%s" in "%s": "%s"', str.value, overrideKey, override)
+                    continue
+                  }
                   if (falseNegatives[lang] && falseNegatives[lang][str.value] === true) {
                     console.warn(`Possible false negative: "${str.value}" in English is the same in ${languages[lang]}`)
                     continue
@@ -452,7 +457,13 @@ function fieldDescription (type) {
 function formatString (str) {
   // eslint-disable-next-line no-unused-vars
   const [_, leading, inner, trailing] = str.match(/^(\s*)(.+)(\s*)$/, str)
-  return `&ldquo;${formatGremlins(leading)}${inner}${formatGremlins(trailing)}&rdquo;`
+  return `&ldquo;${formatGremlins(leading)}${escapeHTML(inner)}${formatGremlins(trailing)}&rdquo;`
+}
+
+function escapeHTML (str) {
+  return str
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
 }
 
 function formatGremlins (str) {
