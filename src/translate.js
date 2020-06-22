@@ -207,7 +207,7 @@ Formio.createForm(document.getElementById('edit-form'), {
         {
           type: 'htmlelement',
           tag: 'div',
-          content: 'Links: <a href="{{data.spreadsheetUrl}}">Spreadsheet</a>, <a href="{{data.translationsUrl}}">JSON</a>'
+          content: 'Links: <a href="{{data.spreadsheetUrl}}">Spreadsheet</a> (<a href="{{data.translationsUrl}}">JSON</a>), <a href="{{data.formUrl}}">form data JSON</a>'
         },
         {
           key: 'renderOptions',
