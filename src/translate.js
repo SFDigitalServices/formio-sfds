@@ -455,7 +455,7 @@ function fieldDescription (type) {
 
 function formatString (str) {
   // eslint-disable-next-line no-unused-vars
-  const [_, leading, inner, trailing] = str.match(/^(\s*)(.+)(\s*)$/, str)
+  const [_, leading, inner, trailing] = str.match(/^(\s*)(.+)(\s*)$/, str) || ['', '', str, '']
   return `&ldquo;${formatGremlins(leading)}${escapeHTML(inner)}${formatGremlins(trailing)}&rdquo;`
 }
 
