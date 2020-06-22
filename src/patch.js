@@ -128,6 +128,9 @@ function patch(Formio) {
         console.info('submission before prefill:', form.submission)
         let params
         switch (opts.prefill) {
+          case 'url':
+            params = new URLSearchParams(window.location.search || window.location.hash.substr(1))
+            break
           case 'querystring':
             params = new URLSearchParams(window.location.search)
             break

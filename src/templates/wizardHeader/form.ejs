@@ -1,5 +1,7 @@
 <nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-70">
-  <a class="back-link fg-black fw-medium" href="{{ ctx.options.properties.backURL}}">{{ ctx.options.properties.backTitle}}</a>
+  {% if (ctx.options.properties) { %}
+    <a class="back-link fg-black fw-medium" href="{{ ctx.options.properties.backURL}}">{{ ctx.options.properties.backTitle}}</a>
+  {% } %}
   <ul class="panel-list list-style-none mt-1">
     {% ctx.panels.forEach(function(panel, index) { %}
 

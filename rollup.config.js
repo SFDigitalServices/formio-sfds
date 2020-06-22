@@ -104,5 +104,15 @@ export default [
       format: 'umd',
       file: 'dist/examples.js'
     }
+  },
+  {
+    input: 'src/translate.js',
+    plugins: [
+      ...commonPlugins
+    ],
+    output: {
+      format: 'umd',
+      file: 'dist/translate.js'
+    }
   }
 ]
