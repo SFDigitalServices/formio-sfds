@@ -67,8 +67,10 @@ const fields = [
     const { values } = data
     if (dataSrc === 'values' && values) {
       const match = template.match(/{{\s*item\.(\w+)\s*}}/)
-      const labelProperty = match ? match[0] : 'label'
+      const labelProperty = match ? match[1] : 'label'
       return fieldValues(values, 'data.values', labelProperty)
+    } else {
+      console.info('Skipping "data" for:', data, 'in:', component)
     }
   }),
   field('validate', ({ customMessage, custom }, component) => {
