@@ -6,16 +6,11 @@ nav {
     margin-right: 7rem;
   }
 
-  span[data-icon] {
-    margin-left: -30px;
-    margin-top: 5px;
+  [data-icon=square] {
+    margin-top: 5px !important;
   }
 
   .back-link {
     font-size: 20px;
-  }
-
-  ul.panel-list {
-    margin-left: 26px;
   }
 }
