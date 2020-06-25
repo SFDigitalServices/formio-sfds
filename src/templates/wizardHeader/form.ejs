@@ -1,47 +1,34 @@
-<nav aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-slate-70">
-  {% if (ctx.options.properties) { %}
-    <a class="back-link fg-black fw-medium" href="{{ ctx.options.properties.backURL}}">{{ ctx.options.properties.backTitle}}</a>
+{% const { properties = {} } = ctx.options %}
+<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate">
+
+  {% if (properties.backURL) { %}
+    <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
+      {{ ctx.t(properties.backTitle || 'Back', { context: 'nav' }) }}
+    </a>
   {% } %}
-  <ul class="panel-list list-style-none mt-1">
+
+  <ul class="nav-list mt-2 mb-0 mx-0 p-0">
     {% ctx.panels.forEach(function(panel, index) { %}
 
-    {% var completed = index < ctx.currentPage; %}
-    {% var active = index === ctx.currentPage; %}
+      {% const completed = index < ctx.currentPage; %}
+      {% const active = index === ctx.currentPage; %}
 
-    {% if (!panel.properties.hideFromNavigation || panel.properties.hideFromNavigation !== "true") { %}
-
-    <li class="d-flex flex-items-center" {% if (active) { %} aria-current="page" {% } %}>
-
-      {% if (active) { %}
-      <span data-icon="square" class="pr-1 fg-slate"></span>
+      {% if (!panel.properties.hideFromNavigation || panel.properties.hideFromNavigation !== "true") { %}
+        {% const color = active || completed ? 'slate' : 'inherit' %}
+        {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
+        <li class="mb-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %}>
+          <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
+          <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
+            {% if (completed || ctx.options.unlockNavigation) { %}ref="{{ ctx.wizardKey }}-link" {% } %}>
+            {{ ctx.t(panel.properties.displayTitle || panel.title, { context: 'nav' }) }}
+          </button>
+        </li>
+      {%
+        } else {
+          // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place
+      %}
+        <li ref="{{ ctx.wizardKey }}-link" hidden></li>
       {% } %}
-
-      <!-- {% var color = active || completed ? "fg-slate" : ""  %} -->
-      <!-- {% var style = active ? "fw-medium" : completed ? "u" : "" %} -->
-      {% var color;
-        if (active || completed) {
-        color = "fg-slate";
-        } 
-      %}
-
-      {% var style;
-        if (active){
-          style = "fw-medium";
-        } else if (completed) { 
-          style = "u cursor-pointer";
-        }
-      %}
-
-
-      <span class="flex-auto py-1 {{ color }} {{ style }}" {% if (completed || ctx.options.unlockNavigation) { %}
-        ref="{{ ctx.wizardKey }}-link" {% } %}>
-        {{ ctx.t(panel.properties.displayTitle || panel.title) }}
-      </span>
-    </li>
-
-    {% } else { // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place %}
-    <span ref="{{ ctx.wizardKey }}-link"></span>
-    {% } %}
 
     {% }) %}
   </ul>
