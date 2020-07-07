@@ -24,12 +24,12 @@ $common-styles: (
   "https://sf.gov/core/themes/stable/css/views/views.module.css",
   "https://sf.gov/modules/contrib/extlink/extlink.css",
   "https://sf.gov/modules/contrib/paragraphs/css/paragraphs.unpublished.css",
+  "https://sf.gov/libraries/multiple-select/dist/multiple-select.min.css",
   "https://sf.gov/libraries/sfgov-pattern-lab/dist/css/components.css",
   "https://sf.gov/libraries/sf-design-system/css/all.css",
   "https://sf.gov/themes/custom/sfgovpl/dist/css/drupal.css",
-  "https://sf.gov//fonts.googleapis.com/css?family=Rubik:300,400,500,700",
-  "https://sf.gov//fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional",
-  "https://sf.gov/libraries/multiple-select/dist/multiple-select.min.css",
+  "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700",
+  "https://fonts.googleapis.com/css?family=Noto+Sans+TC:300,400,500,700&amp;display=swap&amp;subset=chinese-traditional",
 );
 
 @each $url in $common-styles {
