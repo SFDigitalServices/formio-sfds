@@ -5,7 +5,8 @@ import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
-import 'flatpickr/dist/l10n/zh'
+// import 'flatpickr/dist/l10n/zh'
+import 'flatpickr/dist/l10n/zh-tw'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
@@ -98,7 +99,7 @@ function patch(Formio) {
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
       if (opts.googleTranslate === false) {
-        element.classList.add('notranslate')
+        disableGoogleTranslate(element)
       }
 
       let wrapper = element.closest(`.${WRAPPER_CLASS}`)
@@ -266,8 +267,32 @@ function patchDateTimeSuffix () {
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
     if (this.options.language) {
-      this.component.widget.locale = this.options.language
+      this.component.widget.locale = getFlatpickrLocale(this.options.language)
     }
     return attach(...args)
   })
+
+  observe('.flatpickr-calendar', {
+    add: disableGoogleTranslate
+  })
+}
+
+function disableGoogleTranslate (el) {
+  // Google Translate
+  el.classList.add('notranslate')
+  // Microsoft, Google, et al; see:
+  // <https://www.w3.org/International/questions/qa-translate-flag.en>
+  el.setAttribute('translate', 'no')
+}
+
+function getFlatpickrLocale (code) {
+  if (code in window.flatpickr.l10ns) {
+    return code
+  }
+  // get the language portion of the code, e.g. "zh" from "zh-TW"
+  const lang = code.split('-')[0]
+  return {
+    // Prefer traditional (Taiwan) to simplified (China)
+    zh: 'zh_tw'
+  }[lang] || lang
 }

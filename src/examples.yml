@@ -163,7 +163,17 @@
     language: es
 
 - id: datetime-chinese
-  title: Date & time (Chinese)
+  title: Date & time (Chinese traditional)
+  form:
+    components:
+      - type: datetime
+        label: This is the label
+        description: This is the description
+  options:
+    language: zh-tw
+
+- id: datetime-chinese-simplified
+  title: Date & time (Chinese simplified)
   form:
     components:
       - type: datetime
