@@ -43,6 +43,11 @@
   }
 }
 
+button[ref=removeLink] {
+  position: relative;
+  z-index: 99;
+}
+
 // FIXME this is a hack to work around sf.gov's CSS
 .page-node-type-form-page .form-page & button.btn-border:hover {
   border: border-width(1) solid $dark-blue;
