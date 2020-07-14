@@ -1,0 +1,16 @@
+nav {
+  @media (min-width: $mq-medium) {
+    margin-top: 10rem;
+    position: sticky;
+    top: 170px;
+    margin-right: spacer(5);
+  }
+
+  [data-icon=square] {
+    margin-top: 5px !important;
+  }
+
+  .back-link {
+    font-size: 20px;
+  }
+}

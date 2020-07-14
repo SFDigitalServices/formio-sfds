@@ -1,25 +1,33 @@
 <div class="d-flex flex-justify-between" id="{{ ctx.wizardKey }}-nav">
-  <div class="flex-auto">
-    {% if (ctx.buttons.next) { %}
-      <button class="btn mr-1" ref="{{ctx.wizardKey}}-next">
-        <div class="d-flex flex-items-center">
-          <span>{{ ctx.t(ctx.currentPage === 0 ? 'Get started' : 'Next') }}</span>
-          <span data-icon="next" class="d-flex flex-items-center ml-1"></span>
-        </div>
-      </button>
-    {% } %}
-    {% if (ctx.buttons.submit) { %}
-      <button class="btn mr-1" ref="{{ctx.wizardKey}}-submit">
-        {{ ctx.t('Submit') }}
-      </button>
-    {% } %}
-  </div>
+  {% if (ctx.buttons.previous) { %}
+    <button class="btn btn-border flex-justify-start" ref="{{ctx.wizardKey}}-previous">
+      <div class="d-flex flex-items-center">
+        <span data-icon="prev" class="d-flex flex-items-center mr-1"></span>
+        <span>{{ ctx.t('Back') }}</span>
+      </div>
+    </button>
+  {% } %}
 
-  {% if (ctx.buttons.cancel) { %}
-    <div class="flex-self-end" hidden>
+  {% if (ctx.buttons.next) { %}
+    <button class="btn flex-justify-end" ref="{{ctx.wizardKey}}-next">
+      <div class="d-flex flex-items-center">
+        <span>{{ ctx.t(ctx.currentPage === 0 ? 'Get started' : 'Next') }}</span>
+        <span data-icon="next" class="d-flex flex-items-center ml-1"></span>
+      </div>
+    </button>
+  {% } %}
+
+  {% if (ctx.buttons.submit) { %}
+    <button class="btn ml-1 flex-justify-end" ref="{{ctx.wizardKey}}-submit">
+      {{ ctx.t('Submit') }}
+    </button>
+  {% } %}
+
+  {% /* if (ctx.buttons.cancel) { %}
+    <div class="flex-justify-end pl-1" hidden>
       <button class="btn btn-link" ref="{{ctx.wizardKey}}-cancel">
         {{ ctx.t('Leave the form') }}
       </button>
     </div>
-  {% } %}
+  {% } */ %}
 </div>

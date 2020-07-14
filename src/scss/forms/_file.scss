@@ -1,17 +1,35 @@
 .formio-component-file {
   table {
+    width: 100%;
+    margin: 0;
+
     th,
     td {
       background: transparent;
       padding: spacer(1);
       border: 0;
-      border-bottom: 3px solid $grey-2;
+
+      &.size {
+        width: 200px;
+      }
+
+      &.remove {
+        width: 50px;
+      }
     }
+
+    // th {
+    //   display: none;
+    // }
 
     tr > * + * {
       padding-left: spacer(1);
     }
   }
+}
+
+.status-error {
+  padding: (spacer(1) / 2) spacer(1);
 }
 
 .fileSelector {

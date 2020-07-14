@@ -1,6 +1,6 @@
 $input-size: 44px;
 
-input[type=checkbox] {
+input[type="checkbox"] {
   $checkbox-size: $input-size;
 
   appearance: none;
@@ -24,7 +24,7 @@ input[type=checkbox] {
 
   &:checked {
     border-width: border-width(1) !important;
-    background-image: svg-load('../icons/Check.svg', fill=$slate);
+    background-image: svg-load("../icons/Check.svg", fill=$slate);
   }
 
   &:focus {
@@ -33,11 +33,11 @@ input[type=checkbox] {
 
   &:checked:focus {
     background-color: $bright-blue !important;
-    background-image: svg-load('../icons/Check.svg', fill=$white);
+    background-image: svg-load("../icons/Check.svg", fill=$white);
   }
 }
 
-input[type=radio] {
+input[type="radio"] {
   $radio-size: $input-size;
   $dot-inset: 8px;
 
@@ -109,5 +109,39 @@ input[type=radio] {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+  }
+}
+
+.formio-component-radio,
+.formio-component-selectboxes {
+  .field-wrapper {
+    margin: 0 -15px 10px;
+    padding: 1px 15px 1px;
+  }
+}
+
+.formio-component-signature {
+  border: solid $grey-2 border-width(1);
+}
+
+.signature-pad-footer {
+  position: relative;
+  border-top: dashed 2px $grey-3;
+  line-height: 48px;
+  background: white;
+  color: darken($grey-4, 20%);
+  text-align: center;
+  font-size: 21px;
+}
+
+.signature-refresh {
+  font-size: 18px;
+  position: absolute;
+  left: 20px;
+  color: darken($blue-2, 20%);
+
+  &:hover {
+    cursor: pointer;
+    color: darken($blue-2, 40%);
   }
 }
