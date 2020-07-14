@@ -8,6 +8,7 @@ import document from './Document.svg'
 import alert from './Alert.svg'
 import pencil from './Pencil.svg'
 import plus from './Plus.svg'
+import square from './Square.svg'
 
 const icons = {
   active: pencil,
@@ -22,19 +23,20 @@ const icons = {
   next,
   pencil,
   plus,
-  prev
+  prev,
+  square
 }
 
 export default icons
 export { getIcon, observeIcons }
 
-function getIcon (name) {
+function getIcon(name) {
   return icons[name]
 }
 
-function observeIcons () {
+function observeIcons() {
   observe('i.fa', {
-    add (el) {
+    add(el) {
       const match = el.className.match(/\bfa-([-\w]+)\b/)
       if (match) {
         const name = match[1]
@@ -52,7 +54,7 @@ function observeIcons () {
   })
 
   observe('[data-icon]', {
-    add (el) {
+    add(el) {
       const icon = getIcon(el.getAttribute('data-icon'))
       if (icon) {
         el.classList.add('notranslate')

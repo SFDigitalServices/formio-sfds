@@ -1,15 +1,35 @@
-<nav aria-label="navigation" id="{{ ctx.wizardKey }}-header">
-  <ul class="list-style-none mb-3">
+{% const { properties = {} } = ctx.options %}
+<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate">
+
+  {% if (properties.backURL) { %}
+    <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
+      {{ ctx.t(properties.backTitle || 'Back', { context: 'nav' }) }}
+    </a>
+  {% } %}
+
+  <ul class="nav-list mt-2 mb-0 mx-0 p-0">
     {% ctx.panels.forEach(function(panel, index) { %}
-      {% var active = ctx.currentPage === index; %}
-      <li class="d-flex flex-items-center border-bottom-1 border-grey-3" {% if (active) { %} aria-current="page"{% } %}>
-        <span class="flex-auto py-1 py-md-2 cursor-pointer{% if (active) { %} fw-medium{% } %}" ref="{{ ctx.wizardKey }}-link">
-          {{ ctx.t(panel.title) }}
-        </span>
-        {% if (active) { %}
-          <span data-icon="active" class="pr-1"></span>
-        {% } %}
-      </li>
+
+      {% const completed = index < ctx.currentPage; %}
+      {% const active = index === ctx.currentPage; %}
+
+      {% if (!panel.properties.hideFromNavigation || panel.properties.hideFromNavigation !== "true") { %}
+        {% const color = active || completed ? 'slate' : 'inherit' %}
+        {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
+        <li class="mb-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %}>
+          <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
+          <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
+            {% if (completed || ctx.options.unlockNavigation) { %}ref="{{ ctx.wizardKey }}-link" {% } %}>
+            {{ ctx.t(panel.properties.displayTitle || panel.title, { context: 'nav' }) }}
+          </button>
+        </li>
+      {%
+        } else {
+          // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place
+      %}
+        <li ref="{{ ctx.wizardKey }}-link" hidden></li>
+      {% } %}
+
     {% }) %}
   </ul>
 </nav>

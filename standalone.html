@@ -12,49 +12,57 @@
         <div id="formio" class="container p-3" data-resource="https://sfds.form.io/workers-families-first"></div>
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.js"></script>
-    <script src="dist/formio-sfds.standalone.js"></script>
-    <script>
-      (() => {
-        const root = document.getElementById('formio')
+  <script src="https://unpkg.com/formiojs@4.10.4/dist/formio.full.js"></script>
+  <script src="dist/formio-sfds.standalone.js"></script>
+  <script>
+    (() => {
+      const root = document.getElementById('formio')
 
-        const params = new URLSearchParams(location.search || location.hash.substr(1))
-        const language = params.get('lang')
-        const i18n = tryParse(params.get('i18n'))
-        const renderMode = params.get('mode')
-        const hooks = tryParse(params.get('hooks'))
-        const resource = params.get('res') || root.getAttribute('data-resource')
+      const params = new URLSearchParams(location.search || location.hash.substr(1))
+      const language = params.get('lang')
+      const i18n = tryParse(params.get('i18n'))
+      const renderMode = params.get('mode')
+      const hooks = tryParse(params.get('hooks'))
+      const resource = params.get('res') || root.getAttribute('data-resource')
+      const unlockNavigation = true
 
-        const options = {
-          language,
-          renderMode,
-          hooks,
-          i18n,
-          prefill: params,
-          googleTranslate: params.get('googleTranslate') === 'true'
+      const options = {
+        language,
+        renderMode,
+        hooks,
+        unlockNavigation,
+        i18n,
+        googleTranslate: params.get('googleTranslate') === 'true',
+        prefill: params,
+        properties: tryParse(params.get('properties')) || {
+          backURL: "https://sf.gov/apply-building-permit",
+          backTitle: "Apply for a building permit"
         }
+      }
 
-        if (params.lang && params.langMode === 'dom') {
-          document.documentElement.setAttribute('lang', language)
-          delete options.language
+      if (language && params.get('langMode') === 'dom') {
+        document.documentElement.setAttribute('lang', language)
+        delete options.language
+      }
+
+      Formio.createForm(root, resource, options).then(form => {
+        console.log('form ready:', form)
+        document.title = form.schema.title
+      })
+
+      function tryParse(str) {
+        if (!str) return
+        try { return JSON.parse(str) }
+        catch (error) {
+          console.error('Unable to parse JSON:', str)
+          return str
         }
+      }
 
-        Formio.createForm(root, resource, options).then(form => {
-          console.log('form ready:', form)
-          document.title = form.schema.title
-        })
+    })()
+  </script>
+</body>
 
-        function tryParse(str) {
-          if (!str) return
-          try { return JSON.parse(str) }
-          catch (error) {
-            console.error('Unable to parse JSON:', str)
-            return str
-          }
-        }
-
-      })()
-    </script>
-  </body>
 </html>

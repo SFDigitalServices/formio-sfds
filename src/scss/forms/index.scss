@@ -1,8 +1,10 @@
 @import "./buttons";
 @import "./choices";
 @import "./file";
+@import "./fieldsets";
 @import "./inputs";
 @import "./hacks";
+@import "./navigation";
 
 .field-description,
 .tooltip {
@@ -18,7 +20,7 @@
     color: inherit !important;
   }
 
-  input:not([type=button]),
+  input:not([type="button"]),
   textarea {
     border-color: $red-3 !important;
   }
@@ -49,4 +51,8 @@ label.field-required,
   &:last-child {
     margin-bottom: 0;
   }
+}
+
+.alert.alert-success {
+  display: none;
 }
