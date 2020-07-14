@@ -4,6 +4,7 @@
     <title>Translate!</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="dist/common.css">
   </head>
   <body>
     <div class="formio-sfds">
@@ -11,7 +12,7 @@
         <div class="d-flex">
           <div class="col-3 pr-3">
             <details open>
-              <summary><h2 class="d-inline-block m-0">Form config</h2></summary>
+              <summary><h3 class="d-inline-block m-0">Form config</h3></summary>
               <div id="edit-form"></div>
             </details>
 
@@ -22,7 +23,7 @@
           </div>
           <div class="col-3">
             <details open>
-              <summary><h2 class="d-inline-block m-0">Missing translations</h2></summary>
+              <summary><h3 class="d-inline-block m-0">Missing translations</h3></summary>
               <table id="errors">
                 <thead></thead>
                 <tbody>
@@ -34,7 +35,7 @@
             </details>
 
             <details class="mt-4">
-              <summary><h2 class="d-inline-block m-0">View the form</h2></summary>
+              <summary><h3 class="d-inline-block m-0">View the form</h3></summary>
               <div class="mt-2 border-1 border-grey-1 p-2">
                 <div id="translation-form"></div>
               </div>
@@ -44,7 +45,7 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/formiojs@latest/dist/formio.full.js"></script>
+    <script src="https://unpkg.com/formiojs@4.10.4/dist/formio.full.js"></script>
     <script src="dist/formio-sfds.standalone.js"></script>
     <script src="dist/translate.js"></script>
   </body>
