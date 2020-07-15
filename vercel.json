@@ -1,6 +1,12 @@
 {
-  "routes": [
-    {"src": "/(\\w+)", "dest": "/$1.html"},
-    {"src": "/(\\w+).html", "dest": "/dist/$1.html"}
+  "rewrites": [
+    {
+      "src": "/:view.html",
+      "dest": "/dist/:view.html"
+    },
+    {
+      "src": "/:view",
+      "dest": "/dist/:view.html"
+    }
   ]
 }
