@@ -22,40 +22,23 @@ const falseNegatives = {
   }
 }
 
-const errorTable = document.getElementById('errors')
-const errorList = errorTable.querySelector('tbody')
-
-const columns = [
-  ['String', d => formatString(d.string), 'String'],
-  // ['Message', d => d.message],
-  ['Location', ({ loc }) => {
-    if (loc instanceof Object) {
-      const { text, href } = loc
-      return href ? `<a href="${href}">${text}</a>` : text
-    } else {
-      return loc
-    }
-  }]
-]
+const errorList = document.getElementById('errors')
 
 const loadingIndicator = document.getElementById('loading')
-
-const thead = errorTable.querySelector('thead').appendChild(document.createElement('tr'))
-for (const [heading, format] of columns) { // eslint-disable-line no-unused-vars
-  const th = document.createElement('th')
-  th.className = 'align-left p-1'
-  th.textContent = heading
-  thead.appendChild(th)
-}
 
 const { Formio } = window
 
 const fields = [
   field('label', (label, component) => {
-    if (component.type === 'panel') {
-      return [{ value: component.title, path: 'title' }]
-    } else if (label && !component.hideLabel) {
-      return [{ value: component.label, path: 'label' }]
+    switch (component.type) {
+      case 'htmlelement':
+        return []
+      case 'panel':
+        return [{ value: component.title, path: 'title' }]
+      default:
+        if (label && !component.hideLabel) {
+          return [{ value: component.label, path: 'label' }]
+        }
     }
   }),
   field('description'),
@@ -265,11 +248,15 @@ Formio.createForm(document.getElementById('edit-form'), {
     element.setAttribute('lang', lang)
 
     if (!translationsUrl) {
-      console.error('Translations URL was not set in:', submission.data)
-      return
+      console.warn('Translations URL was not set in:', submission.data)
+      // return
     }
 
-    await loadTranslations(translationsUrl).then(translations => {
+    const translationsPromise = translationsUrl
+      ? loadTranslations(translationsUrl)
+      : Promise.resolve({ [lang]: {} })
+
+    translationsPromise.then(translations => {
       document.getElementById('translation-data').value = JSON.stringify(translations, null, 2)
 
       if (!translations[lang]) {
@@ -277,50 +264,60 @@ Formio.createForm(document.getElementById('edit-form'), {
           lang,
           string: lang,
           message: `Missing "${lang}" language code column`,
-          loc: {
-            title: 'Translations',
-            href: spreadsheetUrl
-          }
+          loc: spreadsheetUrl
+            ? `<a href="${spreadsheetUrl}">Google Sheets</a>`
+            : '(no spreadsheet specified)'
         })
-      } else {
-        return Formio.createForm(element, formUrl, {
-          i18n: translations,
-          language: lang
-        })
-          .then(form => {
-            eachComponent(form.form.components, (component, index, parents) => {
-              // console.log('component:', component, parents)
+      }
 
-              const allStrings = fields.reduce((all, getStrings) => {
-                const strings = getStrings(component).filter(data => data && data.value)
-                return all.concat(strings)
-              }, [])
+      return Formio.createForm(element, formUrl, {
+        i18n: translations,
+        language: lang
+      })
+        .then(form => {
+          window.showComponent = form.focusOnComponent.bind(form)
 
-              for (const str of allStrings) {
-                const translated = translations[lang][str.value] || form.t(str.value)
-                if (translated === str.value && lang !== 'en') {
-                  const overrideKey = `${component.key}_${str.path}`
-                  const override = form.i18next.t(overrideKey)
-                  if (override && override !== overrideKey) {
-                    console.warn('Found override for "%s" in "%s": "%s"', str.value, overrideKey, override)
-                    continue
-                  }
-                  if (falseNegatives[lang] && falseNegatives[lang][str.value] === true) {
-                    console.warn(`Possible false negative: "${str.value}" in English is the same in ${languages[lang]}`)
-                    continue
-                  }
+          eachComponent(form.form.components, (component, index, parents) => {
+            // console.log('component:', component, parents)
+
+            const allStrings = fields.reduce((all, getStrings) => {
+              const strings = getStrings(component).filter(data => data && data.value)
+              return all.concat(strings)
+            }, [])
+
+            for (const str of allStrings) {
+              const translated = translations[lang][str.value] || form.t(str.value)
+              if (translated === str.value && lang !== 'en') {
+                const overrideKey = `${component.key}_${str.path}`
+                const override = form.i18next.t(overrideKey)
+                if (override && override !== overrideKey) {
+                  console.warn('Found override for "%s" in "%s": "%s"', str.value, overrideKey, override)
                   report({
                     lang,
                     string: str.value,
-                    value: '',
-                    message: 'Missing translation',
-                    loc: `${linkToComponent(component, parents)} → <b>${fieldDescription(str.path)}</b>`
+                    value: override,
+                    message: 'Overridden in spreadsheet'
                   })
                 }
+                if (falseNegatives[lang] && falseNegatives[lang][str.value] === true) {
+                  console.warn(`Possible false negative: "${str.value}" in English is the same in ${languages[lang]}`)
+                  continue
+                }
+                report({
+                  lang,
+                  string: str.value,
+                  value: '',
+                  message: 'Missing translation',
+                  component,
+                  loc: {
+                    href: `javascript:showComponent('${component.key}')`,
+                    text: `${linkToComponent(component, parents)} → <b>${fieldDescription(str.path)}</b>`
+                  }
+                })
               }
-            })
+            }
           })
-      }
+        })
     })
 
     loadingIndicator.hidden = true
@@ -332,15 +329,22 @@ Formio.createForm(document.getElementById('edit-form'), {
 })
 
 function report (error) {
-  const row = document.createElement('tr')
-  for (const [title, format] of columns) {
-    const cell = document.createElement('td')
-    cell.className = 'border-top-1 border-grey-1 p-1'
-    cell.setAttribute('data-key', title)
-    cell.innerHTML = format(error)
-    row.appendChild(cell)
+  const { string, loc } = error
+  const dt = document.createElement('dt')
+  dt.className = 'm-0 p-0'
+  dt.innerHTML = formatString(string)
+  errorList.appendChild(dt)
+  if (loc) {
+    const dd = document.createElement('dd')
+    dd.className = 'pl-2 mt-0 mb-2 ml-0'
+    if (loc instanceof Object) {
+      const { text, href } = loc
+      dd.innerHTML = href ? `<a href="${href}">${text}</a>` : text
+    } else {
+      dd.innerHTML = loc || '???'
+    }
+    errorList.appendChild(dd)
   }
-  errorList.appendChild(row)
 }
 
 function field (path, get) {
@@ -419,7 +423,7 @@ function linkToComponent (component, parents = []) {
   const text = label ? `${label} (${typeDesc})` : typeDesc
   if (parents.length > 0) {
     const [parent, ...rest] = parents
-    return `${linkToComponent(parent, rest)} →<br>${text}`
+    return `${linkToComponent(parent, rest)} → ${text}`
   }
   return text
 }
@@ -430,7 +434,7 @@ function formatComponentLabel (component) {
     return ''
   } else {
     const label = component.title || component.label || component.key || component.type
-    return label ? `"${label}"` : '<u>???</u>'
+    return label ? `${label}` : '<u>???</u>'
   }
 }
 
@@ -440,6 +444,11 @@ function formatConditional (component) {
   return cond
     ? `<u title="${JSON.stringify(cond, null, 2).replace(/"/g, '&quot;')}">conditional</u>`
     : ''
+}
+
+function isConditional (component) {
+  const { customConditional, conditional } = component
+  return customConditional || (conditional && conditional.show ? conditional : null)
 }
 
 function getComponentName (type) {
@@ -458,7 +467,7 @@ function fieldDescription (type) {
 function formatString (str) {
   // eslint-disable-next-line no-unused-vars
   const [_, leading, inner, trailing] = str.match(/^(\s*)(.+)(\s*)$/, str) || ['', '', str, '']
-  return `&ldquo;${formatGremlins(leading)}${escapeHTML(inner)}${formatGremlins(trailing)}&rdquo;`
+  return `<q>${formatGremlins(leading)}${escapeHTML(inner)}${formatGremlins(trailing)}</q>`
 }
 
 function escapeHTML (str) {

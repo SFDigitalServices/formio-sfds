@@ -12,6 +12,13 @@ $CSS_CORNER_ALIAS: (
   tl: top-left,
 );
 
+$CSS_BORDER_EDGE_CORNERS: (
+  top: (top-left, top-right),
+  right: (top-right, bottom-right),
+  bottom: (bottom-right, bottom-left),
+  left: (bottom-left, top-left),
+);
+
 $grid-columns: 6 !default;
 
 $breakpoint-aliases: (
