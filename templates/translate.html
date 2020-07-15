@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Translate!</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/dist/common.css">
+  </head>
+  <body>
+    <div class="formio-sfds">
+      <div class="p-3">
+        <div class="d-flex">
+          <div class="col-3 pr-3">
+            <details open>
+              <summary><h3 class="d-inline-block m-0 fg-inherit">Form config</h3></summary>
+              <div class="border-1 border-bright-blue round-bottom-1 p-2">
+                <div id="edit-form"></div>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3 class="d-inline-block m-0 fg-inherit">Translation data</h3></summary>
+              <div class="border-1 border-bright-blue round-bottom-1 p-2">
+                <textarea id="translation-data" disabled style="resize: vertical;" rows="50"></textarea>
+              </div>
+            </details>
+          </div>
+          <div class="col-3">
+            <details open>
+              <summary><h3 class="d-inline-block m-0 fg-inherit">Missing translations</h3></summary>
+              <div class="border-1 border-bright-blue round-bottom-1 p-2">
+                <dl id="errors" class="m-0 p-0">
+                  <dt id="loading">Loading...</dt>
+                </dl>
+              </div>
+            </details>
+
+            <details class="mt-4" open>
+              <summary><h3 class="d-inline-block m-0 fg-inherit">View the form</h3></summary>
+              <div class="border-1 border-bright-blue round-bottom-1 p-2">
+                <div id="translation-form"></div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.js"></script>
+    <script src="/dist/formio-sfds.standalone.js"></script>
+    <script src="/dist/translate.js"></script>
+  </body>
+</html>

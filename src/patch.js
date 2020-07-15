@@ -28,18 +28,9 @@ export default Formio => {
   Formio[PATCHED] = true
 }
 
-function scrollToTop() {
-  window.scroll(0, 0)
-}
-
 // Prevent users from navigating away and losing their entries.
 let warnBeforeLeaving = false
-function turnWarningOn() {
-  warnBeforeLeaving = true
-}
-function turnWarningOff() {
-  warnBeforeLeaving = false
-}
+
 window.addEventListener('beforeunload', (event) => {
   if (warnBeforeLeaving) {
     // Most browsers will show a default message instead of this one.
@@ -92,8 +83,8 @@ function patch(Formio) {
 
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
-      form.on('nextPage', turnWarningOn)
-      form.on('submit', turnWarningOff)
+      form.on('nextPage', () => { warnBeforeLeaving = true })
+      form.on('submit', () => { warnBeforeLeaving = true })
 
       const { element } = form
 
@@ -295,4 +286,8 @@ function getFlatpickrLocale (code) {
     // Prefer traditional (Taiwan) to simplified (China)
     zh: 'zh_tw'
   }[lang] || lang
+}
+
+function scrollToTop () {
+  window.scroll(0, 0)
 }
