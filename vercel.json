@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/dist/index.html"
+    },
+    {
       "source": "/:view.html",
       "destination": "/dist/:view.html"
     },
