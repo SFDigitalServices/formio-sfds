@@ -4,7 +4,7 @@ const nunjucks = require('nunjucks')
 const { basename, join } = require('path')
 const { writeFileSync } = require('fs')
 
-const data = require('../package.json')
+const data = require('../templates/data')
 const outDir = join(__dirname, '../dist')
 
 nunjucks.configure(join(__dirname, '../templates'), {
