@@ -1,11 +1,11 @@
 {
   "rewrites": [
     {
-      "src": "/:view.html",
+      "source": "/:view.html",
       "dest": "/dist/:view.html"
     },
     {
-      "src": "/:view",
+      "source": "/:view",
       "dest": "/dist/:view.html"
     }
   ]
