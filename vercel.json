@@ -1,0 +1,5 @@
+{
+  "routes": [
+    {"src": "/(\\w+).html", "dest": "/dist/$1.html"}
+  ]
+}
