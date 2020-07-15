@@ -4,7 +4,7 @@
     <title>Loading...</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="dist/common.css">
+    <link rel="stylesheet" href="common.css">
   </head>
   <body>
     <div class="page-node-type-form-page">
@@ -19,8 +19,8 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/formiojs@4.10.4/dist/formio.full.min.js"></script>
-    <script src="dist/formio-sfds.standalone.js"></script>
+    <script src="https://unpkg.com/formiojs@{{ dependencies.formiojs }}/dist/formio.full.min.js"></script>
+    <script src="formio-sfds.standalone.js"></script>
     <script>
       (() => {
         const root = document.getElementById('formio')
