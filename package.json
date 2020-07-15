@@ -7,7 +7,7 @@
   "browser": "dist/formio-sfds.umd.js",
   "style": "dist/formio-sfds.css",
   "scripts": {
-    "build": "run-s build-css build-js",
+    "build": "run-s build-css build-js build-templates",
     "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
     "build-js": "rollup -c",
     "build-templates": "script/render-templates",
