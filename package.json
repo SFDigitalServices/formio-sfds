@@ -7,19 +7,20 @@
   "browser": "dist/formio-sfds.umd.js",
   "style": "dist/formio-sfds.css",
   "scripts": {
-    "build": "run-s build-css build-js build-templates",
+    "build": "run-s build-{css,js,html}",
     "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
     "build-js": "rollup -c",
-    "build-templates": "script/render-templates",
-    "lint": "run-p lint-js lint-css",
+    "build-html": "script/render-templates",
+    "lint": "run-p lint-{css,js}",
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src lib",
     "test": "jest",
     "update-translations": "script/get-translations > src/i18n/translations.json",
-    "watch": "npm run build-css && run-p watch-css watch-js watch-templates",
+    "watch": "run-s build-css watch-all",
+    "watch-all": "run-p watch-{css,js,html}",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
-    "watch-templates": "watchy -w 'templates/*' -- npm run build-templates"
+    "watch-html": "watchy -w 'templates/*' -- npm run build-html"
   },
   "browserslist": [
     "> 1%",
