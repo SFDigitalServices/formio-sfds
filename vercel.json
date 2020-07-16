@@ -1,16 +1,16 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
-      "destination": "/dist/index.html"
+      "src": "/",
+      "dest": "/dist/index.html"
     },
     {
-      "source": "/:view.html",
-      "destination": "/dist/:view.html"
+      "src": "/(\\w+).html",
+      "dest": "/dist/$1.html"
     },
     {
-      "source": "/:view",
-      "destination": "/dist/:view.html"
+      "src": "/(\\w+)",
+      "dest": "/dist/$1.html"
     }
   ]
 }
