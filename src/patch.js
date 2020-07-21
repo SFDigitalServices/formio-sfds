@@ -272,7 +272,7 @@ function loadFormTranslations (form) {
   const {
     phraseProjectId,
     phraseProjectVersion,
-    i18nServiceUrl = I18N_SERVICE_URL
+    i18nServiceUrl = form.options.i18nServiceUrl || I18N_SERVICE_URL
   } = props
 
   if (phraseProjectId) {
