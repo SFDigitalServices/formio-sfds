@@ -283,6 +283,7 @@ function loadFormTranslations (form) {
     console.warn('Loading translations from:', url)
     return loadTranslations(url)
       .then(resourcesByLanguage => {
+        console.warn('Loaded resources:', resourcesByLanguage)
         const { i18next } = form
         for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
           i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
