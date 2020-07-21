@@ -1,13 +1,18 @@
-import defaultTranslations from './i18n'
 import { observe } from 'selector-observer'
-import { mergeObjects } from './utils'
+import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
 // import 'flatpickr/dist/l10n/zh'
 import 'flatpickr/dist/l10n/zh-tw'
 
+const {
+  I18N_SERVICE_URL = 'https://i18n-microservice-js.herokuapp.com'
+} = process.env
+
+const I18NEXT_DEFAULT_NAMESPACE = 'translations' // ???
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
@@ -78,13 +83,15 @@ function patch (Formio) {
     }
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
-    return createForm(el, ...rest).then(form => {
+    return createForm(el, ...rest).then(async form => {
       if (opts.formioSFDSOptOut === true) {
         if (debug) console.info('SFDS form opted out:', opts, el)
         return form
       }
 
       if (debug) console.log('SFDS form created!')
+
+      await loadFormTranslations(form)
 
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
@@ -258,6 +265,33 @@ function patchDateTimeSuffix () {
       }
     }
   })
+}
+
+function loadFormTranslations (form) {
+  const props = form.form.properties || {}
+  const {
+    phraseProjectId,
+    phraseProjectVersion,
+    i18nServiceUrl = I18N_SERVICE_URL
+  } = props
+
+  if (phraseProjectId) {
+    let url = `${i18nServiceUrl}/phrase/${phraseProjectId}`
+    if (phraseProjectVersion) {
+      url = `${url}/${phraseProjectVersion}`
+    }
+    console.warn('Loading translations from:', url)
+    return loadTranslations(url)
+      .then(resourcesByLanguage => {
+        const { i18next } = form
+        for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
+          i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
+        }
+      })
+      .catch(error => {
+        console.warn('Failed to load translations from "%s":', url, error)
+      })
+  }
 }
 
 function patchDateTimeLocale (Formio) {
