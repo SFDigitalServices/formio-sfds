@@ -12,7 +12,7 @@ const {
   I18N_SERVICE_URL = 'https://i18n-microservice-js.herokuapp.com'
 } = process.env
 
-const I18NEXT_DEFAULT_NAMESPACE = 'translations' // ???
+const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
