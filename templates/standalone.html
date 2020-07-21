@@ -23,6 +23,7 @@
       const params = new URLSearchParams(location.search || location.hash.substr(1))
       const language = params.get('lang')
       const i18n = tryParse(params.get('i18n'))
+      const i18nServiceUrl = params.get('i18nServiceUrl')
       const renderMode = params.get('mode')
       const hooks = tryParse(params.get('hooks'))
       const resource = params.get('res') || root.getAttribute('data-resource')
@@ -34,6 +35,7 @@
         hooks,
         unlockNavigation,
         i18n,
+        i18nServiceUrl,
         googleTranslate: params.get('googleTranslate') === 'true',
         prefill: params,
         properties: tryParse(params.get('properties')) || {
