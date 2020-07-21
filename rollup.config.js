@@ -6,12 +6,17 @@ import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import svgo from 'rollup-plugin-svgo'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
 import rollupYAML from '@rollup/plugin-yaml'
 import yaml from 'js-yaml'
 import { readFileSync } from 'fs'
 
-const { NODE_ENV = 'development' } = process.env
+const {
+  NODE_ENV = 'development',
+  I18N_SERVICE_URL
+} = process.env
+
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
 
@@ -27,6 +32,12 @@ const commonPlugins = [
       escape: /\{\{\{([\s\S]+?)\}\}\}/g,
       variable: 'ctx'
     }
+  }),
+  injectProcessEnv({
+    NODE_ENV,
+    I18N_SERVICE_URL
+  }, {
+    include: 'src/**/*.js'
   }),
   svgo(
     yaml.safeLoad(
