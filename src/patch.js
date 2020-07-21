@@ -84,7 +84,7 @@ function patch(Formio) {
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
       form.on('nextPage', () => { warnBeforeLeaving = true })
-      form.on('submit', () => { warnBeforeLeaving = true })
+      form.on('submit', () => { warnBeforeLeaving = false })
 
       const { element } = form
 
