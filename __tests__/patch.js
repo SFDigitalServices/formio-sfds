@@ -68,6 +68,25 @@ describe('patch()', () => {
         const form = await createForm({}, { i18n: url, language: 'es' })
         expect(loadTranslations).toHaveBeenCalledWith(url)
         expect(form.t('hello')).toEqual('hola')
+        destroyForm(form)
+      })
+
+      it('fails gracefully if translations fail to load', async () => {
+        const url = 'http://my-translations.example.app'
+        loadTranslations.mockImplementationOnce(() => {
+          throw new Error('eeeek')
+        })
+        const form = await createForm({}, { i18n: url, language: 'es' })
+        expect(loadTranslations).toHaveBeenCalledWith(url)
+        destroyForm(form)
+      })
+
+      it('fails gracefully if translation data is malformed', async () => {
+        const url = 'http://my-translations.example.app'
+        loadTranslations.mockImplementationOnce(() => 'lolwut')
+        const form = await createForm({}, { i18n: url, language: 'es' })
+        expect(loadTranslations).toHaveBeenCalledWith(url)
+        destroyForm(form)
       })
     })
   })
