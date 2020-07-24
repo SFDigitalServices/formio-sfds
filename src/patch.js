@@ -11,6 +11,9 @@ import 'flatpickr/dist/l10n/zh-tw'
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
+const { NODE_ENV } = process.env
+const debugDefault = NODE_ENV !== 'test'
+
 let util
 const forms = []
 
@@ -39,11 +42,12 @@ window.addEventListener('beforeunload', (event) => {
 })
 
 function patch (Formio) {
-  console.info('Patching Formio.createForm() with SFDS behaviors...')
+  if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
-    const { debug = false } = options
+    const { debug = debugDefault } = options
+
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang || 'en'
     // use the translations and language as the base, and merge the provided options
