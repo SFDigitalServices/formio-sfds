@@ -151,7 +151,8 @@ describe('patch()', () => {
       it('disables machine translation on .flatpickr-calendar elements', async () => {
         const el = createElement('div', { class: 'flatpickr-calendar' })
         document.body.appendChild(el)
-        await sleep(100)
+        // selector-observer is async, so we need to wait a bit
+        await sleep(50)
         expect(el.getAttribute('translate')).toEqual('no')
         expect(Array.from(el.classList)).toContain('notranslate')
         el.remove()
@@ -177,6 +178,25 @@ describe('patch()', () => {
         })
         // expect(form.components[0].type).toEqual('html5')
         destroyForm(form)
+      })
+    })
+  })
+
+  describe('component markup patches', () => {
+    describe('datetime component', () => {
+      it('has its suffix element (.input-group-append) repurposed as a suffix (.input-group-prepend)', async () => {
+        const component = createElement('div', { class: 'formio-component-datetime' })
+        const group = createElement('div', { class: 'input-group' })
+        component.appendChild(group)
+        const suffix = createElement('div', { class: 'input-group-append' })
+        group.appendChild(suffix)
+        document.body.append(component)
+        // selector-observer is async, so we need to wait a bit
+        await sleep(50)
+        expect(Array.from(suffix.classList)).not.toContain('input-group-append')
+        expect(Array.from(suffix.classList)).toContain('input-group-prepend')
+        expect(group.firstChild).toBe(suffix)
+        component.remove()
       })
     })
   })
