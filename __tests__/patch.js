@@ -8,12 +8,19 @@ import 'formiojs/dist/formio.full.min.js'
 
 jest.mock('../src/i18n/load')
 
-const { Formio } = global
+const { Formio } = window
 const { createForm: originalCreateForm } = Formio
 
 const SENTINEL_I18N_KEY = 'derp'
 const SENTINEL_I18N_VALUE = 'DERP!'
 defaultTranslations.en[SENTINEL_I18N_KEY] = SENTINEL_I18N_VALUE
+
+// jsdom doesn't provide an implementation for these, and it throws an error if
+// you call them directly. Thankfully, Jest can spy on and mock them. See:
+// <https://github.com/jsdom/jsdom/issues/1422>
+const scroll = jest.fn()
+jest.spyOn(window, 'scroll').mockImplementation(scroll)
+jest.spyOn(window, 'scrollTo').mockImplementation(scroll)
 
 describe('patch()', () => {
   beforeAll(() => {
@@ -36,6 +43,35 @@ describe('patch()', () => {
       expect(Array.from(form.element.classList)).toEqual(
         expect.arrayContaining(['d-flex', 'flex-column-reverse', 'mb-4'])
       )
+      destroyForm(form)
+    })
+  })
+
+  describe('beforeunload warning', () => {
+    it('does not fire if you do nothing', async () => {
+      const event = new window.Event('beforeunload')
+      const form = await createForm()
+      window.dispatchEvent(event)
+      expect(event.returnValue).toBe(true)
+      destroyForm(form)
+    })
+
+    xit('fires if you go to the next page', async () => {
+      const event = new window.Event('beforeunload')
+      const form = await createForm()
+      await form.emit('nextPage', form)
+      window.dispatchEvent(event)
+      expect(event.returnValue).toEqual('Leave site? Changes you made may not be saved.')
+      destroyForm(form)
+    })
+
+    it('does not fire if you go to the next page, then submit', async () => {
+      const event = new window.Event('beforeunload')
+      const form = await createForm()
+      await form.emit('nextPage', form)
+      await form.submit()
+      window.dispatchEvent(event)
+      expect(event.returnValue).toBe(true)
       destroyForm(form)
     })
   })
