@@ -38,7 +38,7 @@ window.addEventListener('beforeunload', (event) => {
   }
 })
 
-function patch(Formio) {
+function patch (Formio) {
   console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', async (createForm, args) => {

@@ -446,11 +446,6 @@ function formatConditional (component) {
     : ''
 }
 
-function isConditional (component) {
-  const { customConditional, conditional } = component
-  return customConditional || (conditional && conditional.show ? conditional : null)
-}
-
 function getComponentName (type) {
   const { builderInfo = {} } = Formio.Components.components[type] || {}
   return builderInfo.title || type
