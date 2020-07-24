@@ -158,4 +158,26 @@ describe('patch()', () => {
       })
     })
   })
+
+  describe('form.io model patches', () => {
+    describe('select component', () => {
+      xit('gets .widget = "html5" by default', async () => {
+        const form = await createForm({
+          type: 'form',
+          display: 'form',
+          components: [
+            {
+              key: 'heyo',
+              type: 'select',
+              widget: 'choicesjs',
+              input: true,
+              data: { values: [] }
+            }
+          ]
+        })
+        // expect(form.components[0].type).toEqual('html5')
+        destroyForm(form)
+      })
+    })
+  })
 })
