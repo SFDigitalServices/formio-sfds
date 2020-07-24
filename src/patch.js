@@ -61,7 +61,7 @@ function patch (Formio) {
         if (debug) console.info('loaded translations:', i18n)
         opts.i18n = mergeObjects({}, opts.i18n, i18n)
       } catch (error) {
-        console.warn('Unable to load translations from:', translationsURL, error)
+        if (debug) console.warn('Unable to load translations from:', translationsURL, error)
         // FIXME: we may want to explicitly *allow* Google Translate (even if
         // it's been disabled) for this form if translations fail to load.
         // opts.googleTranslate = true
