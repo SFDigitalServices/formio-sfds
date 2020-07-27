@@ -56,6 +56,11 @@ describe('patch()', () => {
       destroyForm(form)
     })
 
+    /**
+     * FIXME: this doesn't work in jsdom (jest's default env), but it _does_ in
+     * real browsers. There might be something different about how jsdom
+     * manages window events.
+     */
     xit('fires if you go to the next page', async () => {
       const event = new window.Event('beforeunload')
       const form = await createForm()
@@ -162,6 +167,11 @@ describe('patch()', () => {
 
   describe('form.io model patches', () => {
     describe('select component', () => {
+      /**
+       * FIXME: The form created in this test doesn't have any components. This
+       * is the first test that actually tries to access them, so it could be
+       * that the createForm() helper function isn't working properly.
+       */
       xit('gets .widget = "html5" by default', async () => {
         const form = await createForm({
           type: 'form',
