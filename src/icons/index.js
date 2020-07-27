@@ -30,13 +30,13 @@ const icons = {
 export default icons
 export { getIcon, observeIcons }
 
-function getIcon(name) {
+function getIcon (name) {
   return icons[name]
 }
 
-function observeIcons() {
+function observeIcons () {
   observe('i.fa', {
-    add(el) {
+    add (el) {
       const match = el.className.match(/\bfa-([-\w]+)\b/)
       if (match) {
         const name = match[1]
@@ -54,7 +54,7 @@ function observeIcons() {
   })
 
   observe('[data-icon]', {
-    add(el) {
+    add (el) {
       const icon = getIcon(el.getAttribute('data-icon'))
       if (icon) {
         el.classList.add('notranslate')
