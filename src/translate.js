@@ -1,7 +1,7 @@
 import i18next from 'i18next'
 import formioFieldDisplay from 'formiojs/components/_classes/component/editForm/Component.edit.display'
 import { getStrings, getCondition } from '../lib/i18n'
-import Phrase from '../i18n/phrase'
+import Phrase from '../src/i18n/phrase'
 
 const { Formio } = window
 
@@ -75,31 +75,17 @@ Formio.createForm(document.getElementById('edit-form'), {
       lang
     } = submission.data
 
-    const form = await Formio.createForm(formElement, formUrl, { language: lang })
+    const i18n = i18next.createInstance({ lng: lang })
+    await i18n.init()
 
-    const { i18next } = form
+    const t = i18n.t.bind(i18n)
+
+    const form = await Formio.createForm(formElement, formUrl, {
+      language: lang,
+      i18next: i18n
+    })
+
     const strings = getStrings(form.form)
-    const { phraseProjectId } = form.form.properties || {}
-
-    if (!phraseProjectId) {
-      Phrase.disable()
-      window.alert('You need to set up your form.io project to use Phrase first')
-      return
-    } else {
-      Phrase.enable({
-        projectId: phraseProjectId
-      })
-    }
-
-    const t = i18next.t.bind(i18next)
-
-    i18next.t = keyOrKeys => {
-      if (Array.isArray(keyOrKeys)) {
-        return formatKey(keyOrKeys[0])
-      } else {
-        return formatKey(keyOrKeys)
-      }
-    }
 
     await form.redraw()
 
@@ -154,10 +140,6 @@ function report (error) {
     }
     errorList.appendChild(dd)
   }
-}
-
-function formatKey (key) {
-  return `{{__phrase_${key}__}}`
 }
 
 function linkToComponent (component, parents = []) {
