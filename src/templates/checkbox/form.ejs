@@ -13,9 +13,9 @@
     </div>
     <div class="flex-auto">
       <span class="label-required">
-        {{ ctx.t([`${ctx.component.key}_label`, ctx.input.label]) }}
+        {{ ctx.t([`${ctx.component.key}.label`, `${ctx.component.key}_label`, ctx.input.label]) }}
       </span>
-      {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.tooltip]) %}
+      {% var description = ctx.t([`${ctx.component.key}.description`, `${ctx.component.key}_description`, ctx.component.tooltip]) %}
       {% if (description) { %}
         <div class="field-description small mt-1">{{ description }}</div>
       {% } %}
