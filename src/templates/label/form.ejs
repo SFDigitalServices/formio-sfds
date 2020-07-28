@@ -1,6 +1,6 @@
 {% if (!ctx.component.hideLabel && ['checkbox', 'radio'].indexOf(ctx.component.type) === -1) { %}
   <label class="{{ ctx.label.className }}" for="input-{{ ctx.self.options.name }}">
-    {{ ctx.t([`${ctx.component.key}_label`, `${ctx.component.key}.label`, ctx.component.label]) }}
+    {{ ctx.t([`${ctx.component.key}.label`, `${ctx.component.key}_label`, ctx.component.label]) }}
     <!--
     {% if (ctx.component.tooltip) { %}
       <i ref="tooltip" class="{{ ctx.iconClass('question-sign') }} text-muted"></i>
