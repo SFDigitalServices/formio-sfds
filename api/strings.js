@@ -43,13 +43,8 @@ module.exports = (req, res) => {
 function formatNestedJSON (strings, params) {
   const nested = {}
   for (const str of strings) {
-    const { value, path, component } = str
-    if (keyedPaths.includes(path)) {
-      const key = `${component.key}_${path}`
-      nested[key] = value
-    } else {
-      nested[value] = value
-    }
+    const { value, key } = str
+    nested[key] = value
   }
   return nested
 }
