@@ -12,14 +12,14 @@ export default {
     body { padding-bottom: 300px; }
   `,
 
-  enableEditor (config) {
+  enableEditor (config = {}) {
     if (window.PHRASEAPP_ENABLED) {
       console.warn('The Phrase editor is already loaded with config:', window.PHRASEAPP_CONFIG)
       return false
     }
 
     window.PHRASEAPP_ENABLED = true
-    window.PHRASEAPP_CONFIG = Object.assign({}, configDefaults, config)
+    window.PHRASEAPP_CONFIG = { ...configDefaults, ...config }
 
     this.script = document.createElement('script')
     this.script.src = `https://app.phrase.com/assets/in-context-editor/2.0/app.js?${Date.now()}`
@@ -30,11 +30,10 @@ export default {
   },
 
   formatKey (keyOrKeys, options) {
-    console.warn('formatKey()', JSON.stringify(keyOrKeys))
     const multiple = Array.isArray(keyOrKeys)
-    const fallback = multiple ? keyOrKeys[1] : ''
+    const fallback = multiple ? keyOrKeys[keyOrKeys.length - 1] : ''
     if (multiple && !fallback) {
-      return ''
+      return ' '
     }
     const key = multiple ? keyOrKeys[0] : keyOrKeys
     const { prefix, suffix } = configDefaults
