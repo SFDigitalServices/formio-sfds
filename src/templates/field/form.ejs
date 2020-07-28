@@ -3,7 +3,7 @@
 {{ ctx.element }}
 
 {% if (['address', 'checkbox', 'well'].indexOf(ctx.component.type) === -1) { %}
-  {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+  {% var description = ctx.t([`${ctx.component.key}.description`, `${ctx.component.key}_description`, ctx.component.description]) %}
   {% if (description) { %}
     <div class="field-description">
       {{ description }}
@@ -11,7 +11,7 @@
   {% } %}
 
   <!--
-  {% var tooltip = ctx.t([`${ctx.component.key}_tooltip`, ctx.component.tooltip]) %}
+  {% var tooltip = ctx.t([`${ctx.component.key}.tooltip`, `${ctx.component.key}_tooltip`, ctx.component.tooltip]) %}
   {% if (tooltip) { %}
     <div class="tooltip">{{ tooltip }}</div>
   {% } %}

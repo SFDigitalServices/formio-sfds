@@ -1,5 +1,5 @@
 <div class="formio-component formio-component-address round-1 bg-blue-1 p-2">
-  {% var desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+  {% var desc = ctx.t([`${ctx.component.key}.description`, `${ctx.component.key}_description`, ctx.component.description]) %}
   {% if (desc) { %}
     <p class="description mt-0 mb-1">{{ desc }}</p>
   {% } %}
