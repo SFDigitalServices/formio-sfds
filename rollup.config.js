@@ -12,8 +12,11 @@ import yaml from '@rollup/plugin-yaml'
 
 const {
   NODE_ENV = 'development',
-  I18N_SERVICE_URL
+  I18N_SERVICE_URL = 'https://i18n-microservice-js.sfds.vercel.app'
 } = process.env
+
+const env = { NODE_ENV, I18N_SERVICE_URL }
+console.warn('rollup env:', env)
 
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
@@ -30,10 +33,7 @@ const commonPlugins = [
       variable: 'ctx'
     }
   }),
-  injectProcessEnv({
-    NODE_ENV,
-    I18N_SERVICE_URL
-  }, {
+  injectProcessEnv(env, {
     include: 'src/**/*.js'
   }),
   svg({
