@@ -1,16 +1,14 @@
 import { observe } from 'selector-observer'
+import dot from 'dotmap'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import Phrase from './i18n/phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
 // import 'flatpickr/dist/l10n/zh'
 import 'flatpickr/dist/l10n/zh-tw'
-
-const {
-  I18N_SERVICE_URL = 'https://i18n-microservice-js.herokuapp.com'
-} = process.env
 
 const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
 const WRAPPER_CLASS = 'formio-sfds'
@@ -92,6 +90,29 @@ function patch (Formio) {
       if (debug) console.log('SFDS form created!')
 
       await loadFormTranslations(form)
+
+      try {
+        const loaded = await loadFormTranslations(form)
+        if (loaded && userIsTranslating()) {
+          const {
+            projectId,
+            resourcesByLanguage: { en = {} }
+          } = loaded
+          form.i18next.t = keyOrKeys => {
+            if (Array.isArray(keyOrKeys)) {
+              const key = keyOrKeys.find(k => en[k]) || keyOrKeys[0]
+              return Phrase.formatKey(key)
+            }
+            return Phrase.formatKey(keyOrKeys)
+          }
+          Phrase.enableEditor({
+            projectId,
+            forceLocale: form.language
+          })
+        }
+      } catch (error) {
+        console.warn('Failed to load translations:', error)
+      }
 
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
@@ -267,31 +288,20 @@ function patchDateTimeSuffix () {
   })
 }
 
-function loadFormTranslations (form) {
-  const props = form.form.properties || {}
-  const {
-    phraseProjectId,
-    phraseProjectVersion,
-    i18nServiceUrl = form.options.i18nServiceUrl || I18N_SERVICE_URL
-  } = props
-
-  if (phraseProjectId) {
-    let url = `${i18nServiceUrl}/phrase/${phraseProjectId}`
-    if (phraseProjectVersion) {
-      url = `${url}/${phraseProjectVersion}`
-    }
+async function loadFormTranslations (form) {
+  const info = Phrase.getTranslationInfo(form)
+  if (info) {
+    const { url } = info
     console.warn('Loading translations from:', url)
-    return loadTranslations(url)
-      .then(resourcesByLanguage => {
-        console.warn('Loaded resources:', resourcesByLanguage)
-        const { i18next } = form
-        for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
-          i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
-        }
-      })
-      .catch(error => {
-        console.warn('Failed to load translations from "%s":', url, error)
-      })
+    const resourcesByLanguage = await loadTranslations(url)
+    console.warn('Loaded resources:', resourcesByLanguage)
+    const { i18next } = form
+    for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
+      i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
+    }
+    return Object.assign(info, { resourcesByLanguage })
+  } else {
+    return false
   }
 }
 
@@ -330,4 +340,11 @@ function getFlatpickrLocale (code) {
 
 function scrollToTop () {
   window.scroll(0, 0)
+}
+
+function userIsTranslating () {
+  const uid = dot.get(window, 'drupalSettings.user.uid')
+  if (uid && uid !== '0') {
+    return true
+  }
 }
