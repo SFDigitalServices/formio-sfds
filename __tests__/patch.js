@@ -172,7 +172,7 @@ describe('patch()', () => {
        * is the first test that actually tries to access them, so it could be
        * that the createForm() helper function isn't working properly.
        */
-      xit('gets .widget = "html5" by default', async () => {
+      it('gets .widget = "html5" by default', async () => {
         const form = await createForm({
           type: 'form',
           display: 'form',
