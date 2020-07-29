@@ -91,7 +91,7 @@ function patch (Formio) {
 
       try {
         const loaded = await loadFormTranslations(form)
-        if (loaded && userIsTranslating()) {
+        if (loaded && loaded.projectId && userIsTranslating()) {
           const {
             projectId,
             resourcesByLanguage: { en = {} }
@@ -109,7 +109,7 @@ function patch (Formio) {
           })
         }
       } catch (error) {
-        console.warn('Failed to load translations:', error)
+        if (debug) console.warn('Failed to load translations:', error)
       }
 
       form.on('nextPage', scrollToTop)
