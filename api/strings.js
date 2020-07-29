@@ -6,14 +6,6 @@ const formatters = {
   debug: formatDebug
 }
 
-const keyedPaths = [
-  'label',
-  'description',
-  'content',
-  'prefix',
-  'suffix'
-]
-
 module.exports = (req, res) => {
   const { formUrl, format = 'debug', ...params } = req.query
   if (!formUrl) {
@@ -53,7 +45,10 @@ function formatDebug (strings, options) {
   return {
     data: strings.map(({ component, parents, ...str }) => {
       const cond = getCondition(component)
-      str.component = component.key
+      str.component = {
+        key: component.key,
+        type: component.type
+      }
       str.parents = parents.map(parent => parent.key)
       if (cond) {
         str.condition = cond
