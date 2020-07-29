@@ -12,5 +12,8 @@
       "src": "/(\\w+)",
       "dest": "/dist/$1.html"
     }
-  ]
+  ],
+  "env": {
+    "I18N_SERVICE_URL": "https://i18n-microservice-js-git-phrase-endpoint.sfds.vercel.app"
+  }
 }
