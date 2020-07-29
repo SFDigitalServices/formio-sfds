@@ -22,11 +22,11 @@ const scroll = jest.fn()
 jest.spyOn(window, 'scroll').mockImplementation(scroll)
 jest.spyOn(window, 'scrollTo').mockImplementation(scroll)
 
-describe('patch()', () => {
-  beforeAll(() => {
-    patch(Formio)
-  })
+beforeAll(() => {
+  patch(Formio)
+})
 
+describe('patch()', () => {
   it('patches Formio.createForm()', () => {
     expect(Formio.createForm).not.toBe(originalCreateForm)
   })
