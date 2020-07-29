@@ -54,15 +54,15 @@ export default {
   },
 
   getTranslationInfo (form) {
-    const props = form.form.properties || {}
+    const props = Object.assign({}, form.form.properties, form.options)
     const {
       phraseProjectId,
       phraseProjectVersion,
-      i18nServiceUrl
+      i18nServiceUrl = I18N_SERVICE_URL
     } = props
 
     if (phraseProjectId) {
-      const serviceUrl = i18nServiceUrl || form.options.i18nServiceUrl || I18N_SERVICE_URL
+      const serviceUrl = i18nServiceUrl
       let url = interpolate(serviceUrl, props)
       // only append the projectId if it's not in the URL already
       if (!url.includes(phraseProjectId)) {
