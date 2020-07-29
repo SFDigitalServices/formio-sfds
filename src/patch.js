@@ -89,8 +89,6 @@ function patch (Formio) {
 
       if (debug) console.log('SFDS form created!')
 
-      await loadFormTranslations(form)
-
       try {
         const loaded = await loadFormTranslations(form)
         if (loaded && userIsTranslating()) {
@@ -295,12 +293,13 @@ function patchDateTimeSuffix () {
 }
 
 async function loadFormTranslations (form) {
+  const { debug = debugDefault } = form.options
   const info = Phrase.getTranslationInfo(form)
   if (info) {
     const { url } = info
-    console.warn('Loading translations from:', url)
+    if (debug) console.warn('Loading translations from:', url)
     const resourcesByLanguage = await loadTranslations(url)
-    console.warn('Loaded resources:', resourcesByLanguage)
+    if (debug) console.warn('Loaded resources:', resourcesByLanguage)
     const { i18next } = form
     for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
       i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
