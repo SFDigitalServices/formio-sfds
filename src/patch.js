@@ -202,7 +202,10 @@ function patchSelectMode (model) {
   const selects = util.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
     if (window.PHRASEAPP_ENABLED) {
-      component.template = Phrase.formatKey(`${component.key}_values.{{ item.value }}`)
+      // this needs to agree with the 'values' field getter in lib/i18n.js
+      component.template = Phrase.formatKey(
+        `${component.key}.values.{{ item.value }}`
+      )
     }
     if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
