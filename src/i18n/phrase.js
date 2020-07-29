@@ -1,3 +1,5 @@
+import interpolate from 'interpolate'
+
 const { I18N_SERVICE_URL } = process.env
 
 const configDefaults = {
@@ -51,23 +53,33 @@ export default {
     }
   },
 
-  getTranslationInfo (form, serviceUrl = I18N_SERVICE_URL) {
+  getTranslationInfo (form) {
     const props = form.form.properties || {}
     const {
       phraseProjectId,
       phraseProjectVersion,
-      i18nServiceUrl = form.options.i18nServiceUrl || serviceUrl
+      i18nServiceUrl
     } = props
 
     if (phraseProjectId) {
-      let url = `${i18nServiceUrl}/phrase/${phraseProjectId}`
-      if (phraseProjectVersion) {
-        url = `${url}/${phraseProjectVersion}`
+      const serviceUrl = i18nServiceUrl || form.options.i18nServiceUrl || I18N_SERVICE_URL
+      let url = interpolate(serviceUrl, props)
+      // only append the projectId if it's not in the URL already
+      if (!url.includes(phraseProjectId)) {
+        url = `${serviceUrl}/phrase/${phraseProjectId}`
+      }
+      // also only append the version if it's not in it already
+      if (phraseProjectVersion && !url.includes(phraseProjectVersion)) {
+        url = `${url}@${phraseProjectVersion}`
       }
       return {
         projectId: phraseProjectId,
         version: phraseProjectVersion,
         url
+      }
+    } else if (i18nServiceUrl) {
+      return {
+        url: interpolate(i18nServiceUrl, props)
       }
     }
 
