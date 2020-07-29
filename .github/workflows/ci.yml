@@ -4,6 +4,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      I18_SERVICE_URL: https://i18n-microservice-js-git-phrase-endpoint.sfds.vercel.app
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -13,8 +15,6 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
-        env:
-          I18_SERVICE_URL: https://some-mock-service.example.app
       - run: npm run build
         env:
           NODE_ENV: production
