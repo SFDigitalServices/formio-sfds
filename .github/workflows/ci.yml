@@ -13,6 +13,8 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+        env:
+          I18_SERVICE_URL: https://some-mock-service.example.app
       - run: npm run build
         env:
           NODE_ENV: production
