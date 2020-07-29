@@ -55,8 +55,22 @@ describe('patch()', () => {
      */
     xit('fires if you go to the next page', async () => {
       const event = new window.Event('beforeunload')
-      const form = await createForm()
-      await form.emit('nextPage', form)
+      const form = await createForm({
+        display: 'wizard',
+        components: [
+          {
+            type: 'panel',
+            title: 'Page 1',
+            key: 'page1'
+          },
+          {
+            type: 'panel',
+            title: 'Page 2',
+            key: 'page2'
+          }
+        ]
+      })
+      await form.nextPage()
       window.dispatchEvent(event)
       expect(event.returnValue).toEqual('Leave site? Changes you made may not be saved.')
       destroyForm(form)
