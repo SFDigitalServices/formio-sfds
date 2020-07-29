@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "choices.js": "^9.0.1",
+    "dotmap": "^0.1.0",
     "flatpickr": "^4.6.3",
     "formiojs": "4.10.4",
     "interpolate": "^0.1.0",
