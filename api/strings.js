@@ -1,7 +1,9 @@
+import dot from 'dot-component'
 import fetch from 'node-fetch'
 import { getStrings, getCondition } from '../lib/i18n'
 
 const formatters = {
+  flat: formatFlatJSON,
   nested: formatNestedJSON,
   debug: formatDebug
 }
@@ -32,11 +34,20 @@ module.exports = (req, res) => {
     })
 }
 
+function formatFlatJSON (strings, params) {
+  const keys = {}
+  for (const str of strings) {
+    const { value, key } = str
+    keys[key] = value
+  }
+  return keys
+}
+
 function formatNestedJSON (strings, params) {
   const nested = {}
   for (const str of strings) {
     const { value, key } = str
-    nested[key] = value
+    dot.set(nested, key, value, true)
   }
   return nested
 }
