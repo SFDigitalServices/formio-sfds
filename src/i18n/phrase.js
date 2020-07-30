@@ -58,11 +58,11 @@ export default {
     const {
       phraseProjectId,
       phraseProjectVersion,
-      i18nServiceUrl = I18N_SERVICE_URL
+      i18nServiceUrl
     } = props
 
     if (phraseProjectId) {
-      const serviceUrl = i18nServiceUrl
+      const serviceUrl = i18nServiceUrl || I18N_SERVICE_URL
       let url = interpolate(serviceUrl, props)
       // only append the projectId if it's not in the URL already
       if (!url.includes(phraseProjectId)) {
