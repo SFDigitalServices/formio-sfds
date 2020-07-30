@@ -14,6 +14,7 @@ const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
+const { location } = window
 const { NODE_ENV } = process.env
 const debugDefault = NODE_ENV !== 'test'
 
@@ -104,8 +105,7 @@ function patch (Formio) {
             return Phrase.formatKey(keyOrKeys)
           }
           Phrase.enableEditor({
-            projectId,
-            forceLocale: form.language
+            projectId
           })
         }
       } catch (error) {
@@ -152,13 +152,13 @@ function patch (Formio) {
         let params
         switch (opts.prefill) {
           case 'url':
-            params = new URLSearchParams(window.location.search || window.location.hash.substr(1))
+            params = new URLSearchParams(location.search || location.hash.substr(1))
             break
           case 'querystring':
-            params = new URLSearchParams(window.location.search)
+            params = new URLSearchParams(location.search)
             break
           case 'hash':
-            params = new URLSearchParams(window.location.hash.substr(1))
+            params = new URLSearchParams(location.hash.substr(1))
             break
           default:
             if (opts.prefill instanceof URLSearchParams) {
@@ -350,6 +350,7 @@ function scrollToTop () {
 function userIsTranslating () {
   const uid = dot.get(window, 'drupalSettings.user.uid')
   if (uid && uid !== '0') {
-    return true
+    const translate = new URLSearchParams(location.search).get('translate')
+    return translate === 'true'
   }
 }

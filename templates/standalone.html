@@ -29,9 +29,7 @@
       const resource = params.get('res') || root.getAttribute('data-resource')
       const unlockNavigation = true
 
-      if (language) {
-        window.drupalSettings = { user: { uid: '123' } }
-      }
+      window.drupalSettings = { user: { uid: '123' } }
 
       const options = {
         language,
