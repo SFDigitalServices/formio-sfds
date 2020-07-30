@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      I18_SERVICE_URL: https://i18n-microservice-js-git-phrase-endpoint.sfds.vercel.app
+      I18N_SERVICE_URL: https://i18n-microservice-js-git-phrase-endpoint.sfds.vercel.app
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
