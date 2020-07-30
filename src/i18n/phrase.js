@@ -32,11 +32,28 @@ export default {
   },
 
   formatKey (keyOrKeys, options) {
-    const multiple = Array.isArray(keyOrKeys)
-    const fallback = multiple ? keyOrKeys[keyOrKeys.length - 1] : ''
-    if (multiple && !fallback) {
+    const multiple = Array.isArray(keyOrKeys) && keyOrKeys.length > 1
+
+    /*
+     * The pattern we're looking for here is:
+     *
+     * ```js
+     * ctx.t([`${component.key}.label`, component.label])
+     * ```
+     *        ↑                         ↑
+     *        key name in Phrase        English translation
+     *
+     * If we get an array like this and the English text is empty,
+     * then it probably doesn't need to be translated and we shouldn't
+     * show a placeholder for it.
+     */
+    const english = multiple ? keyOrKeys[keyOrKeys.length - 1] : ''
+    if (multiple && !english) {
+      // we need to return a "truthy" string here, otherwise form.io
+      // will use the key provided as a fallback
       return ' '
     }
+
     const key = multiple ? keyOrKeys[0] : keyOrKeys
     const { prefix, suffix } = configDefaults
     return `${prefix}phrase_${key}${suffix}`
