@@ -54,8 +54,8 @@ export default {
       return ' '
     }
 
-    const key = multiple ? keyOrKeys[0] : keyOrKeys
     const { prefix, suffix } = configDefaults
+    const key = multiple ? keyOrKeys[0] : keyOrKeys
     return `${prefix}phrase_${key}${suffix}`
   },
 
