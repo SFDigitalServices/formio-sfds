@@ -68,6 +68,24 @@ describe('Phrase helpers', () => {
       }).url).toEqual(i18nServiceUrl.replace('{phraseProjectId}', 123))
     })
   })
+
+  describe('Phrase.formatKey()', () => {
+    it('formats a key with the default prefix and suffix', () => {
+      expect(Phrase.formatKey('foo')).toEqual('[[__phrase_foo__]]')
+    })
+
+    it('formats a key in an array', () => {
+      expect(Phrase.formatKey(['foo'])).toEqual('[[__phrase_foo__]]')
+    })
+
+    it('formats the first key in an array with multiple, non-empty values', () => {
+      expect(Phrase.formatKey(['foo', 'Foo!'])).toEqual('[[__phrase_foo__]]')
+    })
+
+    it('returns an empty string (" ") if given an array with an empty last value', () => {
+      expect(Phrase.formatKey(['foo', ''])).toEqual(' ')
+    })
+  })
 })
 
 describe('Phrase functionality', () => {
