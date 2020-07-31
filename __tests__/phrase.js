@@ -1,17 +1,14 @@
 /* eslint-env jest */
 import 'regenerator-runtime'
-import Phrase from '../src/i18n/phrase'
+import Phrase, { I18N_SERVICE_URL } from '../src/i18n/phrase'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'
 import { createForm, destroyForm } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'
 
-require('dotenv').config()
-
 jest.mock('../src/i18n/load')
 
 const { Formio } = window
-const { I18N_SERVICE_URL } = process.env
 
 beforeAll(() => {
   patch(Formio)
