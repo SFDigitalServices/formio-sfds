@@ -1,6 +1,8 @@
 import interpolate from 'interpolate'
 
-const { I18N_SERVICE_URL } = process.env
+const {
+  I18N_SERVICE_URL = 'https://i18n-microservice-js.sfds.vercel.app'
+} = process.env
 
 const configDefaults = {
   prefix: '[[__',
@@ -9,10 +11,18 @@ const configDefaults = {
   debugMode: true
 }
 
-export default {
+const Phrase = {
   css: `
     body { padding-bottom: 300px; }
   `,
+
+  get enabled () {
+    return window.PHRASEAPP_ENABLED === true
+  },
+
+  get config () {
+    return window.PHRASEAPP_CONFIG || configDefaults
+  },
 
   enableEditor (config = {}) {
     if (window.PHRASEAPP_ENABLED) {
@@ -54,7 +64,7 @@ export default {
       return ' '
     }
 
-    const { prefix, suffix } = configDefaults
+    const { prefix, suffix } = Phrase.config
     const key = multiple ? keyOrKeys[0] : keyOrKeys
     return `${prefix}phrase_${key}${suffix}`
   },
@@ -103,3 +113,7 @@ export default {
     return undefined
   }
 }
+
+export default Phrase
+
+export { I18N_SERVICE_URL }
