@@ -1,7 +1,6 @@
 import i18next from 'i18next'
 import formioFieldDisplay from 'formiojs/components/_classes/component/editForm/Component.edit.display'
 import { getStrings, getCondition } from '../lib/i18n'
-import Phrase from '../src/i18n/phrase'
 
 const { Formio } = window
 
