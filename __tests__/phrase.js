@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import 'regenerator-runtime'
-import Phrase, { I18N_SERVICE_URL } from '../src/i18n/phrase'
+import Phrase, { I18N_SERVICE_URL } from '../src/phrase'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'
 import { createForm, destroyForm } from '../lib/test-helpers'
@@ -15,72 +15,95 @@ beforeAll(() => {
 })
 
 describe('Phrase helpers', () => {
-  describe('Phrase.getTranslationInfo()', () => {
+  let phrase
+  beforeEach(async () => {
+    const form = await createForm({
+      properties: {
+        phraseProjectId: '123'
+      }
+    })
+    phrase = new Phrase(form)
+  })
+
+  afterEach(() => {
+    destroyForm(phrase.form)
+    delete window.PHRASEAPP_ENABLED
+    delete window.PHRASEAPP_CONFIG
+  })
+
+  describe('phrase.getTranslationInfo()', () => {
     it('finds form.properties.phraseProjectId', () => {
-      expect(Phrase.getTranslationInfo({
-        options: {},
-        form: {
-          properties: {
-            phraseProjectId: 123
-          }
-        }
-      }).projectId).toEqual(123)
+      expect(phrase.getTranslationInfo().projectId).toEqual('123')
     })
 
     it('respects form.properties.i18nServiceUrl', () => {
       const i18nServiceUrl = 'https://my-service.app'
-      expect(Phrase.getTranslationInfo({
-        options: {},
-        form: {
-          properties: {
-            phraseProjectId: 123,
-            i18nServiceUrl
-          }
-        }
-      }).url).toEqual(`${i18nServiceUrl}/phrase/123`)
+      phrase.form.form.properties.i18nServiceUrl = i18nServiceUrl
+      expect(phrase.getTranslationInfo().url).toEqual(`${i18nServiceUrl}/phrase/123`)
     })
 
     it('appends form.properties.phraseProjectVersion', () => {
-      expect(Phrase.getTranslationInfo({
-        options: {},
-        form: {
-          properties: {
-            phraseProjectId: 123,
-            phraseProjectVersion: '0.0.1'
-          }
-        }
-      }).url).toEqual(`${I18N_SERVICE_URL}/phrase/123@0.0.1`)
+      phrase.form.form.properties.phraseProjectVersion = '0.0.1'
+      expect(phrase.getTranslationInfo().url).toEqual(`${I18N_SERVICE_URL}/phrase/123@0.0.1`)
     })
 
     it('interpolates form.properties.phraseProjectId', () => {
       const i18nServiceUrl = 'https://my-service.app/translate?projectId={phraseProjectId}'
-      expect(Phrase.getTranslationInfo({
-        options: {},
-        form: {
-          properties: {
-            phraseProjectId: 123,
-            i18nServiceUrl
-          }
-        }
-      }).url).toEqual(i18nServiceUrl.replace('{phraseProjectId}', 123))
+      phrase.form.form.properties.i18nServiceUrl = i18nServiceUrl
+      expect(phrase.getTranslationInfo().url).toEqual(i18nServiceUrl.replace('{phraseProjectId}', 123))
     })
   })
 
-  describe('Phrase.formatKey()', () => {
+  describe('phrase.formatKey()', () => {
     it('formats a key with the default prefix and suffix', () => {
-      expect(Phrase.formatKey('foo')).toEqual('[[__phrase_foo__]]')
+      expect(phrase.formatKey('foo')).toEqual('[[__phrase_foo__]]')
     })
 
     it('formats a key in an array', () => {
-      expect(Phrase.formatKey(['foo'])).toEqual('[[__phrase_foo__]]')
+      expect(phrase.formatKey(['foo'])).toEqual('[[__phrase_foo__]]')
     })
 
     it('formats the first key in an array with multiple, non-empty values', () => {
-      expect(Phrase.formatKey(['foo', 'Foo!'])).toEqual('[[__phrase_foo__]]')
+      expect(phrase.formatKey(['foo', 'Foo!'])).toEqual('[[__phrase_foo__]]')
     })
 
     it('returns an empty string (" ") if given an array with an empty last value', () => {
-      expect(Phrase.formatKey(['foo', ''])).toEqual(' ')
+      expect(phrase.formatKey(['foo', ''])).toEqual(' ')
+    })
+
+    it('respects the "context" option', () => {
+      expect(phrase.formatKey('foo', { context: 'bar' })).toEqual('[[__phrase_foo._.bar__]]')
+    })
+
+    it('respects the "context" and "contextSeparator" options', () => {
+      expect(phrase.formatKey('foo', {
+        context: 'bar',
+        contextSeparator: '._.'
+      })).toEqual('[[__phrase_foo._.bar__]]')
+    })
+  })
+
+  describe('phrase.t()', () => {
+    it('returns a formatted key', () => {
+      expect(phrase.t(['hello.world', 'Hello, world!'])).toEqual('[[__phrase_hello.world__]]')
+      expect(phrase.t('hello.world', { context: 'greeting' })).toEqual('[[__phrase_hello.world._.greeting__]]')
+    })
+
+    it('does reverse lookups', async () => {
+      loadTranslations.mockImplementationOnce(() => ({
+        en: {
+          greeting: 'Hello'
+        },
+        es: {
+          greeting: 'Hola'
+        }
+      }))
+
+      await phrase.loadTranslations()
+
+      expect(phrase.reverseLookup.has('Hello')).toBe(true)
+      expect(phrase.t('Hello')).toEqual('[[__phrase_greeting__]]')
+      expect(phrase.t('Hello', { context: 'hey' })).toEqual('[[__phrase_greeting._.hey__]]')
     })
   })
 })
