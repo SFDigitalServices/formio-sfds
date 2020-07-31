@@ -15,13 +15,6 @@ const SENTINEL_I18N_KEY = 'derp'
 const SENTINEL_I18N_VALUE = 'DERP!'
 defaultTranslations.en[SENTINEL_I18N_KEY] = SENTINEL_I18N_VALUE
 
-// jsdom doesn't provide an implementation for these, and it throws an error if
-// you call them directly. Thankfully, Jest can spy on and mock them. See:
-// <https://github.com/jsdom/jsdom/issues/1422>
-const scroll = jest.fn()
-jest.spyOn(window, 'scroll').mockImplementation(scroll)
-jest.spyOn(window, 'scrollTo').mockImplementation(scroll)
-
 beforeAll(() => {
   patch(Formio)
 })
