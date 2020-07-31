@@ -97,13 +97,22 @@ function patch (Formio) {
             projectId,
             resourcesByLanguage: { en = {} }
           } = loaded
+
+          const reverseLookup = Array.from(Object.entries(en)).reduce((lookup, [k, v]) => {
+            lookup.set(v, k)
+            return lookup
+          }, new Map())
+
           form.i18next.t = keyOrKeys => {
             if (Array.isArray(keyOrKeys)) {
               const key = keyOrKeys.find(k => en[k]) || keyOrKeys[0]
               return Phrase.formatKey(key)
+            } else if (reverseLookup.has(keyOrKeys)) {
+              return reverseLookup.get(keyOrKeys)
             }
             return Phrase.formatKey(keyOrKeys)
           }
+
           Phrase.enableEditor({
             projectId
           })
