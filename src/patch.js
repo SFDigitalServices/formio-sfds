@@ -3,14 +3,13 @@ import dot from 'dotmap'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
-import Phrase from './i18n/phrase'
+import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
 // import 'flatpickr/dist/l10n/zh'
 import 'flatpickr/dist/l10n/zh-tw'
 
-const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
@@ -90,32 +89,12 @@ function patch (Formio) {
 
       if (debug) console.log('SFDS form created!')
 
+      const phrase = new Phrase(form)
+
       try {
-        const loaded = await loadFormTranslations(form)
+        const loaded = await phrase.loadTranslations()
         if (loaded && loaded.projectId && userIsTranslating()) {
-          const {
-            projectId,
-            resourcesByLanguage: { en = {} }
-          } = loaded
-
-          const reverseLookup = Array.from(Object.entries(en)).reduce((lookup, [k, v]) => {
-            lookup.set(v, k)
-            return lookup
-          }, new Map())
-
-          form.i18next.t = keyOrKeys => {
-            if (Array.isArray(keyOrKeys)) {
-              const key = keyOrKeys.find(k => en[k]) || keyOrKeys[0]
-              return Phrase.formatKey(key)
-            } else if (reverseLookup.has(keyOrKeys)) {
-              return reverseLookup.get(keyOrKeys)
-            }
-            return Phrase.formatKey(keyOrKeys)
-          }
-
-          Phrase.enableEditor({
-            projectId
-          })
+          phrase.enableEditor()
         }
       } catch (error) {
         if (debug) console.warn('Failed to load translations:', error)
@@ -293,24 +272,6 @@ function patchDateTimeSuffix () {
       }
     }
   })
-}
-
-async function loadFormTranslations (form) {
-  const { debug = debugDefault } = form.options
-  const info = Phrase.getTranslationInfo(form)
-  if (info) {
-    const { url } = info
-    if (debug) console.warn('Loading translations from:', url)
-    const resourcesByLanguage = await loadTranslations(url)
-    if (debug) console.warn('Loaded resources:', resourcesByLanguage)
-    const { i18next } = form
-    for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
-      i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, resources)
-    }
-    return Object.assign(info, { resourcesByLanguage })
-  } else {
-    return false
-  }
 }
 
 function patchDateTimeLocale (Formio) {
