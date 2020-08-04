@@ -164,7 +164,7 @@ describe('patch()', () => {
        * is the first test that actually tries to access them, so it could be
        * that the createForm() helper function isn't working properly.
        */
-      xit('gets .widget = "html5" by default', async () => {
+      it('gets .widget = "html5" by default', async () => {
         const form = await createForm({
           type: 'form',
           display: 'form',
@@ -178,7 +178,32 @@ describe('patch()', () => {
             }
           ]
         })
-        expect(form.components[0].type).toEqual('html5')
+        expect(form.components.length).toBeGreaterThanOrEqual(1)
+        const [select] = form.components
+        expect(select.type).toEqual('select')
+        expect(select.component.widget).toEqual('html5')
+        destroyForm(form)
+      })
+
+      it('does not set .widget = "html5" if "autocomplete" tag is present', async () => {
+        const form = await createForm({
+          type: 'form',
+          display: 'form',
+          components: [
+            {
+              key: 'heyo',
+              type: 'select',
+              tags: ['autocomplete'],
+              widget: 'choicesjs',
+              input: true,
+              data: { values: [] }
+            }
+          ]
+        })
+        expect(form.components.length).toBeGreaterThanOrEqual(1)
+        const [select] = form.components
+        expect(select.type).toEqual('select')
+        expect(select.component.widget).toEqual('choicesjs')
         destroyForm(form)
       })
     })
