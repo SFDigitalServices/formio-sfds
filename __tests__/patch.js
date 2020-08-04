@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import 'regenerator-runtime'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
@@ -14,13 +13,6 @@ const { createForm: originalCreateForm } = Formio
 const SENTINEL_I18N_KEY = 'derp'
 const SENTINEL_I18N_VALUE = 'DERP!'
 defaultTranslations.en[SENTINEL_I18N_KEY] = SENTINEL_I18N_VALUE
-
-// jsdom doesn't provide an implementation for these, and it throws an error if
-// you call them directly. Thankfully, Jest can spy on and mock them. See:
-// <https://github.com/jsdom/jsdom/issues/1422>
-const scroll = jest.fn()
-jest.spyOn(window, 'scroll').mockImplementation(scroll)
-jest.spyOn(window, 'scrollTo').mockImplementation(scroll)
 
 describe('patch()', () => {
   beforeAll(() => {
@@ -186,7 +178,7 @@ describe('patch()', () => {
             }
           ]
         })
-        // expect(form.components[0].type).toEqual('html5')
+        expect(form.components[0].type).toEqual('html5')
         destroyForm(form)
       })
     })
