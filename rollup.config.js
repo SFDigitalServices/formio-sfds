@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import jst from 'rollup-plugin-jst'
@@ -57,7 +57,9 @@ const commonPlugins = [
       }
     ]
   }),
-  babel(),
+  babel({
+    babelHelpers: 'bundled'
+  }),
   prod ? terser() : null
 ].filter(Boolean)
 
