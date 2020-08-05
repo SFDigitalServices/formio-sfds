@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import 'regenerator-runtime'
 import Phrase, { I18N_SERVICE_URL } from '../src/phrase'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'

@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import 'regenerator-runtime'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
