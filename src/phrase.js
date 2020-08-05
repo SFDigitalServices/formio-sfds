@@ -1,3 +1,4 @@
+import 'regenerator-runtime'
 import interpolate from 'interpolate'
 import loadTranslations from './i18n/load'
 

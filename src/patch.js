@@ -1,3 +1,4 @@
+import 'regenerator-runtime'
 import { observe } from 'selector-observer'
 import dot from 'dotmap'
 import defaultTranslations from './i18n'
