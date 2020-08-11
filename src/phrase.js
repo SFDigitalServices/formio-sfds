@@ -112,7 +112,7 @@ export default class Phrase {
       let url = interpolate(serviceUrl, props)
       // only append the projectId if it's not in the URL already
       if (!url.includes(phraseProjectId)) {
-        url = `${serviceUrl}/phrase/${phraseProjectId}`
+        url = `${url}/phrase/${phraseProjectId}`
       }
       // also only append the version if it's not in it already
       if (phraseProjectVersion && !url.includes(phraseProjectVersion)) {

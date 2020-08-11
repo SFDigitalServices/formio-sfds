@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { getStrings, getCondition, UIString, StringInterpolation } from '../lib/i18n'
+import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
 
 describe('i18n extraction', () => {
   describe('UIString', () => {
