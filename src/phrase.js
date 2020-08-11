@@ -25,12 +25,12 @@ export default class Phrase {
   constructor (form, config = {}) {
     this.form = form
     this.config = { ...Phrase.configDefaults, ...config }
-    this.english = form.i18next.getFixedT('en')
     this.reverseLookup = new Map()
+    this.loaded = false
   }
 
   get editorEnabled () {
-    return window.PHRASEAPP_ENABLED
+    return window.PHRASEAPP_ENABLED || false
   }
 
   enableEditor () {
@@ -138,10 +138,21 @@ export default class Phrase {
     const info = this.getTranslationInfo()
     if (info) {
       const { url, projectId } = info
+
+      // this gets passed to window.PHRASEAPP_CONFIG,
+      // which is how Phrase knows which project to load
       this.config.projectId = projectId
 
       if (debug) console.warn('Loading translations from:', url)
+
       const resourcesByLanguage = await loadTranslations(url) || {}
+
+      this.loaded = {
+        url,
+        projectId,
+        resourcesByLanguage
+      }
+
       if (debug) console.warn('Loaded resources:', resourcesByLanguage)
 
       for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
