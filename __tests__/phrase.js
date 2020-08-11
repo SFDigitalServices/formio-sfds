@@ -109,26 +109,6 @@ describe('Phrase helpers', () => {
       expect(phrase.t('Hello', { context: 'hey' })).toEqual('[[__phrase_greeting._.hey__]]')
     })
   })
-
-  describe('In-context editor setup', () => {
-    beforeEach(async () => {
-      await phrase.loadTranslations()
-      phrase.enableEditor()
-    })
-
-    afterEach(() => {
-      phrase.disableEditor()
-    })
-
-    it('sets PHRASEAPP_ENABLED to true', () => {
-      expect(window.PHRASEAPP_ENABLED).toBe(true)
-    })
-
-    it('sets PHRASEAPP_CONFIG to an object with the projectId', () => {
-      expect(window.PHRASEAPP_CONFIG).toBeInstanceOf(Object)
-      expect(window.PHRASEAPP_CONFIG.projectId).toBe('123')
-    })
-  })
 })
 
 describe('Phrase functionality', () => {
@@ -245,6 +225,78 @@ describe('Phrase functionality', () => {
         expect(form.t('hello')).toEqual('hola')
         destroyForm(form)
       })
+    })
+  })
+
+  describe('In-context editor setup', () => {
+    const location = { search: '' }
+    const mockLoc = jest.spyOn(window, 'location', 'get')
+      .mockImplementation(() => location)
+
+    beforeEach(() => {
+      delete window.PHRASEAPP_ENABLED
+    })
+
+    afterEach(() => {
+      delete window.PHRASEAPP_ENABLED
+      delete window.drupalSettings
+      location.search = ''
+    })
+
+    afterAll(() => {
+      mockLoc.mockRestore()
+    })
+
+    it('does not load the editor if window.drupalSettings.user.uid is unset', async () => {
+      const form = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+      expect(window.PHRASEAPP_ENABLED).not.toBe(true)
+      destroyForm(form)
+    })
+
+    it('does not load if ?translate=true is not in the query string', async () => {
+      window.drupalSettings = { user: { uid: 12345 } }
+      const form = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+      expect(window.PHRASEAPP_ENABLED).not.toBe(true)
+      destroyForm(form)
+    })
+
+    it('loads if window.drupalSettings.user.uid is set and ?translate=true is in the query string', async () => {
+      window.location.search = 'translate=true'
+      window.drupalSettings = { user: { uid: 12345 } }
+
+      loadTranslations.mockImplementationOnce(() => ({
+        es: {
+          hello: 'Hola'
+        }
+      }))
+
+      const form = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+
+      expect(form.phrase.loaded).toBeInstanceOf(Object)
+      expect(form.phrase.editorEnabled).toBe(true)
+
+      // call expectations
+      expect(loadTranslations).toHaveBeenCalledTimes(1)
+
+      // state expectations
+      expect(window.PHRASEAPP_ENABLED).toBe(true)
+      expect(window.PHRASEAPP_CONFIG).toBeInstanceOf(Object)
+      expect(window.PHRASEAPP_CONFIG.projectId).toBe('123')
+
+      // cleanup
+      destroyForm(form)
     })
   })
 })
