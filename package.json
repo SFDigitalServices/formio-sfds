@@ -22,6 +22,7 @@
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
     "watch-html": "watchy -w 'templates/*' -- npm run build-html",
+    "watch-test": "jest --watch",
     "vercel-dev": "vercel dev"
   },
   "browserslist": [
