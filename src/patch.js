@@ -13,7 +13,6 @@ import 'flatpickr/dist/l10n/zh-tw'
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
-const { location } = window
 const { NODE_ENV } = process.env
 const debugDefault = NODE_ENV !== 'test'
 
