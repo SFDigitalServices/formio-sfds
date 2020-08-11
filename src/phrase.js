@@ -34,6 +34,7 @@ export default class Phrase {
   }
 
   enableEditor () {
+    window.PHRASEAPP_ENABLED = true
     window.PHRASEAPP_CONFIG = this.config
     this.backupT = this.form.i18next.t
     this.form.i18next.t = this.t.bind(this)
@@ -136,10 +137,11 @@ export default class Phrase {
     const { i18next, options: { debug = debugDefault } } = form
     const info = this.getTranslationInfo()
     if (info) {
-      const { url } = info
+      const { url, projectId } = info
+      this.config.projectId = projectId
 
       if (debug) console.warn('Loading translations from:', url)
-      const resourcesByLanguage = await loadTranslations(url)
+      const resourcesByLanguage = await loadTranslations(url) || {}
       if (debug) console.warn('Loaded resources:', resourcesByLanguage)
 
       for (const [lang, resources] of Object.entries(resourcesByLanguage)) {
@@ -159,6 +161,7 @@ export default class Phrase {
           }
         }
       }
+
       return Object.assign(info, { resourcesByLanguage })
     } else {
       return false
