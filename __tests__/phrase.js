@@ -298,5 +298,45 @@ describe('Phrase functionality', () => {
       // cleanup
       destroyForm(form)
     })
+
+    it('translates keys into placeholders', async () => {
+      window.location.search = 'translate=true'
+      window.drupalSettings = { user: { uid: 12345 } }
+
+      loadTranslations.mockImplementationOnce(() => ({
+        en: {
+          derp: 'DERP'
+        }
+      }))
+
+      const form = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+
+      expect(form.t('derp')).toEqual('[[__phrase_derp__]]')
+      // reverse lookup
+      expect(form.t('DERP')).toEqual('[[__phrase_derp__]]')
+
+      destroyForm(form)
+    })
+
+    xit('does not affect other forms', async () => {
+      window.location.search = 'translate=true'
+      window.drupalSettings = { user: { uid: 12345 } }
+
+      const form1 = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+
+      const form2 = await createForm()
+      expect(form2.t(['derp', ''])).toEqual('derp')
+
+      destroyForm(form1)
+      destroyForm(form2)
+    })
   })
 })
