@@ -1,5 +1,9 @@
 /* eslint-env jest */
 import { createForm, destroyForm } from '../lib/test-helpers'
+
+// FIXME: we import the built bundle because we aren't (yet)
+// telling jest to process our JS with rollup, which is where
+// all of the EJS stuff happens.
 import '../dist/formio-sfds.standalone.js'
 
 describe('a11y', () => {

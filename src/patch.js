@@ -1,8 +1,10 @@
-import defaultTranslations from './i18n'
 import { observe } from 'selector-observer'
-import { mergeObjects } from './utils'
+import dot from 'dotmap'
+import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import Phrase from './phrase'
+import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
 // import 'flatpickr/dist/l10n/zh'
@@ -78,13 +80,33 @@ function patch (Formio) {
     }
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
-    return createForm(el, ...rest).then(form => {
+    return createForm(el, ...rest).then(async form => {
       if (opts.formioSFDSOptOut === true) {
         if (debug) console.info('SFDS form opted out:', opts, el)
         return form
       }
 
       if (debug) console.log('SFDS form created!')
+
+      const phrase = new Phrase(form)
+      form.phrase = phrase
+
+      let { googleTranslate } = opts
+
+      try {
+        const loaded = await phrase.loadTranslations()
+        if (loaded) {
+          googleTranslate = false
+
+          if (loaded.projectId && userIsTranslating()) {
+            phrase.enableEditor()
+          } else if (debug) {
+            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
+          }
+        }
+      } catch (error) {
+        if (debug) console.warn('Failed to load translations:', error)
+      }
 
       form.on('nextPage', scrollToTop)
       form.on('prevPage', scrollToTop)
@@ -94,7 +116,8 @@ function patch (Formio) {
       const { element } = form
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
-      if (opts.googleTranslate === false) {
+
+      if (googleTranslate === false) {
         disableGoogleTranslate(element)
       }
 
@@ -295,4 +318,12 @@ function getFlatpickrLocale (code) {
 
 function scrollToTop () {
   window.scroll(0, 0)
+}
+
+function userIsTranslating () {
+  const uid = dot.get(window, 'drupalSettings.user.uid')
+  if (uid && uid !== '0') {
+    const translate = new URLSearchParams(window.location.search).get('translate')
+    return translate === 'true'
+  }
 }

@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import jst from 'rollup-plugin-jst'
@@ -6,10 +6,18 @@ import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import svg from 'rollup-plugin-svgo'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
 import yaml from '@rollup/plugin-yaml'
 
-const { NODE_ENV = 'development' } = process.env
+const {
+  NODE_ENV = 'development',
+  I18N_SERVICE_URL = 'https://i18n-microservice-js.sfds.vercel.app'
+} = process.env
+
+const env = { NODE_ENV, I18N_SERVICE_URL }
+console.warn('rollup env:', env)
+
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
 
@@ -24,6 +32,9 @@ const commonPlugins = [
       escape: /\{\{\{([\s\S]+?)\}\}\}/g,
       variable: 'ctx'
     }
+  }),
+  injectProcessEnv(env, {
+    include: 'src/**/*.js'
   }),
   svg({
     plugins: [
@@ -46,7 +57,9 @@ const commonPlugins = [
       }
     ]
   }),
-  babel(),
+  babel({
+    babelHelpers: 'runtime'
+  }),
   prod ? terser() : null
 ].filter(Boolean)
 
