@@ -105,6 +105,26 @@ describe('Phrase helpers', () => {
       expect(phrase.t('Hello', { context: 'hey' })).toEqual('[[__phrase_greeting._.hey__]]')
     })
   })
+
+  describe('In-context editor setup', () => {
+    beforeEach(async () => {
+      await phrase.loadTranslations()
+      phrase.enableEditor()
+    })
+
+    afterEach(() => {
+      phrase.disableEditor()
+    })
+
+    it('sets PHRASEAPP_ENABLED to true', () => {
+      expect(window.PHRASEAPP_ENABLED).toBe(true)
+    })
+
+    it('sets PHRASEAPP_CONFIG to an object with the projectId', () => {
+      expect(window.PHRASEAPP_CONFIG).toBeInstanceOf(Object)
+      expect(window.PHRASEAPP_CONFIG.projectId).toBe('123')
+    })
+  })
 })
 
 describe('Phrase functionality', () => {
