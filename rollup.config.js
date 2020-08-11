@@ -58,7 +58,7 @@ const commonPlugins = [
     ]
   }),
   babel({
-    babelHelpers: 'bundled'
+    babelHelpers: 'runtime'
   }),
   prod ? terser() : null
 ].filter(Boolean)
