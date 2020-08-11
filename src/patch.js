@@ -90,11 +90,20 @@ function patch (Formio) {
       if (debug) console.log('SFDS form created!')
 
       const phrase = new Phrase(form)
+      form.phrase = phrase
+
+      let { googleTranslate } = opts
 
       try {
         const loaded = await phrase.loadTranslations()
-        if (loaded && loaded.projectId && userIsTranslating()) {
-          phrase.enableEditor()
+        if (loaded) {
+          googleTranslate = false
+
+          if (loaded.projectId && userIsTranslating()) {
+            phrase.enableEditor()
+          } else if (debug) {
+            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
+          }
         }
       } catch (error) {
         if (debug) console.warn('Failed to load translations:', error)
@@ -108,7 +117,8 @@ function patch (Formio) {
       const { element } = form
 
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
-      if (opts.googleTranslate === false) {
+
+      if (googleTranslate === false) {
         disableGoogleTranslate(element)
       }
 
@@ -140,13 +150,13 @@ function patch (Formio) {
         let params
         switch (opts.prefill) {
           case 'url':
-            params = new URLSearchParams(location.search || location.hash.substr(1))
+            params = new URLSearchParams(window.location.search || window.location.hash.substr(1))
             break
           case 'querystring':
-            params = new URLSearchParams(location.search)
+            params = new URLSearchParams(window.location.search)
             break
           case 'hash':
-            params = new URLSearchParams(location.hash.substr(1))
+            params = new URLSearchParams(window.location.hash.substr(1))
             break
           default:
             if (opts.prefill instanceof URLSearchParams) {
@@ -314,7 +324,7 @@ function scrollToTop () {
 function userIsTranslating () {
   const uid = dot.get(window, 'drupalSettings.user.uid')
   if (uid && uid !== '0') {
-    const translate = new URLSearchParams(location.search).get('translate')
+    const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
 }
