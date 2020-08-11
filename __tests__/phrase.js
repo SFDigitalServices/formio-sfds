@@ -13,6 +13,10 @@ beforeAll(() => {
   patch(Formio)
 })
 
+afterEach(() => {
+  loadTranslations.mockRestore()
+})
+
 describe('Phrase helpers', () => {
   let phrase
   beforeEach(async () => {
