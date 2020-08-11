@@ -285,6 +285,15 @@ describe('i18n extraction', () => {
             { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
           ])
         })
+
+        it('ignores quoted property accessors', () => {
+          testValidateCustom('valid = data["wut"] || "Nope"', [
+            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
+          ])
+          testValidateCustom("valid = data['wut'] || 'Nope'", [
+            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
+          ])
+        })
       })
     })
 
@@ -305,7 +314,7 @@ describe('i18n extraction', () => {
     })
 
     describe('interpolations', () => {
-      it('finds $t() (i18next-style) interpolations', () => {
+      it('finds $t() interpolations', () => {
         const strings = getStrings({
           components: [
             {
