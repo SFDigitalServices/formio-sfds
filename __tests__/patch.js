@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import 'regenerator-runtime'
 import loadTranslations from '../src/i18n/load'
 import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
@@ -14,13 +13,6 @@ const { createForm: originalCreateForm } = Formio
 const SENTINEL_I18N_KEY = 'derp'
 const SENTINEL_I18N_VALUE = 'DERP!'
 defaultTranslations.en[SENTINEL_I18N_KEY] = SENTINEL_I18N_VALUE
-
-// jsdom doesn't provide an implementation for these, and it throws an error if
-// you call them directly. Thankfully, Jest can spy on and mock them. See:
-// <https://github.com/jsdom/jsdom/issues/1422>
-const scroll = jest.fn()
-jest.spyOn(window, 'scroll').mockImplementation(scroll)
-jest.spyOn(window, 'scrollTo').mockImplementation(scroll)
 
 describe('patch()', () => {
   beforeAll(() => {
@@ -172,7 +164,7 @@ describe('patch()', () => {
        * is the first test that actually tries to access them, so it could be
        * that the createForm() helper function isn't working properly.
        */
-      xit('gets .widget = "html5" by default', async () => {
+      it('gets .widget = "html5" by default', async () => {
         const form = await createForm({
           type: 'form',
           display: 'form',
@@ -186,7 +178,32 @@ describe('patch()', () => {
             }
           ]
         })
-        // expect(form.components[0].type).toEqual('html5')
+        expect(form.components.length).toBeGreaterThanOrEqual(1)
+        const [select] = form.components
+        expect(select.type).toEqual('select')
+        expect(select.component.widget).toEqual('html5')
+        destroyForm(form)
+      })
+
+      it('does not set .widget = "html5" if "autocomplete" tag is present', async () => {
+        const form = await createForm({
+          type: 'form',
+          display: 'form',
+          components: [
+            {
+              key: 'heyo',
+              type: 'select',
+              tags: ['autocomplete'],
+              widget: 'choicesjs',
+              input: true,
+              data: { values: [] }
+            }
+          ]
+        })
+        expect(form.components.length).toBeGreaterThanOrEqual(1)
+        const [select] = form.components
+        expect(select.type).toEqual('select')
+        expect(select.component.widget).toEqual('choicesjs')
         destroyForm(form)
       })
     })

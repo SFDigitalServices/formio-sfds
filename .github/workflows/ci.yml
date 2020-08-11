@@ -12,10 +12,10 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
-      - run: npm test
       - run: npm run build
         env:
           NODE_ENV: production
+      - run: npm test
 
       - uses: primer/publish@v2.0.0
         env:
