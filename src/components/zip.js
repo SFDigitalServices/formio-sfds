@@ -19,4 +19,13 @@ export default class ZIPCode extends TextField {
   get defaultSchema () {
     return ZIPCode.schema()
   }
+
+  static get builderInfo () {
+    return {
+      title: 'ZIP code',
+      icon: 'map-marker',
+      group: 'sfgov',
+      schema: ZIPCode.schema()
+    }
+  }
 }
