@@ -18,6 +18,7 @@ const commonPlugins = [
   commonjs(),
   json(),
   jst({
+    extensions: ['.ejs'],
     templateOptions: {
       evaluate: /\{%([\s\S]+?)%\}/g,
       interpolate: /\{\{([\s\S]+?)\}\}/g,
