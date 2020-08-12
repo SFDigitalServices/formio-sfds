@@ -5,9 +5,11 @@ import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
-import svg from 'rollup-plugin-svgo'
+import svgo from 'rollup-plugin-svgo'
 import { terser } from 'rollup-plugin-terser'
-import yaml from '@rollup/plugin-yaml'
+import rollupYAML from '@rollup/plugin-yaml'
+import yaml from 'js-yaml'
+import { readFileSync } from 'fs'
 
 const { NODE_ENV = 'development' } = process.env
 const prod = NODE_ENV === 'production'
@@ -26,27 +28,11 @@ const commonPlugins = [
       variable: 'ctx'
     }
   }),
-  svg({
-    plugins: [
-      { removeViewBox: false },
-      { removeDimensions: true },
-      {
-        // remove fill attributes from all elements
-        removeAttributesBySelector: {
-          selector: '[fill]',
-          attributes: ['fill']
-        }
-      },
-      {
-        addAttributesToSVGElement: {
-          attributes: [
-            // add fill="currentColor" to <svg>
-            { fill: 'currentColor' }
-          ]
-        }
-      }
-    ]
-  }),
+  svgo(
+    yaml.safeLoad(
+      readFileSync('svgo.config.yml', 'utf8')
+    )
+  ),
   babel(),
   prod ? terser() : null
 ].filter(Boolean)
@@ -72,7 +58,7 @@ export default [
     input: 'src/examples.js',
     plugins: [
       ...commonPlugins,
-      yaml()
+      rollupYAML()
     ],
     output: {
       format: 'umd',
