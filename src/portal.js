@@ -1,17 +1,31 @@
-import components from './components'
+/*
+ * NOTE: we're only importing *custom* components and templates here, because
+ * customizing the CSS on the form.io portal is basically impossible.
+ */
 import templates from './templates/custom'
+import components from './components'
+import builderComponents from './components/builder'
 
 const { Formio } = window
 
-const framework = 'sfds'
-
 const options = {
   builder: {
-    builder: require('./builder-options.yml')
+    builder: {
+      sfgov: {
+        title: 'SF.gov',
+        weight: -100, // bring it to the top, baby
+        default: true, // open by default
+        components: builderComponents
+      },
+      basic: {
+        default: true // set this to false to collapse it
+      },
+      premium: false
+    }
   }
 }
 
-Formio.icons = 'fontawesome'
+const framework = 'sfds'
 
 Formio.use({
   framework,
