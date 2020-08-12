@@ -64,34 +64,7 @@ export default [
     output: {
       format: 'umd',
       name,
-      file: 'dist/formio-sfds.standalone.js',
-      sourcemap: prod
-    }
-  },
-  {
-    input: pkg.module,
-    output: {
-      format: 'umd',
-      exports: 'named',
-      name,
       file: pkg.browser,
-      sourcemap: prod
-    },
-    plugins: [
-      ...commonPlugins
-    ]
-  },
-  {
-    input: pkg.module,
-    external: ['formiojs'],
-    plugins: [
-      ...commonPlugins
-    ],
-    output: {
-      format: 'cjs',
-      exports: 'named',
-      name,
-      file: pkg.main,
       sourcemap: prod
     }
   },
@@ -104,16 +77,6 @@ export default [
     output: {
       format: 'umd',
       file: 'dist/examples.js'
-    }
-  },
-  {
-    input: 'src/translate.js',
-    plugins: [
-      ...commonPlugins
-    ],
-    output: {
-      format: 'umd',
-      file: 'dist/translate.js'
     }
   }
 ]
