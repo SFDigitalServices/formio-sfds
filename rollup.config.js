@@ -64,5 +64,16 @@ export default [
       format: 'umd',
       file: 'dist/examples.js'
     }
+  },
+  {
+    input: 'src/portal.js',
+    plugins: [
+      ...commonPlugins,
+      rollupYAML()
+    ],
+    output: {
+      format: 'umd',
+      file: 'dist/portal.js'
+    }
   }
 ]
