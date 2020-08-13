@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "description": "form.io templates for the SF Design System",
   "module": "src/index.js",
   "main": "dist/formio-sfds.cjs.js",
