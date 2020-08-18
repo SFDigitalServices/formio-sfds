@@ -2,8 +2,8 @@
 	{% if (ctx.components.length) { %}
 		{% for (const c of ctx.components) { %}
 			{% if (c.type == "components" && c.component.hideLabel == false) { %}
-			  <div class="col">
-				<div class="header">{{c.component.title}}</div>
+			  <div class="col header">
+				<div class="title">{{c.component.title}}</div>
 				<div class="edit"><a class="breadcrumb" ref="editLinks" href="#" data-key="{{c.key}}">Edit</a></div>
 			  </div>
 			{% } else if (c.type != "components") { %}
