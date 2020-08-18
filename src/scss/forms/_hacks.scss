@@ -5,62 +5,62 @@
 
 // Custom review component
 .review {
+  div {
+    flex: 50%;
+  }
 
-	div {
-		flex: 50%;
-	}
-	
-	.col, .noData {
-		display: flex;
-		flex: 100%;
+  .col,
+  .noData {
+    display: flex;
+    flex: 100%;
 		
-		&:nth-child(1) > div {
-			border-top: 0;
-			margin-top: 0;
-			padding-top: 0;
-		}
-	}
-	
-	.col.header {
-		div {
-			font-weight: 500;
-			padding: 2rem 0 1rem 0;
-			margin-top: 2rem;
-			border-top: 2px solid #eee;
-		}
+    &:nth-child(1) > div {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  .col.header {
+    div {
+      font-weight: 500;
+      padding: 2rem 0 1rem 0;
+      margin-top: 2rem;
+      border-top: 2px solid #eee;
+    }
 		
-		.title {
-			flex: 80%;
-			font-size: 1.5em;
-		}
+    .title {
+      flex: 80%;
+      font-size: 1.5em;
+    }
 		
-		.edit {
-			flex: 20%;
-			text-align: right;
-		}
-	}
-	
-	.field {
-		font-size: .9em;
-		color: #555;
-		padding: .5rem 0;
-	}
-	
-	.value {
-		padding: .5rem 0;
-	}
-	
-	.req {
-		color: #c9563a;
-	}
-	
-	.array {
-		&:after {
-			content: ",";
-		}
-		
-		&:last-child:after {
-			content: "";
-		}
-	}
+    .edit {
+      flex: 20%;
+      text-align: right;
+    }
+  }
+
+  .field {
+    font-size: .9em;
+    color: #555;
+    padding: .5rem 0;
+  }
+
+  .value {
+    padding: .5rem 0;
+  }
+
+  .req {
+    color: #c9563a;
+  }
+
+  .array {
+    &:after {
+      content: ",";
+    }
+
+    &:last-child:after {
+	  content: "";
+    }
+  }
 }
