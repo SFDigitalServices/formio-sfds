@@ -3,3 +3,4 @@
 .*rc.yml
 .github/
 script/
+__tests__

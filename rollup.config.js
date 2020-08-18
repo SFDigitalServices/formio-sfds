@@ -6,10 +6,15 @@ import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import svg from 'rollup-plugin-svgo'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
 import yaml from '@rollup/plugin-yaml'
 
-const { NODE_ENV = 'development' } = process.env
+const {
+  NODE_ENV = 'development',
+  I18N_SERVICE_URL
+} = process.env
+
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
 
@@ -24,6 +29,12 @@ const commonPlugins = [
       escape: /\{\{\{([\s\S]+?)\}\}\}/g,
       variable: 'ctx'
     }
+  }),
+  injectProcessEnv({
+    NODE_ENV,
+    I18N_SERVICE_URL
+  }, {
+    include: 'src/**/*.js'
   }),
   svg({
     plugins: [
@@ -103,6 +114,16 @@ export default [
     output: {
       format: 'umd',
       file: 'dist/examples.js'
+    }
+  },
+  {
+    input: 'src/translate.js',
+    plugins: [
+      ...commonPlugins
+    ],
+    output: {
+      format: 'umd',
+      file: 'dist/translate.js'
     }
   }
 ]

@@ -11,6 +11,9 @@ import 'flatpickr/dist/l10n/zh-tw'
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
+const { NODE_ENV } = process.env
+const debugDefault = NODE_ENV !== 'test'
+
 let util
 const forms = []
 
@@ -28,25 +31,37 @@ export default Formio => {
   Formio[PATCHED] = true
 }
 
+// Prevent users from navigating away and losing their entries.
+let warnBeforeLeaving = false
+
+window.addEventListener('beforeunload', (event) => {
+  if (warnBeforeLeaving) {
+    // Most browsers will show a default message instead of this one.
+    event.returnValue = 'Leave site? Changes you made may not be saved.'
+  }
+})
+
 function patch (Formio) {
-  console.info('Patching Formio.createForm() with SFDS behaviors...')
+  if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
+    const { debug = debugDefault } = options
+
     // get the default language from the element's (inherited) lang property
-    const language = el.lang || document.documentElement.lang
+    const language = el.lang || document.documentElement.lang || 'en'
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
 
     if (typeof opts.i18n === 'string') {
       const { i18n: translationsURL } = opts
-      console.info('loading translations form:', translationsURL)
+      if (debug) console.info('loading translations form:', translationsURL)
       try {
         const i18n = await loadTranslations(translationsURL)
-        console.info('loaded translations:', i18n)
+        if (debug) console.info('loaded translations:', i18n)
         opts.i18n = mergeObjects({}, opts.i18n, i18n)
       } catch (error) {
-        console.warn('Unable to load translations from:', translationsURL, error)
+        if (debug) console.warn('Unable to load translations from:', translationsURL, error)
         // FIXME: we may want to explicitly *allow* Google Translate (even if
         // it's been disabled) for this form if translations fail to load.
         // opts.googleTranslate = true
@@ -65,11 +80,16 @@ function patch (Formio) {
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
     return createForm(el, ...rest).then(form => {
       if (opts.formioSFDSOptOut === true) {
-        console.log('SFDS form opted out:', opts, el)
+        if (debug) console.info('SFDS form opted out:', opts, el)
         return form
       }
 
-      console.log('SFDS form created!')
+      if (debug) console.log('SFDS form created!')
+
+      form.on('nextPage', scrollToTop)
+      form.on('prevPage', scrollToTop)
+      form.on('nextPage', () => { warnBeforeLeaving = true })
+      form.on('submit', () => { warnBeforeLeaving = false })
 
       const { element } = form
 
@@ -102,9 +122,12 @@ function patch (Formio) {
       }
 
       if (opts.prefill) {
-        console.info('submission before prefill:', form.submission)
+        if (debug) console.info('submission before prefill:', form.submission)
         let params
         switch (opts.prefill) {
+          case 'url':
+            params = new URLSearchParams(window.location.search || window.location.hash.substr(1))
+            break
           case 'querystring':
             params = new URLSearchParams(window.location.search)
             break
@@ -115,7 +138,7 @@ function patch (Formio) {
             if (opts.prefill instanceof URLSearchParams) {
               params = opts.prefill
             } else {
-              console.warn('Unrecognized prefill option value: "%s"', opts.prefill)
+              if (debug) console.warn('Unrecognized prefill option value: "%s"', opts.prefill)
             }
         }
         if (params) {
@@ -124,10 +147,10 @@ function patch (Formio) {
             if (key in form.submission.data) {
               data[key] = value
             } else {
-              console.warn('ignoring querystring key "%s": "%s"', key, value)
+              if (debug) console.warn('ignoring querystring key "%s": "%s"', key, value)
             }
           }
-          console.info('prefill submission data:', data)
+          if (debug) console.info('prefill submission data:', data)
           form.submission = { data }
         }
       }
@@ -268,4 +291,8 @@ function getFlatpickrLocale (code) {
     // Prefer traditional (Taiwan) to simplified (China)
     zh: 'zh_tw'
   }[lang] || lang
+}
+
+function scrollToTop () {
+  window.scroll(0, 0)
 }

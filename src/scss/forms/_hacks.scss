@@ -3,6 +3,13 @@
   display: none;
 }
 
+input:disabled,
+select:disabled,
+textarea:disabled {
+  border-color: $grey-4 !important;
+  background-color: $grey-1 !important;
+}
+
 // Custom review component
 .review {
 

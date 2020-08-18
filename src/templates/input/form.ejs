@@ -13,6 +13,7 @@
 <div class="form-input">
   <{{ctx.input.type}}
     ref="{{ctx.input.ref ? ctx.input.ref : 'input'}}"
+    id="input-{{ ctx.input.attr.name }}"
     {% for (var attr in ctx.input.attr) { %}
     {{attr}}="{{ctx.input.attr[attr]}}"
     {% } %}

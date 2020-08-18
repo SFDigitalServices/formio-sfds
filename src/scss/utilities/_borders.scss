@@ -12,6 +12,14 @@
 
     @each $index, $value in $radii {
       .round#{$variant}-#{$index} { border-radius: $value !important; }
+
+      @each $edge, $corners in $CSS_BORDER_EDGE_CORNERS {
+        .round#{$variant}-#{$edge}-#{$index} {
+          @each $corner in $corners {
+            border-#{$corner}-radius: $value !important;
+          }
+        }
+      }
     }
   }
 }
