@@ -109,6 +109,13 @@
         tooltip: And this is the tooltip
         multiple: true
 
+- id: review
+  title: Review (custom component)
+  form:
+    components:
+      - type: review
+        label: Review your submission
+        
 - id: day-default
   title: Day (default)
   form:
