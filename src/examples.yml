@@ -42,6 +42,23 @@
           - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
             value: 3
 
+- id: selectboxes
+  title: Select boxes
+  form:
+    components:
+      - type: selectboxes
+        label: This is the label
+        description: And this is the description
+        tooltip: And this is the tooltip
+        values:
+          - label: Option 1
+            value: 1
+          - label: Option 2 (blah)
+            value: 2
+          - label: Option 3 (this is some really long text that should wrap nicely, thanks so much)
+            value: 3
+
+
 - id: us-state
   title: U.S. state select (custom component)
   form:
@@ -79,25 +96,26 @@
 
 - id: columns-3
   title: Columns (3)
-  components:
-    - type: columns
-      columns:
-        - width: 2
-          components:
-            - type: textfield
-              key: a
-              label: Field 1
-        - width: 2
-          components:
-            - type: textfield
-              key: b
-              label: Field 2
-        - width: 2
-          components:
-            - type: number
-              key: c
-              label: Field 3
-              defaultValue: 10
+  form:
+    components:
+      - type: columns
+        columns:
+          - width: 2
+            components:
+              - type: textfield
+                key: a
+                label: Field 1
+          - width: 2
+            components:
+              - type: textfield
+                key: b
+                label: Field 2
+          - width: 2
+            components:
+              - type: number
+                key: c
+                label: Field 3
+                defaultValue: 10
 
 - id: address
   title: Address (custom component)

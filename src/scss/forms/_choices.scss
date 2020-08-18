@@ -23,6 +23,11 @@ $choices-z-index: 1;
 
 $select-border-width: 2px;
 
+.#{$choices-selector}[data-type*="select-multiple"] .choices__button {
+  padding: 5px 20px;
+  vertical-align: middle;
+}
+
 .formio-choices {
   .ui {
     border: $select-border-width solid color(slate);
@@ -35,15 +40,28 @@ $select-border-width: 2px;
     border-color: color(bright-blue);
   }
 
+  &.is-open .ui {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 0;
+  }
+
   .#{$choices-selector}__list--single {
     padding: 0;
   }
 
+  .#{$choices-selector}__input {
+    background-color: transparent;
+    box-shadow: none !important;
+  }
+
   .#{$choices-selector}__list--dropdown {
     border-width: $select-border-width;
-    border-radius: radius(1);
-    top: 0;
-    margin-top: 0;
+    border-radius: 0 0 radius(1) radius(1);
+    // These were breaking the multiselect version of the choices
+    // input and probably need to be more precisely targeted.
+    // top: 0;
+    // margin-top: 0;
 
     .#{$choices-selector}__input {
       border-bottom-width: $select-border-width;

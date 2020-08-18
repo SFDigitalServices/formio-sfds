@@ -12,6 +12,13 @@ $CSS_CORNER_ALIAS: (
   tl: top-left,
 );
 
+$CSS_BORDER_EDGE_CORNERS: (
+  top: (top-left, top-right),
+  right: (top-right, bottom-right),
+  bottom: (bottom-right, bottom-left),
+  left: (bottom-left, top-left),
+);
+
 $grid-columns: 6 !default;
 
 $breakpoint-aliases: (
@@ -53,7 +60,9 @@ $color-map: (
   white: $white,
   black: $black,
   slate: $slate,
-  slate-65: rgba($slate, 0.65),
+  light-slate: $light-slate,
+  slate-65: $light-slate,
+  slate-70: $light-slate,
   dark-blue: $dark-blue,
   bright-blue: $bright-blue,
   blue-1: $blue-1,

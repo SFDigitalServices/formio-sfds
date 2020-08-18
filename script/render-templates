@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+const globby = require('globby')
+const nunjucks = require('nunjucks')
+const { basename, join } = require('path')
+const { writeFileSync } = require('fs')
+
+const data = require('../templates/data')
+const outDir = join(__dirname, '../dist')
+
+nunjucks.configure(join(__dirname, '../templates'), {
+  throwOnUndefined: true
+})
+
+console.warn('finding templates...')
+globby('templates/*.html')
+  .then(templates => {
+    for (const templatePath of templates) {
+      const filename = basename(templatePath)
+      console.warn('rendering "%s"...', filename)
+      const output = nunjucks.render(filename, data)
+      const outPath = join(outDir, filename)
+      console.warn('writing "%s"...', outPath)
+      writeFileSync(outPath, output, 'utf8')
+    }
+    console.warn('done!')
+  })

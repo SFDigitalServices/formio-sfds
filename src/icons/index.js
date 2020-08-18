@@ -8,6 +8,7 @@ import document from './Document.svg'
 import alert from './Alert.svg'
 import pencil from './Pencil.svg'
 import plus from './Plus.svg'
+import square from './Square.svg'
 
 const icons = {
   active: pencil,
@@ -22,7 +23,8 @@ const icons = {
   next,
   pencil,
   plus,
-  prev
+  prev,
+  square
 }
 
 export default icons
