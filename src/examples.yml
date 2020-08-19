@@ -134,16 +134,24 @@
     display: wizard
     components:
       - type: panel
-        title: Page 1
+        title: Intro
+        components:
+          - type: htmlelement
+            tag: h3
+            content: Hello, world!
+      - type: panel
+        title: Data
         components:
           - type: textfield
             key: name
             label: Your name
+            defaultValue: Judge
             validate:
               required: true
           - type: number
             key: age
             label: Age
+            defaultValue: 50
       - type: panel
         title: Review
         components:
