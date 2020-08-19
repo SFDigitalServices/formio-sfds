@@ -125,7 +125,6 @@
         label: This is the label
         description: This is the description
         tooltip: And this is the tooltip
-        multiple: true
 
 - id: day-default
   title: Day (default)

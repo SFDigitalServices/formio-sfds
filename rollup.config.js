@@ -5,10 +5,12 @@ import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
-import svg from 'rollup-plugin-svgo'
+import svgo from 'rollup-plugin-svgo'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
-import yaml from '@rollup/plugin-yaml'
+import rollupYAML from '@rollup/plugin-yaml'
+import yaml from 'js-yaml'
+import { readFileSync } from 'fs'
 
 const {
   NODE_ENV = 'development',
@@ -23,6 +25,7 @@ const commonPlugins = [
   commonjs(),
   json(),
   jst({
+    extensions: ['.ejs'],
     templateOptions: {
       evaluate: /\{%([\s\S]+?)%\}/g,
       interpolate: /\{\{([\s\S]+?)\}\}/g,
@@ -36,27 +39,11 @@ const commonPlugins = [
   }, {
     include: 'src/**/*.js'
   }),
-  svg({
-    plugins: [
-      { removeViewBox: false },
-      { removeDimensions: true },
-      {
-        // remove fill attributes from all elements
-        removeAttributesBySelector: {
-          selector: '[fill]',
-          attributes: ['fill']
-        }
-      },
-      {
-        addAttributesToSVGElement: {
-          attributes: [
-            // add fill="currentColor" to <svg>
-            { fill: 'currentColor' }
-          ]
-        }
-      }
-    ]
-  }),
+  svgo(
+    yaml.safeLoad(
+      readFileSync('svgo.config.yml', 'utf8')
+    )
+  ),
   babel(),
   prod ? terser() : null
 ].filter(Boolean)
@@ -74,34 +61,7 @@ export default [
     output: {
       format: 'umd',
       name,
-      file: 'dist/formio-sfds.standalone.js',
-      sourcemap: prod
-    }
-  },
-  {
-    input: pkg.module,
-    output: {
-      format: 'umd',
-      exports: 'named',
-      name,
       file: pkg.browser,
-      sourcemap: prod
-    },
-    plugins: [
-      ...commonPlugins
-    ]
-  },
-  {
-    input: pkg.module,
-    external: ['formiojs'],
-    plugins: [
-      ...commonPlugins
-    ],
-    output: {
-      format: 'cjs',
-      exports: 'named',
-      name,
-      file: pkg.main,
       sourcemap: prod
     }
   },
@@ -109,7 +69,7 @@ export default [
     input: 'src/examples.js',
     plugins: [
       ...commonPlugins,
-      yaml()
+      rollupYAML()
     ],
     output: {
       format: 'umd',
@@ -117,13 +77,14 @@ export default [
     }
   },
   {
-    input: 'src/translate.js',
+    input: 'src/portal.js',
     plugins: [
-      ...commonPlugins
+      ...commonPlugins,
+      rollupYAML()
     ],
     output: {
       format: 'umd',
-      file: 'dist/translate.js'
+      file: 'dist/portal.js'
     }
   }
 ]
