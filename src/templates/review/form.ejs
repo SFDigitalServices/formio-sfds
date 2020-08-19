@@ -1,29 +1,29 @@
 <div class="review">
-	{% if (ctx.components.length) { %}
-		{% for (const c of ctx.components) { %}
-			{% if (c.type == "components" && c.component.hideLabel == false) { %}
-			  <div class="col header">
-				<div class="title">{{c.component.title}}</div>
-				<div class="edit"><a class="breadcrumb" ref="editLinks" href="#" data-key="{{c.key}}">Edit</a></div>
-			  </div>
-			{% } else if (c.type != "components") { %}
-			  <div class="col">
-				<div class="field">{{ctx.t(c.label)}} {% if (c.component.validate.required) { %}<span class="req">*</span>{% } %}</div>
-				<div class="value">
-					{% if (typeof c.getValue() == "object") { %}
-						{% for (const k in c.getValue()) { %}
-							{% if (c.getValue()[k]) { %} 
-								<span class="array">{{k}}</span> 
-							{% } %}
-						{% } %}
-					{% } else { %}
-						{{c.getValue()}}
-					{% } %}
-				</div>
-			  </div>
-			{% } %}
-		{% } %}
-	{% } else { %}
-	  <div class="nodata">No Data</div>
-	{% } %}
+  {% if (ctx.components.length) { %}
+    {% for (const c of ctx.components) { %}
+      {% if (c.type == "components" && c.component.hideLabel == false) { %}
+        <div class="col header">
+        <div class="title">{{c.component.title}}</div>
+        <div class="edit"><a class="breadcrumb" ref="editLinks" href="#" data-key="{{c.key}}">Edit</a></div>
+        </div>
+      {% } else if (c.type != "components") { %}
+        <div class="col">
+        <div class="field">{{ctx.t(c.label)}} {% if (c.component.validate.required) { %}<span class="req">*</span>{% } %}</div>
+        <div class="value">
+          {% if (typeof c.getValue() == "object") { %}
+            {% for (const k in c.getValue()) { %}
+              {% if (c.getValue()[k]) { %} 
+                <span class="array">{{k}}</span> 
+              {% } %}
+            {% } %}
+          {% } else { %}
+            {{c.getValue()}}
+          {% } %}
+        </div>
+        </div>
+      {% } %}
+    {% } %}
+  {% } else { %}
+    <div class="nodata">No Data</div>
+  {% } %}
 </div>
