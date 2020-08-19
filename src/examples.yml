@@ -128,10 +128,25 @@
 
 - id: review
   title: Review (custom component)
+  options:
+    scroll: false
   form:
+    display: wizard
     components:
-      - type: review
-        label: Review your submission
+      - type: panel
+        title: Page 1
+        components:
+          - type: textfield
+            key: name
+            label: Your name
+          - type: number
+            key: age
+            label: Age
+      - type: panel
+        title: Review
+        components:
+          - type: review
+            label: Review your submission
         
 - id: day-default
   title: Day (default)
