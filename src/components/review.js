@@ -1,6 +1,11 @@
 const { field: Field } = window.Formio.Components.components
 
-const skipComponents = ['htmlelement', 'review']
+const skipComponentTypes = [
+  'content',
+  'htmlelement',
+  'panel',
+  'review'
+]
 
 export default class Review extends Field {
   static schema (...extend) {
@@ -25,24 +30,48 @@ export default class Review extends Field {
   render (children) {
     const components = []
     const { submission } = this.root.form
-    this.root.everyComponent((comp) => {
-      if (!skipComponents.includes(comp.type)) {
+
+    this.root.everyComponent(comp => {
+      if (this.isDisplayableComponent(comp)) {
         components.push(comp)
       }
     })
-    // remove the first and last pages, the intro and review pages respectively
-    if (components[0].type === 'components' && components[0].component.hideLabel === false) components.shift()
-    if (components[components.length - 1].type === 'components' && components[components.length - 1].component.hideLabel === false) components.pop()
-    return this.renderTemplate('review', {
-      components,
-      submission
-    })
+
+    if (this.isIntroPage(components[0])) {
+      components.shift()
+    }
+
+    if (this.isReviewPage(components[components.length - 1])) {
+      components.pop()
+    }
+
+    return super.render(
+      this.renderTemplate(this.templateName, {
+        components,
+        submission,
+        children
+      })
+    )
+  }
+
+  isDisplayableComponent (component) {
+    return !skipComponentTypes.includes(component.type)
+  }
+
+  isIntroPage (component) {
+    return component.type === 'components'
+  }
+
+  isReviewPage (component) {
+    return component.type === 'components' &&
+      component.components.some(child => child.type === 'review')
   }
 
   attach (element) {
     this.loadRefs(element, {
       editLinks: 'multiple'
     })
+
     this.refs.editLinks.forEach(input => {
       this.addEventListener(input, 'click', () => {
         this.root.focusOnComponent(input.getAttribute('data-key'))
