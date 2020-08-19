@@ -1,3 +1,4 @@
+const { FormioUtils } = window
 const { field: Field } = window.Formio.Components.components
 
 const skipComponentTypes = [
@@ -15,7 +16,7 @@ export default class Review extends Field {
       label: 'Review your submission',
       hideLabel: false,
       tableView: false,
-      persistent: false
+      input: false
     }, ...extend)
   }
 
@@ -37,11 +38,13 @@ export default class Review extends Field {
       }
     })
 
-    if (this.isIntroPage(components[0])) {
+    const first = components[0]
+    if (this.isIntroPage(first)) {
       components.shift()
     }
 
-    if (this.isReviewPage(components[components.length - 1])) {
+    const last = components[components.length - 1]
+    if (this.isReviewPage(last)) {
       components.pop()
     }
 
@@ -59,12 +62,37 @@ export default class Review extends Field {
   }
 
   isIntroPage (component) {
-    return component.type === 'components'
+    return component.component.type === 'panel' &&
+      this.everyComponentSatisfies(component.components, c => {
+        return !this.isDisplayableComponent(c.component)
+      })
   }
 
   isReviewPage (component) {
-    return component.type === 'components' &&
-      component.components.some(child => child.type === 'review')
+    return component.component.type === 'panel' &&
+      this.someComponentsSatisfy(component.components, c => c.component.type === 'review')
+  }
+
+  everyComponentSatisfies (components, test) {
+    let satisfied = true
+    FormioUtils.eachComponent(components, comp => {
+      if (!test(comp)) {
+        satisfied = false
+        return true // prevent further recursion
+      }
+    }, true)
+    return satisfied
+  }
+
+  someComponentsSatisfy (components, test) {
+    let satisfied = false
+    FormioUtils.eachComponent(components, comp => {
+      if (test(comp)) {
+        satisfied = true
+        return true // prevent further recursion
+      }
+    })
+    return satisfied
   }
 
   attach (element) {
