@@ -1,15 +1,15 @@
-const { component: Components } = window.Formio.Components.components
+const { field: Field } = window.Formio.Components.components
 
 const skipComponents = ['htmlelement', 'review']
 
-export default class Review extends Components {
+export default class Review extends Field {
   static schema (...extend) {
-    return Components.schema({
+    return Field.schema({
       type: 'review',
-      label: 'Review your submission',
       key: 'review',
-      hideLabel: true,
-      tableView: true,
+      label: 'Review your submission',
+      hideLabel: false,
+      tableView: false,
       persistent: false
     }, ...extend)
   }
