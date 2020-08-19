@@ -1,0 +1,10 @@
+plugins:
+  - removeDimensions: true
+  - removeViewBox: false
+  - removeXMLNS: true
+  - removeAttributesBySelector:
+      selector: '[fill]'
+      attributes: ['fill']
+  - addAttributesToSVGElement:
+      attributes:
+        - fill: 'currentColor'
