@@ -44,7 +44,11 @@ export default class Review extends Field {
       editLinks: 'multiple'
     })
     this.refs.editLinks.forEach(input => {
-      this.addEventListener(input, 'click', () => this.root.setPage(this.root.getPageIndexByKey(input.dataset.key)))
+      this.addEventListener(input, 'click', () => {
+        this.root.focusOnComponent(input.getAttribute('data-key'))
+      }, { once: true })
     })
+
+    return super.attach(element)
   }
 }
