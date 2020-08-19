@@ -86,10 +86,12 @@ function patch (Formio) {
 
       if (debug) console.log('SFDS form created!')
 
-      form.on('nextPage', scrollToTop)
-      form.on('prevPage', scrollToTop)
-      form.on('nextPage', () => { warnBeforeLeaving = true })
-      form.on('submit', () => { warnBeforeLeaving = false })
+      if (opts.scroll !== false) {
+        form.on('nextPage', scrollToTop)
+        form.on('prevPage', scrollToTop)
+        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('submit', () => { warnBeforeLeaving = false })
+      }
 
       const { element } = form
 
