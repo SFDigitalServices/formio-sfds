@@ -1,7 +1,7 @@
 <div class="review">
   {% if (ctx.components.length) { %}
     {% for (const c of ctx.components) { %}
-      {% if (c.type === 'components' && c.component.hideLabel === false) { %}
+      {% if (c.type === 'components' && !c.component.hideLabel) { %}
         <div class="col header">
           <div class="title">{{ c.component.title }}</div>
           <div class="edit">
