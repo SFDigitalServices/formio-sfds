@@ -139,6 +139,8 @@
           - type: textfield
             key: name
             label: Your name
+            validate:
+              required: true
           - type: number
             key: age
             label: Age
