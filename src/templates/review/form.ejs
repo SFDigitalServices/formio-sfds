@@ -1,25 +1,30 @@
 <div class="review">
   {% if (ctx.components.length) { %}
     {% for (const c of ctx.components) { %}
-      {% if (c.type == "components" && c.component.hideLabel == false) { %}
+      {% if (c.type === 'components' && c.component.hideLabel === false) { %}
         <div class="col header">
-        <div class="title">{{c.component.title}}</div>
-        <div class="edit"><a class="breadcrumb" ref="editLinks" href="#" data-key="{{c.key}}">Edit</a></div>
+          <div class="title">{{ c.component.title }}</div>
+          <div class="edit">
+            <a class="breadcrumb" ref="editLinks" href="#" data-key="{{ c.key }}">Edit</a>
+          </div>
         </div>
-      {% } else if (c.type != "components") { %}
+      {% } else if (c.type != 'components') { %}
         <div class="col">
-        <div class="field">{{ctx.t(c.label)}} {% if (c.component.validate.required) { %}<span class="req">*</span>{% } %}</div>
-        <div class="value">
-          {% if (typeof c.getValue() == "object") { %}
-            {% for (const k in c.getValue()) { %}
-              {% if (c.getValue()[k]) { %} 
-                <span class="array">{{k}}</span> 
+          <div class="field{% if (c.component.validate.required) { %} field-required{% } %}">
+            {{ ctx.t(c.label) }}
+          </div>
+          <div class="value">
+            {% const value = c.getValue() %}
+            {% if (value && typeof value === 'object') { %}
+              {% for (const [key, val] in Object.entries(value)) { %}
+                {% if (val) { %}
+                  <span class="array">{{ k }}</span>
+                {% } %}
               {% } %}
+            {% } else { %}
+              {{ value }}
             {% } %}
-          {% } else { %}
-            {{c.getValue()}}
-          {% } %}
-        </div>
+          </div>
         </div>
       {% } %}
     {% } %}
