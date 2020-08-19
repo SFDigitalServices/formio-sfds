@@ -72,7 +72,6 @@ function main () {
     const dataField = node.querySelector('[name=data]')
 
     const options = mergeObjects({}, defaultOptions, example.options)
-    console.warn('options:', options)
     const element = node.querySelector('form')
     return Formio.createForm(element, form, options)
       .then(formio => {
