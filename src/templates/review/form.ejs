@@ -3,15 +3,9 @@
     {% for (const [index, c] of Object.entries(ctx.components)) { %}
       {% if (c.component.type === 'panel' && c.component.title && !c.component.hideLabel) { %}
         <tr>
-          {% const borderClass = index > 0 ? ' border-top-1 border-grey-3' : '' %}
-          <th colspan="2" class="px-0 py-1 border-0{{ borderClass }}">
+          <th colspan="3" class="px-0 py-1 border-0{% if (index > 0) { %} border-top-1 border-grey-3{% } %}">
             <h3>{{ ctx.t(c.component.title) }}</h3>
           </th>
-          <td class="p-1 pr-0 border-0 align-right{{ borderClass }}">
-            <button type="button" class="btn btn-link font-inherit" ref="setPage" data-key="{{ c.key }}">
-              {{ ctx.t('View', { context: 'review' }) }}
-            </button>
-          </td>
         </tr>
       {% } else if (c.component.type !== 'panel') { %}
         <tr>
