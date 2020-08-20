@@ -10,7 +10,7 @@ const outDir = join(__dirname, '../dist')
 
 const data = require('../templates/data')
 const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
-data.examples = examples
+data.examples = examples.sort((a, b) => a.title.localeCompare(b.title))
 
 const env = nunjucks.configure(join(__dirname, '../templates'))
 
