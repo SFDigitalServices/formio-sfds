@@ -41,20 +41,22 @@
                   </h2>
 
                   <div class="d-flex flex-items-start">
-                    <sfgov-form
-                      id="form-{{ ex.id }}"
-                      class="col-4 flex-auto mr-2"
-                      data-form="{{ ex.form | dump }}"
-                      data-options="{{ ex.options | dump }}">
-                    </sfgov-form>
+                    <div class="col-4">
+                      <sfgov-form
+                        id="form-{{ ex.id }}"
+                        style="width: 100%;"
+                        data-form="{{ ex.form | dump }}"
+                        data-options="{{ ex.options | dump }}">
+                      </sfgov-form>
+                    </div>
 
-                    <div>
+                    <div class="pl-2">
                       <label class="fg-grey-4">
                         Submission data:
                       </label>
 
                       <sfgov-form-data data-form-id="form-{{ ex.id }}">
-                        <textarea
+                        <textarea rows="4"
                           class="border-grey-4"
                           style="width: 100%; resize: vertical;">
                         </textarea>
