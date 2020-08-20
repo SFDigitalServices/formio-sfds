@@ -167,6 +167,7 @@
         title: Review your submission
         components:
           - type: review
+            label: ''
         
 - id: day-default
   title: Day (default)
