@@ -13,17 +13,17 @@
           <a href="/">Examples</a> /
           {{ example.title }}
         </h1>
-        <div id="formio"
-             data-form="{{ example.form | dump }}"
-             data-options="{{ example.options | dump }}">
-        </div>
+        <sfgov-form
+           data-form="{{ example.form | dump }}"
+           data-options="{{ example.options | dump }}">
+        </sfgov-form>
       </div>
     </div>
   </div>
 
   <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.js"></script>
   <script src="/dist/formio-sfds.standalone.js"></script>
-  <script src="/dist/examples/example.js"></script>
+  <script src="/dist/examples.js"></script>
 </body>
 
 </html>
