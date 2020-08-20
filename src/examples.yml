@@ -140,7 +140,7 @@
             tag: h3
             content: Hello, world!
       - type: panel
-        title: Data
+        title: Basics
         components:
           - type: textfield
             key: name
@@ -152,6 +152,17 @@
             key: age
             label: Age
             defaultValue: 50
+      - type: panel
+        title: More
+        components:
+          - type: address
+            key: address
+            label: Your address
+            defaultValue:
+              line1: 123 Main St
+              city: San Francisco
+              state: CA
+              zip: 94110
       - type: panel
         title: Review
         components:
