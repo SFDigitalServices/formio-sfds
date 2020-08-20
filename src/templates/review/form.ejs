@@ -1,34 +1,53 @@
-<div class="review">
+<table class="m-0" style="width: 100%;">
   {% if (ctx.components.length) { %}
-    {% for (const c of ctx.components) { %}
-      {% if (c.type === 'components' && !c.component.hideLabel) { %}
-        <div class="col header">
-          <div class="title">{{ c.component.title }}</div>
-          <div class="edit">
-            <a class="breadcrumb" ref="editLinks" href="#" data-key="{{ c.key }}">Edit</a>
-          </div>
-        </div>
-      {% } else if (c.type != 'components') { %}
-        <div class="col">
-          <div class="field{% if (c.component.validate.required) { %} field-required{% } %}">
-            {{ ctx.t(c.label) }}
-          </div>
-          <div class="value">
+    {% for (const [index, c] of Object.entries(ctx.components)) { %}
+      {% if (c.component.type === 'panel' && c.component.title && !c.component.hideLabel) { %}
+        <tr>
+          {% const borderClass = index > 0 ? ' border-top-1 border-grey-3' : '' %}
+          <th colspan="2" class="px-0 py-1 border-0{{ borderClass }}">
+            <h3>{{ ctx.t(c.component.title) }}</h3>
+          </th>
+          <td class="p-1 pr-0 border-0 align-right{{ borderClass }}">
+            <button type="button" class="btn btn-link font-inherit" ref="setPage" data-key="{{ c.key }}">
+              {{ ctx.t('View', { context: 'review' }) }}
+            </button>
+          </td>
+        </tr>
+      {% } else if (c.component.type !== 'panel') { %}
+        <tr>
+          <th class="px-0 py-1 border-0 align-left">
+            {% const required = c.component.validate && c.component.validate.required %}
+            <div class="fg-light-slate small{% if (required) { %} field-required{% } %}">
+              {{ ctx.t(c.label) }}
+            </div>
+          </th>
+          <td class="px-2 py-1 border-0 align-left">
             {% const value = c.getValue() %}
             {% if (value && typeof value === 'object') { %}
-              {% for (const [key, val] in Object.entries(value)) { %}
-                {% if (val) { %}
-                  <span class="array">{{ k }}</span>
+              <ul>
+                {% for (const [key, val] in Object.entries(value)) { %}
+                  {% if (val) { %}
+                    <li>{{ k }}</li>
+                  {% } %}
                 {% } %}
-              {% } %}
+              </ul>
+            {% } else if (value) { %}
+              <span class="fg-slate">{{ value }}</span>
             {% } else { %}
-              {{ value }}
+              <span class="fg-light-slate small">No value</span>
             {% } %}
-          </div>
-        </div>
+          </td>
+          <td class="p-1 pr-0 border-0 align-right">
+            <button type="button" class="btn btn-link font-inherit" ref="focusInput" data-key="{{ c.key }}">
+              {{ ctx.t('Edit', { context: 'review' }) }}
+            </button>
+          </td>
+        </tr>
       {% } %}
     {% } %}
   {% } else { %}
-    <div class="nodata">No Data</div>
+    <tr>
+      <td>{{ ctx.t('No data found') }}</td>
+    </tr>
   {% } %}
-</div>
+</table>

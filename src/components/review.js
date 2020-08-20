@@ -3,8 +3,10 @@ const { field: Field } = window.Formio.Components.components
 
 const skipComponentTypes = [
   'content',
+  'columns',
+  'container',
+  'fieldset',
   'htmlelement',
-  'panel',
   'review'
 ]
 
@@ -58,7 +60,8 @@ export default class Review extends Field {
   }
 
   isDisplayableComponent (component) {
-    return !skipComponentTypes.includes(component.type)
+    return !skipComponentTypes.includes(component.type) &&
+      !skipComponentTypes.includes(component.component.type)
   }
 
   isIntroPage (component) {
@@ -97,12 +100,22 @@ export default class Review extends Field {
 
   attach (element) {
     this.loadRefs(element, {
-      editLinks: 'multiple'
+      setPage: 'multiple',
+      focusInput: 'multiple'
     })
 
-    this.refs.editLinks.forEach(input => {
-      this.addEventListener(input, 'click', () => {
-        this.root.focusOnComponent(input.getAttribute('data-key'))
+    this.refs.setPage.forEach(button => {
+      this.addEventListener(button, 'click', () => {
+        const key = button.getAttribute('data-key')
+        const index = this.root.getPageIndexByKey(key)
+        this.root.setPage(index)
+      }, { once: true })
+    })
+
+    this.refs.focusInput.forEach(button => {
+      this.addEventListener(button, 'click', () => {
+        const key = button.getAttribute('data-key')
+        this.root.focusOnComponent(key)
       }, { once: true })
     })
 
