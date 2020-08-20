@@ -18,7 +18,7 @@
     "watch": "npm run build-css && run-p watch-css watch-js watch-templates",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
-    "watch-templates": "watchy -w 'templates/*' -- npm run build-templates"
+    "watch-templates": "watchy -w 'templates/*' -w src/examples.yml -- npm run build-templates"
   },
   "browserslist": [
     "> 1%",
@@ -60,6 +60,7 @@
     "i18next": "^19.4.5",
     "jest": "^26.1.0",
     "js-yaml": "^3.14.0",
+    "mkdirp": "^1.0.4",
     "node-fetch": "^2.6.0",
     "npm-run-all": "^4.1.5",
     "nunjucks": "^3.2.1",
