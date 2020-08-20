@@ -134,13 +134,13 @@
     display: wizard
     components:
       - type: panel
-        title: Intro
+        title: Intro page
         components:
           - type: htmlelement
             tag: h3
             content: Hello, world!
       - type: panel
-        title: Basics
+        title: Basics page
         components:
           - type: textfield
             key: name
@@ -153,7 +153,7 @@
             label: Age
             defaultValue: 50
       - type: panel
-        title: More
+        title: More data
         components:
           - type: address
             key: address
@@ -164,10 +164,9 @@
               state: CA
               zip: 94110
       - type: panel
-        title: Review
+        title: Review your submission
         components:
           - type: review
-            label: Review your submission
         
 - id: day-default
   title: Day (default)
