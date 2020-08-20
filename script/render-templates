@@ -6,9 +6,11 @@ const yaml = require('js-yaml')
 const { basename, join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 
+const outDir = join(__dirname, '../dist')
+
 const data = require('../templates/data')
 const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
-const outDir = join(__dirname, '../dist')
+data.examples = examples
 
 const env = nunjucks.configure(join(__dirname, '../templates'))
 
