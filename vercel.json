@@ -9,6 +9,10 @@
       "destination": "/dist/:view.html"
     },
     {
+      "source": "/examples/:id",
+      "destination": "/dist/examples/:id.html"
+    },
+    {
       "source": "/:view",
       "destination": "/dist/:view.html"
     }
