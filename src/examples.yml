@@ -126,6 +126,49 @@
         description: This is the description
         tooltip: And this is the tooltip
 
+- id: review
+  title: Review (custom component)
+  options:
+    scroll: false
+  form:
+    display: wizard
+    components:
+      - type: panel
+        title: Intro page
+        components:
+          - type: htmlelement
+            tag: h3
+            content: Hello, world!
+      - type: panel
+        title: Basics page
+        components:
+          - type: textfield
+            key: name
+            label: Your name
+            defaultValue: Judge
+            validate:
+              required: true
+          - type: number
+            key: age
+            label: Age
+            defaultValue: 50
+      - type: panel
+        title: More data
+        components:
+          - type: address
+            key: address
+            label: Your address
+            defaultValue:
+              line1: 123 Main St
+              city: San Francisco
+              state: CA
+              zip: 94110
+      - type: panel
+        title: Review your submission
+        components:
+          - type: review
+            label: ''
+        
 - id: day-default
   title: Day (default)
   form:
