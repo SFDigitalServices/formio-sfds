@@ -22,6 +22,15 @@ export default class Review extends Field {
     }, ...extend)
   }
 
+  static get builderInfo () {
+    return {
+      title: 'Review submission',
+      icon: 'list-ul',
+      group: 'sfgov',
+      schema: Review.schema()
+    }
+  }
+
   get defaultSchema () {
     return Review.schema()
   }
