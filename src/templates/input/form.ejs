@@ -1,11 +1,15 @@
-{% if (ctx.component.prefix || ctx.component.suffix) { %}
+{%
+  let prefix = ctx.prefix
+  let suffix = ctx.suffix
+%}
+{% if (prefix || suffix) { %}
   <div class="input-group">
 {% } %}
 
-{% if (ctx.component.prefix) { %}
+{% if (prefix) { %}
   <div class="input-group-prepend" ref="prefix">
     <span class="input-group-text">
-      {{ ctx.t([`${ctx.component.key}_prefix`, ctx.component.prefix]) }}
+      {{ ctx.t([`${ctx.component.key}_prefix`, prefix]) }}
     </span>
   </div>
 {% } %}
@@ -28,14 +32,14 @@
   <span class="text-muted pull-right" ref="wordcount"></span>
 {% } %}
 
-{% if (ctx.component.suffix) { %}
+{% if (suffix) { %}
   <div class="input-group-append" ref="suffix">
     <span class="input-group-text">
-      {{ ctx.t([`${ctx.component.key}_suffix`, ctx.component.suffix]) }}
+      {{ ctx.t([`${ctx.component.key}_suffix`, suffix]) }}
     </span>
   </div>
 {% } %}
 
-{% if (ctx.component.prefix || ctx.component.suffix) { %}
+{% if (prefix || suffix) { %}
   </div>
 {% } %}
