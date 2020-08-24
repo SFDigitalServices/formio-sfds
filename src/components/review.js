@@ -50,12 +50,12 @@ export default class Review extends Field {
     })
 
     const first = components[0]
-    if (this.isIntroPage(first)) {
+    if (first && this.isIntroPage(first)) {
       components.shift()
     }
 
     const last = components[components.length - 1]
-    if (this.isReviewPage(last)) {
+    if (last && this.isReviewPage(last)) {
       components.pop()
     }
 
@@ -76,7 +76,7 @@ export default class Review extends Field {
   isIntroPage (component) {
     return component.component.type === 'panel' &&
       this.everyComponentSatisfies(component.components, c => {
-        return !this.isDisplayableComponent(c.component)
+        return !this.isDisplayableComponent(c)
       })
   }
 
