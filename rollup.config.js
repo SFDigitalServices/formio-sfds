@@ -70,7 +70,8 @@ export default [
     plugins: commonPlugins,
     output: {
       format: 'umd',
-      file: 'dist/examples/example.js'
+      file: 'dist/examples/example.js',
+      sourcemap: true
     }
   },
   {
@@ -81,7 +82,8 @@ export default [
     ],
     output: {
       format: 'umd',
-      file: 'dist/examples.js'
+      file: 'dist/examples.js',
+      sourcemap: true
     }
   },
   {
@@ -92,7 +94,8 @@ export default [
     ],
     output: {
       format: 'umd',
-      file: 'dist/portal.js'
+      file: 'dist/portal.js',
+      sourcemap: true
     }
   }
 ]
