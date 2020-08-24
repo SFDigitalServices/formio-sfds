@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>form.io Portal test</title>
+    <title>formio-sfds | form.io Portal test</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@latest/dist/css/bootstrap.min.css">
@@ -20,9 +20,9 @@
 
         const root = document.getElementById('builder')
         const params = new URLSearchParams(window.location.search)
-        const dataSource = params.get('res') || 'https://sfds.form.io/testform'
+        const resource = params.get('res') || {}
 
-        Formio.builder(root, {}, {}).then(builder => {
+        Formio.builder(root, resource, {}).then(builder => {
         })
 
       })()
