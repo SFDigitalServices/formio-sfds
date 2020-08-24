@@ -1,6 +1,8 @@
 {%
   let prefix = ctx.prefix
+  if (prefix instanceof HTMLElement) prefix = prefix.outerHTML
   let suffix = ctx.suffix
+  if (suffix instanceof HTMLElement) suffix = suffix.outerHTML
 %}
 {% if (prefix || suffix) { %}
   <div class="input-group">
