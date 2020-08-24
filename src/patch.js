@@ -214,15 +214,13 @@ function hook (obj, methodName, wrapper) {
 }
 
 function patchDateTimeSuffix () {
-  observe('.formio-component-datetime', {
+  observe('.formio-component-datetime .input-group', {
     add (el) {
-      const group = el.querySelector('.input-group')
-      if (!group) return
-      const text = group.querySelector('.input-group-append')
+      const text = el.querySelector('.input-group-append')
       if (text) {
         text.classList.remove('input-group-append')
         text.classList.add('input-group-prepend')
-        group.insertBefore(text, group.firstChild)
+        el.insertBefore(text, el.firstChild)
       }
     }
   })
