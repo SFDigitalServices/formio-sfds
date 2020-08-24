@@ -226,6 +226,12 @@ function patchDateTimeSuffix () {
   })
 }
 
+/**
+ * This patch can go away as soon as we upgrade to formiojs's (eventual)
+ * release of 4.12.0, which should include this fix:
+ *
+ * <https://github.com/formio/formio.js/pull/3129>
+ */
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
     if (this.options.language) {
