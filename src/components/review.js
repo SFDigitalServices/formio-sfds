@@ -1,7 +1,8 @@
 const { FormioUtils } = window
 const { field: Field } = window.Formio.Components.components
 
-const skipComponentTypes = [
+const ignoreComponentTypes = [
+  'button',
   'content',
   'columns',
   'container',
@@ -69,8 +70,8 @@ export default class Review extends Field {
   }
 
   isDisplayableComponent (component) {
-    return !skipComponentTypes.includes(component.type) &&
-      !skipComponentTypes.includes(component.component.type)
+    return !ignoreComponentTypes.includes(component.type) &&
+      !ignoreComponentTypes.includes(component.component.type)
   }
 
   isIntroPage (component) {
