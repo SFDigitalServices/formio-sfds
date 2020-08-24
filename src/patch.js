@@ -164,8 +164,6 @@ function patch (Formio) {
     })
   })
 
-  patchI18nMultipleKeys(Formio)
-
   patchDateTimeLocale(Formio)
 
   // this goes last so that if it fails it doesn't break everything else
@@ -213,38 +211,6 @@ function hook (obj, methodName, wrapper) {
   obj[methodName] = function (...args) {
     return wrapper.call(this, method.bind(this), args)
   }
-}
-
-function patchI18nMultipleKeys (Formio) {
-  /*
-   * Patch the base Component class's t() method to support multiple key
-   * fallbacks as the first argument. As of 4.10.0-beta.3.1, form.io's
-   * implementation treats the first argument as a string even if it's an Array,
-   * which means that in a template, this call:
-   *
-   * ```js
-   * ctx.t(['some.nonexistent.key', ''])
-   * ```
-   *
-   * Will render the string "some.nonexistent.key,". The trailing comma is from
-   * the array being coerced to a string in the last line here:
-   *
-   * <https://github.com/formio/formio.js/blob/58996eac1207803cb597b4ab7c3abc6636078c72/src/components/_classes/component/Component.js#L707-L708>
-   */
-  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
-    if (Array.isArray(keys)) {
-      const last = keys.length - 1
-      const fallback = (key, index) => {
-        const value = t(key, params)
-        return value === key ? (index === last) ? value : '' : value
-      }
-      return keys.reduce((value, key, index) => {
-        return value || fallback(key, index)
-      }, '')
-    } else {
-      return t(keys, params)
-    }
-  })
 }
 
 function patchDateTimeSuffix () {
