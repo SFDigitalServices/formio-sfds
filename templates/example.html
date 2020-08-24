@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ example.title }} | formio-sfds examples</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/dist/common.css">
+  </head>
+  <body>
+    <div class="formio-sfds">
+      <div class="container p-2">
+        <h1 class="h3 mb-4">
+          <a href="/">formio-sfds@{{ pkg.version }}</a> /
+          {{ example.title }}
+        </h1>
+        <sfgov-form
+           data-form="{{ example.form | dump }}"
+           data-options="{{ example.options | dump }}">
+        </sfgov-form>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.js"></script>
+    <script src="/dist/formio-sfds.standalone.js"></script>
+    <script src="/dist/examples.js"></script>
+  </body>
+
+</html>

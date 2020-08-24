@@ -6,6 +6,8 @@
 .u { text-decoration: underline !important; }
 .no-u { text-decoration: none !important; }
 
+.font-inherit { font: inherit !important; }
+
 @each $name, $value in $font-weights {
   .fw-#{$name} { font-weight: $value !important; }
 }
@@ -13,7 +15,10 @@
 @each $variant, $threshold in $breakpoint-variants {
   @include breakpoint($threshold) {
     @each $align in (left, right, center) {
-      .align#{$variant}-#{$align} { text-align: $align !important; }
+      .align#{$variant}-#{$align} {
+        text-align: $align !important;
+        float: none !important;
+      }
     }
   }
 }

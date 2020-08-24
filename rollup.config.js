@@ -66,6 +66,14 @@ export default [
     }
   },
   {
+    input: 'src/example.js',
+    plugins: commonPlugins,
+    output: {
+      format: 'umd',
+      file: 'dist/examples/example.js'
+    }
+  },
+  {
     input: 'src/examples.js',
     plugins: [
       ...commonPlugins,
