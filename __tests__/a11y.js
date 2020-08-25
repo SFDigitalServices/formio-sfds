@@ -48,4 +48,28 @@ describe('a11y', () => {
       destroyForm(form)
     })
   })
+
+  describe('required attributes', () => {
+    it('adds required="true" to required components', async () => {
+      const form = await createForm({
+        components: [
+          {
+            type: 'textfield',
+            key: 'name',
+            label: 'Name',
+            input: true,
+            validate: {
+              required: true
+            }
+          }
+        ]
+      }, {})
+
+      const input = form.element.querySelector('input')
+      expect(input).not.toBe(null)
+      expect(input.getAttribute('required')).toEqual('true')
+
+      destroyForm(form)
+    })
+  })
 })
