@@ -5,6 +5,13 @@ export default class Blocklot extends Container {
     return Container.schema({
       // these are schema fields that should be overridden
       key: 'blocklot',
+      conditionalLots: (context, test, showDefault = false) => {
+        if (context.data.blocklot.projectAddressDataItems) {
+          const items = JSON.parse(context.data.blocklot.projectAddressDataItems)
+          return test(items)
+        }
+        return showDefault
+      },
       components: [
         {
           label: 'Project Address',
@@ -52,7 +59,89 @@ export default class Blocklot extends Container {
         {
           label: 'Project Address Data',
           persistent: false,
-          customDefaultValue: "console.log('data default');\nvar selectProjectAddress = utils.getComponent(form.components, 'selectProjectAddress');\nvar jsonUrl = selectProjectAddress.data.url.replace('/lookup', '/json')\n//initData();\nsetTimeout(initData, 600);\n\n\n\nfunction getAddressItems(){\n  value.numResults = 0;\n  fetch(jsonUrl + '?'+ new URLSearchParams({\n    $where: \"address = '\"+data.selectProjectAddress+\"' and parcel_number IS NOT NULL\",\n    $limit: 100,\n    $select: \"address,address_number,address_number_suffix,street_name,street_type,unit_number,block,lot,zip_code\"\n}))\n  .then(response => response.json())\n  .then(respData => {\n    if(respData && respData.status == \"success\" && respData.data && respData.data.items && respData.data.items.length > 0){\n        console.log('ok');\n        dataItems = respData.data.items;\n        value.numResults = dataItems.length;\n        processAddressItems(dataItems);\n        \n        //var projectAddressItems = utils.getComponent(form.components, 'projectAddressItems');\n        //console.log(projectAddressItems);\n        \n        \n        //data.projectAddressItems = JSON.stringify(dataItems);\n        //console.log(data.projectAddressItems)\n\n        \n        \n        instance.triggerChange();\n        \n    }else{\n      //showError('NOT_FOUND');\n    }\n    \n  }).catch((error) => {\n   console.log(error);\n  }).finally(() => {\n    //instance.triggerChange();\n  });\n}\n\nfunction processAddressItems(addressItems){\n  setValue('projectAddressDataItems', JSON.stringify(addressItems));\n  console.log('processAddressItems');\n  updateAddressFields(addressItems[0]);\n  setValue('lookupBlockNumber', addressItems[0]['block']);\n  setValue('lookupLotNumber', addressItems[0]['lot']);\n}\n\nfunction updateAddressFields(addressItem){\n  var map = {\n    'address': 'projectAddress',\n    'address_number': 'projectAddressNumber',\n    'address_number_suffix': 'projectAddressNumberSuffix',\n    'street_name': 'projectAddressStreetName',\n    'street_type': 'projectAddressStreetType',\n    'unit_number': 'projectAddressUnitNumber',\n    'block': 'projectAddressBlock',\n    'lot': 'projectAddressLot',\n    'zip_code': 'projectAddressZip'\n  }\n  for(var prop in map){\n    var value = '';\n    if(addressItem.hasOwnProperty(prop)) value = addressItem[prop];\n    setValue(map[prop], value);\n  }\n}\n\nfunction initData(){\n  console.log('init data');\n  if(data.selectProjectAddress != data.projectAddress){\n    updateAddressFields({});\n    if(data.selectProjectAddress){\n      getAddressItems();\n    }else{\n      instance.triggerChange();\n    }\n  }\n}\nfunction setValue(key, value){\n  var comp = utils.getComponent(form.components, key);\n  var el = document.querySelector('#'+comp.id+' input');\n  if(el){\n    el.value = value;\n    data[key] = value;\n  }else{\n    console.log('Cannot setValue of component '+key);\n  }\n}",
+          customDefaultValue: (context) => {
+            var utils = context.utils
+            var form = context.form
+            var selectProjectAddress = utils.getComponent(form.components[0].components, 'selectProjectAddress')
+            var jsonUrl = selectProjectAddress.data.url.replace('/lookup', '/json')
+
+            setTimeout(initData, 600)
+
+            function getAddressItems () {
+              // fetch data based on address
+              window.fetch(jsonUrl + '?' + new URLSearchParams({
+                $where: "address = '" + context.data.blocklot.selectProjectAddress + "' and parcel_number IS NOT NULL",
+                $limit: 100,
+                $select: 'address,address_number,address_number_suffix,street_name,street_type,unit_number,block,lot,zip_code',
+                $order: 'address ASC, lot ASC'
+              }))
+                .then(response => response.json())
+                .then(respData => {
+                  if (respData && respData.status === 'success' && respData.data && respData.data.items && respData.data.items.length > 0) {
+                    var dataItems = respData.data.items
+                    processAddressItems(dataItems)
+
+                    context.instance.triggerChange()
+                  } else {
+                    // showError('NOT_FOUND');
+                  }
+                }).catch((error) => {
+                  console.log(error)
+                })
+            }
+
+            function processAddressItems (addressItems) {
+              // stores address data and pre-populate fields
+              setValue('projectAddressDataItems', JSON.stringify(addressItems))
+              updateAddressFields(addressItems[0])
+              setValue('lookupBlockNumber', addressItems[0].block)
+              setValue('lookupLotNumber', addressItems[0].lot)
+            }
+
+            function updateAddressFields (addressItem) {
+              // update project address fields with address data
+              var map = {
+                address: 'projectAddress',
+                address_number: 'projectAddressNumber',
+                address_number_suffix: 'projectAddressNumberSuffix',
+                street_name: 'projectAddressStreetName',
+                street_type: 'projectAddressStreetType',
+                unit_number: 'projectAddressUnitNumber',
+                block: 'projectAddressBlock',
+                lot: 'projectAddressLot',
+                zip_code: 'projectAddressZip'
+              }
+              for (var prop in map) {
+                var value = ''
+                if (Object.prototype.hasOwnProperty.call(addressItem, prop)) value = addressItem[prop]
+                setValue(map[prop], value)
+              }
+            }
+
+            function initData () {
+              // initialize data if the address has changed
+              var data = context.data.blocklot
+              if (data.selectProjectAddress !== data.projectAddress) {
+                updateAddressFields({})
+                if (data.selectProjectAddress) {
+                  getAddressItems()
+                } else {
+                  context.instance.triggerChange()
+                }
+              }
+            }
+            function setValue (key, value) {
+              // set data value and dom for a specific component
+              var comp = context.utils.getComponent(context.form.components[0].components, key)
+              var el = document.querySelector('#' + comp.id + ' input')
+              if (el) {
+                el.value = value
+                context.data.blocklot[key] = value
+              } else {
+                console.log('Cannot setValue of component ' + key)
+              }
+            }
+          },
           key: 'projectAddressData',
           type: 'hidden',
           input: true,
@@ -62,7 +151,7 @@ export default class Blocklot extends Container {
         {
           label: 'Project Address Data Items',
           persistent: false,
-          customDefaultValue: "function refresh(){\n  console.log('refreshing... '+data.projectAddressDataItems);\n  instance.triggerChange();\n}\n//setInterval(refresh, 3000);",
+          customDefaultValue: '',
           key: 'projectAddressDataItems',
           type: 'hidden',
           input: true,
@@ -95,10 +184,20 @@ export default class Blocklot extends Container {
                   label: 'Lot number',
                   disabled: true,
                   tableView: true,
-                  redrawOn: 'projectAddressDataItems',
-                  calculateValue: "console.log('lot number is updating');",
+                  redrawOn: 'projectAddressData',
+                  customDefaultValue: (context) => {
+                    var data = context.data.blocklot
+                    if (data.projectAddressDataItems) {
+                      var dataItems = JSON.parse(data.projectAddressDataItems)
+                      if (dataItems.length) {
+                        return dataItems[0].lot
+                      }
+                    }
+                  },
                   key: 'lookupLotNumber',
-                  customConditional: 'show = true;\nif(data.projectAddressDataItems){\n  var numLots = JSON.parse(data.projectAddressDataItems).length;\n  if(numLots > 1){\n    show = false;\n  }\n}',
+                  customConditional: (context) => {
+                    return context.form.components[0].conditionalLots(context, lots => lots.length === 1, true)
+                  },
                   type: 'textfield',
                   input: true,
                   hideOnChildrenHidden: false
@@ -129,7 +228,9 @@ export default class Blocklot extends Container {
           refreshOnChange: false,
           tableView: false,
           key: 'htmlBlockLotSingle',
-          customConditional: 'show = false;\nif(data.projectAddressDataItems){\n  var numLots = JSON.parse(data.projectAddressDataItems).length;\n  if(numLots < 2){\n    show = true;\n  }\n}',
+          customConditional: (context) => {
+            return context.form.components[0].conditionalLots(context, lots => lots.length < 2)
+          },
           type: 'htmlelement',
           input: false
         },
@@ -146,7 +247,9 @@ export default class Blocklot extends Container {
           refreshOnChange: false,
           tableView: false,
           key: 'html1',
-          customConditional: 'show = false;\nif(data.projectAddressDataItems){\n  var numLots = JSON.parse(data.projectAddressDataItems).length;\n  if(numLots > 1){\n    show = true;\n  }\n}',
+          customConditional: (context) => {
+            return context.form.components[0].conditionalLots(context, lots => lots.length > 1)
+          },
           type: 'htmlelement',
           input: false
         },
@@ -164,9 +267,30 @@ export default class Blocklot extends Container {
             }
           ],
           dataType: 'string',
-          customDefaultValue: "if(data.projectAddressDataItems){\n  dataItems = JSON.parse(data.projectAddressDataItems);\n  lotValues = _.map(dataItems, function(x){\n          return {\"label\":x.lot, \"value\":x.lot}\n        });\n  lotValues = _.sortBy(lotValues, [function(o){ return o.label; }, 'label'])\n  instance.component.values = lotValues;\n  value = lotValues[0][\"value\"];\n  instance.triggerRedraw();\n  console.log(instance);\n  console.log(lotValues);\n}",
+          customDefaultValue: (context) => {
+            var data = context.data.blocklot
+            var _ = context._
+            if (data.projectAddressDataItems) {
+              var dataItems = JSON.parse(data.projectAddressDataItems)
+              var lotValues = _.map(dataItems, function (x) {
+                return { label: x.lot, value: x.lot }
+              })
+              lotValues = _.sortBy(lotValues, [function (o) { return o.label }, 'label'])
+              context.instance.component.values = lotValues
+
+              if (!context.data.blocklot.chooseLotNumber || _.indexOf(lotValues.map(x => x.value), context.data.blocklot.chooseLotNumber) < 0) {
+                // setting default value
+                var lotValue = lotValues[0].value
+                context.value = lotValue
+                context.data.blocklot.chooseLotNumber = lotValue
+              }
+              context.instance.triggerRedraw()
+            }
+          },
           key: 'chooseLotNumber',
-          customConditional: 'show = false;\nif(data.projectAddressDataItems){\n  var numLots = JSON.parse(data.projectAddressDataItems).length;\n  if(numLots > 1){\n    show = true;\n  }\n}',
+          customConditional: (context) => {
+            return context.form.components[0].conditionalLots(context, lots => lots.length > 1)
+          },
           type: 'radio',
           input: true
         },
@@ -179,11 +303,13 @@ export default class Blocklot extends Container {
               value: ''
             }
           ],
-          content: '<p>If you do not know the lot number of your project, look it up in <a href="https://sfplanninggis.org/pim/" target="_blank">our property information map</a>.</p>\n<p>If your project has more than 1 block or lot, tell your permit tech after we email you.</p>',
+          content: '<p>If you do not know the lot number of your project, look it up in <a href="https://sfplanninggis.org/pim/" target="_blank">our property information map</a>.</p> <p>If your project has more than 1 block or lot, tell your permit tech after we email you.</p>',
           refreshOnChange: false,
           tableView: false,
           key: 'htmlBlockLotMulti',
-          customConditional: 'show = false;\nif(data.projectAddressDataItems){\n  var numLots = JSON.parse(data.projectAddressDataItems).length;\n  if(numLots > 1){\n    show = true;\n  }\n}',
+          customConditional: (context) => {
+            return context.form.components[0].conditionalLots(context, lots => lots.length > 1)
+          },
           type: 'htmlelement',
           input: false
         },
@@ -201,6 +327,94 @@ export default class Blocklot extends Container {
           key: 'html',
           type: 'htmlelement',
           input: false
+        },
+        {
+          legend: 'Project Address Data Fields (Hidden fields)',
+          tableView: false,
+          key: 'fieldsetProjectAddress',
+          type: 'fieldset',
+          label: '',
+          input: false,
+          components: [
+            {
+              label: 'Project Address',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddress',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Number',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressNumber',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Number Suffix',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressNumberSuffix',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Street Name',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressStreetName',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Street Type',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressStreetType',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Unit Number',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressUnitNumber',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Block',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressBlock',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Lot',
+              disabled: true,
+              tableView: true,
+              redrawOn: 'chooseLotNumber',
+              calculateValue: (context) => {
+                var data = context.data.blocklot
+                var lotValue = data.chooseLotNumber ? data.chooseLotNumber : data.lookupLotNumber
+                return lotValue
+              },
+              key: 'projectAddressLot',
+              type: 'textfield',
+              input: true
+            },
+            {
+              label: 'Project Address Zip',
+              disabled: true,
+              tableView: true,
+              key: 'projectAddressZip',
+              type: 'textfield',
+              input: true
+            }
+          ]
         }
       ]
     }, ...extend)

@@ -234,7 +234,7 @@
         enableDate: false
 
 - id: blocklot
-  title: Block Lot
+  title: Block Lot (custom component)
   form:
     components:
       - type: blocklot
