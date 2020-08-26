@@ -14,6 +14,21 @@ const PATCHED = `sfds-patch-${Date.now()}`
 const { NODE_ENV } = process.env
 const debugDefault = NODE_ENV !== 'test'
 
+const defaultEvalContext = {
+  inputId () {
+    const parts = [
+      'input',
+      this.component.row,
+      this.id || this.input?.attr?.name
+    ].filter(Boolean)
+    return parts.join('-')
+  },
+
+  requiredAttributes () {
+    return this.component?.validate?.required ? 'required' : ''
+  }
+}
+
 let util
 const forms = []
 
@@ -76,6 +91,8 @@ function patch (Formio) {
     if (opts.on instanceof Object) {
       eventHandlers = buildHooks(opts.on)
     }
+
+    opts.evalContext = Object.assign({}, defaultEvalContext, opts.evalContext)
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
     return createForm(el, ...rest).then(form => {
