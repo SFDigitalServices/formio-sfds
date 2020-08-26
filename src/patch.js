@@ -15,6 +15,15 @@ const { NODE_ENV } = process.env
 const debugDefault = NODE_ENV !== 'test'
 
 const defaultEvalContext = {
+  inputId () {
+    const parts = [
+      'input',
+      this.component.row,
+      this.id || this.input?.attr?.name
+    ].filter(Boolean)
+    return parts.join('-')
+  },
+
   requiredAttributes () {
     return this.component?.validate?.required ? 'required' : ''
   }
