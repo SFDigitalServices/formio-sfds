@@ -14,6 +14,12 @@ const PATCHED = `sfds-patch-${Date.now()}`
 const { NODE_ENV } = process.env
 const debugDefault = NODE_ENV !== 'test'
 
+const defaultEvalContext = {
+  requiredAttributes () {
+    return this.component?.validate?.required ? 'required' : ''
+  }
+}
+
 let util
 const forms = []
 
@@ -76,6 +82,8 @@ function patch (Formio) {
     if (opts.on instanceof Object) {
       eventHandlers = buildHooks(opts.on)
     }
+
+    opts.evalContext = Object.assign({}, defaultEvalContext, opts.evalContext)
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
     return createForm(el, ...rest).then(form => {
@@ -165,7 +173,6 @@ function patch (Formio) {
   })
 
   patchDateTimeLocale(Formio)
-  patchRequiredAttribute(Formio)
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
@@ -223,22 +230,6 @@ function patchDateTimeSuffix () {
         text.classList.add('input-group-prepend')
         el.insertBefore(text, el.firstChild)
       }
-    }
-  })
-}
-
-function patchRequiredAttribute (Formio) {
-  const Input = Formio.Components.components.input
-  const descriptor = Object.getOwnPropertyDescriptor(Input.prototype, 'inputInfo')
-  const getInputInfo = descriptor.get
-
-  Object.defineProperty(Input.prototype, 'inputInfo', {
-    get: function () {
-      const info = getInputInfo.call(this)
-      if (this.component.validate && this.component.validate.required) {
-        info.attr.required = 'true'
-      }
-      return info
     }
   })
 }
