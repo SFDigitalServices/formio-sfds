@@ -56,13 +56,15 @@
                     </div>
 
                     <div class="pl-2">
-                      <label class="fg-grey-4">
+                      <label class="fg-grey-4" for="json-{{ ex.id }}">
                         Submission data:
                       </label>
 
                       <sfgov-form-data data-form-id="form-{{ ex.id }}">
-                        <textarea rows="4"
+                        <textarea
+                          id="json-{{ ex.id }}"
                           class="border-grey-4"
+                          rows="3"
                           style="width: 100%; resize: vertical;">
                         </textarea>
                       </sfgov-form-data>
