@@ -41,9 +41,15 @@ export default Formio => {
   util = FormioUtils
 
   patch(Formio)
-  patchDateTimeSuffix()
-
   Formio[PATCHED] = true
+
+  patchDateTimeSuffix()
+  patchDayLabels()
+  patchDateTimeLabels()
+  patchDateTimeLocale(Formio)
+
+  // this goes last so that if it fails it doesn't break everything else
+  patchLanguageObserver()
 }
 
 // Prevent users from navigating away and losing their entries.
@@ -180,11 +186,6 @@ function patch (Formio) {
       return form
     })
   })
-
-  patchDateTimeLocale(Formio)
-
-  // this goes last so that if it fails it doesn't break everything else
-  patchLanguageObserver()
 }
 
 function patchSelectMode (model) {
@@ -239,6 +240,37 @@ function patchDateTimeSuffix () {
         text.classList.add('input-group-prepend')
         el.insertBefore(text, el.firstChild)
       }
+    }
+  })
+}
+
+function patchDayLabels () {
+  observe('.formio-component-day[id]', {
+    add (el) {
+      const { id } = el
+      const prefix = `input-${id}`
+      const inputs = el.querySelectorAll(`[id="${prefix}"]`)
+      const labels = el.querySelectorAll(`label:not([for="${prefix}"])`)
+
+      for (const [index, input] of Object.entries(inputs)) {
+        const ref = input.getAttribute('ref')
+        input.id = `${prefix}-${ref}`
+        const label = labels[index]
+        label.setAttribute('for', input.id)
+      }
+    }
+  })
+}
+
+function patchDateTimeLabels () {
+  observe('.formio-component-datetime[id]', {
+    add (el) {
+      const { id } = el
+      const labelId = `label-${id}`
+      const label = el.querySelector(`label[for="input-${id}"]`)
+      const input = el.querySelector('input.form-control[type=text]')
+      label.setAttribute('id', labelId)
+      input.setAttribute('aria-labelledby', labelId)
     }
   })
 }
