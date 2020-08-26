@@ -164,8 +164,6 @@ function patch (Formio) {
     })
   })
 
-  patchI18nMultipleKeys(Formio)
-
   patchDateTimeLocale(Formio)
 
   // this goes last so that if it fails it doesn't break everything else
@@ -215,53 +213,25 @@ function hook (obj, methodName, wrapper) {
   }
 }
 
-function patchI18nMultipleKeys (Formio) {
-  /*
-   * Patch the base Component class's t() method to support multiple key
-   * fallbacks as the first argument. As of 4.10.0-beta.3.1, form.io's
-   * implementation treats the first argument as a string even if it's an Array,
-   * which means that in a template, this call:
-   *
-   * ```js
-   * ctx.t(['some.nonexistent.key', ''])
-   * ```
-   *
-   * Will render the string "some.nonexistent.key,". The trailing comma is from
-   * the array being coerced to a string in the last line here:
-   *
-   * <https://github.com/formio/formio.js/blob/58996eac1207803cb597b4ab7c3abc6636078c72/src/components/_classes/component/Component.js#L707-L708>
-   */
-  hook(Formio.Components._components.component.prototype, 't', function (t, [keys, params]) {
-    if (Array.isArray(keys)) {
-      const last = keys.length - 1
-      const fallback = (key, index) => {
-        const value = t(key, params)
-        return value === key ? (index === last) ? value : '' : value
-      }
-      return keys.reduce((value, key, index) => {
-        return value || fallback(key, index)
-      }, '')
-    } else {
-      return t(keys, params)
-    }
-  })
-}
-
 function patchDateTimeSuffix () {
-  observe('.formio-component-datetime', {
+  observe('.formio-component-datetime .input-group', {
     add (el) {
-      const group = el.querySelector('.input-group')
-      if (!group) return
-      const text = group.querySelector('.input-group-append')
+      const text = el.querySelector('.input-group-append')
       if (text) {
         text.classList.remove('input-group-append')
         text.classList.add('input-group-prepend')
-        group.insertBefore(text, group.firstChild)
+        el.insertBefore(text, el.firstChild)
       }
     }
   })
 }
 
+/**
+ * This patch can go away as soon as we upgrade to formiojs's (eventual)
+ * release of 4.12.0, which should include this fix:
+ *
+ * <https://github.com/formio/formio.js/pull/3129>
+ */
 function patchDateTimeLocale (Formio) {
   hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
     if (this.options.language) {

@@ -74,6 +74,13 @@ describe('patch()', () => {
   })
 
   describe('localization', () => {
+    describe('i18next.t() fallback support', () => {
+      it('works with multiple fallback keys in an array', async () => {
+        const form = await createForm()
+        expect(form.t(['bleep.bloop', 'blurp'])).toEqual('blurp')
+      })
+    })
+
     describe('"language" option', () => {
       it('defaults to "en" if none is provided', async () => {
         const form = await createForm()
