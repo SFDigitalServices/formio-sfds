@@ -252,3 +252,9 @@
         label: This is the label
         description: This is the description
         enableDate: false
+
+- id: blocklot
+  title: Block Lot (custom component)
+  form:
+    components:
+      - type: blocklot
