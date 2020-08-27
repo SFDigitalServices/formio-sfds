@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/github": "^4.0.0",
+    "node-fetch": "^2.6.0"
+  }
+}
