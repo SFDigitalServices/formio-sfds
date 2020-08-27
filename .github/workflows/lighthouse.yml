@@ -4,7 +4,12 @@ on: [push]
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_ENV: Preview
     steps:
+      - if: git.ref == 'refs/heads/main'
+        run: echo '::set-env name=DEPLOY_ENV::Production'
+
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -14,8 +19,8 @@ jobs:
         id: wait-for-deployment
         uses: ./.github/actions/wait-for-deployment
         with:
-          token: ${{ github.token }}
-          environment: Preview
+          github-token: ${{ github.token }}
+          environment: ${{ env.DEPLOY_ENV }}
 
       - run: |
           npx lighthouse \
