@@ -23,6 +23,9 @@ async function waitForDeployment (options) {
     environment
   } = options
 
+  core.info(`Context: ${JSON.stringify(github.context, null, 2)}`)
+  return core.setFailed('HI')
+
   const { head: sha } = github.context.payload
   const octokit = github.getOctokit(token)
   const start = Date.now()
