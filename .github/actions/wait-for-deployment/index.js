@@ -2,7 +2,8 @@ const core = require('@actions/core')
 const github = require('@actions/github')
 
 const options = {
-  token: core.getInput('github-token')
+  token: core.getInput('github-token'),
+  environment: core.getInput('environment')
 }
 
 waitForDeployment(options)
@@ -22,13 +23,13 @@ async function waitForDeployment (options) {
     environment
   } = options
 
-  const { sha } = github.context.payload
+  const { head: sha } = github.context.payload
   const octokit = github.getOctokit(token)
   const start = Date.now()
 
   const params = {
     ...github.context.repo,
-    // environment,
+    environment,
     sha
   }
 
@@ -36,32 +37,29 @@ async function waitForDeployment (options) {
 
   while (true) {
     const { data: deployments } = await octokit.repos.listDeployments(params)
-    core.debug('Found %d deployments...', deployments.length)
+    core.debug(`Found ${deployments.length} deployments...`)
 
     for (const deployment of deployments) {
-      core.debug('Getting statuses for deployment %s...', deployment.id)
+      core.debug(`\tgetting statuses for deployment ${deployment.id}...`)
 
       const { data: statuses } = await octokit.request('GET /repos/:owner/:repo/deployments/:deployment/statuses', {
         ...github.context.repo,
         deployment: deployment.id
       })
 
-      core.debug('\tfound %d statuses...', statuses.length)
+      core.debug(`\tfound ${statuses.length} statuses`)
 
       const [success] = statuses
         .filter(status => status.state === 'success')
       if (success) {
-        core.debug('\tSuccess!', JSON.stringify(success, null, 2))
+        core.debug(`\tsuccess! ${JSON.stringify(success, null, 2)}`)
         return {
           deployment,
           status: success,
           url: success.target_url
         }
       } else {
-        core.debug(
-          'No statuses with state === "success":',
-          statuses.map(status => status.state)
-        )
+        core.debug(`No statuses with state === "success": "${statuses.map(status => status.state).join('", "')}"`)
       }
 
       await sleep(delay)
