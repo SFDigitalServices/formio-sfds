@@ -12,11 +12,9 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install wait-for-deployment dependencies
-        run: |
+      - run: |
           cd .github/actions/wait-for-deployment
           npm ci
-
       - name: Wait for deployment
         id: wait-for-deployment
         uses: ./.github/actions/wait-for-deployment
@@ -24,11 +22,9 @@ jobs:
           github-token: ${{ github.token }}
           environment: ${{ env.DEPLOY_ENV }}
 
-      - run: echo "Deployment url: ${{ steps.wait-for-deployment.outputs.url }}"
-
       - uses: jakejarvis/lighthouse-action@v0.3.2
         with:
-          url: ${{ steps.wait-for-deployment.outputs.url }}
+          url: "${{ steps.wait-for-deployment.outputs.url }}"
 
       - uses: actions/upload-artifact@v2
         with:
