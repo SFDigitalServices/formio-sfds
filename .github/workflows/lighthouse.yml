@@ -7,9 +7,6 @@ jobs:
     env:
       DEPLOY_ENV: Preview
     steps:
-      - if: git.ref == 'refs/heads/main'
-        run: echo '::set-env name=DEPLOY_ENV::Production'
-
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
