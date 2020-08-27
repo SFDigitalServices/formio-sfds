@@ -23,10 +23,7 @@ async function waitForDeployment (options) {
     environment
   } = options
 
-  core.info(`Context: ${JSON.stringify(github.context, null, 2)}`)
-  return core.setFailed('HI')
-
-  const { head: sha } = github.context.payload
+  const { sha } = github.context
   const octokit = github.getOctokit(token)
   const start = Date.now()
 
@@ -37,6 +34,7 @@ async function waitForDeployment (options) {
   }
 
   core.info('Deployment params:', params)
+  throw new Error('DERP')
 
   while (true) {
     const { data: deployments } = await octokit.repos.listDeployments(params)
