@@ -8,7 +8,7 @@ jobs:
       DEPLOY_ENV: Preview
     steps:
       - id: deployment
-        uses: SFDigitalServices/wait-for-deployment-action@main
+        uses: SFDigitalServices/wait-for-deployment-action@v1
         with:
           github-token: ${{ github.token }}
           environment: ${{ env.DEPLOY_ENV }}
