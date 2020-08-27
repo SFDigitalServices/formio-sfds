@@ -32,33 +32,33 @@ async function waitForDeployment (options) {
     sha
   }
 
-  console.info('Deployment params:', params)
+  core.debug('Deployment params:', params)
 
   while (true) {
     const { data: deployments } = await octokit.repos.listDeployments(params)
-    console.info('Found %d deployments...', deployments.length)
+    core.debug('Found %d deployments...', deployments.length)
 
     for (const deployment of deployments) {
-      console.info('Getting statuses for deployment %s...', deployment.id)
+      core.debug('Getting statuses for deployment %s...', deployment.id)
 
       const { data: statuses } = await octokit.request('GET /repos/:owner/:repo/deployments/:deployment/statuses', {
         ...github.context.repo,
         deployment: deployment.id
       })
 
-      console.info('\tfound %d statuses...', statuses.length)
+      core.debug('\tfound %d statuses...', statuses.length)
 
       const [success] = statuses
         .filter(status => status.state === 'success')
       if (success) {
-        console.info('\tSuccess!', JSON.stringify(success, null, 2))
+        core.debug('\tSuccess!', JSON.stringify(success, null, 2))
         return {
           deployment,
           status: success,
           url: success.target_url
         }
       } else {
-        console.info(
+        core.debug(
           'No statuses with state === "success":',
           statuses.map(status => status.state)
         )
