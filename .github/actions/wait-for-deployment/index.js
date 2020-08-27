@@ -33,33 +33,33 @@ async function waitForDeployment (options) {
     sha
   }
 
-  core.debug('Deployment params:', params)
+  core.info('Deployment params:', params)
 
   while (true) {
     const { data: deployments } = await octokit.repos.listDeployments(params)
-    core.debug(`Found ${deployments.length} deployments...`)
+    core.info(`Found ${deployments.length} deployments...`)
 
     for (const deployment of deployments) {
-      core.debug(`\tgetting statuses for deployment ${deployment.id}...`)
+      core.info(`\tgetting statuses for deployment ${deployment.id}...`)
 
       const { data: statuses } = await octokit.request('GET /repos/:owner/:repo/deployments/:deployment/statuses', {
         ...github.context.repo,
         deployment: deployment.id
       })
 
-      core.debug(`\tfound ${statuses.length} statuses`)
+      core.info(`\tfound ${statuses.length} statuses`)
 
       const [success] = statuses
         .filter(status => status.state === 'success')
       if (success) {
-        core.debug(`\tsuccess! ${JSON.stringify(success, null, 2)}`)
+        core.info(`\tsuccess! ${JSON.stringify(success, null, 2)}`)
         return {
           deployment,
           status: success,
           url: success.target_url
         }
       } else {
-        core.debug(`No statuses with state === "success": "${statuses.map(status => status.state).join('", "')}"`)
+        core.info(`No statuses with state === "success": "${statuses.map(status => status.state).join('", "')}"`)
       }
 
       await sleep(delay)
