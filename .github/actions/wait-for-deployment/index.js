@@ -18,6 +18,7 @@ async function waitForDeployment (options) {
   const {
     token,
     timeout = 300,
+    delay = 50,
     environment
   } = options
 
@@ -25,13 +26,16 @@ async function waitForDeployment (options) {
   const octokit = github.getOctokit(token)
   const start = Date.now()
 
-  while (true) {
-    const { data: deployments } = await octokit.repos.listDeployments({
-      ...github.context.repo,
-      environment,
-      sha
-    })
+  const params = {
+    ...github.context.repo,
+    // environment,
+    sha
+  }
 
+  console.info('Deployment params:', params)
+
+  while (true) {
+    const { data: deployments } = await octokit.repos.listDeployments(params)
     console.info('Found %d deployments...', deployments.length)
 
     for (const deployment of deployments) {
@@ -59,6 +63,8 @@ async function waitForDeployment (options) {
           statuses.map(status => status.state)
         )
       }
+
+      await sleep(delay)
     }
 
     const elapsed = (Date.now() - start) / 1000
@@ -66,4 +72,8 @@ async function waitForDeployment (options) {
       throw new Error(`Timing out after ${timeout} seconds (${elapsed} elapsed)`)
     }
   }
+}
+
+function sleep (ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
