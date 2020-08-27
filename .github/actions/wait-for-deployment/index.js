@@ -18,8 +18,8 @@ waitForDeployment(options)
 async function waitForDeployment (options) {
   const {
     token,
-    timeout = 300,
-    delay = 50,
+    timeout = 300, // seconds
+    delay = 200, // milliseconds
     environment
   } = options
 
@@ -34,7 +34,7 @@ async function waitForDeployment (options) {
   }
 
   core.info(`Deployment params: ${JSON.stringify(params, null, 2)}`)
-  throw new Error('DERP')
+  // throw new Error('DERP')
 
   while (true) {
     const { data: deployments } = await octokit.repos.listDeployments(params)
