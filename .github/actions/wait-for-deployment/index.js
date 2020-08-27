@@ -33,7 +33,7 @@ async function waitForDeployment (options) {
     sha
   }
 
-  core.info('Deployment params:', params)
+  core.info(`Deployment params: ${JSON.stringify(params, null, 2)}`)
   throw new Error('DERP')
 
   while (true) {
