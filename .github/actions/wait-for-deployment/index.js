@@ -57,7 +57,7 @@ async function waitForDeployment (options) {
         return {
           deployment,
           status: success,
-          url: `https://${success.target_url}`
+          url: success.target_url
         }
       } else {
         core.info(`No statuses with state === "success": "${statuses.map(status => status.state).join('", "')}"`)
