@@ -61,7 +61,7 @@ async function waitForDeployment (options) {
       }
     }
 
-    const elapsed = Date.now() - start
+    const elapsed = (Date.now() - start) / 1000
     if (elapsed >= timeout) {
       throw new Error(`Timing out after ${timeout} seconds (${elapsed} elapsed)`)
     }
