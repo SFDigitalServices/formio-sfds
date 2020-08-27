@@ -10,19 +10,19 @@ jobs:
         with:
           node-version: 12
 
-      - name: Waiting for Vercel deployment
-        uses: mskelton/wait-for-vercel-action@v1
-        id: deployment
+      - name: Wait for deployment
+        id: wait-for-deployment
+        uses: ./.github/actions/wait-for-deployment
         with:
-          prod-url: formio-sfds.vercel.app
-          token: ${{ secrets.VERCEL_TOKEN }}
+          token: ${{ github.token }}
+          environment: Preview
 
       - run: |
           npx lighthouse \
             --output html \
             --output-path dist/lighthouse-desktop.html \
             --emulated-form-factor desktop \
-            "${{ steps.deployment.outputs.url }}"
+            "${{ steps.wait-for-deployment.outputs.url }}"
 
       - uses: actions/upload-artifact@v2
         with:
