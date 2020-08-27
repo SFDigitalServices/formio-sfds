@@ -7,8 +7,6 @@ jobs:
     env:
       DEPLOY_ENV: Preview
     steps:
-      - uses: actions/checkout@v2
-
       - id: deployment
         uses: SFDigitalServices/wait-for-deployment-action@main
         with:
