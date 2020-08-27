@@ -26,7 +26,7 @@ async function waitForDeployment (options) {
   const start = Date.now()
 
   while (true) {
-    const deployments = await octokit.repos.listDeployments({
+    const { data: deployments } = await octokit.repos.listDeployments({
       ...github.context.repo,
       environment,
       sha
@@ -37,7 +37,7 @@ async function waitForDeployment (options) {
     for (const deployment of deployments) {
       console.info('Getting statuses for deployment %s...', deployment.id)
 
-      const statuses = await octokit.request('GET /repos/:owner/:repo/deployments/:deployment/statuses', {
+      const { data: statuses } = await octokit.request('GET /repos/:owner/:repo/deployments/:deployment/statuses', {
         ...github.context.repo,
         deployment: deployment.id
       })
