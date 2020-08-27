@@ -26,7 +26,7 @@ async function waitForDeployment (options) {
   const start = Date.now()
 
   while (true) {
-    const deployments = await octokit.deployments.list({
+    const deployments = await octokit.repos.listDeployments({
       ...github.context.repo,
       environment,
       sha
