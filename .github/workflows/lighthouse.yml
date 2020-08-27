@@ -12,6 +12,9 @@ jobs:
         with:
           node-version: 12
 
+      - run: |
+          cd .github/actions/wait-for-deployment
+          npm ci
       - name: Wait for deployment
         id: wait-for-deployment
         uses: ./.github/actions/wait-for-deployment
