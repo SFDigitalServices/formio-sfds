@@ -1,0 +1,25 @@
+name: Wait for deployment
+description: |
+  Block until a deployment is finished for the pushed commit,
+  and get the URL for running any further tests.
+
+inputs:
+  github-token:
+    description: |
+      Your GitHub access token (`${{ github.token }}`)
+    required: true
+  environment:
+    description: |
+      The deployment environment to wait for (e.g. "production" on your main
+      branch)
+
+outputs:
+  url:
+    description: The deployment URL
+  id:
+    description: The GitHub deployment id
+
+runs:
+  using: node12
+  main: index.js
+
