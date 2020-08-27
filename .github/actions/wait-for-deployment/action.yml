@@ -6,7 +6,7 @@ description: |
 inputs:
   github-token:
     description: |
-      Your GitHub access token (`${{ github.token }}`)
+      Your GitHub access token (`\${{ github.token }}`)
     required: true
   environment:
     description: |
