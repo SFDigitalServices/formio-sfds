@@ -23,3 +23,5 @@ jobs:
             ${{ steps.deployment.outputs.url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
+        env:
+          LHCI_GITHUB_TOKEN: ${{ github.token }}
