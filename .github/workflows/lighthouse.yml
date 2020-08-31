@@ -7,6 +7,8 @@ jobs:
     env:
       DEPLOY_ENV: Preview
     steps:
+      - uses: actions/checkout@v2
+
       - id: deployment
         uses: SFDigitalServices/wait-for-deployment-action@v1
         with:
@@ -17,7 +19,7 @@ jobs:
 
       - uses: treosh/lighthouse-ci-action@v3
         with:
-          urls:
+          urls: |
             ${{ steps.deployment.outputs.url }}
           uploadArtifacts: true
           temporaryPublicStorage: true
