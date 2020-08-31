@@ -1,0 +1,27 @@
+name: Lighthouse
+on: [push]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_ENV: Preview
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: deployment
+        uses: SFDigitalServices/wait-for-deployment-action@v1
+        with:
+          github-token: ${{ github.token }}
+          environment: ${{ env.DEPLOY_ENV }}
+          interval: 5
+          timeout: 300
+
+      - uses: treosh/lighthouse-ci-action@v3
+        with:
+          urls: |
+            ${{ steps.deployment.outputs.url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+        env:
+          LHCI_GITHUB_TOKEN: ${{ github.token }}
