@@ -21,7 +21,8 @@ jobs:
         with:
           urls: |
             ${{ steps.deployment.outputs.url }}
-          uploadArtifacts: true
-          temporaryPublicStorage: true
+          serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
+          serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
+          uploadArtifacts: false
         env:
           LHCI_GITHUB_TOKEN: ${{ github.token }}
