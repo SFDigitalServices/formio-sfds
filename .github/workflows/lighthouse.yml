@@ -15,12 +15,9 @@ jobs:
           interval: 5
           timeout: 300
 
-      - uses: jakejarvis/lighthouse-action@v0.3.2
+      - uses: treosh/lighthouse-ci-action@v3
         with:
-          url: "${{ steps.deployment.outputs.url }}"
-
-      - uses: actions/upload-artifact@v2
-        with:
-          name: lighthouse-report
-          path: ./report
-
+          urls:
+            ${{ steps.deployment.outputs.url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
