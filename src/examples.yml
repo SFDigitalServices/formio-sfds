@@ -303,7 +303,5 @@
         label: Datetime field
       - type: currency
         label: Currency field
-      - type: signature
-        label: Signature field
       - type: file
         label: File field
