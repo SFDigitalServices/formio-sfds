@@ -252,3 +252,56 @@
         label: This is the label
         description: This is the description
         enableDate: false
+
+
+- id: kitchen-sink
+  title: Kitchen sink
+  form:
+    components:
+      - type: textfield
+        label: A text field
+      - type: number
+        label: A number field
+      - type: textarea
+        label: A text area field
+      - type: checkbox
+        label: A checkbox
+      - type: select
+        label: Select field
+        data:
+          values:
+            - label: Option 1
+              value: 1
+            - label: Option 2
+              value: 2
+      - type: selectboxes
+        label: Select boxes
+        values:
+          - label: Select box 1
+            value: 1
+          - label: Select box 2
+            value: 2
+          - label: Select box 3
+            value: 3
+      - type: radio
+        values:
+          - label: Radio 1
+            value: 1
+          - label: Radio 2
+            value: 2
+          - label: Radio 3
+            value: 3
+      - type: button
+        label: This is a button
+      - type: email
+        label: Email field
+      - type: phonenumber
+        label: Phone number field
+      - type: address
+        label: Address field
+      - type: datetime
+        label: Datetime field
+      - type: currency
+        label: Currency field
+      - type: file
+        label: File field
