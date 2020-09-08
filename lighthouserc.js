@@ -1,4 +1,8 @@
-require('dotenv').config()
+try {
+  require('dotenv').config()
+} catch (error) {
+  // this can fail in CI, where there is no .env
+}
 
 const {
   LHCI_BUILD_TOKEN: token,
