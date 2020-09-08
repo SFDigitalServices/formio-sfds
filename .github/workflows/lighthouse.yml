@@ -19,10 +19,8 @@ jobs:
 
       - uses: treosh/lighthouse-ci-action@v3
         with:
-          urls: |
-            ${{ steps.deployment.outputs.url }}
-          serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
-          uploadArtifacts: false
+          serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
         env:
           LHCI_GITHUB_TOKEN: ${{ github.token }}
+          LHCI_COLLECT_BASE_URL: ${{ steps.deployment.outputs.url }}
