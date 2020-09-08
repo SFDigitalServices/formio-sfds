@@ -18,7 +18,9 @@ jobs:
           timeout: 300
 
       - uses: treosh/lighthouse-ci-action@v3
+        with:
+          token: ${{ secrets.LHCI_BUILD_TOKEN }}
+          serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
         env:
-          LHCI_BUILD_TOKEN: ${{ secrets.LHCI_BUILD_TOKEN }}
           LHCI_GITHUB_TOKEN: ${{ github.token }}
           LHCI_COLLECT_BASE_URL: ${{ steps.deployment.outputs.url }}
