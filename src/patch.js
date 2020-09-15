@@ -50,6 +50,7 @@ export default Formio => {
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
+  patchEscapedErrorMessageHTML()
 }
 
 // Prevent users from navigating away and losing their entries.
@@ -271,6 +272,18 @@ function patchDateTimeLabels () {
       const input = el.querySelector('input.form-control[type=text]')
       label.setAttribute('id', labelId)
       input.setAttribute('aria-labelledby', labelId)
+    }
+  })
+}
+
+function patchEscapedErrorMessageHTML () {
+  const attr = 'data-formio-sfds-unescaped'
+  observe(`[ref=errorRef]:not([${attr}])`, {
+    add (el) {
+      // console.info('errorRef:', el.outerHTML)
+      el.setAttribute('aria-label', el.textContent)
+      el.innerHTML = el.textContent
+      el.setAttribute(attr, 'true')
     }
   })
 }
