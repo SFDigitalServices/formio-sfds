@@ -234,4 +234,30 @@ describe('patch()', () => {
       })
     })
   })
+
+  describe('error message HTML un-escaping', () => {
+    it('un-escapes HTML in error messages', async () => {
+      const form = await createForm({
+        components: [
+          {
+            key: 'name',
+            type: 'textfield',
+            label: 'Name',
+            validate: {
+              required: true,
+              customMessage: 'This is a message <b>with HTML</b>'
+            }
+          }
+        ]
+      })
+
+      try {
+        await form.submit()
+      } catch (error) {
+        console.info('caught error:', error.message)
+      }
+      const error = form.element.querySelector('[ref=errorRef]')
+      expect(error.textContent).toBe('Name: This is a message with HTML')
+    })
+  })
 })
