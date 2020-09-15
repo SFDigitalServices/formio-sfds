@@ -251,13 +251,11 @@ describe('patch()', () => {
         ]
       })
 
-      try {
-        await form.submit()
-      } catch (error) {
-        console.info('caught error:', error.message)
-      }
+      // black hole errors (this is supposed to fail)
+      await form.submit().catch(errors => { })
+
       const error = form.element.querySelector('[ref=errorRef]')
-      expect(error.textContent).toBe('Name: This is a message with HTML')
+      expect(error.textContent.trim()).toBe('Name: This is a message with HTML')
     })
   })
 })
