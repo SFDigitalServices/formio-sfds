@@ -1,23 +1,30 @@
-{% if (ctx.component.prefix || ctx.component.suffix) { %}
+{%
+  let prefix = ctx.prefix
+  if (prefix instanceof HTMLElement) prefix = prefix.outerHTML
+  let suffix = ctx.suffix
+  if (suffix instanceof HTMLElement) suffix = suffix.outerHTML
+%}
+{% if (prefix || suffix) { %}
   <div class="input-group">
 {% } %}
 
-{% if (ctx.component.prefix) { %}
+{% if (prefix) { %}
   <div class="input-group-prepend" ref="prefix">
     <span class="input-group-text">
-      {{ ctx.t([`${ctx.component.key}.prefix`, `${ctx.component.key}_prefix`, ctx.component.prefix]) }}
+      {{ ctx.t([`${ctx.component.key}.prefix`, `${ctx.component.key}_prefix`, prefix]) }}
     </span>
   </div>
 {% } %}
 
 <div class="form-input">
-  <{{ctx.input.type}}
-    ref="{{ctx.input.ref ? ctx.input.ref : 'input'}}"
-    id="input-{{ ctx.input.attr.name }}"
-    {% for (var attr in ctx.input.attr) { %}
-    {{attr}}="{{ctx.input.attr[attr]}}"
+  <{{ ctx.input.type }}
+    ref="{{ ctx.input.ref || 'input' }}"
+    id="{{ ctx.inputId() }}"
+    {{ ctx.requiredAttributes() }}
+    {% for (const attr in ctx.input.attr) { %}
+      {{ attr }}="{{ ctx.input.attr[attr] }}"
     {% } %}
-  >{{ctx.input.content}}</{{ctx.input.type}}>
+  >{{ ctx.input.content }}</{{ ctx.input.type }}>
 </div>
 
 {% if (ctx.component.showCharCount) { %}
@@ -28,14 +35,14 @@
   <span class="text-muted pull-right" ref="wordcount"></span>
 {% } %}
 
-{% if (ctx.component.suffix) { %}
+{% if (suffix) { %}
   <div class="input-group-append" ref="suffix">
     <span class="input-group-text">
-      {{ ctx.t([`${ctx.component.key}.suffix`, `${ctx.component.key}_suffix`, ctx.component.suffix]) }}
+      {{ ctx.t([`${ctx.component.key}.suffix`, `${ctx.component.key}_suffix`, suffix]) }}
     </span>
   </div>
 {% } %}
 
-{% if (ctx.component.prefix || ctx.component.suffix) { %}
+{% if (prefix || suffix) { %}
   </div>
 {% } %}

@@ -1,5 +1,7 @@
 {% if (!ctx.component.hideLabel && ['checkbox', 'radio'].indexOf(ctx.component.type) === -1) { %}
-  <label class="{{ ctx.label.className }}" for="input-{{ ctx.self.options.name }}">
+  <label
+    class="{{ ctx.label.className }}"
+    for="{{ ctx.inputId() }}">
     {{ ctx.t([`${ctx.component.key}.label`, `${ctx.component.key}_label`, ctx.component.label]) }}
     <!--
     {% if (ctx.component.tooltip) { %}
