@@ -20,7 +20,7 @@
     "watch-all": "run-p watch-{css,js,html}",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
-    "watch-html": "watchy -w 'templates/*' -w src/examples.yml -w script/render-templates -- npm run build-templates",
+    "watch-html": "watchy -w 'templates/*' -w src/examples.yml -w script/render-templates -- npm run build-html",
     "watch-test": "jest --watch",
     "vercel-dev": "vercel dev"
   },
