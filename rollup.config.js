@@ -14,7 +14,7 @@ import { readFileSync } from 'fs'
 
 const {
   NODE_ENV = 'development',
-  I18N_SERVICE_URL = 'https://i18n-microservice-js.sfds.vercel.app'
+  I18N_SERVICE_URL = 'https://translate.sf.gov'
 } = process.env
 
 const prod = NODE_ENV === 'production'
