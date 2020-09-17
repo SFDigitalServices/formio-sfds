@@ -147,4 +147,30 @@ describe('a11y', () => {
       destroyForm(form)
     })
   })
+
+  describe('wizard navigation', () => {
+    it('adds aria-current="page" to the current page', async () => {
+      const form = await createForm({
+        display: 'wizard',
+        components: [
+          {
+            type: 'panel',
+            title: 'Page 1'
+          },
+          {
+            type: 'panel',
+            title: 'Page 2'
+          }
+        ]
+      })
+
+      const buttons = form.element.querySelectorAll('nav button')
+      expect(buttons).toHaveLength(2)
+      expect(buttons[0].getAttribute('aria-current')).toEqual('page')
+      expect(buttons[1].getAttribute('aria-current')).toEqual(null)
+    })
+
+    it('adds the disabled attribute to inaccessible pages', async () => {
+    })
+  })
 })
