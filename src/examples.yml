@@ -295,7 +295,7 @@
         label: This is a button
       - type: email
         label: Email field
-      - type: phonenumber
+      - type: phoneNumber
         label: Phone number field
       - type: address
         label: Address field
