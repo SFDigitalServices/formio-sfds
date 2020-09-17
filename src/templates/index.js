@@ -36,6 +36,7 @@ import panel from './panel'
 import pdf from './pdf'
 import pdfBuilder from './pdfBuilder'
 import pdfBuilderUpload from './pdfBuilderUpload'
+import review from './review'
 import radio from './radio'
 import resourceAdd from './resourceAdd'
 import select from './select'
@@ -92,6 +93,7 @@ export default {
   pdf,
   pdfBuilder,
   pdfBuilderUpload,
+  review,
   radio,
   resourceAdd,
   select,

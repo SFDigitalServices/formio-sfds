@@ -1,4 +1,4 @@
-import values from '../../data/states.json'
+import states from '../../data/states.json'
 
 const { select: Select } = window.Formio.Components.components
 
@@ -9,13 +9,25 @@ export default class StateSelect extends Select {
       key: 'state',
       widget: 'html5',
       dataSrc: 'values',
-      data: { values },
-      valueProperty: 'code',
-      template: '{{ item.name }}'
+      data: {
+        values: states.map(({ name, code }) => ({
+          label: name,
+          value: code
+        }))
+      }
     }, ...extend)
   }
 
   get defaultSchema () {
     return StateSelect.schema()
+  }
+
+  static get builderInfo () {
+    return {
+      title: 'U.S. State',
+      icon: 'map-marker',
+      group: 'sfgov',
+      schema: StateSelect.schema()
+    }
   }
 }

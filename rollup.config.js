@@ -5,27 +5,29 @@ import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
-import svg from 'rollup-plugin-svgo'
+import svgo from 'rollup-plugin-svgo'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
-import yaml from '@rollup/plugin-yaml'
+import rollupYAML from '@rollup/plugin-yaml'
+import yaml from 'js-yaml'
+import { readFileSync } from 'fs'
 
 const {
   NODE_ENV = 'development',
   I18N_SERVICE_URL = 'https://i18n-microservice-js.sfds.vercel.app'
 } = process.env
 
-const env = { NODE_ENV, I18N_SERVICE_URL }
-console.warn('rollup env:', env)
-
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
+
+const external = []
 
 const commonPlugins = [
   resolve(),
   commonjs(),
   json(),
   jst({
+    extensions: ['.ejs'],
     templateOptions: {
       evaluate: /\{%([\s\S]+?)%\}/g,
       interpolate: /\{\{([\s\S]+?)\}\}/g,
@@ -33,30 +35,17 @@ const commonPlugins = [
       variable: 'ctx'
     }
   }),
-  injectProcessEnv(env, {
+  injectProcessEnv({
+    NODE_ENV,
+    I18N_SERVICE_URL
+  }, {
     include: 'src/**/*.js'
   }),
-  svg({
-    plugins: [
-      { removeViewBox: false },
-      { removeDimensions: true },
-      {
-        // remove fill attributes from all elements
-        removeAttributesBySelector: {
-          selector: '[fill]',
-          attributes: ['fill']
-        }
-      },
-      {
-        addAttributesToSVGElement: {
-          attributes: [
-            // add fill="currentColor" to <svg>
-            { fill: 'currentColor' }
-          ]
-        }
-      }
-    ]
-  }),
+  svgo(
+    yaml.safeLoad(
+      readFileSync('svgo.config.yml', 'utf8')
+    )
+  ),
   babel({
     babelHelpers: 'runtime'
   }),
@@ -66,6 +55,7 @@ const commonPlugins = [
 export default [
   {
     input: 'src/standalone.js',
+    external,
     plugins: [
       ...commonPlugins,
       postcss({
@@ -76,56 +66,44 @@ export default [
     output: {
       format: 'umd',
       name,
-      file: 'dist/formio-sfds.standalone.js',
+      file: pkg.browser,
       sourcemap: prod
     }
   },
   {
-    input: pkg.module,
+    input: 'src/example.js',
+    external,
+    plugins: commonPlugins,
     output: {
       format: 'umd',
-      exports: 'named',
-      name,
-      file: pkg.browser,
-      sourcemap: prod
-    },
-    plugins: [
-      ...commonPlugins
-    ]
-  },
-  {
-    input: pkg.module,
-    external: ['formiojs'],
-    plugins: [
-      ...commonPlugins
-    ],
-    output: {
-      format: 'cjs',
-      exports: 'named',
-      name,
-      file: pkg.main,
-      sourcemap: prod
+      file: 'dist/examples/example.js',
+      sourcemap: true
     }
   },
   {
     input: 'src/examples.js',
+    external,
     plugins: [
       ...commonPlugins,
-      yaml()
+      rollupYAML()
     ],
     output: {
       format: 'umd',
-      file: 'dist/examples.js'
+      file: 'dist/examples.js',
+      sourcemap: true
     }
   },
   {
-    input: 'src/translate.js',
+    input: 'src/portal.js',
+    external,
     plugins: [
-      ...commonPlugins
+      ...commonPlugins,
+      rollupYAML()
     ],
     output: {
       format: 'umd',
-      file: 'dist/translate.js'
+      file: 'dist/portal.js',
+      sourcemap: true
     }
   }
 ]

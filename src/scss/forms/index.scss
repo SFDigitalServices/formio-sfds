@@ -8,7 +8,7 @@
 
 .field-description,
 .tooltip {
-  color: rgba($slate, 0.65);
+  color: $light-slate;
 }
 
 .formio-error-wrapper,
@@ -26,7 +26,7 @@
   }
 }
 
-label.field-required,
+.field-required,
 .required .label-required,
 .formio-component-radio.required legend {
   &::after {

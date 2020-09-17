@@ -5,12 +5,12 @@
       "dest": "/dist/index.html"
     },
     {
-      "src": "/(\\w+).html",
+      "src": "/([-\\w]+)",
       "dest": "/dist/$1.html"
     },
     {
-      "src": "/(\\w+)",
-      "dest": "/dist/$1.html"
+      "src": "/examples/([-\\w]+)",
+      "dest": "/dist/examples/$1.html"
     }
   ],
   "build": {

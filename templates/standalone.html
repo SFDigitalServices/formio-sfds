@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <title>Loading...</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -9,12 +9,12 @@
   <body>
     <div class="page-node-type-form-page sfgov-translate-lang-es" lang="en">
       <div class="form-page">
-        <div id="formio" class="container p-3" data-resource="https://sfds.form.io/workers-families-first"></div>
+        <div id="formio" class="container p-3"></div>
       </div>
     </div>
   </div>
 
-  <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.js"></script>
+  <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
   <script src="/dist/formio-sfds.standalone.js"></script>
   <script>
     (() => {
@@ -24,31 +24,20 @@
       const language = params.get('lang')
       const i18n = tryParse(params.get('i18n'))
       const i18nServiceUrl = params.get('i18nServiceUrl')
-      const renderMode = params.get('mode')
-      const hooks = tryParse(params.get('hooks'))
       const resource = params.get('res') || root.getAttribute('data-resource')
-      const unlockNavigation = true
 
       window.drupalSettings = { user: { uid: '123' } }
 
       const options = {
         language,
-        renderMode,
-        hooks,
-        unlockNavigation,
         i18n,
         i18nServiceUrl,
+        renderMode: params.get('mode'),
+        hooks: tryParse(params.get('hooks')),
+        unlockNavigation: params.get('nav') !== 'false',
         googleTranslate: params.get('googleTranslate') === 'true',
         prefill: params,
-        properties: tryParse(params.get('properties')) || {
-          backURL: "https://sf.gov/apply-building-permit",
-          backTitle: "Apply for a building permit"
-        }
-      }
-
-      if (language && params.get('langMode') === 'dom') {
-        document.documentElement.setAttribute('lang', language)
-        delete options.language
+        properties: tryParse(params.get('properties'))
       }
 
       Formio.createForm(root, resource, options).then(form => {
