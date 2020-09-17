@@ -16,19 +16,22 @@
       {% if (panel.properties.hideFromNavigation !== "false") { %}
         {% const color = active || completed ? 'slate' : 'inherit' %}
         {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
-        <li class="mb-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %}>
+        <li class="mb-1 d-flex flex-items-start">
           <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
           <button
             class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
+            {% if (active) { %}
+              aria-current="page"
+            {% } %}
             {% if (completed || ctx.options.unlockNavigation) { %}
               ref="{{ ctx.wizardKey }}-link"
-            {% } %}
-          >
+            {% } %}>
             {{
               ctx.t([
                 `${panel.key}.displayTitle`,
+                panel.properties.displayTitle || '',
                 `${panel.key}.title`,
-                panel.properties.displayTitle || panel.title
+                panel.title
               ])
             }}
           </button>
