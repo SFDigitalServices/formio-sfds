@@ -171,6 +171,35 @@ describe('a11y', () => {
     })
 
     it('adds the disabled attribute to inaccessible pages', async () => {
+      const form = await createForm({
+        display: 'wizard',
+        components: [
+          {
+            type: 'panel',
+            title: 'Page 1'
+          },
+          {
+            type: 'panel',
+            title: 'Page 2'
+          },
+          {
+            type: 'panel',
+            title: 'Page 3'
+          }
+        ]
+      })
+
+      let buttons = form.element.querySelectorAll('nav button')
+      expect(buttons).toHaveLength(3)
+      expect(buttons[0].disabled).toBe(true)
+      expect(buttons[1].disabled).toBe(true)
+      expect(buttons[2].disabled).toBe(true)
+
+      await form.setPage(1)
+      buttons = form.element.querySelectorAll('nav button')
+      expect(buttons[0].disabled).toBe(false)
+      expect(buttons[1].disabled).toBe(true)
+      expect(buttons[2].disabled).toBe(true)
     })
   })
 })
