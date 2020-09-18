@@ -164,10 +164,16 @@ describe('a11y', () => {
         ]
       })
 
-      const buttons = form.element.querySelectorAll('nav button')
+      let buttons = form.element.querySelectorAll('nav button')
       expect(buttons).toHaveLength(2)
       expect(buttons[0].getAttribute('aria-current')).toEqual('page')
       expect(buttons[1].getAttribute('aria-current')).toEqual(null)
+
+      await form.setPage(1)
+      buttons = form.element.querySelectorAll('nav button')
+      expect(buttons).toHaveLength(2)
+      expect(buttons[0].getAttribute('aria-current')).toEqual(null)
+      expect(buttons[1].getAttribute('aria-current')).toEqual('page')
     })
 
     it('adds the disabled attribute to inaccessible pages', async () => {
