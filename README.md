@@ -171,12 +171,17 @@ following customizations for your form:
   element with a `lang` attribute.
 
 * Select components are made to always use the `html5` "widget", which is just
-  an HTML `<select>` input
+  an HTML `<select>` input.
 
 * Form elements are wrapped automatically in `<div class="formio-sfds">`, which
   allows the element itself to receive styles defined in the [scoped CSS](#scoped-css).
   **This behavior can be disabled via the [`formioSFDSOptOut`
   option](#formiosfdsoptout-option).**
+
+* All components get `validateOn: 'blur'`, which defers validation of fields
+  until the input is blurred. The default is `change`, which triggers
+  validation whenever an input changes, and can trigger disruptive validation
+  errors while the user is typing.
 
 ## Localization
 We use [Phrase] to manage translations of both "generic" form strings and
