@@ -10,12 +10,14 @@
   <ul class="nav-list mt-2 mb-0 mx-0 p-0">
     {% ctx.panels.forEach(function(panel, index) { %}
 
-      {% const completed = index < ctx.currentPage %}
-      {% const active = index === ctx.currentPage %}
-
       {% if (panel.properties.hideFromNavigation !== "false") { %}
-        {% const color = active || completed ? 'slate' : 'inherit' %}
-        {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
+        {%
+          const completed = index < ctx.currentPage
+          const enabled = completed || ctx.options.unlockNavigation
+          const active = index === ctx.currentPage
+          const color = active || completed ? 'slate' : 'inherit'
+          const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
+        %}
         <li class="mb-1 d-flex flex-items-start">
           <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
           <button
@@ -23,8 +25,10 @@
             {% if (active) { %}
               aria-current="page"
             {% } %}
-            {% if (completed || ctx.options.unlockNavigation) { %}
+            {% if (enabled) { %}
               ref="{{ ctx.wizardKey }}-link"
+            {% } else { %}
+              disabled
             {% } %}>
             {{
               ctx.t([
