@@ -159,6 +159,7 @@ function patch (Formio) {
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
       patchSelectMode(model)
+      patchValidateOnBlur(model)
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -222,6 +223,14 @@ function patchSelectMode (model) {
       component.widget = 'html5'
     }
   }
+}
+
+function patchValidateOnBlur (model) {
+  util.eachComponent(model.components, component => {
+    if (component.validateOn === 'change') {
+      component.validateOn = 'blur'
+    }
+  })
 }
 
 function patchLanguageObserver () {
