@@ -1,5 +1,4 @@
 import { observe } from 'selector-observer'
-import dot from 'dotmap'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
@@ -342,7 +341,7 @@ function scrollToTop () {
 }
 
 function userIsTranslating () {
-  const uid = dot.get(window, 'drupalSettings.user.uid')
+  const uid = window.drupalSettings?.user?.uid
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
