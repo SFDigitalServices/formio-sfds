@@ -40,7 +40,6 @@
   },
   "dependencies": {
     "choices.js": "^9.0.1",
-    "dotmap": "^0.1.0",
     "flatpickr": "4.6.6",
     "formiojs": "4.11.2",
     "interpolate": "^0.1.0",
@@ -64,6 +63,7 @@
     "autoprefixer": "^9.8.0",
     "babel-plugin-lodash": "^3.3.4",
     "dotenv": "^8.2.0",
+    "dotmap": "^0.1.0",
     "globby": "^11.0.1",
     "google-spreadsheet": "^3.0.11",
     "i18next": "19.7.0",
