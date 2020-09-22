@@ -13,6 +13,7 @@
     "lint": "run-p lint-{css,js}",
     "lint-css": "stylelint src/scss/**/*.scss",
     "lint-js": "standard src lib",
+    "noop": "echo 'noop!'",
     "start": "run-p vercel-dev watch",
     "test": "jest",
     "update-translations": "script/get-translations > src/i18n/translations.json",
