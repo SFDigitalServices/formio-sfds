@@ -17,6 +17,12 @@ jobs:
           NODE_ENV: production
       - run: npm test
 
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ github.token }}
+          pattern: 'dist/**/*.{css,js}'
+          build-script: noop
+
       - uses: primer/publish@v2.0.0
         env:
           GITHUB_TOKEN: ${{ github.token }}
