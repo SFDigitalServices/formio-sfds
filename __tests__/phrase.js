@@ -257,6 +257,17 @@ describe('Phrase functionality', () => {
       destroyForm(form)
     })
 
+    it('does not load the editor if window.drupalSettings.user.uid === "0"', async () => {
+      window.drupalSettings = { user: { uid: '0' } }
+      const form = await createForm({
+        properties: {
+          phraseProjectId: '123'
+        }
+      })
+      expect(window.PHRASEAPP_ENABLED).not.toBe(true)
+      destroyForm(form)
+    })
+
     it('does not load if ?translate=true is not in the query string', async () => {
       window.drupalSettings = { user: { uid: 12345 } }
       const form = await createForm({
