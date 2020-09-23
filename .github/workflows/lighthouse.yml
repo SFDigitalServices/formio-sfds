@@ -11,17 +11,18 @@ jobs:
           echo '${{ toJson(github.event) }}'
 
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: determine branch
         id: git-branch
         uses: SFDigitalServices/git-the-branch@main
+        with:
+          checkout: true
 
       - name: debug some more
         run: |
           echo "GITHUB_REF: '$GITHUB_REF' (after git-the-branch)"
-          echo "git-branch output: ${{ toJson(steps.git-branch.outputs) }}"
+          echo "git-branch.outputs.branch: ${{ steps.git-branch.outputs.branch }}"
+          echo "git-branch.outputs.ref: ${{ steps.git-branch.outputs.ref }}"
 
       - if: github.event.deployment_status.state == 'success'
         uses: treosh/lighthouse-ci-action@v3
