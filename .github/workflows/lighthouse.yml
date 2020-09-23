@@ -5,6 +5,11 @@ jobs:
   lighthouse:
     runs-on: ubuntu-latest
     steps:
+      - name: event debug
+        run: echo '${{ toJson(github.event) }}'
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ env.GITHUB_REF }}
       - name: determine branch
         run: |
           echo "GITHUB_SHA: $GITHUB_SHA"
@@ -12,8 +17,6 @@ jobs:
           BRANCH=$(git branch --contains $GIT_REF --list --no-color | sed 's#^\* ##')
           echo "BRANCH: $BRANCH"
           echo "::set-env name=BRANCH::$BRANCH"
-      - name: event debug
-        run: echo '${{ toJson(github.event) }}'
       - uses: actions/checkout@v2
         with:
           ref: ${{ env.GITHUB_REF }}
