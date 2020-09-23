@@ -7,7 +7,8 @@ jobs:
     env:
       DEPLOY_ENV: Preview
     steps:
-      - run: echo '${{ toJson(github.event) }}'
+      - name: event debug
+        run: echo '${{ toJson(github.event) }}'
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.deployment.sha }}
