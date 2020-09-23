@@ -6,7 +6,7 @@
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
   "scripts": {
-    "build": "npx run-s build-{css,js,html}",
+    "build": "run-s build-{css,js,html}",
     "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
     "build-js": "rollup -c",
     "build-html": "script/render-templates",
