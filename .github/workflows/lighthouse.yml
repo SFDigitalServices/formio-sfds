@@ -14,7 +14,7 @@ jobs:
 
       - name: determine branch
         id: git-branch
-        uses: SFDigitalServices/git-the-branch@v0
+        uses: SFDigitalServices/git-the-branch@main
 
       - name: debug some more
         run: |
