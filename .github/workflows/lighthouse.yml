@@ -13,8 +13,7 @@ jobs:
       - name: determine branch
         run: |
           echo "GITHUB_SHA: $GITHUB_SHA"
-          echo "GITHUB_REF: $GITHUB_REF"
-          BRANCH=$(git branch --contains $GITHUB_SHA --list --no-color | sed 's#^\* ##')
+          BRANCH=$(git name-rev --name-only HEAD | sed 's/~\d+$//')
           echo "BRANCH: $BRANCH"
           echo "::set-env name=BRANCH::$BRANCH"
       - uses: actions/checkout@v2
