@@ -9,17 +9,17 @@ jobs:
         run: echo '${{ toJson(github.event) }}'
       - uses: actions/checkout@v2
         with:
-          ref: ${{ env.GITHUB_REF }}
+          ref: ${{ env.GITHUB_SHA }}
       - name: determine branch
         run: |
           echo "GITHUB_SHA: $GITHUB_SHA"
           echo "GITHUB_REF: $GITHUB_REF"
-          BRANCH=$(git branch --contains $GIT_REF --list --no-color | sed 's#^\* ##')
+          BRANCH=$(git branch --contains $GITHUB_SHA --list --no-color | sed 's#^\* ##')
           echo "BRANCH: $BRANCH"
           echo "::set-env name=BRANCH::$BRANCH"
       - uses: actions/checkout@v2
         with:
-          ref: ${{ env.GITHUB_REF }}
+          ref: ${{ env.BRANCH }}
       - if: github.event.deployment_status.state == 'success'
         uses: treosh/lighthouse-ci-action@v3
         with:
