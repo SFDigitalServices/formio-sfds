@@ -1,26 +1,20 @@
 name: Lighthouse
-on: [push]
+on: [deployment_status]
 
 jobs:
   lighthouse:
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     env:
       DEPLOY_ENV: Preview
     steps:
       - uses: actions/checkout@v2
-
-      - id: deployment
-        uses: SFDigitalServices/wait-for-deployment-action@v1.0.1
         with:
-          github-token: ${{ github.token }}
-          environment: ${{ env.DEPLOY_ENV }}
-          interval: 5
-          timeout: 300
-
+          ref: ${{ github.event.deployment.sha }}
       - uses: treosh/lighthouse-ci-action@v3
         with:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
         env:
           LHCI_GITHUB_TOKEN: ${{ github.token }}
-          LHCI_COLLECT_BASE_URL: ${{ steps.deployment.outputs.url }}
+          LHCI_COLLECT_BASE_URL: ${{ github.event.deployment_status.target_url }}
