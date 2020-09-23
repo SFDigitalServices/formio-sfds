@@ -12,7 +12,9 @@ jobs:
           fetch-depth: 0
       - name: determine branch
         run: |
-          REF_BRANCH=$(git name-rev --name-only "$GITHUB_SHA" | sed 's/~[0-9]$//')
+          NAME_REV=$(git name-rev --name-only "$GITHUB_SHA")
+          echo "NAME_REV: $NAME_REV"
+          REF_BRANCH=${NAME_REV/remotes\/origin\//}
           echo "GITHUB_SHA: $GITHUB_SHA"
           echo "REF_BRANCH: $REF_BRANCH"
           echo "::set-env name=REF_BRANCH::$REF_BRANCH"
@@ -24,5 +26,6 @@ jobs:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
         env:
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ env.REF_BRANCH }}
           LHCI_GITHUB_TOKEN: ${{ github.token }}
           LHCI_COLLECT_BASE_URL: ${{ github.event.deployment_status.target_url }}
