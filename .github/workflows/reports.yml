@@ -6,13 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
       - uses: preactjs/compressed-size-action@v2
         with:
           repo-token: ${{ github.token }}
           pattern: 'dist/**/*.{css,js}'
-        env:
-          NODE_ENV: production
