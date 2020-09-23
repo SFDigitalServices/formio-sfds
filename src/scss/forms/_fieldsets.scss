@@ -17,6 +17,12 @@ fieldset {
       margin-bottom: 0;
     }
   }
+
+  .formio-component-label-hidden {
+    label {
+      display: none;
+    }
+  }
 }
 
 .formio-component-radio {
