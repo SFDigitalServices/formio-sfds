@@ -6,19 +6,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: event debug
-        run: echo '${{ toJson(github.event) }}'
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: determine branch
         run: |
-          NAME_REV=$(git name-rev --name-only "$GITHUB_SHA")
-          echo "NAME_REV: $NAME_REV"
-          REF_BRANCH=${NAME_REV/remotes\/origin\//}
-          echo "GITHUB_SHA: $GITHUB_SHA"
-          echo "REF_BRANCH: $REF_BRANCH"
-          echo "::set-env name=REF_BRANCH::$REF_BRANCH"
-          git checkout $REF_BRANCH
+          echo "GITHUB_REF: '$GITHUB_REF' (before git-the-branch)"
+          echo '${{ toJson(github.event) }}'
+
+      - uses: actions/checkout@v2
+
+      - name: determine branch
+        id: git-branch
+        uses: SFDigitalServices/git-the-branch@main
+
+      - name: debug some more
+        run: |
+          echo "GITHUB_REF: '$GITHUB_REF' (after git-the-branch)"
+          echo "git-branch output: ${{ toJson(steps.git-branch.outputs) }}"
 
       - if: github.event.deployment_status.state == 'success'
         uses: treosh/lighthouse-ci-action@v3
@@ -26,6 +27,6 @@ jobs:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
         env:
-          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ env.REF_BRANCH }}
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ env.GITHUB_REF }}
           LHCI_GITHUB_TOKEN: ${{ github.token }}
           LHCI_COLLECT_BASE_URL: ${{ github.event.deployment_status.target_url }}
