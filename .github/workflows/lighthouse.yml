@@ -3,15 +3,16 @@ on: [deployment_status]
 
 jobs:
   lighthouse:
-    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     env:
       DEPLOY_ENV: Preview
     steps:
+      - run: echo '${{ toJson(github.event) }}'
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.deployment.sha }}
-      - uses: treosh/lighthouse-ci-action@v3
+      - if: github.event.deployment_status.state == 'success'
+        uses: treosh/lighthouse-ci-action@v3
         with:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
