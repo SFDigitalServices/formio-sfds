@@ -4,14 +4,19 @@ on: [deployment_status]
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-    env:
-      DEPLOY_ENV: Preview
     steps:
+      - name: determine branch
+        run: |
+          echo "GITHUB_SHA: $GITHUB_SHA"
+          echo "GITHUB_REF: $GITHUB_REF"
+          BRANCH=$(git branch --contains $GIT_REF --list --no-color | sed 's#^\* ##')
+          echo "BRANCH: $BRANCH"
+          echo "::set-env name=BRANCH::$BRANCH"
       - name: event debug
         run: echo '${{ toJson(github.event) }}'
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.deployment.sha }}
+          ref: ${{ env.GITHUB_REF }}
       - if: github.event.deployment_status.state == 'success'
         uses: treosh/lighthouse-ci-action@v3
         with:
