@@ -13,12 +13,10 @@ jobs:
           node-version: 12
 
       - if: github.event_name == 'push'
-        env:
-          NODE_ENV: production
         run: |
           npm ci
           npm run lint
-          npm run build
+          NODE_ENV=production npm run build
           npm test
 
       - if: github.event_name == 'push'
