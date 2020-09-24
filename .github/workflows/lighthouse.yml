@@ -14,13 +14,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: determine branch
-        id: git-branch
-        uses: SFDigitalServices/git-the-branch@main
-
-      - name: checkout branch
-        run: |
-          echo "Checking out '$GIT_BRANCH'..."
-          git checkout "$GIT_BRANCH"
+        uses: SFDigitalServices/git-the-branch@nodejs
+        with:
+          checkout: true
 
       - uses: treosh/lighthouse-ci-action@v3
         with:
