@@ -6,15 +6,9 @@ jobs:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: event debug
-        run: |
-          echo "GITHUB_REF: '$GITHUB_REF' (before git-the-branch)"
-          echo '${{ toJson(github.event) }}'
-
       - uses: actions/checkout@v2
 
       - name: determine branch
-        id: git-branch
         uses: SFDigitalServices/git-the-branch@main
 
       - name: checkout branch
