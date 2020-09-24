@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: determine branch
-        uses: SFDigitalServices/git-the-branch@nodejs
+        uses: SFDigitalServices/git-the-branch@v1
         with:
           checkout: true
 
