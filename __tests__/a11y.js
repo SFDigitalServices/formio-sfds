@@ -148,4 +148,52 @@ describe('a11y', () => {
       destroyForm(form)
     })
   })
+
+  describe('aria-invalid', () => {
+    it.only('adds aria-invalid="true" to invalid components', async () => {
+      const form = await createForm({
+        components: [
+          {
+            type: 'textfield',
+            key: 'name',
+            label: 'Name',
+            input: true,
+            validate: {
+              required: true
+            }
+          }
+        ]
+      })
+
+      const caught = jest.fn()
+      try {
+        await form.submit()
+      } catch (error) {
+        caught(error)
+      }
+
+      expect(caught).toHaveBeenCalledTimes(1)
+
+      expect(form.components[0].isValid()).toBe(false)
+
+      let input = form.element.querySelector('input')
+      expect(input).not.toBe(null)
+      expect(input.getAttribute('aria-required')).toEqual('true')
+      expect(input.getAttribute('aria-invalid')).toEqual('true')
+
+      await form.setSubmission({
+        data: {
+          name: 'wut'
+        }
+      })
+      await form.redraw()
+
+      input = form.element.querySelector('input')
+      expect(input.value).toEqual('wut')
+      expect(input.classList.contains('is-invalid')).toBe(false)
+      expect(input.getAttribute('aria-invalid')).not.toEqual('true')
+
+      destroyForm(form)
+    })
+  })
 })
