@@ -35,7 +35,9 @@ const defaultEvalContext = {
   },
 
   requiredAttributes () {
-    return this.component?.validate?.required ? 'required' : ''
+    return this.component?.validate?.required
+      ? 'required aria-required="true"'
+      : ''
   }
 }
 
