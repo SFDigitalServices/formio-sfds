@@ -124,6 +124,7 @@ describe('a11y', () => {
       const input = form.element.querySelector('input')
       expect(input).not.toBe(null)
       expect(input.hasAttribute('required')).toBe(true)
+      expect(input.getAttribute('aria-required')).toBe('true')
 
       destroyForm(form)
     })
