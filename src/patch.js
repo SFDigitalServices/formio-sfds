@@ -296,7 +296,7 @@ function patchDateTimeLocale (Formio) {
 }
 
 function patchFlatpickrTabIndex () {
-  observe('.flatpickr-input[tabindex=1]', {
+  observe('.flatpickr-input[tabindex="1"]', {
     add (el) {
       el.setAttribute('tabindex', 0)
     }
