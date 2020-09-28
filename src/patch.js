@@ -46,6 +46,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
+  patchFlatpickrTabIndex()
   patchDateTimeLocale(Formio)
 
   // this goes last so that if it fails it doesn't break everything else
@@ -291,6 +292,14 @@ function patchDateTimeLocale (Formio) {
 
   observe('.flatpickr-calendar', {
     add: disableGoogleTranslate
+  })
+}
+
+function patchFlatpickrTabIndex () {
+  observe('.flatpickr-input[tabindex=1]', {
+    add (el) {
+      el.tabIndex = 0
+    }
   })
 }
 
