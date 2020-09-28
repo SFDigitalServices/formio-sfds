@@ -137,7 +137,7 @@
         title: Intro page
         components:
           - type: htmlelement
-            tag: h3
+            tag: h2
             content: Hello, world!
       - type: panel
         title: Basics page
