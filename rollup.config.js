@@ -37,7 +37,7 @@ const commonPlugins = [
     NODE_ENV,
     I18N_SERVICE_URL
   }, {
-    include: 'src/**/*.js'
+    include: 'src/**/*.js{,x}'
   }),
   svgo(
     yaml.safeLoad(
