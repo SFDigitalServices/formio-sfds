@@ -2,6 +2,8 @@
 
 {{ ctx.element }}
 
+<div class="messages" ref="messageContainer"></div>
+
 {% if (['address', 'checkbox', 'radio', 'review', 'selectboxes', 'well'].indexOf(ctx.component.type) === -1) { %}
   {% const description = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
   {% if (description) { %}
