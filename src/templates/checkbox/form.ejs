@@ -15,9 +15,9 @@
       <span class="label-required">
         {{ ctx.t([`${ctx.component.key}_label`, ctx.input.label]) }}
       </span>
-      {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.tooltip]) %}
+      {% const description = ctx.tk('description') %}
       {% if (description) { %}
-        <div class="field-description small mt-1">{{ description }}</div>
+        <div class="fg-light-slate">{{ description }}</div>
       {% } %}
     </div>
   </label>
