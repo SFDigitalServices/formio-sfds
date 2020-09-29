@@ -1,5 +1,28 @@
 const { container: Container } = window.Formio.Components.components
 
+export default class AddressComponent extends Container {
+  static schema (...extend) {
+    return Container.schema(defaultSchema, ...extend)
+  }
+
+  get defaultSchema () {
+    return defaultSchema
+  }
+
+  get templateName () {
+    return 'address'
+  }
+
+  static get builderInfo () {
+    return {
+      title: 'Address',
+      icon: 'home',
+      group: 'sfgov',
+      schema: defaultSchema
+    }
+  }
+}
+
 const defaultSchema = {
   label: 'Address',
   hideLabel: false,
@@ -63,23 +86,4 @@ const defaultSchema = {
       ]
     }
   ]
-}
-
-export default class AddressComponent extends Container {
-  static schema (...extend) {
-    return Container.schema(defaultSchema, ...extend)
-  }
-
-  get defaultSchema () {
-    return defaultSchema
-  }
-
-  static get builderInfo () {
-    return {
-      title: 'Address',
-      icon: 'home',
-      group: 'sfgov',
-      schema: defaultSchema
-    }
-  }
 }
