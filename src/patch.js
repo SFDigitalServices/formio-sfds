@@ -25,13 +25,14 @@ const defaultEvalContext = {
   },
 
   tk (field, defaultValue) {
-    const { component } = this
-    const { key } = component
-    return this.t([
+    const { component = {} } = this
+    const { type, key = type } = component
+    const fallback = defaultValue || component[field]
+    return key ? this.t([
       `${key}.${field}`,
       `${key}_${field}`,
-      defaultValue || component[field]
-    ])
+      fallback || ''
+    ]) : fallback
   },
 
   requiredAttributes () {
