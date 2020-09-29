@@ -1,11 +1,12 @@
 module.exports = {
   presets: [
-    ['@babel/preset-env', {
-    }]
+    '@babel/preset-env'
   ],
   plugins: [
     '@babel/plugin-proposal-optional-chaining',
-    ['babel-plugin-lodash', {
-    }]
+    ['@babel/plugin-transform-react-jsx', {
+      pragma: 'vdo'
+    }],
+    'babel-plugin-lodash'
   ]
 }
