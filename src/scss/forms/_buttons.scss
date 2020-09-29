@@ -12,7 +12,6 @@
 
   &:hover {
     background: $dark-blue;
-    border-bottom: 0 !important;
   }
 }
 
@@ -50,6 +49,10 @@
 button[ref=removeLink] {
   position: relative;
   z-index: 99;
+}
+
+button:hover:not(.btn-border) {
+  border-bottom: 0;
 }
 
 // FIXME this is a hack to work around sf.gov's CSS
