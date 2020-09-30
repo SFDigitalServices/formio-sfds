@@ -74,7 +74,10 @@ describe('component snapshots', () => {
             const form = await createForm({
               components: [
                 Object.assign(
-                  { label: `This is a ${comp.type}` },
+                  {
+                    label: `This is the ${comp.type} label`,
+                    description: `This is the ${comp.type} description`
+                  },
                   comp,
                   props
                 )

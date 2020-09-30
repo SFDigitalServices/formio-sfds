@@ -23,8 +23,11 @@ exports[`component snapshots component "address" scenario: basic matches the sna
         <fieldset class="bg-blue-1 round-1">
           <div class="p-2">
             <legend class="f-3">
-              This is a address
+              This is the address label
             </legend>
+            <div class="f-2 mb-2">
+              This is the address description
+            </div>
             <div ref="nested-address">
               <div ref="component"
                    class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
@@ -224,8 +227,11 @@ exports[`component snapshots component "address" scenario: required matches the 
         <fieldset class="bg-blue-1 round-1">
           <div class="p-2">
             <legend class="f-3">
-              This is a address
+              This is the address label
             </legend>
+            <div class="f-2 mb-2">
+              This is the address description
+            </div>
             <div ref="nested-address">
               <div ref="component"
                    class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
@@ -428,8 +434,11 @@ exports[`component snapshots component "button" scenario: basic matches the snap
                 class="btn btn-primary"
                 ref="button"
         >
-          This is a button
+          This is the button label
         </button>
+        <div class="fg-light-slate mt-1">
+          This is the button description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -470,8 +479,11 @@ exports[`component snapshots component "button" scenario: required matches the s
                 class="btn btn-primary"
                 ref="button"
         >
-          This is a button
+          This is the button label
         </button>
+        <div class="fg-light-slate mt-1">
+          This is the button description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -519,8 +531,11 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
             </div>
             <div class="flex-auto">
               <span class="label-required">
-                This is a checkbox
+                This is the checkbox label
               </span>
+              <div class="fg-light-slate">
+                This is the checkbox description
+              </div>
             </div>
           </label>
         </div>
@@ -571,8 +586,11 @@ exports[`component snapshots component "checkbox" scenario: required matches the
             </div>
             <div class="flex-auto">
               <span class="label-required">
-                This is a checkbox
+                This is the checkbox label
               </span>
+              <div class="fg-light-slate">
+                This is the checkbox description
+              </div>
             </div>
           </label>
         </div>
@@ -613,7 +631,7 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
         <label for="input-columns-basic-2"
                class="control-label--hidden"
         >
-          This is a columns
+          This is the columns label
         </label>
         <div class="d-md-flex mr-md-n2">
           <div ref="column-columns-basic-2"
@@ -678,6 +696,9 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
               </div>
             </div>
           </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the columns description
         </div>
         <div ref="messageContainer"
              class="messages"
@@ -716,7 +737,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
         <label for="input-columns-required-2"
                class="control-label--hidden"
         >
-          This is a columns
+          This is the columns label
         </label>
         <div class="d-md-flex mr-md-n2">
           <div ref="column-columns-required-2"
@@ -782,6 +803,9 @@ exports[`component snapshots component "columns" scenario: required matches the 
             </div>
           </div>
         </div>
+        <div class="fg-light-slate mt-1">
+          This is the columns description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -818,6 +842,9 @@ exports[`component snapshots component "container" scenario: basic matches the s
       >
         <div ref="nested-container">
         </div>
+        <div class="fg-light-slate mt-1">
+          This is the container description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -853,6 +880,9 @@ exports[`component snapshots component "container" scenario: required matches th
            id="container-required-2"
       >
         <div ref="nested-container">
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the container description
         </div>
         <div ref="messageContainer"
              class="messages"
@@ -892,7 +922,7 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
                class
                id="label-datetime-basic-2"
         >
-          This is a datetime
+          This is the datetime label
         </label>
         <div ref="element">
           <div class="input-group">
@@ -934,6 +964,9 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
             </div>
           </div>
         </div>
+        <div class="fg-light-slate mt-1">
+          This is the datetime description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -972,7 +1005,7 @@ exports[`component snapshots component "datetime" scenario: required matches the
                class="field-required"
                id="label-datetime-required-2"
         >
-          This is a datetime
+          This is the datetime label
         </label>
         <div ref="element">
           <div class="input-group">
@@ -1016,6 +1049,9 @@ exports[`component snapshots component "datetime" scenario: required matches the
             </div>
           </div>
         </div>
+        <div class="fg-light-slate mt-1">
+          This is the datetime description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1053,7 +1089,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
         <label for="input-day-basic-2"
                class
         >
-          This is a day
+          This is the day label
         </label>
         <div class="d-flex">
           <div class="col-2 pr-1">
@@ -1158,6 +1194,9 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
                type="hidden"
                name="ctx.data[day]"
         >
+        <div class="fg-light-slate mt-1">
+          This is the day description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1195,7 +1234,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
         <label for="input-day-required-2"
                class="field-required"
         >
-          This is a day
+          This is the day label
         </label>
         <div class="d-flex">
           <div class="col-2 pr-1">
@@ -1303,6 +1342,9 @@ exports[`component snapshots component "day" scenario: required matches the snap
                type="hidden"
                name="ctx.data[day]"
         >
+        <div class="fg-light-slate mt-1">
+          This is the day description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1410,7 +1452,7 @@ exports[`component snapshots component "number" scenario: basic matches the snap
         <label for="input-number-basic-2"
                class
         >
-          This is a number
+          This is the number label
         </label>
         <div ref="element">
           <div class="form-input">
@@ -1425,6 +1467,9 @@ exports[`component snapshots component "number" scenario: basic matches the snap
                    pattern="[0-9.]*"
             >
           </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the number description
         </div>
         <div ref="messageContainer"
              class="messages"
@@ -1463,7 +1508,7 @@ exports[`component snapshots component "number" scenario: required matches the s
         <label for="input-number-required-2"
                class="field-required"
         >
-          This is a number
+          This is the number label
         </label>
         <div ref="element">
           <div class="form-input">
@@ -1479,6 +1524,9 @@ exports[`component snapshots component "number" scenario: required matches the s
                    pattern="[0-9.]*"
             >
           </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the number description
         </div>
         <div ref="messageContainer"
              class="messages"
@@ -1664,8 +1712,11 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
       >
         <fieldset class>
           <legend class="f-3">
-            This is a radio
+            This is the radio label
           </legend>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the radio description
+          </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
             <div class="flex-shrink-0">
               <input id="radio-basic-2-1"
@@ -1750,8 +1801,11 @@ exports[`component snapshots component "radio" scenario: required matches the sn
       >
         <fieldset class>
           <legend class="f-3  field-required">
-            This is a radio
+            This is the radio label
           </legend>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the radio description
+          </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
             <div class="flex-shrink-0">
               <input id="radio-required-2-1"
@@ -1837,9 +1891,12 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
         <label for="input-selectboxes-basic-2"
                class
         >
-          This is a selectboxes
+          This is the selectboxes label
         </label>
         <fieldset class>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the selectboxes description
+          </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
             <div class="flex-shrink-0">
               <input id="selectboxes-basic-2-a"
@@ -1925,9 +1982,12 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
         <label for="input-selectboxes-required-2"
                class="field-required"
         >
-          This is a selectboxes
+          This is the selectboxes label
         </label>
         <fieldset class>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the selectboxes description
+          </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
             <div class="flex-shrink-0">
               <input id="selectboxes-required-2-a"
@@ -2013,7 +2073,7 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
         <label for="input-textfield-basic-2"
                class
         >
-          This is a textfield
+          This is the textfield label
         </label>
         <div ref="element">
           <div class="form-input">
@@ -2027,6 +2087,9 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
                    ref="input"
             >
           </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the textfield description
         </div>
         <div ref="messageContainer"
              class="messages"
@@ -2065,7 +2128,7 @@ exports[`component snapshots component "textfield" scenario: required matches th
         <label for="input-textfield-required-2"
                class="field-required"
         >
-          This is a textfield
+          This is the textfield label
         </label>
         <div ref="element">
           <div class="form-input">
@@ -2080,6 +2143,9 @@ exports[`component snapshots component "textfield" scenario: required matches th
                    ref="input"
             >
           </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the textfield description
         </div>
         <div ref="messageContainer"
              class="messages"
