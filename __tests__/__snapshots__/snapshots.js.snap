@@ -713,12 +713,74 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
         </label>
         <div class="d-md-flex mr-md-n2">
           <div ref="column-columns-basic-2"
-               class="col-md-6 mr-md-2"
+               class="col-md-3 mr-md-2"
           >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-left"
+                 id="columns-basic-3"
+            >
+              <label for="input-columns-basic-3"
+                     class
+              >
+                Left
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[left]"
+                         id="input-columns-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
           </div>
           <div ref="column-columns-basic-2"
-               class="col-md-6 mr-md-2"
+               class="col-md-3 mr-md-2"
           >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-right"
+                 id="columns-basic-4"
+            >
+              <label for="input-columns-basic-4"
+                     class
+              >
+                Right
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[right]"
+                         id="input-columns-basic-4"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
           </div>
         </div>
         <div ref="messageContainer"
@@ -770,12 +832,74 @@ exports[`component snapshots component "columns" scenario: required matches the 
         </label>
         <div class="d-md-flex mr-md-n2">
           <div ref="column-columns-required-2"
-               class="col-md-6 mr-md-2"
+               class="col-md-3 mr-md-2"
           >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-left"
+                 id="columns-basic-3"
+            >
+              <label for="input-columns-basic-3"
+                     class
+              >
+                Left
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[left]"
+                         id="input-columns-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
           </div>
           <div ref="column-columns-required-2"
-               class="col-md-6 mr-md-2"
+               class="col-md-3 mr-md-2"
           >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-right"
+                 id="columns-basic-4"
+            >
+              <label for="input-columns-basic-4"
+                     class
+              >
+                Right
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[right]"
+                         id="input-columns-basic-4"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
           </div>
         </div>
         <div ref="messageContainer"
@@ -865,6 +989,184 @@ exports[`component snapshots component "container" scenario: required matches th
            id="container-required-2"
       >
         <div ref="nested-container">
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
+<div id="form-datetime-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="datetime-basic-1"
+  >
+    <label for="input-datetime-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-datetime formio-component-dateTime"
+           id="datetime-basic-2"
+      >
+        <label for="input-datetime-basic-2"
+               class
+               id="label-datetime-basic-2"
+        >
+          This is a datetime
+        </label>
+        <div ref="element">
+          <div class="input-group">
+            <div ref="suffix"
+                 class="input-group-prepend"
+            >
+              <span class="input-group-text">
+                <i style
+                   class="d-flex notranslate"
+                   ref="icon"
+                   data-icon="calendar"
+                >
+                  <svg viewbox="0 0 20 20"
+                       fill="currentColor"
+                       height="20"
+                  >
+                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
+                    </path>
+                  </svg>
+                </i>
+              </span>
+            </div>
+            <div class="form-input">
+              <input value
+                     lang="en"
+                     class="form-control flatpickr-input"
+                     type="hidden"
+                     name="data[dateTime]"
+                     id="input-datetime-basic-2"
+                     ref="input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+              >
+              <input class="form-control form-control input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+                     tabindex="0"
+                     type="text"
+                     aria-labelledby="label-datetime-basic-2"
+              >
+            </div>
+          </div>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "datetime" scenario: required matches the snapshot 1`] = `
+<div id="form-datetime-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="datetime-required-1"
+  >
+    <label for="input-datetime-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-datetime formio-component-dateTime  required"
+           id="datetime-required-2"
+      >
+        <label for="input-datetime-required-2"
+               class="field-required"
+               id="label-datetime-required-2"
+        >
+          This is a datetime
+        </label>
+        <div ref="element">
+          <div class="input-group">
+            <div ref="suffix"
+                 class="input-group-prepend"
+            >
+              <span class="input-group-text">
+                <i style
+                   class="d-flex notranslate"
+                   ref="icon"
+                   data-icon="calendar"
+                >
+                  <svg viewbox="0 0 20 20"
+                       fill="currentColor"
+                       height="20"
+                  >
+                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
+                    </path>
+                  </svg>
+                </i>
+              </span>
+            </div>
+            <div class="form-input">
+              <input value
+                     lang="en"
+                     class="form-control flatpickr-input"
+                     type="hidden"
+                     name="data[dateTime]"
+                     required
+                     id="input-datetime-required-2"
+                     ref="input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+              >
+              <input class="form-control form-control input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+                     required
+                     tabindex="0"
+                     type="text"
+                     aria-labelledby="label-datetime-required-2"
+              >
+            </div>
+          </div>
         </div>
         <div ref="messageContainer"
              class="messages"

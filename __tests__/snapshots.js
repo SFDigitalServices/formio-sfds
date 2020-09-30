@@ -4,41 +4,54 @@ import '../dist/formio-sfds.standalone.js'
 
 const { FormioUtils } = window
 
-describe('component snapshots', () => {
-  const components = [
-    { type: 'address' },
-    { type: 'button' },
-    { type: 'checkbox' },
-    { type: 'columns' },
-    { type: 'container' },
-    { type: 'day' },
-    { type: 'html', tag: 'h1', content: 'Hello, world!' },
-    { type: 'number' },
-    {
-      type: 'radio',
-      values: [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 }
-      ]
-    },
-    {
-      type: 'selectboxes',
-      values: [
-        { label: 'A', value: 'a' },
-        { label: 'B', value: 'b' },
-        { label: 'C', value: 'c' }
-      ]
-    },
-    { type: 'textfield' },
-    {
-      type: 'panel',
-      components: [
-        { type: 'textfield', label: 'Your name' }
-      ]
-    }
-  ]
+const components = [
+  { type: 'address' },
+  { type: 'button' },
+  { type: 'checkbox' },
+  {
+    type: 'columns',
+    columns: [
+      {
+        width: 3,
+        components: [{ type: 'textfield', key: 'left', label: 'Left' }]
+      },
+      {
+        width: 3,
+        components: [{ type: 'textfield', key: 'right', label: 'Right' }]
+      }
+    ]
+  },
+  { type: 'container' },
+  { type: 'day' },
+  { type: 'datetime' },
+  { type: 'html', tag: 'h1', content: 'Hello, world!' },
+  { type: 'number' },
+  {
+    type: 'radio',
+    values: [
+      { label: 'One', value: 1 },
+      { label: 'Two', value: 2 },
+      { label: 'Three', value: 3 }
+    ]
+  },
+  {
+    type: 'selectboxes',
+    values: [
+      { label: 'A', value: 'a' },
+      { label: 'B', value: 'b' },
+      { label: 'C', value: 'c' }
+    ]
+  },
+  { type: 'textfield' },
+  {
+    type: 'panel',
+    components: [
+      { type: 'textfield', label: 'Your name' }
+    ]
+  }
+]
 
+describe('component snapshots', () => {
   const scenarios = {
     basic: {},
     required: {
