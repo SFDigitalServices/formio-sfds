@@ -30,7 +30,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
             </div>
             <div ref="nested-address">
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1  required"
                    id="address-basic-3"
               >
                 <label for="input-address-basic-3"
@@ -58,7 +58,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                 </div>
               </div>
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2"
                    id="address-basic-4"
               >
                 <label for="input-address-basic-4"
@@ -85,7 +85,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                 </div>
               </div>
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city  required"
                    id="address-basic-5"
               >
                 <label for="input-address-basic-5"
@@ -113,7 +113,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                 </div>
               </div>
               <div ref="component"
-                   class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
+                   class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
                    id="address-basic-6"
               >
                 <label for="input-address-basic-6"
@@ -234,7 +234,7 @@ exports[`component snapshots component "address" scenario: required matches the 
             </div>
             <div ref="nested-address">
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1  required"
                    id="address-required-3"
               >
                 <label for="input-address-required-3"
@@ -262,7 +262,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                 </div>
               </div>
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2"
                    id="address-required-4"
               >
                 <label for="input-address-required-4"
@@ -289,7 +289,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                 </div>
               </div>
               <div ref="component"
-                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city  required"
                    id="address-required-5"
               >
                 <label for="input-address-required-5"
@@ -317,7 +317,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                 </div>
               </div>
               <div ref="component"
-                   class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
+                   class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
                    id="address-required-6"
               >
                 <label for="input-address-required-6"
