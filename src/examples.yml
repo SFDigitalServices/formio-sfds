@@ -160,11 +160,11 @@
   title: Fieldset in a well
   form:
     components:
-      - type: fieldset
-        legend: This is the legend
-        description: This is the description
+      - type: well
         components:
-          - type: well
+          - type: fieldset
+            legend: This is the fieldset legend
+            description: This is the fieldset description
             components:
               - type: textfield
                 key: name
