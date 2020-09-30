@@ -260,14 +260,19 @@
     components:
       - type: textfield
         label: A text field
+        description: The description
       - type: number
         label: A number field
+        description: The description
       - type: textarea
         label: A text area field
+        description: The description
       - type: checkbox
         label: A checkbox
+        description: The description
       - type: select
         label: Select field
+        description: The description
         data:
           values:
             - label: Option 1
@@ -276,6 +281,7 @@
               value: 2
       - type: selectboxes
         label: Select boxes
+        description: The description
         values:
           - label: Select box 1
             value: 1
@@ -284,6 +290,7 @@
           - label: Select box 3
             value: 3
       - type: radio
+        description: The description
         values:
           - label: Radio 1
             value: 1
@@ -293,15 +300,23 @@
             value: 3
       - type: button
         label: This is a button
+        description: The description
       - type: email
         label: Email field
-      - type: phonenumber
+        description: The description
+      - type: phoneNumber
         label: Phone number field
+        description: The description
       - type: address
         label: Address field
+        description: The description
       - type: datetime
         label: Datetime field
+        description: The description
       - type: currency
         label: Currency field
+        description: The description
       - type: file
         label: File field
+        description: The description
+        storage: base64

@@ -1,15 +1,16 @@
-<fieldset>
-  {% if (ctx.component.legend) { %}
-  <legend ref="header" class="{{ctx.component.collapsible ? 'formio-clickable' : ''}}">
-    {{ ctx.t(ctx.component.legend) }}
-    {% if (ctx.component.tooltip) { %}
-    <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted"></i>
+<fieldset class="bg-blue-1 round-1">
+  <div class="p-2">
+    <legend class="f-3" ref="header">
+      {{ ctx.tk('legend') }}
+    </legend>
+
+    {% const desc = ctx.tk('description') %}
+    {% if (desc) { %}
+      <div class="f-2 fg-light-slate mb-1">{{ desc }}</div>
     {% } %}
-  </legend>
-  {% } %}
-  {% if (!ctx.collapsed) { %}
-  <div class="bg-blue-1 fieldset-body" ref="{{ctx.nestedKey}}">
-    {{ctx.children}}
+
+    <div ref="{{ctx.nestedKey}}">
+      {{ctx.children}}
+    </div>
   </div>
-  {% } %}
 </fieldset>

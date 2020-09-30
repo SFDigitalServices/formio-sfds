@@ -8,16 +8,18 @@
           {{attr}}="{{ctx.input.attr[attr]}}"
         {% } %}
         value="{{ ctx.value }}"
-        {% if (ctx.checked) { %}checked{% } %}
+        {% if (ctx.checked) { %}
+          checked
+        {% } %}
       >
     </div>
     <div class="flex-auto">
       <span class="label-required">
-        {{ ctx.t([`${ctx.component.key}_label`, ctx.input.label]) }}
+        {{ ctx.tk('label') }}
       </span>
-      {% var description = ctx.t([`${ctx.component.key}_description`, ctx.component.tooltip]) %}
-      {% if (description) { %}
-        <div class="field-description small mt-1">{{ description }}</div>
+      {% const desc = ctx.tk('description') %}
+      {% if (desc) { %}
+        <div class="fg-light-slate">{{ desc }}</div>
       {% } %}
     </div>
   </label>

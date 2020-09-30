@@ -20,171 +20,173 @@ exports[`component snapshots component "address" scenario: basic matches the sna
            class="form-group has-feedback formio-component formio-component-address formio-component-address"
            id="address-basic-2"
       >
-        <label for="input-address-basic-2"
-               class
-        >
-          This is a address
-        </label>
-        <div ref="nested-address">
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
-               id="address-basic-3"
-          >
-            <label for="input-address-basic-3"
-                   class="field-required"
-            >
-              Address line 1
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][line1]"
-                       required
-                       id="input-address-basic-3"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
-               id="address-basic-4"
-          >
-            <label for="input-address-basic-4"
-                   class
-            >
-              Address line 2
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][line2]"
-                       id="input-address-basic-4"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
-               id="address-basic-5"
-          >
-            <label for="input-address-basic-5"
-                   class="field-required"
-            >
-              City
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value="San Francisco"
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][city]"
-                       required
-                       id="input-address-basic-5"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
-               id="address-basic-6"
-          >
-            <label for="input-address-basic-6"
-                   class="control-label--hidden"
-            >
-              Columns
-            </label>
-            <div class="d-md-flex mr-md-n2">
-              <div ref="column-address-basic-6"
-                   class="col-md-6 mr-md-2"
+        <fieldset class="bg-blue-1 round-1">
+          <div class="p-2">
+            <legend class="f-3">
+              This is a address
+            </legend>
+            <div ref="nested-address">
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
+                   id="address-basic-3"
               >
-                <div ref="component"
-                     class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
-                     id="address-basic-7"
+                <label for="input-address-basic-3"
+                       class="field-required"
                 >
-                  <label for="input-address-basic-7"
-                         class="field-required"
-                  >
-                    State
-                  </label>
-                  <select lang="en"
-                          class="form-control"
-                          type="text"
-                          name="data[address][state]"
-                          id="input-address-basic-7"
-                          required
-                          ref="selectContainer"
-                  >
-                  </select>
-                  <div ref="messageContainer"
-                       class="messages"
-                  >
+                  Address line 1
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line1]"
+                           required
+                           id="input-address-basic-3"
+                           ref="input"
+                    >
                   </div>
                 </div>
-              </div>
-              <div ref="column-address-basic-6"
-                   class="col-md-6 mr-md-2"
-              >
-                <div ref="component"
-                     class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
-                     id="address-basic-8"
+                <div ref="messageContainer"
+                     class="messages"
                 >
-                  <label for="input-address-basic-8"
-                         class="field-required"
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
+                   id="address-basic-4"
+              >
+                <label for="input-address-basic-4"
+                       class
+                >
+                  Address line 2
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line2]"
+                           id="input-address-basic-4"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
+                   id="address-basic-5"
+              >
+                <label for="input-address-basic-5"
+                       class="field-required"
+                >
+                  City
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value="San Francisco"
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][city]"
+                           required
+                           id="input-address-basic-5"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
+                   id="address-basic-6"
+              >
+                <label for="input-address-basic-6"
+                       class="control-label--hidden"
+                >
+                  Columns
+                </label>
+                <div class="d-md-flex mr-md-n2">
+                  <div ref="column-address-basic-6"
+                       class="col-md-6 mr-md-2"
                   >
-                    ZIP code
-                  </label>
-                  <div ref="element">
-                    <div class="form-input">
-                      <input value
-                             spellcheck="true"
-                             lang="en"
-                             class="form-control"
-                             type="text"
-                             name="data[address][zip]"
-                             required
-                             id="input-address-basic-8"
-                             ref="input"
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
+                         id="address-basic-7"
+                    >
+                      <label for="input-address-basic-7"
+                             class="field-required"
                       >
+                        State
+                      </label>
+                      <select lang="en"
+                              class="form-control"
+                              type="text"
+                              name="data[address][state]"
+                              id="input-address-basic-7"
+                              required
+                              ref="selectContainer"
+                      >
+                      </select>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
                     </div>
                   </div>
-                  <div ref="messageContainer"
-                       class="messages"
+                  <div ref="column-address-basic-6"
+                       class="col-md-6 mr-md-2"
                   >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
+                         id="address-basic-8"
+                    >
+                      <label for="input-address-basic-8"
+                             class="field-required"
+                      >
+                        ZIP code
+                      </label>
+                      <div ref="element">
+                        <div class="form-input">
+                          <input value
+                                 spellcheck="true"
+                                 lang="en"
+                                 class="form-control"
+                                 type="text"
+                                 name="data[address][zip]"
+                                 required
+                                 id="input-address-basic-8"
+                                 ref="input"
+                          >
+                        </div>
+                      </div>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
                 </div>
               </div>
             </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
           </div>
-        </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
@@ -219,171 +221,173 @@ exports[`component snapshots component "address" scenario: required matches the 
            class="form-group has-feedback formio-component formio-component-address formio-component-address  required"
            id="address-required-2"
       >
-        <label for="input-address-required-2"
-               class="field-required"
-        >
-          This is a address
-        </label>
-        <div ref="nested-address">
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
-               id="address-required-3"
-          >
-            <label for="input-address-required-3"
-                   class="field-required"
-            >
-              Address line 1
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][line1]"
-                       required
-                       id="input-address-required-3"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
-               id="address-required-4"
-          >
-            <label for="input-address-required-4"
-                   class
-            >
-              Address line 2
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][line2]"
-                       id="input-address-required-4"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
-               id="address-required-5"
-          >
-            <label for="input-address-required-5"
-                   class="field-required"
-            >
-              City
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value="San Francisco"
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[address][city]"
-                       required
-                       id="input-address-required-5"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
-          <div ref="component"
-               class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
-               id="address-required-6"
-          >
-            <label for="input-address-required-6"
-                   class="control-label--hidden"
-            >
-              Columns
-            </label>
-            <div class="d-md-flex mr-md-n2">
-              <div ref="column-address-required-6"
-                   class="col-md-6 mr-md-2"
+        <fieldset class="bg-blue-1 round-1">
+          <div class="p-2">
+            <legend class="f-3">
+              This is a address
+            </legend>
+            <div ref="nested-address">
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1 mb-1 required"
+                   id="address-required-3"
               >
-                <div ref="component"
-                     class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
-                     id="address-required-7"
+                <label for="input-address-required-3"
+                       class="field-required"
                 >
-                  <label for="input-address-required-7"
-                         class="field-required"
-                  >
-                    State
-                  </label>
-                  <select lang="en"
-                          class="form-control"
-                          type="text"
-                          name="data[address][state]"
-                          id="input-address-required-7"
-                          required
-                          ref="selectContainer"
-                  >
-                  </select>
-                  <div ref="messageContainer"
-                       class="messages"
-                  >
+                  Address line 1
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line1]"
+                           required
+                           id="input-address-required-3"
+                           ref="input"
+                    >
                   </div>
                 </div>
-              </div>
-              <div ref="column-address-required-6"
-                   class="col-md-6 mr-md-2"
-              >
-                <div ref="component"
-                     class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
-                     id="address-required-8"
+                <div ref="messageContainer"
+                     class="messages"
                 >
-                  <label for="input-address-required-8"
-                         class="field-required"
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
+                   id="address-required-4"
+              >
+                <label for="input-address-required-4"
+                       class
+                >
+                  Address line 2
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line2]"
+                           id="input-address-required-4"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city mb-1 required"
+                   id="address-required-5"
+              >
+                <label for="input-address-required-5"
+                       class="field-required"
+                >
+                  City
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value="San Francisco"
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][city]"
+                           required
+                           id="input-address-required-5"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="row formio-component formio-component-columns formio-component-columns mb-0 formio-component-label-hidden"
+                   id="address-required-6"
+              >
+                <label for="input-address-required-6"
+                       class="control-label--hidden"
+                >
+                  Columns
+                </label>
+                <div class="d-md-flex mr-md-n2">
+                  <div ref="column-address-required-6"
+                       class="col-md-6 mr-md-2"
                   >
-                    ZIP code
-                  </label>
-                  <div ref="element">
-                    <div class="form-input">
-                      <input value
-                             spellcheck="true"
-                             lang="en"
-                             class="form-control"
-                             type="text"
-                             name="data[address][zip]"
-                             required
-                             id="input-address-required-8"
-                             ref="input"
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
+                         id="address-required-7"
+                    >
+                      <label for="input-address-required-7"
+                             class="field-required"
                       >
+                        State
+                      </label>
+                      <select lang="en"
+                              class="form-control"
+                              type="text"
+                              name="data[address][state]"
+                              id="input-address-required-7"
+                              required
+                              ref="selectContainer"
+                      >
+                      </select>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
                     </div>
                   </div>
-                  <div ref="messageContainer"
-                       class="messages"
+                  <div ref="column-address-required-6"
+                       class="col-md-6 mr-md-2"
                   >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
+                         id="address-required-8"
+                    >
+                      <label for="input-address-required-8"
+                             class="field-required"
+                      >
+                        ZIP code
+                      </label>
+                      <div ref="element">
+                        <div class="form-input">
+                          <input value
+                                 spellcheck="true"
+                                 lang="en"
+                                 class="form-control"
+                                 type="text"
+                                 name="data[address][zip]"
+                                 required
+                                 id="input-address-required-8"
+                                 ref="input"
+                          >
+                        </div>
+                      </div>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
                 </div>
               </div>
             </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
           </div>
-        </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1658,62 +1662,58 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
            class="form-group has-feedback formio-component formio-component-radio formio-component-radio"
            id="radio-basic-2"
       >
-        <div class="form-group mt-2">
-          <fieldset>
-            <legend>
-              This is a radio
-            </legend>
-            <div class="field-wrapper bg-blue-1 round-1">
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-basic-2-1"
-                         value="1"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-basic-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  One
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-basic-2-2"
-                         value="2"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-basic-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  Two
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-basic-2-3"
-                         value="3"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-basic-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  Three
-                </span>
-              </label>
+        <fieldset class>
+          <legend class="f-3">
+            This is a radio
+          </legend>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-1"
+                     value="1"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
             </div>
-            <div class="help-block with-errors">
+            <span class="flex-auto">
+              One
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-2"
+                     value="2"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
             </div>
-          </fieldset>
-        </div>
+            <span class="flex-auto">
+              Two
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-3"
+                     value="3"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Three
+            </span>
+          </label>
+          <div class="help-block with-errors">
+          </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1748,62 +1748,58 @@ exports[`component snapshots component "radio" scenario: required matches the sn
            class="form-group has-feedback formio-component formio-component-radio formio-component-radio  required"
            id="radio-required-2"
       >
-        <div class="form-group mt-2">
-          <fieldset>
-            <legend>
-              This is a radio
-            </legend>
-            <div class="field-wrapper bg-blue-1 round-1">
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-required-2-1"
-                         value="1"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-required-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  One
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-required-2-2"
-                         value="2"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-required-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  Two
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="radio-required-2-3"
-                         value="3"
-                         lang="en"
-                         type="radio"
-                         name="data[radio][radio-required-2]"
-                         ref="input"
-                         class="input-radio position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  Three
-                </span>
-              </label>
+        <fieldset class>
+          <legend class="f-3  field-required">
+            This is a radio
+          </legend>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-1"
+                     value="1"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
             </div>
-            <div class="help-block with-errors">
+            <span class="flex-auto">
+              One
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-2"
+                     value="2"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
             </div>
-          </fieldset>
-        </div>
+            <span class="flex-auto">
+              Two
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-3"
+                     value="3"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Three
+            </span>
+          </label>
+          <div class="help-block with-errors">
+          </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1843,59 +1839,55 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
         >
           This is a selectboxes
         </label>
-        <div class="form-group mt-2">
-          <fieldset>
-            <div class="field-wrapper bg-blue-1 round-1">
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-basic-2-a"
-                         value="a"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  A
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-basic-2-b"
-                         value="b"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  B
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-basic-2-c"
-                         value="c"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  C
-                </span>
-              </label>
+        <fieldset class>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-a"
+                     value="a"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
             </div>
-            <div class="help-block with-errors">
+            <span class="flex-auto">
+              A
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-b"
+                     value="b"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
             </div>
-          </fieldset>
-        </div>
+            <span class="flex-auto">
+              B
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-c"
+                     value="c"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              C
+            </span>
+          </label>
+          <div class="help-block with-errors">
+          </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1935,59 +1927,55 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
         >
           This is a selectboxes
         </label>
-        <div class="form-group mt-2">
-          <fieldset>
-            <div class="field-wrapper bg-blue-1 round-1">
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-required-2-a"
-                         value="a"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  A
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-required-2-b"
-                         value="b"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  B
-                </span>
-              </label>
-              <label class="d-flex flex-items-center fs-inherit my-2">
-                <div class="flex-shrink-0">
-                  <input id="selectboxes-required-2-c"
-                         value="c"
-                         lang="en"
-                         type="checkbox"
-                         name="data[selectBoxes][]"
-                         ref="input"
-                         class="input-checkbox position-relative d-block mr-2 mb-0"
-                  >
-                </div>
-                <span class="flex-auto">
-                  C
-                </span>
-              </label>
+        <fieldset class>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-a"
+                     value="a"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
             </div>
-            <div class="help-block with-errors">
+            <span class="flex-auto">
+              A
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-b"
+                     value="b"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
             </div>
-          </fieldset>
-        </div>
+            <span class="flex-auto">
+              B
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-c"
+                     value="c"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              C
+            </span>
+          </label>
+          <div class="help-block with-errors">
+          </div>
+        </fieldset>
         <div ref="messageContainer"
              class="messages"
         >
