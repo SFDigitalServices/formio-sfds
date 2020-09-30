@@ -1,16 +1,14 @@
-<fieldset class="bg-blue-1 round-1">
-  <div class="p-2">
-    <legend class="f-3" ref="header">
-      {{ ctx.tk('legend') }}
-    </legend>
+<fieldset>
+  <legend class="f-3" ref="header">
+    {{ ctx.tk('legend') }}
+  </legend>
 
-    {% const desc = ctx.tk('description') %}
-    {% if (desc) { %}
-      <div class="f-2 fg-light-slate mb-1">{{ desc }}</div>
-    {% } %}
+  {% const desc = ctx.tk('description') %}
+  {% if (desc) { %}
+    <div class="f-2 mb-1">{{ desc }}</div>
+  {% } %}
 
-    <div ref="{{ctx.nestedKey}}">
-      {{ctx.children}}
-    </div>
+  <div ref="{{ctx.nestedKey}}">
+    {{ctx.children}}
   </div>
 </fieldset>
