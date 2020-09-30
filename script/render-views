@@ -8,17 +8,17 @@ const { readFileSync, writeFileSync } = require('fs')
 
 const outDir = join(__dirname, '../dist')
 
-const data = require('../templates/data')
+const data = require('../views/data')
 const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
 data.examples = examples.sort((a, b) => a.title.localeCompare(b.title))
 
-const env = nunjucks.configure(join(__dirname, '../templates'))
+const env = nunjucks.configure(join(__dirname, '../views'))
 
-console.warn('finding templates...')
+console.warn('finding views...')
 
-globby('templates/*.html')
-  .then(templates => {
-    for (const templatePath of templates) {
+globby('views/*.html')
+  .then(paths => {
+    for (const templatePath of paths) {
       const filename = basename(templatePath)
       console.warn('rendering "%s"...', filename)
       const output = env.render(filename, data)
