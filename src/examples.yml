@@ -141,6 +141,38 @@
             key: age
             label: Your age
 
+- id: well
+  title: Well
+  form:
+    components:
+      - type: well
+        label: This is the well label
+        description: This is the well description
+        components:
+          - type: textfield
+            key: name
+            label: Your name
+          - type: number
+            key: age
+            label: Your age
+
+- id: fieldest-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: fieldset
+        legend: This is the legend
+        description: This is the description
+        components:
+          - type: well
+            components:
+              - type: textfield
+                key: name
+                label: Your name
+              - type: number
+                key: age
+                label: Your age
+
 - id: review
   title: Review (custom component)
   options:
