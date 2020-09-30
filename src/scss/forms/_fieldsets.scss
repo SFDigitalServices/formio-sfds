@@ -12,6 +12,14 @@ fieldset {
   label {
     font-size: 16px;
   }
+
+  .formio-component {
+    margin-bottom: spacer(2);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .formio-component-radio {
