@@ -53,10 +53,6 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                      class="messages"
                 >
                 </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
-                </div>
               </div>
               <div ref="component"
                    class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
@@ -79,10 +75,6 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                            ref="input"
                     >
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -111,10 +103,6 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                            ref="input"
                     >
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -156,10 +144,6 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                            class="messages"
                       >
                       </div>
-                      <div ref="messageContainer"
-                           class="messages"
-                      >
-                      </div>
                     </div>
                   </div>
                   <div ref="column-address-basic-6"
@@ -192,16 +176,8 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                            class="messages"
                       >
                       </div>
-                      <div ref="messageContainer"
-                           class="messages"
-                      >
-                      </div>
                     </div>
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -215,15 +191,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -286,10 +254,6 @@ exports[`component snapshots component "address" scenario: required matches the 
                      class="messages"
                 >
                 </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
-                </div>
               </div>
               <div ref="component"
                    class="form-group has-feedback formio-component formio-component-textfield formio-component-line2 mb-1"
@@ -312,10 +276,6 @@ exports[`component snapshots component "address" scenario: required matches the 
                            ref="input"
                     >
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -344,10 +304,6 @@ exports[`component snapshots component "address" scenario: required matches the 
                            ref="input"
                     >
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -389,10 +345,6 @@ exports[`component snapshots component "address" scenario: required matches the 
                            class="messages"
                       >
                       </div>
-                      <div ref="messageContainer"
-                           class="messages"
-                      >
-                      </div>
                     </div>
                   </div>
                   <div ref="column-address-required-6"
@@ -425,16 +377,8 @@ exports[`component snapshots component "address" scenario: required matches the 
                            class="messages"
                       >
                       </div>
-                      <div ref="messageContainer"
-                           class="messages"
-                      >
-                      </div>
                     </div>
                   </div>
-                </div>
-                <div ref="messageContainer"
-                     class="messages"
-                >
                 </div>
                 <div ref="messageContainer"
                      class="messages"
@@ -448,15 +392,7 @@ exports[`component snapshots component "address" scenario: required matches the 
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -498,15 +434,7 @@ exports[`component snapshots component "button" scenario: basic matches the snap
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -548,15 +476,7 @@ exports[`component snapshots component "button" scenario: required matches the s
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -608,15 +528,7 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -668,15 +580,7 @@ exports[`component snapshots component "checkbox" scenario: required matches the
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -741,10 +645,6 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
           <div ref="column-columns-basic-2"
@@ -776,10 +676,6 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
         </div>
@@ -787,15 +683,7 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -860,10 +748,6 @@ exports[`component snapshots component "columns" scenario: required matches the 
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
           <div ref="column-columns-required-2"
@@ -895,10 +779,6 @@ exports[`component snapshots component "columns" scenario: required matches the 
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
         </div>
@@ -906,15 +786,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -950,15 +822,7 @@ exports[`component snapshots component "container" scenario: basic matches the s
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -994,15 +858,7 @@ exports[`component snapshots component "container" scenario: required matches th
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1082,15 +938,7 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1172,15 +1020,7 @@ exports[`component snapshots component "datetime" scenario: required matches the
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1322,15 +1162,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1475,15 +1307,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1524,10 +1348,6 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
          class="messages"
     >
     </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
-    </div>
   </div>
 </div>
 `;
@@ -1558,10 +1378,6 @@ exports[`component snapshots component "html" scenario: required matches the sna
         >
         </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1614,15 +1430,7 @@ exports[`component snapshots component "number" scenario: basic matches the snap
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1676,15 +1484,7 @@ exports[`component snapshots component "number" scenario: required matches the s
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1751,10 +1551,6 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
         </div>
@@ -1763,10 +1559,6 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
         >
         </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1833,10 +1625,6 @@ exports[`component snapshots component "panel" scenario: required matches the sn
                    class="messages"
               >
               </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
-              </div>
             </div>
           </div>
         </div>
@@ -1845,10 +1633,6 @@ exports[`component snapshots component "panel" scenario: required matches the sn
         >
         </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -1934,15 +1718,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -2028,15 +1804,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -2124,15 +1892,7 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -2220,15 +1980,7 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -2280,15 +2032,7 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"
@@ -2341,15 +2085,7 @@ exports[`component snapshots component "textfield" scenario: required matches th
              class="messages"
         >
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
-    </div>
-    <div ref="messageContainer"
-         class="messages"
-    >
     </div>
     <div ref="messageContainer"
          class="messages"

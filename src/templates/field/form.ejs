@@ -2,8 +2,6 @@
 
 {{ ctx.element }}
 
-<div class="messages" ref="messageContainer"></div>
-
 {% if (['address', 'checkbox', 'radio', 'review', 'selectboxes', 'well'].indexOf(ctx.component.type) === -1) { %}
   {% const desc = ctx.tk('description') %}
   {% if (desc) { %}
