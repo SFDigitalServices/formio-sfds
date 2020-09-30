@@ -59,7 +59,7 @@
     "globby": "^11.0.1",
     "google-spreadsheet": "^3.0.11",
     "i18next": "19.7.0",
-    "jest": "^26.1.0",
+    "jest": "^26.4.2",
     "jest-serializer-html": "^7.0.0",
     "js-yaml": "^3.14.0",
     "mkdirp": "^1.0.4",
