@@ -9,6 +9,7 @@ import svgo from 'rollup-plugin-svgo'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
 import rollupYAML from '@rollup/plugin-yaml'
+import vdo from './lib/rollup-transform-vdo'
 import yaml from 'js-yaml'
 import { readFileSync } from 'fs'
 
@@ -44,6 +45,7 @@ const commonPlugins = [
       readFileSync('svgo.config.yml', 'utf8')
     )
   ),
+  vdo(),
   babel(),
   prod ? terser() : null
 ].filter(Boolean)
