@@ -126,7 +126,7 @@
         description: This is the description
         tooltip: And this is the tooltip
 
-- id: fieldest
+- id: fieldset
   title: Fieldset
   form:
     components:
@@ -156,7 +156,7 @@
             key: age
             label: Your age
 
-- id: fieldest-well
+- id: fieldset-well
   title: Fieldset in a well
   form:
     components:
