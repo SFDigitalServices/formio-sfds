@@ -1762,8 +1762,6 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
               Three
             </span>
           </label>
-          <div class="help-block with-errors">
-          </div>
         </fieldset>
         <div ref="messageContainer"
              class="messages"
@@ -1851,8 +1849,6 @@ exports[`component snapshots component "radio" scenario: required matches the sn
               Three
             </span>
           </label>
-          <div class="help-block with-errors">
-          </div>
         </fieldset>
         <div ref="messageContainer"
              class="messages"
@@ -1942,8 +1938,6 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
               C
             </span>
           </label>
-          <div class="help-block with-errors">
-          </div>
         </fieldset>
         <div ref="messageContainer"
              class="messages"
@@ -2033,8 +2027,6 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
               C
             </span>
           </label>
-          <div class="help-block with-errors">
-          </div>
         </fieldset>
         <div ref="messageContainer"
              class="messages"
