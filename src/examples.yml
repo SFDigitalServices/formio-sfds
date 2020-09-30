@@ -126,6 +126,21 @@
         description: This is the description
         tooltip: And this is the tooltip
 
+- id: fieldest
+  title: Fieldset
+  form:
+    components:
+      - type: fieldset
+        legend: This is the legend
+        description: This is the description
+        components:
+          - type: textfield
+            key: name
+            label: Your name
+          - type: number
+            key: age
+            label: Your age
+
 - id: review
   title: Review (custom component)
   options:
