@@ -6,6 +6,9 @@
   border-radius: radius(1);
   padding: spacer(1) spacer(2);
   margin: 0;
+  font-family: "Rubik", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
 
   &:hover {
     background: $dark-blue;
@@ -46,6 +49,10 @@
 button[ref=removeLink] {
   position: relative;
   z-index: 99;
+}
+
+button:hover:not(.btn-border) {
+  border-bottom: 0;
 }
 
 // FIXME this is a hack to work around sf.gov's CSS

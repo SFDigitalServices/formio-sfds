@@ -25,6 +25,16 @@ const defaultEvalContext = {
     return parts.join('-')
   },
 
+  tk (field, defaultValue = '') {
+    const { component = {} } = this
+    const { type, key = type } = component
+    return key ? this.t([
+      `${key}.${field}`,
+      `${key}_${field}`,
+      component[field] || ''
+    ]) : defaultValue
+  },
+
   requiredAttributes () {
     return this.component?.validate?.required ? 'required' : ''
   }
