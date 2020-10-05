@@ -9,8 +9,11 @@ import svgo from 'rollup-plugin-svgo'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import { terser } from 'rollup-plugin-terser'
 import rollupYAML from '@rollup/plugin-yaml'
+import jsx from './lib/rollup-jsx'
 import yaml from 'js-yaml'
 import { readFileSync } from 'fs'
+
+require('dotenv').config()
 
 const {
   NODE_ENV = 'development',
@@ -26,6 +29,7 @@ const commonPlugins = [
   resolve(),
   commonjs(),
   json(),
+  jsx(),
   jst({
     extensions: ['.ejs'],
     templateOptions: {
