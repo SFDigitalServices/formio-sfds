@@ -1148,7 +1148,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-day"
+                   for="day-day"
             >
               Day
             </label>
@@ -1160,7 +1160,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
                        placeholder
                        type="number"
                        class="form-control formio-day-component-day"
-                       id="input-day-basic-2-day"
+                       id="day-day"
                        ref="day"
                 >
               </div>
@@ -1168,7 +1168,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-year"
+                   for="day-year"
             >
               Year
             </label>
@@ -1180,7 +1180,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
                        placeholder
                        type="number"
                        class="form-control formio-day-component-year"
-                       id="input-day-basic-2-year"
+                       id="day-year"
                        ref="year"
                 >
               </div>
@@ -1294,7 +1294,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-required-2-day"
+                   for="day-day"
             >
               Day
             </label>
@@ -1307,7 +1307,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
                        type="number"
                        class="form-control formio-day-component-day"
                        required
-                       id="input-day-required-2-day"
+                       id="day-day"
                        ref="day"
                 >
               </div>
@@ -1315,7 +1315,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="input-day-required-2-year"
+                   for="day-year"
             >
               Year
             </label>
@@ -1328,7 +1328,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
                        type="number"
                        class="form-control formio-day-component-year"
                        required
-                       id="input-day-required-2-year"
+                       id="day-year"
                        ref="year"
                 >
               </div>
