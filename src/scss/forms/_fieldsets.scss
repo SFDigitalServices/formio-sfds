@@ -1,19 +1,25 @@
 fieldset {
-  .fieldset-body {
-    margin: 0 -15px 40px;
-    padding: 15px 15px 1px;
-    border-radius: radius(1);
-  }
+  border: 0;
+  margin: 0;
+  padding: 0.01em 0 0 0;
+  min-width: 0;
 
-  label {
+  legend {
+    display: table;
+    padding: 0;
+  }
+}
+
+fieldset,
+.well {
+  * label {
     font-size: 16px;
-    line-height: 1;
   }
 
   .formio-component {
-    margin-bottom: 20px;
+    margin-bottom: spacer(2);
 
-    &.row {
+    &:last-child {
       margin-bottom: 0;
     }
   }
@@ -21,7 +27,6 @@ fieldset {
 
 .formio-component-radio {
   fieldset label {
-    letter-spacing: 0;
     line-height: 24px;
   }
 }

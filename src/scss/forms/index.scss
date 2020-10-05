@@ -21,6 +21,7 @@
   }
 
   input:not([type="button"]),
+  select,
   textarea {
     border-color: $red-3 !important;
   }
