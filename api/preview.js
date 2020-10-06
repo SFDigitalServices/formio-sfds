@@ -1,7 +1,5 @@
 const fetch = require('node-fetch')
-const { URL } = require('url')
 const { JSDOM } = require('jsdom')
-const { readFileSync } = require('fs')
 
 const LIVE_URL = 'https://sf.gov'
 
@@ -9,13 +7,7 @@ const envUrls = {
   test: 'https://test-sfgov.pantheonsite.io'
 }
 
-const banner = '/** injected by formio-sfds proxy */'
-const footer = banner
-
 module.exports = (req, res) => {
-  const { host, protocol = 'https', url } = req
-  const proxyUrl = new URL(`${protocol}://${host}${url}`)
-
   const {
     form: source,
     options,
@@ -29,9 +21,14 @@ module.exports = (req, res) => {
   const baseUrl = (env ? envUrls[env] : null) || LIVE_URL
   const fetchUrl = `${baseUrl}${path}`
 
+  let start = Date.now()
+
   fetch(fetchUrl)
     .then(fetched => fetched.text())
     .then(body => {
+      res.setHeader('x-proxy-fetch-time', `${Date.now() - start} ms`)
+      start = Date.now()
+
       const dom = new JSDOM(body)
       const { document } = dom.window
 
@@ -41,8 +38,18 @@ module.exports = (req, res) => {
           script.setAttribute('src', script.src.replace(/formio-sfds@[^/]+/, `formio-sfds@${version}`))
         } else {
           script.removeAttribute('src')
-          const scriptSource = readFileSync('./dist/formio-sfds.standalone.js', 'utf8')
-          script.textContent = `${banner}${scriptSource}${footer}`
+          script.textContent = `
+            var script = document.createElement('script')
+            var baseUrl = [
+              location.protocol, '/',
+              location.hostname,
+              location.port ? ':' + location.port : ''
+            ].join('')
+            script.src = baseUrl + '/dist/formio-sfds.standalone.js'
+            console.info('injected formio-sfds:', script.src)
+            document.body.appendChild(script)
+            document.getElementById('formio-sfds-url').href = script.src
+          `
         }
       } else {
         console.warn(
@@ -63,25 +70,31 @@ module.exports = (req, res) => {
         header.classList.add('formio-sfds')
         header.innerHTML = `
           <details>
-            <summary class="m-0">⚠️ This is a preview of your form</summary>
-            <div class="bg-red-1 p-2 border-1 border-bright-blue round-bottom-1">
+            <summary class="m-0">⚠️ This is a form preview</summary>
+            <div class="bg-blue-1 p-2 border-1 border-bright-blue round-bottom-1">
               <p class="mt-0 mb-1">
-                You are viewing this form in a simulated sf.gov environment.
+                <b>You are viewing this form in a simulated sf.gov environment.</b>
                 The form should function as expected, and styles should reflect
                 what you will see when this version of <code>formio-sfds</code>
                 is used on sf.gov. Some additional information is listed below.
               </p>
-              <ul class="m-0 pl-2">
-                <li><b>This URL</b>: <a href="${proxyUrl}"><code>${proxyUrl}</code></a></li>
-                <li><b>Fetched URL</b>: <a href="${fetchUrl}"><code>${fetchUrl}</code></a></li>
-                <li><b>Form URL</b>: ${
+              <dl class="m-0">
+                <dt><b>Fetched URL</b></dt>
+                <dd class="mb-1 ml-2">
+                  <a href="${fetchUrl}"><code>${fetchUrl}</code></a>
+                </dd>
+
+                <dt><b>Form URL</b></dt>
+                <dd class="mb-1 ml-2">${
                   source ? `<a href="${source}"><code>${source}</code></a>` : 'not provided'
                 } ${
-                  env ? `(via env "${env}")` : ''
-                }</li>
-                <li><b>formio-sfds version</b>: ${
-                  version ? `<code>${version}</code>` : 'not provided (injected built JS)'
-                }</li>
+                  env ? `(via <code>env=${env}</code>)` : ''
+                }</dd>
+
+                <dt><b>Theme version</b></dt>
+                <dd class="mb-0 ml-2">${
+                  version ? `version <code>${version}</code>` : 'not provided (injected <a id="formio-sfds-url">built JS</a>)'
+                }</dd>
               </ul>
             </div>
           </details>
@@ -96,6 +109,7 @@ module.exports = (req, res) => {
       document.head.insertBefore(base, document.head.firstChild)
 
       const html = dom.serialize()
+      res.setHeader('x-proxy-render-time', `${Date.now() - start} ms`)
       res.setHeader('Content-Length', Buffer.byteLength(html))
       res.end(html, 'utf8')
     })
