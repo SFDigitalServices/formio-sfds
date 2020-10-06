@@ -9,7 +9,7 @@ const envUrls = {
   test: 'https://test-sfgov.pantheonsite.io'
 }
 
-const scriptSource = readFileSync(require.resolve('../dist/formio-sfds.standalone.js'), 'utf8')
+const scriptSource = readFileSync('./dist/formio-sfds.standalone.js', 'utf8')
 const banner = '/** injected by formio-sfds proxy */'
 const footer = banner
 
@@ -21,13 +21,14 @@ module.exports = (req, res) => {
     form: source,
     options,
     version,
-    env
+    env,
+    path = '/feedback'
   } = req.query
 
   res.setHeader('Content-Type', 'text/html')
 
   const baseUrl = (env ? envUrls[env] : null) || LIVE_URL
-  const fetchUrl = `${baseUrl}/feedback`
+  const fetchUrl = `${baseUrl}${path}`
 
   fetch(fetchUrl)
     .then(fetched => fetched.text())
