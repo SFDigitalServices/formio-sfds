@@ -41,8 +41,7 @@ module.exports = (req, res) => {
           script.textContent = `
             var script = document.createElement('script')
             var baseUrl = [
-              location.protocol, '/',
-              location.hostname,
+              location.protocol, '//', location.hostname,
               location.port ? ':' + location.port : ''
             ].join('')
             script.src = baseUrl + '/dist/formio-sfds.standalone.js'
