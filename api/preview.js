@@ -81,13 +81,12 @@ module.exports = (req, res) => {
                 <dt><b>Fetched URL</b></dt>
                 <dd class="mb-1 ml-2">
                   <a href="${fetchUrl}"><code>${fetchUrl}</code></a>
+                  ${env ? `(via <code>env=${env}</code>)` : ''}
                 </dd>
 
                 <dt><b>Form URL</b></dt>
                 <dd class="mb-1 ml-2">${
                   source ? `<a href="${source}"><code>${source}</code></a>` : 'not provided'
-                } ${
-                  env ? `(via <code>env=${env}</code>)` : ''
                 }</dd>
 
                 <dt><b>Theme version</b></dt>
