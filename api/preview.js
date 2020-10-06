@@ -9,7 +9,6 @@ const envUrls = {
   test: 'https://test-sfgov.pantheonsite.io'
 }
 
-const scriptSource = readFileSync('./dist/formio-sfds.standalone.js', 'utf8')
 const banner = '/** injected by formio-sfds proxy */'
 const footer = banner
 
@@ -42,6 +41,7 @@ module.exports = (req, res) => {
           script.setAttribute('src', script.src.replace(/formio-sfds@[^/]+/, `formio-sfds@${version}`))
         } else {
           script.removeAttribute('src')
+          const scriptSource = readFileSync('./dist/formio-sfds.standalone.js', 'utf8')
           script.textContent = `${banner}${scriptSource}${footer}`
         }
       } else {
