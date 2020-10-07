@@ -17,7 +17,7 @@
     "test": "jest",
     "update-translations": "script/get-translations > src/i18n/translations.json",
     "watch": "run-s build-css watch-all",
-    "watch-all": "run-p watch-{css,js,html}",
+    "watch-all": "run-p watch-css watch-js watch-views",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
     "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -- npm run build-views",
