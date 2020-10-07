@@ -9,11 +9,14 @@ const envUrls = {
 
 module.exports = (req, res) => {
   const {
-    form: source,
-    options,
     version,
     env,
     path = '/feedback'
+  } = req.query
+
+  let {
+    form: source,
+    options
   } = req.query
 
   res.setHeader('Content-Type', 'text/html')
@@ -61,9 +64,13 @@ module.exports = (req, res) => {
       if (div) {
         if (source) {
           div.setAttribute('data-source', source)
+        } else {
+          source = div.getAttribute('data-source')
         }
         if (options) {
           div.setAttribute('data-options', options)
+        } else {
+          options = div.getAttribute('data-options')
         }
         const header = document.createElement('div')
         header.classList.add('formio-sfds')
@@ -84,14 +91,19 @@ module.exports = (req, res) => {
                   ${env ? `(via <code>env=${env}</code>)` : ''}
                 </dd>
 
-                <dt><b>Form URL</b></dt>
+                <dt><b>Theme version</b></dt>
+                <dd class="mb-0 ml-2">${
+                  version ? `version <code>${version}</code>` : 'not provided (injected <a id="formio-sfds-url">built JS</a>)'
+                }</dd>
+
+                <dt><b>Form data source URL</b></dt>
                 <dd class="mb-1 ml-2">${
                   source ? `<a href="${source}"><code>${source}</code></a>` : 'not provided'
                 }</dd>
 
-                <dt><b>Theme version</b></dt>
-                <dd class="mb-0 ml-2">${
-                  version ? `version <code>${version}</code>` : 'not provided (injected <a id="formio-sfds-url">built JS</a>)'
+                <dt><b>Form options</b></dt>
+                <dd class="mb-1 ml-2">${
+                  options ? `<pre>${JSON.stringify(JSON.parse(options), null, 2)}</pre>` : 'none provided'
                 }</dd>
               </ul>
             </div>
