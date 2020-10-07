@@ -1562,46 +1562,40 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
            class="formio-component formio-component-panel formio-component-panel"
            id="panel-basic-2"
       >
-        <div class="mb-2 card border">
-          <div ref="header"
-               class="card-header bg-default"
+        <section class="border-1 border-grey-2 p-2 round-1 mb-4"
+                 id="panel-panel"
+        >
+          <h1 class="d1 mt-0 mb-4">
+            Panel
+          </h1>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="panel-basic-3"
           >
-            <span class="mb-0 card-title">
-              Panel
-            </span>
-          </div>
-          <div ref="nested-panel"
-               class="card-body"
-          >
-            <div ref="component"
-                 class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
-                 id="panel-basic-3"
+            <label for="input-panel-basic-3"
+                   class
             >
-              <label for="input-panel-basic-3"
-                     class
-              >
-                Your name
-              </label>
-              <div ref="element">
-                <div class="form-input">
-                  <input value
-                         spellcheck="true"
-                         lang="en"
-                         class="form-control"
-                         type="text"
-                         name="data[textField]"
-                         id="input-panel-basic-3"
-                         ref="input"
-                  >
-                </div>
-              </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       class="form-control"
+                       type="text"
+                       name="data[textField]"
+                       id="input-panel-basic-3"
+                       ref="input"
+                >
               </div>
             </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
           </div>
-        </div>
+        </section>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1636,46 +1630,40 @@ exports[`component snapshots component "panel" scenario: required matches the sn
            class="formio-component formio-component-panel formio-component-panel"
            id="panel-required-2"
       >
-        <div class="mb-2 card border">
-          <div ref="header"
-               class="card-header bg-default"
+        <section class="border-1 border-grey-2 p-2 round-1 mb-4"
+                 id="panel-panel"
+        >
+          <h1 class="d1 mt-0 mb-4">
+            Panel
+          </h1>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="panel-basic-3"
           >
-            <span class="mb-0 card-title">
-              Panel
-            </span>
-          </div>
-          <div ref="nested-panel"
-               class="card-body"
-          >
-            <div ref="component"
-                 class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
-                 id="panel-basic-3"
+            <label for="input-panel-basic-3"
+                   class
             >
-              <label for="input-panel-basic-3"
-                     class
-              >
-                Your name
-              </label>
-              <div ref="element">
-                <div class="form-input">
-                  <input value
-                         spellcheck="true"
-                         lang="en"
-                         class="form-control"
-                         type="text"
-                         name="data[textField]"
-                         id="input-panel-basic-3"
-                         ref="input"
-                  >
-                </div>
-              </div>
-              <div ref="messageContainer"
-                   class="messages"
-              >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       class="form-control"
+                       type="text"
+                       name="data[textField]"
+                       id="input-panel-basic-3"
+                       ref="input"
+                >
               </div>
             </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
           </div>
-        </div>
+        </section>
         <div ref="messageContainer"
              class="messages"
         >
