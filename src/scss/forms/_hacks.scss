@@ -14,3 +14,8 @@ textarea:disabled {
   border-color: $grey-4 !important;
   background-color: $grey-1 !important;
 }
+
+select {
+  // undoes the linear-gradient(#fff, #fff) in drupal.css
+  background-image: none;
+}
