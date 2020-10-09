@@ -1,11 +1,11 @@
 {% const visible = ctx.component.properties.visible !== "false" %}
-<div aria-labelledby="label-{{ ctx.id }}" ref="{{ ctx.nestedKey }}" class="well{{ visible ? ' bg-blue-1 round-1 p-2' : '' }}">
-  {% if (ctx.component.properties.showLabel === "true") { %}
+<section ref="{{ ctx.nestedKey }}" class="well{{ visible ? ' bg-blue-1 round-1 p-2' : '' }}">
+  {% if (ctx.component.properties.showLabel !== "false") { %}
     {% const label = ctx.tk('label') %}
     {% if (label) { %}
-      <label class="f-3" id="label-{{ ctx.id }}">
+      <h2 class="h4 my-0" id="label-{{ ctx.id }}">
         {{ label }}
-      </label>
+      </h2>
     {% } %}
   {% } %}
 
@@ -15,4 +15,4 @@
   {% } %}
 
   {{ ctx.children }}
-</div>
+</section>
