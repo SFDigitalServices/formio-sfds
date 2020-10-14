@@ -45,11 +45,14 @@
   margin-bottom: 0;
 }
 
-.formio-component-well .formio-component {
-  margin-bottom: spacer(1);
+.formio-nested {
+  .formio-component {
+    margin-bottom: spacer(2);
 
-  &:last-child {
-    margin-bottom: 0;
+    &.row,
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
