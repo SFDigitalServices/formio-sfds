@@ -1,9 +1,9 @@
 <{{ctx.input.type}}
-  ref="button"
-  class="btn btn-{{ ctx.transform('theme', ctx.component.theme) }} {{ ctx.component.customClass }}"
-  {% for (var attr in ctx.input.attr) { %}
-  {{attr}}="{{ctx.input.attr[attr]}}"
-  {% } %}
+  {{ ctx.attrs({
+    ref: 'button',
+    ...ctx.input.attr,
+    class: `btn btn-${ctx.transform('theme', ctx.component.theme)} ${ctx.input.attr.class || ''} ${ctx.component.customClass}`
+  }) }}
 >
 {% if (ctx.component.leftIcon) { %}<span class="{{ctx.component.leftIcon}}"></span>&nbsp;{% } %}
 {{ctx.input.content}}
