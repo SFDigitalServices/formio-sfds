@@ -18,13 +18,13 @@
 
 <div class="form-input">
   <{{ ctx.input.type }}
-    ref="{{ ctx.input.ref || 'input' }}"
-    id="{{ ctx.inputId() }}"
-    {{ ctx.requiredAttributes() }}
-    {% for (const attr in ctx.input.attr) { %}
-      {{ attr }}="{{ ctx.input.attr[attr] }}"
-    {% } %}
-  >{{ ctx.input.content }}</{{ ctx.input.type }}>
+    {{ ctx.attrs({
+      ref: ctx.input.ref || 'input',
+      id: ctx.inputId(),
+      ...ctx.requiredAttributes(),
+      ...ctx.input.attr
+    }) }}
+  >{% if (ctx.input.type !== 'input') { %}{{ ctx.input.content }}</{{ ctx.input.type }}>{% } %}
 </div>
 
 {% if (ctx.component.showCharCount) { %}
