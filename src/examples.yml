@@ -253,6 +253,34 @@
         description: This is the description
         enableDate: false
 
+- id: well
+  title: Well
+  form:
+    components:
+      - type: well
+        label: This is a well
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
 
 - id: kitchen-sink
   title: Kitchen sink
