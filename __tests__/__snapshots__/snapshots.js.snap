@@ -523,7 +523,7 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
               <span class="label-required">
                 This is the checkbox label
               </span>
-              <span class="fg-light-slate">
+              <span class="d-block fg-light-slate">
                 This is the checkbox description
               </span>
             </span>
@@ -576,7 +576,7 @@ exports[`component snapshots component "checkbox" scenario: required matches the
               <span class="label-required">
                 This is the checkbox label
               </span>
-              <span class="fg-light-slate">
+              <span class="d-block fg-light-slate">
                 This is the checkbox description
               </span>
             </span>
