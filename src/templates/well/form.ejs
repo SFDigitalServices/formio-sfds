@@ -1,8 +1,8 @@
 {% const visible = ctx.component.properties.visible !== "false" %}
-<div ref="{{ ctx.nestedKey }}" class="formio-component{% if (visible) { %} formio-component-well bg-blue-1 p-2 round-1{% } %}">
-  {% var desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+<div ref="{{ ctx.nestedKey }}" class="formio-component formio-nested{% if (visible) { %} formio-component-well bg-blue-1 p-2 round-1{% } %}">
+  {% const desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
   {% if (desc) { %}
-    <div class="mb-1">{{ desc }}</div>
+    <div class="fg-light-slate mb-1">{{ desc }}</div>
   {% } %}
   {{ ctx.children }}
 </div>
