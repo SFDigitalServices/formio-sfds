@@ -45,7 +45,17 @@
   margin-bottom: 0;
 }
 
+label {
+  margin: 0;
+}
+
 .formio-nested {
+  label {
+    // XXX: Figma suggests 14px
+    // https://www.figma.com/file/WLu0Iwr7TjlFwD8ZG5xYcjev/Basic-Components?node-id=811%3A128
+    font-size: 16px;
+  }
+
   .formio-component {
     margin-bottom: spacer(2);
 
