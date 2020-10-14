@@ -74,6 +74,10 @@ export default class AddressComponent extends Container {
     return defaultSchema
   }
 
+  get templateName () {
+    return 'address'
+  }
+
   static get builderInfo () {
     return {
       title: 'Address',
