@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`component snapshots component "address" scenario: basic matches the snapshot 1`] = `
-<div id="form-address-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="address-basic-1"
@@ -20,9 +18,9 @@ exports[`component snapshots component "address" scenario: basic matches the sna
            class="form-group has-feedback formio-component formio-component-address formio-component-address"
            id="address-basic-2"
       >
-        <fieldset class="bg-blue-1 round-1">
-          <div class="p-2">
-            <legend class="f-3">
+        <div class="bg-blue-1 round-1 p-2">
+          <fieldset>
+            <legend>
               This is the address label
             </legend>
             <div class="f-2 mb-2">
@@ -43,12 +41,12 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                     <input value
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][line1]"
                            required
                            id="input-address-basic-3"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -71,11 +69,11 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                     <input value
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][line2]"
                            id="input-address-basic-4"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -98,12 +96,12 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                     <input value="San Francisco"
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][city]"
                            required
                            id="input-address-basic-5"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -135,12 +133,12 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                         State
                       </label>
                       <select lang="en"
-                              class="form-control"
                               type="text"
                               name="data[address][state]"
-                              id="input-address-basic-7"
                               required
+                              id="input-address-basic-7"
                               ref="selectContainer"
+                              class="form-control"
                       >
                       </select>
                       <div ref="messageContainer"
@@ -166,12 +164,12 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                           <input value
                                  spellcheck="true"
                                  lang="en"
-                                 class="form-control"
                                  type="text"
                                  name="data[address][zip]"
                                  required
                                  id="input-address-basic-8"
                                  ref="input"
+                                 class="form-control"
                           >
                         </div>
                       </div>
@@ -188,8 +186,8 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                 </div>
               </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -205,9 +203,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
 `;
 
 exports[`component snapshots component "address" scenario: required matches the snapshot 1`] = `
-<div id="form-address-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="address-required-1"
@@ -224,9 +220,9 @@ exports[`component snapshots component "address" scenario: required matches the 
            class="form-group has-feedback formio-component formio-component-address formio-component-address  required"
            id="address-required-2"
       >
-        <fieldset class="bg-blue-1 round-1">
-          <div class="p-2">
-            <legend class="f-3">
+        <div class="bg-blue-1 round-1 p-2">
+          <fieldset>
+            <legend>
               This is the address label
             </legend>
             <div class="f-2 mb-2">
@@ -247,12 +243,12 @@ exports[`component snapshots component "address" scenario: required matches the 
                     <input value
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][line1]"
                            required
                            id="input-address-required-3"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -275,11 +271,11 @@ exports[`component snapshots component "address" scenario: required matches the 
                     <input value
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][line2]"
                            id="input-address-required-4"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -302,12 +298,12 @@ exports[`component snapshots component "address" scenario: required matches the 
                     <input value="San Francisco"
                            spellcheck="true"
                            lang="en"
-                           class="form-control"
                            type="text"
                            name="data[address][city]"
                            required
                            id="input-address-required-5"
                            ref="input"
+                           class="form-control"
                     >
                   </div>
                 </div>
@@ -339,12 +335,12 @@ exports[`component snapshots component "address" scenario: required matches the 
                         State
                       </label>
                       <select lang="en"
-                              class="form-control"
                               type="text"
                               name="data[address][state]"
-                              id="input-address-required-7"
                               required
+                              id="input-address-required-7"
                               ref="selectContainer"
+                              class="form-control"
                       >
                       </select>
                       <div ref="messageContainer"
@@ -370,12 +366,12 @@ exports[`component snapshots component "address" scenario: required matches the 
                           <input value
                                  spellcheck="true"
                                  lang="en"
-                                 class="form-control"
                                  type="text"
                                  name="data[address][zip]"
                                  required
                                  id="input-address-required-8"
                                  ref="input"
+                                 class="form-control"
                           >
                         </div>
                       </div>
@@ -392,8 +388,8 @@ exports[`component snapshots component "address" scenario: required matches the 
                 </div>
               </div>
             </div>
-          </div>
-        </fieldset>
+          </fieldset>
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
@@ -409,9 +405,7 @@ exports[`component snapshots component "address" scenario: required matches the 
 `;
 
 exports[`component snapshots component "button" scenario: basic matches the snapshot 1`] = `
-<div id="form-button-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="button-basic-1"
@@ -431,8 +425,8 @@ exports[`component snapshots component "button" scenario: basic matches the snap
         <button lang="en"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary"
                 ref="button"
+                class="btn btn-primary btn btn-primary btn-md"
         >
           This is the button label
         </button>
@@ -454,9 +448,7 @@ exports[`component snapshots component "button" scenario: basic matches the snap
 `;
 
 exports[`component snapshots component "button" scenario: required matches the snapshot 1`] = `
-<div id="form-button-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="button-required-1"
@@ -476,8 +468,8 @@ exports[`component snapshots component "button" scenario: required matches the s
         <button lang="en"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary"
                 ref="button"
+                class="btn btn-primary btn btn-primary btn-md"
         >
           This is the button label
         </button>
@@ -499,9 +491,7 @@ exports[`component snapshots component "button" scenario: required matches the s
 `;
 
 exports[`component snapshots component "checkbox" scenario: basic matches the snapshot 1`] = `
-<div id="form-checkbox-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="checkbox-basic-1"
@@ -520,23 +510,23 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
       >
         <div class="form-checkbox">
           <label class="d-flex flex-items-center fs-inherit fg-inherit">
-            <div class="flex-shrink-0 flex-self-start">
-              <input value="0"
-                     lang="en"
+            <span class="flex-shrink-0 flex-self-start">
+              <input lang="en"
                      type="checkbox"
                      name="data[checkbox]"
+                     value="0"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
-            <div class="flex-auto">
+            </span>
+            <span class="flex-auto">
               <span class="label-required">
                 This is the checkbox label
               </span>
-              <div class="fg-light-slate">
+              <span class="fg-light-slate">
                 This is the checkbox description
-              </div>
-            </div>
+              </span>
+            </span>
           </label>
         </div>
         <div ref="messageContainer"
@@ -554,9 +544,7 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
 `;
 
 exports[`component snapshots component "checkbox" scenario: required matches the snapshot 1`] = `
-<div id="form-checkbox-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="checkbox-required-1"
@@ -575,23 +563,23 @@ exports[`component snapshots component "checkbox" scenario: required matches the
       >
         <div class="form-checkbox">
           <label class="d-flex flex-items-center fs-inherit fg-inherit">
-            <div class="flex-shrink-0 flex-self-start">
-              <input value="0"
-                     lang="en"
+            <span class="flex-shrink-0 flex-self-start">
+              <input lang="en"
                      type="checkbox"
                      name="data[checkbox]"
+                     value="0"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
-            <div class="flex-auto">
+            </span>
+            <span class="flex-auto">
               <span class="label-required">
                 This is the checkbox label
               </span>
-              <div class="fg-light-slate">
+              <span class="fg-light-slate">
                 This is the checkbox description
-              </div>
-            </div>
+              </span>
+            </span>
           </label>
         </div>
         <div ref="messageContainer"
@@ -609,9 +597,7 @@ exports[`component snapshots component "checkbox" scenario: required matches the
 `;
 
 exports[`component snapshots component "columns" scenario: basic matches the snapshot 1`] = `
-<div id="form-columns-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="columns-basic-1"
@@ -651,13 +637,16 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
                   <input value
                          spellcheck="true"
                          lang="en"
-                         class="form-control"
                          type="text"
                          name="data[left]"
                          id="input-columns-basic-3"
                          ref="input"
+                         class="form-control"
                   >
                 </div>
+              </div>
+              <div class="fg-light-slate mt-1">
+                This is the textfield description
               </div>
               <div ref="messageContainer"
                    class="messages"
@@ -682,13 +671,16 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
                   <input value
                          spellcheck="true"
                          lang="en"
-                         class="form-control"
                          type="text"
                          name="data[right]"
                          id="input-columns-basic-4"
                          ref="input"
+                         class="form-control"
                   >
                 </div>
+              </div>
+              <div class="fg-light-slate mt-1">
+                This is the textfield description
               </div>
               <div ref="messageContainer"
                    class="messages"
@@ -715,9 +707,7 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
 `;
 
 exports[`component snapshots component "columns" scenario: required matches the snapshot 1`] = `
-<div id="form-columns-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="columns-required-1"
@@ -757,13 +747,16 @@ exports[`component snapshots component "columns" scenario: required matches the 
                   <input value
                          spellcheck="true"
                          lang="en"
-                         class="form-control"
                          type="text"
                          name="data[left]"
                          id="input-columns-basic-3"
                          ref="input"
+                         class="form-control"
                   >
                 </div>
+              </div>
+              <div class="fg-light-slate mt-1">
+                This is the textfield description
               </div>
               <div ref="messageContainer"
                    class="messages"
@@ -788,13 +781,16 @@ exports[`component snapshots component "columns" scenario: required matches the 
                   <input value
                          spellcheck="true"
                          lang="en"
-                         class="form-control"
                          type="text"
                          name="data[right]"
                          id="input-columns-basic-4"
                          ref="input"
+                         class="form-control"
                   >
                 </div>
+              </div>
+              <div class="fg-light-slate mt-1">
+                This is the textfield description
               </div>
               <div ref="messageContainer"
                    class="messages"
@@ -821,9 +817,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
 `;
 
 exports[`component snapshots component "container" scenario: basic matches the snapshot 1`] = `
-<div id="form-container-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="container-basic-1"
@@ -841,6 +835,36 @@ exports[`component snapshots component "container" scenario: basic matches the s
            id="container-basic-2"
       >
         <div ref="nested-container">
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-yo"
+               id="container-basic-3"
+          >
+            <label for="input-container-basic-3"
+                   class
+            >
+              This is the textfield label
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[container][yo]"
+                       id="input-container-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
         </div>
         <div class="fg-light-slate mt-1">
           This is the container description
@@ -860,9 +884,7 @@ exports[`component snapshots component "container" scenario: basic matches the s
 `;
 
 exports[`component snapshots component "container" scenario: required matches the snapshot 1`] = `
-<div id="form-container-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="container-required-1"
@@ -880,6 +902,36 @@ exports[`component snapshots component "container" scenario: required matches th
            id="container-required-2"
       >
         <div ref="nested-container">
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-yo"
+               id="container-basic-3"
+          >
+            <label for="input-container-basic-3"
+                   class
+            >
+              This is the textfield label
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[container][yo]"
+                       id="input-container-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
         </div>
         <div class="fg-light-slate mt-1">
           This is the container description
@@ -899,9 +951,7 @@ exports[`component snapshots component "container" scenario: required matches th
 `;
 
 exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
-<div id="form-datetime-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="datetime-basic-1"
@@ -948,11 +998,11 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
             <div class="form-input">
               <input value
                      lang="en"
-                     class="form-control flatpickr-input"
                      type="hidden"
                      name="data[dateTime]"
                      id="input-datetime-basic-2"
                      ref="input"
+                     class="form-control flatpickr-input"
                      placeholder="yyyy-MM-dd hh:mm a"
               >
               <input class="form-control form-control input"
@@ -982,9 +1032,7 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
 `;
 
 exports[`component snapshots component "datetime" scenario: required matches the snapshot 1`] = `
-<div id="form-datetime-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="datetime-required-1"
@@ -1031,12 +1079,12 @@ exports[`component snapshots component "datetime" scenario: required matches the
             <div class="form-input">
               <input value
                      lang="en"
-                     class="form-control flatpickr-input"
                      type="hidden"
                      name="data[dateTime]"
                      required
                      id="input-datetime-required-2"
                      ref="input"
+                     class="form-control flatpickr-input"
                      placeholder="yyyy-MM-dd hh:mm a"
               >
               <input class="form-control form-control input"
@@ -1067,9 +1115,7 @@ exports[`component snapshots component "datetime" scenario: required matches the
 `;
 
 exports[`component snapshots component "day" scenario: basic matches the snapshot 1`] = `
-<div id="form-day-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="day-basic-1"
@@ -1094,16 +1140,16 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
         <div class="d-flex">
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-month"
+                   for="day-month"
             >
               Month
             </label>
             <div>
               <select lang="en"
                       name="month"
-                      class="form-control"
-                      id="input-day-basic-2-month"
+                      id="day-month"
                       ref="month"
+                      class="form-control"
               >
                 <option value>
                 </option>
@@ -1148,40 +1194,40 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-day"
+                   for="day-day"
             >
               Day
             </label>
             <div>
               <div class="form-input">
-                <input max="31"
-                       min="1"
-                       step="1"
+                <input max="undefined"
+                       min="undefined"
+                       step="undefined"
                        placeholder
                        type="number"
-                       class="form-control formio-day-component-day"
-                       id="input-day-basic-2-day"
+                       id="day-day"
                        ref="day"
+                       class="form-control formio-day-component-day"
                 >
               </div>
             </div>
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-year"
+                   for="day-year"
             >
               Year
             </label>
             <div>
               <div class="form-input">
-                <input max="2030"
-                       min="1900"
-                       step="1"
+                <input max="undefined"
+                       min="undefined"
+                       step="undefined"
                        placeholder
                        type="number"
-                       class="form-control formio-day-component-year"
-                       id="input-day-basic-2-year"
+                       id="day-year"
                        ref="year"
+                       class="form-control formio-day-component-year"
                 >
               </div>
             </div>
@@ -1212,9 +1258,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
 `;
 
 exports[`component snapshots component "day" scenario: required matches the snapshot 1`] = `
-<div id="form-day-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="day-required-1"
@@ -1239,17 +1283,17 @@ exports[`component snapshots component "day" scenario: required matches the snap
         <div class="d-flex">
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-required-2-month"
+                   for="day-month"
             >
               Month
             </label>
             <div>
               <select lang="en"
                       name="month"
-                      class="form-control"
-                      id="input-day-required-2-month"
                       required
+                      id="day-month"
                       ref="month"
+                      class="form-control"
               >
                 <option value>
                 </option>
@@ -1294,42 +1338,42 @@ exports[`component snapshots component "day" scenario: required matches the snap
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-required-2-day"
+                   for="day-day"
             >
               Day
             </label>
             <div>
               <div class="form-input">
-                <input max="31"
-                       min="1"
-                       step="1"
+                <input max="undefined"
+                       min="undefined"
+                       step="undefined"
                        placeholder
                        type="number"
-                       class="form-control formio-day-component-day"
                        required
-                       id="input-day-required-2-day"
+                       id="day-day"
                        ref="day"
+                       class="form-control formio-day-component-day"
                 >
               </div>
             </div>
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="input-day-required-2-year"
+                   for="day-year"
             >
               Year
             </label>
             <div>
               <div class="form-input">
-                <input max="2030"
-                       min="1900"
-                       step="1"
+                <input max="undefined"
+                       min="undefined"
+                       step="undefined"
                        placeholder
                        type="number"
-                       class="form-control formio-day-component-year"
                        required
-                       id="input-day-required-2-year"
+                       id="day-year"
                        ref="year"
+                       class="form-control formio-day-component-year"
                 >
               </div>
             </div>
@@ -1360,9 +1404,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
 `;
 
 exports[`component snapshots component "html" scenario: basic matches the snapshot 1`] = `
-<div id="form-html-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="html-basic-1"
@@ -1395,9 +1437,7 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
 `;
 
 exports[`component snapshots component "html" scenario: required matches the snapshot 1`] = `
-<div id="form-html-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="html-required-1"
@@ -1430,9 +1470,7 @@ exports[`component snapshots component "html" scenario: required matches the sna
 `;
 
 exports[`component snapshots component "number" scenario: basic matches the snapshot 1`] = `
-<div id="form-number-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="number-basic-1"
@@ -1459,11 +1497,11 @@ exports[`component snapshots component "number" scenario: basic matches the snap
             <input value
                    inputmode="decimal"
                    lang="en"
-                   class="form-control"
                    type="text"
                    name="data[number]"
                    id="input-number-basic-2"
                    ref="input"
+                   class="form-control"
                    pattern="[0-9.]*"
             >
           </div>
@@ -1486,9 +1524,7 @@ exports[`component snapshots component "number" scenario: basic matches the snap
 `;
 
 exports[`component snapshots component "number" scenario: required matches the snapshot 1`] = `
-<div id="form-number-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="number-required-1"
@@ -1515,12 +1551,12 @@ exports[`component snapshots component "number" scenario: required matches the s
             <input value
                    inputmode="decimal"
                    lang="en"
-                   class="form-control"
                    type="text"
                    name="data[number]"
                    required
                    id="input-number-required-2"
                    ref="input"
+                   class="form-control"
                    pattern="[0-9.]*"
             >
           </div>
@@ -1543,9 +1579,7 @@ exports[`component snapshots component "number" scenario: required matches the s
 `;
 
 exports[`component snapshots component "panel" scenario: basic matches the snapshot 1`] = `
-<div id="form-panel-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="panel-basic-1"
@@ -1582,13 +1616,16 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
                 <input value
                        spellcheck="true"
                        lang="en"
-                       class="form-control"
                        type="text"
                        name="data[textField]"
                        id="input-panel-basic-3"
                        ref="input"
+                       class="form-control"
                 >
               </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
             </div>
             <div ref="messageContainer"
                  class="messages"
@@ -1611,9 +1648,7 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
 `;
 
 exports[`component snapshots component "panel" scenario: required matches the snapshot 1`] = `
-<div id="form-panel-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="panel-required-1"
@@ -1650,13 +1685,16 @@ exports[`component snapshots component "panel" scenario: required matches the sn
                 <input value
                        spellcheck="true"
                        lang="en"
-                       class="form-control"
                        type="text"
                        name="data[textField]"
                        id="input-panel-basic-3"
                        ref="input"
+                       class="form-control"
                 >
               </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
             </div>
             <div ref="messageContainer"
                  class="messages"
@@ -1679,9 +1717,7 @@ exports[`component snapshots component "panel" scenario: required matches the sn
 `;
 
 exports[`component snapshots component "radio" scenario: basic matches the snapshot 1`] = `
-<div id="form-radio-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="radio-basic-1"
@@ -1706,46 +1742,46 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
             This is the radio description
           </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-basic-2-1"
                      value="1"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-basic-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               One
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-basic-2-2"
                      value="2"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-basic-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               Two
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-basic-2-3"
                      value="3"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-basic-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               Three
             </span>
@@ -1766,9 +1802,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
 `;
 
 exports[`component snapshots component "radio" scenario: required matches the snapshot 1`] = `
-<div id="form-radio-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="radio-required-1"
@@ -1793,46 +1827,46 @@ exports[`component snapshots component "radio" scenario: required matches the sn
             This is the radio description
           </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-required-2-1"
                      value="1"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-required-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               One
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-required-2-2"
                      value="2"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-required-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               Two
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="radio-required-2-3"
                      value="3"
                      lang="en"
                      type="radio"
                      name="data[radio][radio-required-2]"
                      ref="input"
-                     class="input-radio position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-radio position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               Three
             </span>
@@ -1853,9 +1887,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
 `;
 
 exports[`component snapshots component "selectboxes" scenario: basic matches the snapshot 1`] = `
-<div id="form-selectboxes-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="selectboxes-basic-1"
@@ -1878,50 +1910,53 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
           This is the selectboxes label
         </label>
         <fieldset class>
+          <legend class="f-3">
+            This is the selectboxes label
+          </legend>
           <div class="f-2 fg-light-slate mb-1">
             This is the selectboxes description
           </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-basic-2-a"
                      value="a"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               A
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-basic-2-b"
                      value="b"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               B
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-basic-2-c"
                      value="c"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               C
             </span>
@@ -1942,9 +1977,7 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
 `;
 
 exports[`component snapshots component "selectboxes" scenario: required matches the snapshot 1`] = `
-<div id="form-selectboxes-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="selectboxes-required-1"
@@ -1967,50 +2000,53 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
           This is the selectboxes label
         </label>
         <fieldset class>
+          <legend class="f-3  field-required">
+            This is the selectboxes label
+          </legend>
           <div class="f-2 fg-light-slate mb-1">
             This is the selectboxes description
           </div>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-required-2-a"
                      value="a"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               A
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-required-2-b"
                      value="b"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               B
             </span>
           </label>
           <label class="d-flex flex-items-center fs-inherit mt-2">
-            <div class="flex-shrink-0">
+            <span class="flex-shrink-0">
               <input id="selectboxes-required-2-c"
                      value="c"
                      lang="en"
                      type="checkbox"
                      name="data[selectBoxes][]"
                      ref="input"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
+                     class="form-check-input input-checkbox position-relative d-block mr-2 mb-0"
               >
-            </div>
+            </span>
             <span class="flex-auto">
               C
             </span>
@@ -2031,9 +2067,7 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
 `;
 
 exports[`component snapshots component "textfield" scenario: basic matches the snapshot 1`] = `
-<div id="form-textfield-basic"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="textfield-basic-1"
@@ -2060,11 +2094,11 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
             <input value
                    spellcheck="true"
                    lang="en"
-                   class="form-control"
                    type="text"
                    name="data[textField]"
                    id="input-textfield-basic-2"
                    ref="input"
+                   class="form-control"
             >
           </div>
         </div>
@@ -2086,9 +2120,7 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
 `;
 
 exports[`component snapshots component "textfield" scenario: required matches the snapshot 1`] = `
-<div id="form-textfield-required"
-     class="d-flex flex-column-reverse mb-4"
->
+<div class="d-flex flex-column-reverse mb-4">
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
        id="textfield-required-1"
@@ -2115,18 +2147,300 @@ exports[`component snapshots component "textfield" scenario: required matches th
             <input value
                    spellcheck="true"
                    lang="en"
-                   class="form-control"
                    type="text"
                    name="data[textField]"
                    required
                    id="input-textfield-required-2"
                    ref="input"
+                   class="form-control"
             >
           </div>
         </div>
         <div class="fg-light-slate mt-1">
           This is the textfield description
         </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "well" scenario: basic matches the snapshot 1`] = `
+<div class="d-flex flex-column-reverse mb-4">
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="well-basic-1"
+  >
+    <label for="input-well-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-well"
+           id="well-basic-2"
+      >
+        <section class="well bg-blue-1 round-1 p-2"
+                 ref="nested-well"
+        >
+          <h2 class="h4 my-0">
+            Well hello
+          </h2>
+          <div class="mb-1">
+            This is the well description
+          </div>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="well-basic-3"
+          >
+            <label for="input-well-basic-3"
+                   class
+            >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[textField]"
+                       id="input-well-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
+        </section>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "well" scenario: basic matches the snapshot 2`] = `
+<div class="d-flex flex-column-reverse mb-4">
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="well-basic-1"
+  >
+    <label for="input-well-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-well"
+           id="well-basic-2"
+      >
+        <section class="well bg-blue-1 round-1 p-2"
+                 ref="nested-well"
+        >
+          <div class="mb-1">
+            This is the well description
+          </div>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="well-basic-3"
+          >
+            <label for="input-well-basic-3"
+                   class
+            >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[textField]"
+                       id="input-well-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
+        </section>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "well" scenario: required matches the snapshot 1`] = `
+<div class="d-flex flex-column-reverse mb-4">
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="well-required-1"
+  >
+    <label for="input-well-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-well"
+           id="well-required-2"
+      >
+        <section class="well bg-blue-1 round-1 p-2"
+                 ref="nested-well"
+        >
+          <h2 class="h4 my-0">
+            Well hello
+          </h2>
+          <div class="mb-1">
+            This is the well description
+          </div>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="well-basic-3"
+          >
+            <label for="input-well-basic-3"
+                   class
+            >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[textField]"
+                       id="input-well-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
+        </section>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "well" scenario: required matches the snapshot 2`] = `
+<div class="d-flex flex-column-reverse mb-4">
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="well-required-1"
+  >
+    <label for="input-well-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-well"
+           id="well-required-2"
+      >
+        <section class="well bg-blue-1 round-1 p-2"
+                 ref="nested-well"
+        >
+          <div class="mb-1">
+            This is the well description
+          </div>
+          <div ref="component"
+               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+               id="well-basic-3"
+          >
+            <label for="input-well-basic-3"
+                   class
+            >
+              Your name
+            </label>
+            <div ref="element">
+              <div class="form-input">
+                <input value
+                       spellcheck="true"
+                       lang="en"
+                       type="text"
+                       name="data[textField]"
+                       id="input-well-basic-3"
+                       ref="input"
+                       class="form-control"
+                >
+              </div>
+            </div>
+            <div class="fg-light-slate mt-1">
+              This is the textfield description
+            </div>
+            <div ref="messageContainer"
+                 class="messages"
+            >
+            </div>
+          </div>
+        </section>
         <div ref="messageContainer"
              class="messages"
         >
