@@ -300,9 +300,13 @@ function patchDateTimeLabels () {
       const { id } = el
       const labelId = `label-${id}`
       const label = el.querySelector(`label[for="input-${id}"]`)
+      if (label) {
+        label.setAttribute('id', labelId)
+      }
       const input = el.querySelector('input.form-control[type=text]')
-      label.setAttribute('id', labelId)
-      input.setAttribute('aria-labelledby', labelId)
+      if (input) {
+        input.setAttribute('aria-labelledby', labelId)
+      }
     }
   })
 }

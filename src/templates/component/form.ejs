@@ -1,6 +1,6 @@
 <div
   id="{{ ctx.id }}"
-  class="{{ ctx.classes }}"
+  class="{{ ctx.classes || (ctx.visible && ctx.component.type === 'well' ? 'formio-component formio-component-well' : '') }}"
   {% if (ctx.styles) { %} style="{{ ctx.styles }}"{% } %}
   ref="component"
 >
