@@ -1,9 +1,9 @@
 {% const visible = ctx.component.properties.visible !== "false" %}
 <section ref="{{ ctx.nestedKey }}" class="well{{ visible ? ' bg-blue-1 round-1 p-2' : '' }}">
-  {% if (ctx.component.properties.showLabel !== "false") { %}
+  {% if (String(ctx.component.properties.hideLabel) !== "true") { %}
     {% const label = ctx.tk('label') %}
     {% if (label) { %}
-      <h2 class="h4 my-0" id="label-{{ ctx.id }}">
+      <h2 class="h4 my-0">
         {{ label }}
       </h2>
     {% } %}
