@@ -1,7 +1,9 @@
 import { observe } from 'selector-observer'
+import classnames from 'classnames'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
+import { htmlEscape } from 'escape-goat'
 import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
@@ -25,6 +27,41 @@ const defaultEvalContext = {
     return parts.join('-')
   },
 
+  attrs (...pairs) {
+    const specialAttrs = {
+      spellcheck: value => value ? 'true' : 'false'
+    }
+    const booleanAttrs = [
+      'checked',
+      'multiple',
+      'required'
+    ]
+    const classes = []
+    const parts = []
+    for (let pair of pairs) {
+      if (Array.isArray(pair)) {
+        pair = pair.reduce((map, [k, v]) => Object.assign(map, { [k]: v }))
+      }
+      if (pair && pair.class) {
+        classes.push(pair.class)
+        delete pair.class
+        parts.push(pair)
+      }
+    }
+    const attr = Object.assign({ class: classnames(...classes) }, ...parts)
+    return Array.from(
+      Object.entries(attr),
+      ([key, value]) => {
+        if (key in specialAttrs) {
+          value = specialAttrs[key](value)
+        }
+        return booleanAttrs.includes(key)
+          ? value ? key : ''
+          : `${htmlEscape(key)}="${htmlEscape(value)}"`
+      }
+    ).join(' ')
+  },
+
   tk (field, defaultValue = '') {
     const { component = {} } = this
     const { type, key = type } = component
@@ -36,7 +73,9 @@ const defaultEvalContext = {
   },
 
   requiredAttributes () {
-    return this.component?.validate?.required ? 'required' : ''
+    return this.component?.validate?.required
+      ? { required: true }
+      : { }
   }
 }
 
