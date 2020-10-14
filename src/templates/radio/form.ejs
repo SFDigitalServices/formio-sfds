@@ -1,5 +1,5 @@
 <fieldset class="{{ ctx.className }}">
-  {% if (!ctx.component.hideLabel && ctx.component.type !== 'selectboxes') { %}
+  {% if (!ctx.component.hideLabel) { %}
     <legend class="f-3 {{ ctx.label.className }}">
       {{ ctx.tk('label') }}
     </legend>
@@ -12,14 +12,20 @@
 
   {% for (const item of ctx.values) { %}
     <label class="d-flex flex-items-center fs-inherit mt-2">
-      <div class="flex-shrink-0">
-        <{{ctx.input.type}} class="input-{{ ctx.input.attr.type }} position-relative d-block mr-2 mb-0" ref="input"
-          {% for (var attr in ctx.input.attr) { %} {{attr}}="{{ctx.input.attr[attr]}}" {% } %} value="{{item.value}}"
+      <span class="flex-shrink-0">
+        <{{ctx.input.type}}
+          class="{{ ctx.input.attr.class || '' }} input-{{ ctx.input.attr.type }} position-relative d-block mr-2 mb-0" ref="input"
+          {% for (var attr in ctx.input.attr) { %}
+            {% if (attr !== 'class') { %}
+              {{attr}}="{{ctx.input.attr[attr]}}"
+            {% } %}
+          {% } %}
+          value="{{item.value}}"
           {% if (ctx.value && (ctx.value === item.value || (typeof ctx.value === 'object' && ctx.value.hasOwnProperty(item.value) && ctx.value[item.value]))) { %}
           checked=true {% } %} {% if (item.disabled) { %} disabled=true {% } %}
           id="{{ctx.id}}{{ctx.row}}-{{item.value}}">
-      </div>
-      <span class="flex-auto ">
+      </span>
+      <span class="flex-auto">
         {{ ctx.t(item.label) }}
       </span>
     </label>
