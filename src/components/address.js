@@ -6,6 +6,7 @@ const defaultSchema = {
   // XXX this is necessary to activate the container builder UI
   type: 'container',
   key: 'address',
+  description: '',
   components: [
     {
       label: 'Address line 1',
