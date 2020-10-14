@@ -1,54 +1,101 @@
 /* eslint-env jest */
 import { createForm, destroyForm } from '../lib/test-helpers'
+import 'html-validate/jest'
 import '../dist/formio-sfds.standalone.js'
 
 const { FormioUtils } = window
 
+const validateConfig = {
+  root: true,
+  extends: [
+    'htmlvalidate:recommended'
+  ],
+  rules: {
+    // formiojs generates duplicate classes
+    'no-dup-class': 'off',
+    // we need these
+    'no-inline-style': 'warn',
+    // our templates output lots of trailing whitespace
+    'no-trailing-whitespace': 'off'
+  }
+}
+
+const comp = (type, config = {}) => {
+  return {
+    type,
+    label: `This is the ${type} label`,
+    description: `This is the ${type} description`,
+    ...config
+  }
+}
+
 const components = [
-  { type: 'address' },
-  { type: 'button' },
-  { type: 'checkbox' },
-  {
-    type: 'columns',
+  comp('textfield'),
+  comp('number'),
+  comp('button'),
+  comp('checkbox'),
+  comp('address'),
+  comp('columns', {
     columns: [
       {
         width: 3,
-        components: [{ type: 'textfield', key: 'left', label: 'Left' }]
+        components: [
+          comp('textfield', { key: 'left', label: 'Left' })
+        ]
       },
       {
         width: 3,
-        components: [{ type: 'textfield', key: 'right', label: 'Right' }]
+        components: [
+          comp('textfield', { key: 'right', label: 'Right' })
+        ]
       }
     ]
-  },
-  { type: 'container' },
-  { type: 'day' },
-  { type: 'datetime' },
-  { type: 'html', tag: 'h1', content: 'Hello, world!' },
-  { type: 'number' },
-  {
-    type: 'radio',
+  }),
+  comp('container', {
+    components: [
+      comp('textfield', { key: 'yo' })
+    ]
+  }),
+  comp('day'),
+  comp('datetime'),
+  comp('html', {
+    tag: 'h1',
+    content: 'Hello, world!'
+  }),
+  comp('radio', {
     values: [
       { label: 'One', value: 1 },
       { label: 'Two', value: 2 },
       { label: 'Three', value: 3 }
     ]
-  },
-  {
-    type: 'selectboxes',
+  }),
+  comp('selectboxes', {
     values: [
       { label: 'A', value: 'a' },
       { label: 'B', value: 'b' },
       { label: 'C', value: 'c' }
     ]
-  },
-  { type: 'textfield' },
-  {
-    type: 'panel',
+  }),
+  comp('well', {
+    label: 'Well hello',
     components: [
-      { type: 'textfield', label: 'Your name' }
+      comp('textfield', { label: 'Your name' })
     ]
-  }
+  }),
+  comp('well', {
+    label: 'This label should NOT be visible',
+    properties: {
+      hideLabel: true
+    },
+    components: [
+      comp('textfield', { label: 'Your name' })
+    ]
+  }),
+  comp('panel', {
+    components: [
+      comp('textfield', { label: 'Your name' })
+    ]
+  })
 ]
 
 describe('component snapshots', () => {
@@ -73,18 +120,14 @@ describe('component snapshots', () => {
 
             const form = await createForm({
               components: [
-                Object.assign(
-                  {
-                    label: `This is the ${comp.type} label`,
-                    description: `This is the ${comp.type} description`
-                  },
-                  comp,
-                  props
-                )
+                Object.assign({}, comp, props)
               ]
             })
 
-            form.element.id = `form-${comp.type}-${name}`
+            const rendered = form.render()
+            expect(rendered).toHTMLValidate(validateConfig)
+
+            form.element.removeAttribute('id')
             const html = form.element.outerHTML
             expect(html).toMatchSnapshot()
 
