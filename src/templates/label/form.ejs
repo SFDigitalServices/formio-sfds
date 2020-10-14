@@ -1,12 +1,7 @@
-{% if (!ctx.component.hideLabel && ['button', 'checkbox', 'radio'].indexOf(ctx.component.type) === -1) { %}
+{% if (!ctx.component.hideLabel && ['address', 'button', 'checkbox', 'radio'].indexOf(ctx.component.type) === -1) { %}
   <label
     class="{{ ctx.label.className }}"
     for="{{ ctx.inputId() }}">
     {{ ctx.t([`${ctx.component.key}_label`, ctx.component.label]) }}
-    <!--
-    {% if (ctx.component.tooltip) { %}
-      <i ref="tooltip" class="{{ ctx.iconClass('question-sign') }} text-muted"></i>
-    {% } %}
-    -->
   </label>
 {% } %}
