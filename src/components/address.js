@@ -13,27 +13,23 @@ const defaultSchema = {
       key: 'line1',
       type: 'textfield',
       input: true,
-      validate: { required: true },
-      customClass: 'mb-1'
+      validate: { required: true }
     },
     {
       label: 'Address line 2',
       key: 'line2',
       type: 'textfield',
-      input: true,
-      customClass: 'mb-1'
+      input: true
     },
     {
       label: 'City',
       key: 'city',
       type: 'textfield',
       validate: { required: true },
-      defaultValue: 'San Francisco',
-      customClass: 'mb-1'
+      defaultValue: 'San Francisco'
     },
     {
       type: 'columns',
-      customClass: 'mb-0',
       columns: [
         {
           width: 6,
@@ -42,7 +38,6 @@ const defaultSchema = {
               label: 'State',
               key: 'state',
               type: 'state',
-              customClass: 'mb-0',
               input: true,
               defaultValue: 'CA',
               validate: { required: true }
@@ -56,7 +51,6 @@ const defaultSchema = {
               label: 'ZIP code',
               key: 'zip',
               type: 'zip',
-              customClass: 'mb-0',
               input: true
             }
           ]
