@@ -41,12 +41,22 @@
 }
 
 .formio-component-content,
-.formio-component-htmlelement {
+.formio-component-htmlelement,
+.formio-nested .formio-component.row,
+.formio-nested .formio-component:last-of-type {
   margin-bottom: 0;
 }
 
 label {
   margin: 0 0 spacer(1) 0;
+}
+
+.formio-component-radio,
+.formio-component-selectboxes {
+  label {
+    letter-spacing: 0;
+    line-height: 24px;
+  }
 }
 
 .formio-nested {
