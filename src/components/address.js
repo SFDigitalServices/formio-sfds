@@ -1,5 +1,53 @@
 const { container: Container } = window.Formio.Components.components
 
+export default class AddressComponent extends Container {
+  static schema (...extend) {
+    return Container.schema(defaultSchema, ...extend)
+  }
+
+  get defaultSchema () {
+    return defaultSchema
+  }
+
+  get templateName () {
+    return 'address'
+  }
+
+  get manualMode () {
+    return true
+  }
+
+  get manualModeEnabled () {
+    return false
+  }
+
+  render () {
+    return this.renderTemplate(this.templateName, {
+      children: this.renderComponents(),
+      nestedKey: this.nestedKey,
+      ref: {},
+      inputAttributes: {
+        name: this.options.name,
+        type: 'text',
+        tabindex: 0
+      },
+      mode: {
+        autocomplete: false,
+        manual: true
+      }
+    })
+  }
+
+  static get builderInfo () {
+    return {
+      title: 'Address',
+      icon: 'home',
+      group: 'sfgov',
+      schema: defaultSchema
+    }
+  }
+}
+
 const defaultSchema = {
   label: 'Address',
   hideLabel: false,
@@ -56,52 +104,4 @@ const defaultSchema = {
       ]
     }
   ]
-}
-
-export default class AddressComponent extends Container {
-  static schema (...extend) {
-    return Container.schema(defaultSchema, ...extend)
-  }
-
-  get defaultSchema () {
-    return defaultSchema
-  }
-
-  get templateName () {
-    return 'address'
-  }
-
-  get manualMode () {
-    return true
-  }
-
-  get manualModeEnabled () {
-    return false
-  }
-
-  render () {
-    return this.renderTemplate(this.templateName, {
-      children: this.renderComponents(),
-      nestedKey: this.nestedKey,
-      ref: {},
-      inputAttributes: {
-        name: this.options.name,
-        type: 'text',
-        tabindex: 0
-      },
-      mode: {
-        autocomplete: false,
-        manual: true
-      }
-    })
-  }
-
-  static get builderInfo () {
-    return {
-      title: 'Address',
-      icon: 'home',
-      group: 'sfgov',
-      schema: defaultSchema
-    }
-  }
 }

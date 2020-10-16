@@ -1,7 +1,7 @@
 <fieldset class="formio-nested">
-  {% const desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+  {% const desc = ctx.tk('description') %}
   <legend ref="header" class="{{ desc ? '' : 'mb-2' }}">
-    {{ ctx.t([`${ctx.component.key}_legend`, ctx.component.legend]) }}
+    {{ ctx.tk('legend') }}
   </legend>
 
   {% if (desc) { %}

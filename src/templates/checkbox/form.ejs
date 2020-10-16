@@ -8,14 +8,17 @@
           {{attr}}="{{ctx.input.attr[attr]}}"
         {% } %}
         value="{{ ctx.value }}"
-        {% if (ctx.checked) { %}checked{% } %}
+        {% if (ctx.checked) { %}
+          checked
+        {% } %}
       >
     </span>
     <span class="flex-auto">
       <span class="label-required">
-        {{ ctx.t([`${ctx.component.key}_label`, ctx.input.label]) }}
+        {{ ctx.tk('label') }}
       </span>
-      {% const desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+
+      {% const desc = ctx.tk('description') %}
       {% if (desc) { %}
         <span class="d-block fg-light-slate small">
           {{ desc }}

@@ -2,8 +2,8 @@
 
 {{ ctx.element }}
 
-{% if (['address', 'review', 'checkbox', 'radio', 'selectboxes', 'well'].indexOf(ctx.component.type) === -1) { %}
-  {% const desc = ctx.t([`${ctx.component.key}_description`, ctx.component.description]) %}
+{% if (['address', 'checkbox', 'radio', 'review', 'selectboxes', 'well'].indexOf(ctx.component.type) === -1) { %}
+  {% const desc = ctx.tk('description') %}
   {% if (desc) { %}
     <div class="fg-light-slate mt-1">
       {{ desc }}
