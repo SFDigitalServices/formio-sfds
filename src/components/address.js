@@ -25,8 +25,7 @@ const defaultSchema = {
       label: 'City',
       key: 'city',
       type: 'textfield',
-      validate: { required: true },
-      defaultValue: 'San Francisco'
+      validate: { required: true }
     },
     {
       type: 'columns',
@@ -39,7 +38,6 @@ const defaultSchema = {
               key: 'state',
               type: 'state',
               input: true,
-              defaultValue: 'CA',
               validate: { required: true }
             }
           ]
