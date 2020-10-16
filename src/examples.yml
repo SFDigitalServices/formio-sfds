@@ -396,3 +396,4 @@
         label: Currency field
       - type: file
         label: File field
+        storage: base64
