@@ -3,10 +3,10 @@ const { container: Container } = window.Formio.Components.components
 const defaultSchema = {
   label: 'Address',
   hideLabel: false,
-  // XXX this is necessary to activate the container builder UI
-  type: 'container',
+  type: 'address',
   key: 'address',
   description: '',
+  tableView: true,
   components: [
     {
       label: 'Address line 1',
@@ -69,6 +69,31 @@ export default class AddressComponent extends Container {
 
   get templateName () {
     return 'address'
+  }
+
+  get manualMode () {
+    return true
+  }
+
+  get manualModeEnabled () {
+    return false
+  }
+
+  render () {
+    return this.renderTemplate(this.templateName, {
+      children: this.renderComponents(),
+      nestedKey: this.nestedKey,
+      ref: {},
+      inputAttributes: {
+        name: this.options.name,
+        type: 'text',
+        tabindex: 0
+      },
+      mode: {
+        autocomplete: false,
+        manual: true
+      }
+    })
   }
 
   static get builderInfo () {
