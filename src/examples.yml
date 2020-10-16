@@ -282,6 +282,69 @@
                 - label: Option 2
                   value: 2
 
+- id: fieldset
+  title: Fieldset
+  form:
+    components:
+      - type: fieldset
+        legend: The fieldset legend
+        description: This fieldset description
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
+
+- id: fieldset-in-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: well
+        label: The well label
+        components:
+          - type: fieldset
+            legend: The fieldset legend
+            description: The fieldset description
+            components:
+              - type: textfield
+                label: A text field
+                key: some-text-field
+              - type: number
+                label: A number field
+                key: numero
+              - type: textarea
+                label: A text area field
+                key: textarea
+                value: ''
+              - type: checkbox
+                label: A checkbox
+                description: The checkbox description
+              - type: select
+                label: Select field
+                data:
+                  values:
+                    - label: Option 1
+                      value: 1
+                    - label: Option 2
+                      value: 2
+
 - id: kitchen-sink
   title: Kitchen sink
   form:
@@ -323,7 +386,7 @@
         label: This is a button
       - type: email
         label: Email field
-      - type: phonenumber
+      - type: phoneNumber
         label: Phone number field
       - type: address
         label: Address field
