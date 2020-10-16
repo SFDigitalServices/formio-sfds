@@ -5,14 +5,12 @@
   <button class="btn btn-primary" ref="cameraButton"><i class="fa fa-camera"></i> {{ctx.t('Camera')}}</button>
 </div>
 {% } else if (!ctx.self.cameraMode) { %}
-<div class="my-1">
-  <div class="fileSelector" ref="fileDrop">
-    <div class="align-center">
-      {{ ctx.t('Drop files to attach, or') }}
-      <button class="ml-1 mr-0 mb-0 btn btn-border" ref="fileBrowse">
-        {{ ctx.t('Browse')}}
-      </button>
-    </div>
+<div class="fileSelector" ref="fileDrop">
+  <div class="align-center">
+    {{ ctx.t('Drop files to attach, or') }}
+    <button class="ml-1 mr-0 mb-0 btn btn-border" ref="fileBrowse">
+      {{ ctx.t('Browse')}}
+    </button>
   </div>
 </div>
 {% } else { %}

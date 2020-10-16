@@ -3,6 +3,11 @@
   display: none;
 }
 
+label {
+  // this overrides sf.gov's letter-spacing: -0.016em
+  letter-spacing: 0;
+}
+
 input:disabled,
 select:disabled,
 textarea:disabled {

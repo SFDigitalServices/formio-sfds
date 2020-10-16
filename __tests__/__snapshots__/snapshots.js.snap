@@ -1,0 +1,2154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component snapshots component "address" scenario: basic matches the snapshot 1`] = `
+<div id="form-address-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="address-basic-1"
+  >
+    <label for="input-address-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-address formio-component-address"
+           id="address-basic-2"
+      >
+        <div class="formio-component formio-component-address round-1 bg-blue-1 p-2">
+          <fieldset>
+            <legend>
+              This is the address label
+            </legend>
+            <div class="mb-1">
+              This is the address description
+            </div>
+            <div ref="nested-address">
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1  required"
+                   id="address-basic-3"
+              >
+                <label for="input-address-basic-3"
+                       class="field-required"
+                >
+                  Address line 1
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line1]"
+                           required
+                           id="input-address-basic-3"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2"
+                   id="address-basic-4"
+              >
+                <label for="input-address-basic-4"
+                       class
+                >
+                  Address line 2
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line2]"
+                           id="input-address-basic-4"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city  required"
+                   id="address-basic-5"
+              >
+                <label for="input-address-basic-5"
+                       class="field-required"
+                >
+                  City
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value="San Francisco"
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][city]"
+                           required
+                           id="input-address-basic-5"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
+                   id="address-basic-6"
+              >
+                <label for="input-address-basic-6"
+                       class="control-label--hidden"
+                >
+                  Columns
+                </label>
+                <div class="d-md-flex mr-md-n2">
+                  <div ref="column-address-basic-6"
+                       class="col-md-6 mr-md-2"
+                  >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
+                         id="address-basic-7"
+                    >
+                      <label for="input-address-basic-7"
+                             class="field-required"
+                      >
+                        State
+                      </label>
+                      <select lang="en"
+                              class="form-control"
+                              type="text"
+                              name="data[address][state]"
+                              id="input-address-basic-7"
+                              required
+                              ref="selectContainer"
+                      >
+                      </select>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
+                  </div>
+                  <div ref="column-address-basic-6"
+                       class="col-md-6 mr-md-2"
+                  >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
+                         id="address-basic-8"
+                    >
+                      <label for="input-address-basic-8"
+                             class="field-required"
+                      >
+                        ZIP code
+                      </label>
+                      <div ref="element">
+                        <div class="form-input">
+                          <input value
+                                 spellcheck="true"
+                                 lang="en"
+                                 class="form-control"
+                                 type="text"
+                                 name="data[address][zip]"
+                                 required
+                                 id="input-address-basic-8"
+                                 ref="input"
+                          >
+                        </div>
+                      </div>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "address" scenario: required matches the snapshot 1`] = `
+<div id="form-address-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="address-required-1"
+  >
+    <label for="input-address-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-address formio-component-address  required"
+           id="address-required-2"
+      >
+        <div class="formio-component formio-component-address round-1 bg-blue-1 p-2">
+          <fieldset>
+            <legend>
+              This is the address label
+            </legend>
+            <div class="mb-1">
+              This is the address description
+            </div>
+            <div ref="nested-address">
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line1  required"
+                   id="address-required-3"
+              >
+                <label for="input-address-required-3"
+                       class="field-required"
+                >
+                  Address line 1
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line1]"
+                           required
+                           id="input-address-required-3"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-line2"
+                   id="address-required-4"
+              >
+                <label for="input-address-required-4"
+                       class
+                >
+                  Address line 2
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][line2]"
+                           id="input-address-required-4"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="form-group has-feedback formio-component formio-component-textfield formio-component-city  required"
+                   id="address-required-5"
+              >
+                <label for="input-address-required-5"
+                       class="field-required"
+                >
+                  City
+                </label>
+                <div ref="element">
+                  <div class="form-input">
+                    <input value="San Francisco"
+                           spellcheck="true"
+                           lang="en"
+                           class="form-control"
+                           type="text"
+                           name="data[address][city]"
+                           required
+                           id="input-address-required-5"
+                           ref="input"
+                    >
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+              <div ref="component"
+                   class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
+                   id="address-required-6"
+              >
+                <label for="input-address-required-6"
+                       class="control-label--hidden"
+                >
+                  Columns
+                </label>
+                <div class="d-md-flex mr-md-n2">
+                  <div ref="column-address-required-6"
+                       class="col-md-6 mr-md-2"
+                  >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-state formio-component-state mb-0 required"
+                         id="address-required-7"
+                    >
+                      <label for="input-address-required-7"
+                             class="field-required"
+                      >
+                        State
+                      </label>
+                      <select lang="en"
+                              class="form-control"
+                              type="text"
+                              name="data[address][state]"
+                              id="input-address-required-7"
+                              required
+                              ref="selectContainer"
+                      >
+                      </select>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
+                  </div>
+                  <div ref="column-address-required-6"
+                       class="col-md-6 mr-md-2"
+                  >
+                    <div ref="component"
+                         class="form-group has-feedback formio-component formio-component-zip formio-component-zip mb-0 required"
+                         id="address-required-8"
+                    >
+                      <label for="input-address-required-8"
+                             class="field-required"
+                      >
+                        ZIP code
+                      </label>
+                      <div ref="element">
+                        <div class="form-input">
+                          <input value
+                                 spellcheck="true"
+                                 lang="en"
+                                 class="form-control"
+                                 type="text"
+                                 name="data[address][zip]"
+                                 required
+                                 id="input-address-required-8"
+                                 ref="input"
+                          >
+                        </div>
+                      </div>
+                      <div ref="messageContainer"
+                           class="messages"
+                      >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div ref="messageContainer"
+                     class="messages"
+                >
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "button" scenario: basic matches the snapshot 1`] = `
+<div id="form-button-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="button-basic-1"
+  >
+    <label for="input-button-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-button formio-component-submit  form-group"
+           id="button-basic-2"
+      >
+        <button lang="en"
+                type="submit"
+                name="data[submit]"
+                class="btn btn-primary"
+                ref="button"
+        >
+          This is the button label
+        </button>
+        <div class="fg-light-slate mt-1">
+          This is the button description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "button" scenario: required matches the snapshot 1`] = `
+<div id="form-button-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="button-required-1"
+  >
+    <label for="input-button-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-button formio-component-submit  required form-group"
+           id="button-required-2"
+      >
+        <button lang="en"
+                type="submit"
+                name="data[submit]"
+                class="btn btn-primary"
+                ref="button"
+        >
+          This is the button label
+        </button>
+        <div class="fg-light-slate mt-1">
+          This is the button description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "checkbox" scenario: basic matches the snapshot 1`] = `
+<div id="form-checkbox-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="checkbox-basic-1"
+  >
+    <label for="input-checkbox-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-checkbox formio-component-checkbox"
+           id="checkbox-basic-2"
+      >
+        <div class="form-checkbox">
+          <label class="d-flex flex-items-center fs-inherit fg-inherit">
+            <div class="flex-shrink-0 flex-self-start">
+              <input value="0"
+                     lang="en"
+                     type="checkbox"
+                     name="data[checkbox]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <div class="flex-auto">
+              <span class="label-required">
+                This is the checkbox label
+              </span>
+              <div class="fg-light-slate">
+                This is the checkbox description
+              </div>
+            </div>
+          </label>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "checkbox" scenario: required matches the snapshot 1`] = `
+<div id="form-checkbox-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="checkbox-required-1"
+  >
+    <label for="input-checkbox-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-checkbox formio-component-checkbox  required"
+           id="checkbox-required-2"
+      >
+        <div class="form-checkbox">
+          <label class="d-flex flex-items-center fs-inherit fg-inherit">
+            <div class="flex-shrink-0 flex-self-start">
+              <input value="0"
+                     lang="en"
+                     type="checkbox"
+                     name="data[checkbox]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <div class="flex-auto">
+              <span class="label-required">
+                This is the checkbox label
+              </span>
+              <div class="fg-light-slate">
+                This is the checkbox description
+              </div>
+            </div>
+          </label>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "columns" scenario: basic matches the snapshot 1`] = `
+<div id="form-columns-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="columns-basic-1"
+  >
+    <label for="input-columns-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
+           id="columns-basic-2"
+      >
+        <label for="input-columns-basic-2"
+               class="control-label--hidden"
+        >
+          This is the columns label
+        </label>
+        <div class="d-md-flex mr-md-n2">
+          <div ref="column-columns-basic-2"
+               class="col-md-3 mr-md-2"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-left"
+                 id="columns-basic-3"
+            >
+              <label for="input-columns-basic-3"
+                     class
+              >
+                Left
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[left]"
+                         id="input-columns-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+          <div ref="column-columns-basic-2"
+               class="col-md-3 mr-md-2"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-right"
+                 id="columns-basic-4"
+            >
+              <label for="input-columns-basic-4"
+                     class
+              >
+                Right
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[right]"
+                         id="input-columns-basic-4"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the columns description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "columns" scenario: required matches the snapshot 1`] = `
+<div id="form-columns-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="columns-required-1"
+  >
+    <label for="input-columns-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="row formio-component formio-component-columns formio-component-columns  formio-component-label-hidden"
+           id="columns-required-2"
+      >
+        <label for="input-columns-required-2"
+               class="control-label--hidden"
+        >
+          This is the columns label
+        </label>
+        <div class="d-md-flex mr-md-n2">
+          <div ref="column-columns-required-2"
+               class="col-md-3 mr-md-2"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-left"
+                 id="columns-basic-3"
+            >
+              <label for="input-columns-basic-3"
+                     class
+              >
+                Left
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[left]"
+                         id="input-columns-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+          <div ref="column-columns-required-2"
+               class="col-md-3 mr-md-2"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-right"
+                 id="columns-basic-4"
+            >
+              <label for="input-columns-basic-4"
+                     class
+              >
+                Right
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[right]"
+                         id="input-columns-basic-4"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the columns description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "container" scenario: basic matches the snapshot 1`] = `
+<div id="form-container-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="container-basic-1"
+  >
+    <label for="input-container-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-container formio-component-container  formio-component-label-hidden"
+           id="container-basic-2"
+      >
+        <div ref="nested-container">
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the container description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "container" scenario: required matches the snapshot 1`] = `
+<div id="form-container-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="container-required-1"
+  >
+    <label for="input-container-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-container formio-component-container  required formio-component-label-hidden"
+           id="container-required-2"
+      >
+        <div ref="nested-container">
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the container description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
+<div id="form-datetime-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="datetime-basic-1"
+  >
+    <label for="input-datetime-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-datetime formio-component-dateTime"
+           id="datetime-basic-2"
+      >
+        <label for="input-datetime-basic-2"
+               class
+               id="label-datetime-basic-2"
+        >
+          This is the datetime label
+        </label>
+        <div ref="element">
+          <div class="input-group">
+            <div ref="suffix"
+                 class="input-group-prepend"
+            >
+              <span class="input-group-text">
+                <i style
+                   class="d-flex notranslate"
+                   ref="icon"
+                   data-icon="calendar"
+                >
+                  <svg viewbox="0 0 20 20"
+                       fill="currentColor"
+                       height="20"
+                  >
+                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
+                    </path>
+                  </svg>
+                </i>
+              </span>
+            </div>
+            <div class="form-input">
+              <input value
+                     lang="en"
+                     class="form-control flatpickr-input"
+                     type="hidden"
+                     name="data[dateTime]"
+                     id="input-datetime-basic-2"
+                     ref="input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+              >
+              <input class="form-control form-control input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+                     tabindex="0"
+                     type="text"
+                     aria-labelledby="label-datetime-basic-2"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the datetime description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "datetime" scenario: required matches the snapshot 1`] = `
+<div id="form-datetime-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="datetime-required-1"
+  >
+    <label for="input-datetime-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-datetime formio-component-dateTime  required"
+           id="datetime-required-2"
+      >
+        <label for="input-datetime-required-2"
+               class="field-required"
+               id="label-datetime-required-2"
+        >
+          This is the datetime label
+        </label>
+        <div ref="element">
+          <div class="input-group">
+            <div ref="suffix"
+                 class="input-group-prepend"
+            >
+              <span class="input-group-text">
+                <i style
+                   class="d-flex notranslate"
+                   ref="icon"
+                   data-icon="calendar"
+                >
+                  <svg viewbox="0 0 20 20"
+                       fill="currentColor"
+                       height="20"
+                  >
+                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
+                    </path>
+                  </svg>
+                </i>
+              </span>
+            </div>
+            <div class="form-input">
+              <input value
+                     lang="en"
+                     class="form-control flatpickr-input"
+                     type="hidden"
+                     name="data[dateTime]"
+                     required
+                     id="input-datetime-required-2"
+                     ref="input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+              >
+              <input class="form-control form-control input"
+                     placeholder="yyyy-MM-dd hh:mm a"
+                     required
+                     tabindex="0"
+                     type="text"
+                     aria-labelledby="label-datetime-required-2"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the datetime description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "day" scenario: basic matches the snapshot 1`] = `
+<div id="form-day-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="day-basic-1"
+  >
+    <label for="input-day-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-day formio-component-day"
+           id="day-basic-2"
+      >
+        <label for="input-day-basic-2"
+               class
+        >
+          This is the day label
+        </label>
+        <div class="d-flex">
+          <div class="col-2 pr-1">
+            <label class="fg-slate-65"
+                   for="input-day-basic-2-month"
+            >
+              Month
+            </label>
+            <div>
+              <select lang="en"
+                      name="month"
+                      class="form-control"
+                      id="input-day-basic-2-month"
+                      ref="month"
+              >
+                <option value>
+                </option>
+                <option value="1">
+                  January
+                </option>
+                <option value="2">
+                  February
+                </option>
+                <option value="3">
+                  March
+                </option>
+                <option value="4">
+                  April
+                </option>
+                <option value="5">
+                  May
+                </option>
+                <option value="6">
+                  June
+                </option>
+                <option value="7">
+                  July
+                </option>
+                <option value="8">
+                  August
+                </option>
+                <option value="9">
+                  September
+                </option>
+                <option value="10">
+                  October
+                </option>
+                <option value="11">
+                  November
+                </option>
+                <option value="12">
+                  December
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-2 pr-1">
+            <label class="fg-slate-65"
+                   for="input-day-basic-2-day"
+            >
+              Day
+            </label>
+            <div>
+              <div class="form-input">
+                <input max="31"
+                       min="1"
+                       step="1"
+                       placeholder
+                       type="number"
+                       class="form-control formio-day-component-day"
+                       id="input-day-basic-2-day"
+                       ref="day"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <label class="fg-slate-65"
+                   for="input-day-basic-2-year"
+            >
+              Year
+            </label>
+            <div>
+              <div class="form-input">
+                <input max="2030"
+                       min="1900"
+                       step="1"
+                       placeholder
+                       type="number"
+                       class="form-control formio-day-component-year"
+                       id="input-day-basic-2-year"
+                       ref="year"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <input ref="input"
+               value
+               lang="en"
+               class="form-control"
+               type="hidden"
+               name="ctx.data[day]"
+        >
+        <div class="fg-light-slate mt-1">
+          This is the day description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "day" scenario: required matches the snapshot 1`] = `
+<div id="form-day-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="day-required-1"
+  >
+    <label for="input-day-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-day formio-component-day  required"
+           id="day-required-2"
+      >
+        <label for="input-day-required-2"
+               class="field-required"
+        >
+          This is the day label
+        </label>
+        <div class="d-flex">
+          <div class="col-2 pr-1">
+            <label class="fg-slate-65"
+                   for="input-day-required-2-month"
+            >
+              Month
+            </label>
+            <div>
+              <select lang="en"
+                      name="month"
+                      class="form-control"
+                      id="input-day-required-2-month"
+                      required
+                      ref="month"
+              >
+                <option value>
+                </option>
+                <option value="1">
+                  January
+                </option>
+                <option value="2">
+                  February
+                </option>
+                <option value="3">
+                  March
+                </option>
+                <option value="4">
+                  April
+                </option>
+                <option value="5">
+                  May
+                </option>
+                <option value="6">
+                  June
+                </option>
+                <option value="7">
+                  July
+                </option>
+                <option value="8">
+                  August
+                </option>
+                <option value="9">
+                  September
+                </option>
+                <option value="10">
+                  October
+                </option>
+                <option value="11">
+                  November
+                </option>
+                <option value="12">
+                  December
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-2 pr-1">
+            <label class="fg-slate-65"
+                   for="input-day-required-2-day"
+            >
+              Day
+            </label>
+            <div>
+              <div class="form-input">
+                <input max="31"
+                       min="1"
+                       step="1"
+                       placeholder
+                       type="number"
+                       class="form-control formio-day-component-day"
+                       required
+                       id="input-day-required-2-day"
+                       ref="day"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <label class="fg-slate-65"
+                   for="input-day-required-2-year"
+            >
+              Year
+            </label>
+            <div>
+              <div class="form-input">
+                <input max="2030"
+                       min="1900"
+                       step="1"
+                       placeholder
+                       type="number"
+                       class="form-control formio-day-component-year"
+                       required
+                       id="input-day-required-2-year"
+                       ref="year"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <input ref="input"
+               value
+               lang="en"
+               class="form-control"
+               type="hidden"
+               name="ctx.data[day]"
+        >
+        <div class="fg-light-slate mt-1">
+          This is the day description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "html" scenario: basic matches the snapshot 1`] = `
+<div id="form-html-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="html-basic-1"
+  >
+    <label for="input-html-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-html"
+           id="html-basic-2"
+      >
+        Unknown component: html
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "html" scenario: required matches the snapshot 1`] = `
+<div id="form-html-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="html-required-1"
+  >
+    <label for="input-html-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-html  required"
+           id="html-required-2"
+      >
+        Unknown component: html
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "number" scenario: basic matches the snapshot 1`] = `
+<div id="form-number-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="number-basic-1"
+  >
+    <label for="input-number-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-number formio-component-number"
+           id="number-basic-2"
+      >
+        <label for="input-number-basic-2"
+               class
+        >
+          This is the number label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   inputmode="decimal"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[number]"
+                   id="input-number-basic-2"
+                   ref="input"
+                   pattern="[0-9.]*"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the number description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "number" scenario: required matches the snapshot 1`] = `
+<div id="form-number-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="number-required-1"
+  >
+    <label for="input-number-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-number formio-component-number  required"
+           id="number-required-2"
+      >
+        <label for="input-number-required-2"
+               class="field-required"
+        >
+          This is the number label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   inputmode="decimal"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[number]"
+                   required
+                   id="input-number-required-2"
+                   ref="input"
+                   pattern="[0-9.]*"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the number description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "panel" scenario: basic matches the snapshot 1`] = `
+<div id="form-panel-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="panel-basic-1"
+  >
+    <label for="input-panel-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-panel formio-component-panel"
+           id="panel-basic-2"
+      >
+        <div class="mb-2 card border">
+          <div ref="header"
+               class="card-header bg-default"
+          >
+            <span class="mb-0 card-title">
+              Panel
+            </span>
+          </div>
+          <div ref="nested-panel"
+               class="card-body"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+                 id="panel-basic-3"
+            >
+              <label for="input-panel-basic-3"
+                     class
+              >
+                Your name
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[textField]"
+                         id="input-panel-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "panel" scenario: required matches the snapshot 1`] = `
+<div id="form-panel-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="panel-required-1"
+  >
+    <label for="input-panel-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-panel formio-component-panel"
+           id="panel-required-2"
+      >
+        <div class="mb-2 card border">
+          <div ref="header"
+               class="card-header bg-default"
+          >
+            <span class="mb-0 card-title">
+              Panel
+            </span>
+          </div>
+          <div ref="nested-panel"
+               class="card-body"
+          >
+            <div ref="component"
+                 class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+                 id="panel-basic-3"
+            >
+              <label for="input-panel-basic-3"
+                     class
+              >
+                Your name
+              </label>
+              <div ref="element">
+                <div class="form-input">
+                  <input value
+                         spellcheck="true"
+                         lang="en"
+                         class="form-control"
+                         type="text"
+                         name="data[textField]"
+                         id="input-panel-basic-3"
+                         ref="input"
+                  >
+                </div>
+              </div>
+              <div ref="messageContainer"
+                   class="messages"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "radio" scenario: basic matches the snapshot 1`] = `
+<div id="form-radio-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="radio-basic-1"
+  >
+    <label for="input-radio-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-radio formio-component-radio"
+           id="radio-basic-2"
+      >
+        <fieldset class>
+          <legend class="f-3">
+            This is the radio label
+          </legend>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the radio description
+          </div>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-1"
+                     value="1"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              One
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-2"
+                     value="2"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Two
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-basic-2-3"
+                     value="3"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-basic-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Three
+            </span>
+          </label>
+        </fieldset>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "radio" scenario: required matches the snapshot 1`] = `
+<div id="form-radio-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="radio-required-1"
+  >
+    <label for="input-radio-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-radio formio-component-radio  required"
+           id="radio-required-2"
+      >
+        <fieldset class>
+          <legend class="f-3  field-required">
+            This is the radio label
+          </legend>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the radio description
+          </div>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-1"
+                     value="1"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              One
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-2"
+                     value="2"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Two
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="radio-required-2-3"
+                     value="3"
+                     lang="en"
+                     type="radio"
+                     name="data[radio][radio-required-2]"
+                     ref="input"
+                     class="input-radio position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              Three
+            </span>
+          </label>
+        </fieldset>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "selectboxes" scenario: basic matches the snapshot 1`] = `
+<div id="form-selectboxes-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="selectboxes-basic-1"
+  >
+    <label for="input-selectboxes-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-selectboxes formio-component-selectBoxes"
+           id="selectboxes-basic-2"
+      >
+        <label for="input-selectboxes-basic-2"
+               class
+        >
+          This is the selectboxes label
+        </label>
+        <fieldset class>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the selectboxes description
+          </div>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-a"
+                     value="a"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              A
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-b"
+                     value="b"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              B
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-basic-2-c"
+                     value="c"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              C
+            </span>
+          </label>
+        </fieldset>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "selectboxes" scenario: required matches the snapshot 1`] = `
+<div id="form-selectboxes-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="selectboxes-required-1"
+  >
+    <label for="input-selectboxes-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-selectboxes formio-component-selectBoxes  required"
+           id="selectboxes-required-2"
+      >
+        <label for="input-selectboxes-required-2"
+               class="field-required"
+        >
+          This is the selectboxes label
+        </label>
+        <fieldset class>
+          <div class="f-2 fg-light-slate mb-1">
+            This is the selectboxes description
+          </div>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-a"
+                     value="a"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              A
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-b"
+                     value="b"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              B
+            </span>
+          </label>
+          <label class="d-flex flex-items-center fs-inherit mt-2">
+            <div class="flex-shrink-0">
+              <input id="selectboxes-required-2-c"
+                     value="c"
+                     lang="en"
+                     type="checkbox"
+                     name="data[selectBoxes][]"
+                     ref="input"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
+              >
+            </div>
+            <span class="flex-auto">
+              C
+            </span>
+          </label>
+        </fieldset>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "textfield" scenario: basic matches the snapshot 1`] = `
+<div id="form-textfield-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="textfield-basic-1"
+  >
+    <label for="input-textfield-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
+           id="textfield-basic-2"
+      >
+        <label for="input-textfield-basic-2"
+               class
+        >
+          This is the textfield label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   spellcheck="true"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[textField]"
+                   id="input-textfield-basic-2"
+                   ref="input"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the textfield description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "textfield" scenario: required matches the snapshot 1`] = `
+<div id="form-textfield-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="textfield-required-1"
+  >
+    <label for="input-textfield-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-textfield formio-component-textField  required"
+           id="textfield-required-2"
+      >
+        <label for="input-textfield-required-2"
+               class="field-required"
+        >
+          This is the textfield label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   spellcheck="true"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[textField]"
+                   required
+                   id="input-textfield-required-2"
+                   ref="input"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the textfield description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
