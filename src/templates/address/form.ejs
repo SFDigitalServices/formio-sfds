@@ -1,12 +1,12 @@
 <div class="formio-component formio-component-address round-1 bg-blue-1 p-2">
-  <fieldset>
-    <legend>
+  <fieldset class="formio-nested">
+    {% const desc = ctx.tk('description') %}
+    <legend class="{{ desc ? '' : 'mb-1' }}">
       {{ ctx.tk('label') }}
     </legend>
 
-    {% const desc = ctx.tk('description') %}
     {% if (desc) { %}
-      <div class="mb-1">{{ desc }}</div>
+      <div class="mb-2">{{ desc }}</div>
     {% } %}
 
     <div ref="{{ ctx.nestedKey }}">

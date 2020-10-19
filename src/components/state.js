@@ -10,10 +10,13 @@ export default class StateSelect extends Select {
       widget: 'html5',
       dataSrc: 'values',
       data: {
-        values: states.map(({ name, code }) => ({
-          label: name,
-          value: code
-        }))
+        values: [
+          { label: ' ', value: '' },
+          ...states.map(({ name, code }) => ({
+            label: name,
+            value: code
+          }))
+        ]
       }
     }, ...extend)
   }

@@ -5,28 +5,7 @@ fieldset {
   min-width: 0;
 
   legend {
-    display: table;
-    padding: 0;
-  }
-}
-
-fieldset,
-.well {
-  * label {
-    font-size: 16px;
-  }
-
-  .formio-component {
-    margin-bottom: spacer(2);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.formio-component-radio {
-  fieldset label {
-    line-height: 24px;
+    padding: 0.01em 0 0 0;
+    margin: 0;
   }
 }
