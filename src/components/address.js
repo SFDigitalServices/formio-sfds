@@ -13,6 +13,31 @@ export default class AddressComponent extends Container {
     return 'address'
   }
 
+  get manualMode () {
+    return true
+  }
+
+  get manualModeEnabled () {
+    return false
+  }
+
+  render () {
+    return this.renderTemplate(this.templateName, {
+      children: this.renderComponents(),
+      nestedKey: this.nestedKey,
+      ref: {},
+      inputAttributes: {
+        name: this.options.name,
+        type: 'text',
+        tabindex: 0
+      },
+      mode: {
+        autocomplete: false,
+        manual: true
+      }
+    })
+  }
+
   static get builderInfo () {
     return {
       title: 'Address',
@@ -26,9 +51,10 @@ export default class AddressComponent extends Container {
 const defaultSchema = {
   label: 'Address',
   hideLabel: false,
-  // XXX this is necessary to activate the container builder UI
-  type: 'container',
+  type: 'address',
   key: 'address',
+  description: '',
+  tableView: true,
   components: [
     {
       label: 'Address line 1',
@@ -47,8 +73,7 @@ const defaultSchema = {
       label: 'City',
       key: 'city',
       type: 'textfield',
-      validate: { required: true },
-      defaultValue: 'San Francisco'
+      validate: { required: true }
     },
     {
       type: 'columns',
@@ -60,9 +85,7 @@ const defaultSchema = {
               label: 'State',
               key: 'state',
               type: 'state',
-              customClass: 'mb-0',
               input: true,
-              defaultValue: 'CA',
               validate: { required: true }
             }
           ]
@@ -74,7 +97,6 @@ const defaultSchema = {
               label: 'ZIP code',
               key: 'zip',
               type: 'zip',
-              customClass: 'mb-0',
               input: true
             }
           ]
