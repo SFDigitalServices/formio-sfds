@@ -880,6 +880,84 @@ exports[`component snapshots component "container" scenario: required matches th
 </div>
 `;
 
+exports[`component snapshots component "content" scenario: basic matches the snapshot 1`] = `
+<div id="form-content-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="content-basic-1"
+  >
+    <label for="input-content-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-content formio-component-content"
+           id="content-basic-2"
+      >
+        <div ref="html"
+             class
+        >
+          Hello, world!
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "content" scenario: required matches the snapshot 1`] = `
+<div id="form-content-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="content-required-1"
+  >
+    <label for="input-content-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-content formio-component-content"
+           id="content-required-2"
+      >
+        <div ref="html"
+             class
+        >
+          Hello, world!
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
 <div id="form-datetime-basic"
      class="d-flex flex-column-reverse mb-4"
@@ -1341,15 +1419,15 @@ exports[`component snapshots component "day" scenario: required matches the snap
 </div>
 `;
 
-exports[`component snapshots component "html" scenario: basic matches the snapshot 1`] = `
-<div id="form-html-basic"
+exports[`component snapshots component "htmlelement" scenario: basic matches the snapshot 1`] = `
+<div id="form-htmlelement-basic"
      class="d-flex flex-column-reverse mb-4"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
-       id="html-basic-1"
+       id="htmlelement-basic-1"
   >
-    <label for="input-html-basic-1"
+    <label for="input-htmlelement-basic-1"
            class="control-label--hidden"
     >
     </label>
@@ -1358,10 +1436,14 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
          class="formio-form"
     >
       <div ref="component"
-           class="form-group has-feedback formio-component formio-component-html"
-           id="html-basic-2"
+           class="formio-component formio-component-htmlelement"
+           id="htmlelement-basic-2"
       >
-        Unknown component: html
+        <h1 ref="html"
+            class
+        >
+          Hello, world!
+        </h1>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1376,15 +1458,15 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
 </div>
 `;
 
-exports[`component snapshots component "html" scenario: required matches the snapshot 1`] = `
-<div id="form-html-required"
+exports[`component snapshots component "htmlelement" scenario: required matches the snapshot 1`] = `
+<div id="form-htmlelement-required"
      class="d-flex flex-column-reverse mb-4"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
-       id="html-required-1"
+       id="htmlelement-required-1"
   >
-    <label for="input-html-required-1"
+    <label for="input-htmlelement-required-1"
            class="control-label--hidden"
     >
     </label>
@@ -1393,10 +1475,14 @@ exports[`component snapshots component "html" scenario: required matches the sna
          class="formio-form"
     >
       <div ref="component"
-           class="form-group has-feedback formio-component formio-component-html  required"
-           id="html-required-2"
+           class="formio-component formio-component-htmlelement"
+           id="htmlelement-required-2"
       >
-        Unknown component: html
+        <h1 ref="html"
+            class
+        >
+          Hello, world!
+        </h1>
         <div ref="messageContainer"
              class="messages"
         >
