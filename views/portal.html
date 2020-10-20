@@ -11,6 +11,8 @@
   <body>
     <div class="p-4">
       <div id="builder"></div>
+
+      <pre id="schema-json" class="bg-grey-1 p-2 mt-2"></pre>
     </div>
 
     <script src="https://unpkg.com/formiojs@latest/dist/formio.full.min.js"></script>
@@ -19,10 +21,14 @@
       (() => {
 
         const root = document.getElementById('builder')
+        const schemaJSON = document.getElementById('schema-json')
         const params = new URLSearchParams(window.location.search)
         const resource = params.get('res') || {}
 
         Formio.builder(root, resource, {}).then(builder => {
+          builder.on('saveComponent', () => {
+            schemaJSON.textContent = JSON.stringify(builder.schema, null, 2)
+          })
         })
 
       })()
