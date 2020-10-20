@@ -24,7 +24,8 @@ const components = [
   { type: 'container' },
   { type: 'day' },
   { type: 'datetime' },
-  { type: 'html', tag: 'h1', content: 'Hello, world!' },
+  { type: 'htmlelement', tag: 'h1', content: 'Hello, world!' },
+  { type: 'content', content: 'Hello, world!' },
   { type: 'number' },
   {
     type: 'radio',
@@ -87,6 +88,8 @@ describe('component snapshots', () => {
             form.element.id = `form-${comp.type}-${name}`
             const html = form.element.outerHTML
             expect(html).toMatchSnapshot()
+
+            expect(form.element.textContent).not.toContain('Unknown component:')
 
             destroyForm(form)
 
