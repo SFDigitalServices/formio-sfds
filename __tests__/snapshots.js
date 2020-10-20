@@ -88,6 +88,8 @@ describe('component snapshots', () => {
             const html = form.element.outerHTML
             expect(html).toMatchSnapshot()
 
+            expect(form.element.textContent).not.toContain('Unknown component:')
+
             destroyForm(form)
 
             FormioUtils.getRandomComponentId = getRandomComponentId
