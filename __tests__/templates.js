@@ -4,6 +4,7 @@ import '../dist/formio-sfds.standalone.js'
 
 describe('template tests', () => {
   describe('htmlelement component', () => {
+    const content = 'Hello, world!'
     let form
     beforeAll(async () => {
       form = await createForm({
@@ -14,7 +15,7 @@ describe('template tests', () => {
             attrs: [
               { attr: 'id', value: 'foo' }
             ],
-            content: 'Hello, world!'
+            content
           }
         ]
       })
@@ -31,22 +32,23 @@ describe('template tests', () => {
     })
 
     it('renders content', async () => {
-      expect(form.element.querySelector('kbd').textContent).toContain('Hello, world!')
+      expect(form.element.querySelector('kbd').textContent).toContain(content)
     })
   })
 
   describe('content component', () => {
     it('renders content', async () => {
+      const content = 'This is the content!'
       const form = await createForm({
         components: [
           {
             type: 'content',
-            content: 'Hello, world!'
+            html: content
           }
         ]
       })
 
-      expect(form.element.textContent).toContain('Hello, world!')
+      expect(form.element.textContent).toContain(content)
 
       destroyForm(form)
     })
