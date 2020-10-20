@@ -122,7 +122,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                      class="col-md-6 mr-md-2"
                 >
                   <div ref="component"
-                       class="form-group has-feedback formio-component formio-component-state formio-component-state  required"
+                       class="form-group has-feedback formio-component formio-component-state formio-component-state mb-sm-2 required"
                        id="address-basic-7"
                   >
                     <label for="input-address-basic-7"
@@ -317,7 +317,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                      class="col-md-6 mr-md-2"
                 >
                   <div ref="component"
-                       class="form-group has-feedback formio-component formio-component-state formio-component-state  required"
+                       class="form-group has-feedback formio-component formio-component-state formio-component-state mb-sm-2 required"
                        id="address-required-7"
                   >
                     <label for="input-address-required-7"
