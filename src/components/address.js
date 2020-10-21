@@ -86,6 +86,7 @@ const defaultSchema = {
               key: 'state',
               type: 'state',
               input: true,
+              customClass: 'mb-2 mb-md-0',
               validate: { required: true }
             }
           ]
