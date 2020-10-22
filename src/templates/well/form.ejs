@@ -1,17 +1,8 @@
 {% const visible = ctx.component.properties.visible !== "false" %}
-<div aria-labelledby="label-{{ ctx.id }}" ref="{{ ctx.nestedKey }}" class="well{{ visible ? ' bg-blue-1 round-1 p-2' : '' }}">
-  {% if (ctx.component.properties.showLabel === "true") { %}
-    {% const label = ctx.tk('label') %}
-    {% if (label) { %}
-      <label class="f-3" id="label-{{ ctx.id }}">
-        {{ label }}
-      </label>
-    {% } %}
-  {% } %}
-
+<div ref="{{ ctx.nestedKey }}" class="formio-component formio-nested{% if (visible) { %} formio-component-well bg-blue-1 p-2 round-1{% } %}">
   {% const desc = ctx.tk('description') %}
   {% if (desc) { %}
-    <div class="mb-1">{{ desc }}</div>
+    <div class="{{ visible ? '' : 'fg-light-slate ' }}mb-1">{{ desc }}</div>
   {% } %}
 
   {{ ctx.children }}
