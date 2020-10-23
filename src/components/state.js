@@ -9,6 +9,8 @@ export default class StateSelect extends Select {
       key: 'state',
       widget: 'html5',
       dataSrc: 'values',
+      lazyLoad: false,
+      template: '{{ item.label }}',
       data: {
         values: [
           { label: ' ', value: '' },

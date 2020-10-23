@@ -145,258 +145,156 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       <option value
                               selected="selected"
                       >
-                        <span>
-                        </span>
                       </option>
                       <option value="AL">
-                        <span>
-                          Alabama
-                        </span>
+                        Alabama
                       </option>
                       <option value="AK">
-                        <span>
-                          Alaska
-                        </span>
+                        Alaska
                       </option>
                       <option value="AZ">
-                        <span>
-                          Arizona
-                        </span>
+                        Arizona
                       </option>
                       <option value="AR">
-                        <span>
-                          Arkansas
-                        </span>
+                        Arkansas
                       </option>
                       <option value="CA">
-                        <span>
-                          California
-                        </span>
+                        California
                       </option>
                       <option value="CO">
-                        <span>
-                          Colorado
-                        </span>
+                        Colorado
                       </option>
                       <option value="CT">
-                        <span>
-                          Connecticut
-                        </span>
+                        Connecticut
                       </option>
                       <option value="DE">
-                        <span>
-                          Delaware
-                        </span>
+                        Delaware
                       </option>
                       <option value="FL">
-                        <span>
-                          Florida
-                        </span>
+                        Florida
                       </option>
                       <option value="GA">
-                        <span>
-                          Georgia
-                        </span>
+                        Georgia
                       </option>
                       <option value="HI">
-                        <span>
-                          Hawaii
-                        </span>
+                        Hawaii
                       </option>
                       <option value="ID">
-                        <span>
-                          Idaho
-                        </span>
+                        Idaho
                       </option>
                       <option value="IL">
-                        <span>
-                          Illinois
-                        </span>
+                        Illinois
                       </option>
                       <option value="IN">
-                        <span>
-                          Indiana
-                        </span>
+                        Indiana
                       </option>
                       <option value="IA">
-                        <span>
-                          Iowa
-                        </span>
+                        Iowa
                       </option>
                       <option value="KS">
-                        <span>
-                          Kansas
-                        </span>
+                        Kansas
                       </option>
                       <option value="KY">
-                        <span>
-                          Kentucky
-                        </span>
+                        Kentucky
                       </option>
                       <option value="LA">
-                        <span>
-                          Louisiana
-                        </span>
+                        Louisiana
                       </option>
                       <option value="ME">
-                        <span>
-                          Maine
-                        </span>
+                        Maine
                       </option>
                       <option value="MD">
-                        <span>
-                          Maryland
-                        </span>
+                        Maryland
                       </option>
                       <option value="MA">
-                        <span>
-                          Massachusetts
-                        </span>
+                        Massachusetts
                       </option>
                       <option value="MI">
-                        <span>
-                          Michigan
-                        </span>
+                        Michigan
                       </option>
                       <option value="MN">
-                        <span>
-                          Minnesota
-                        </span>
+                        Minnesota
                       </option>
                       <option value="MS">
-                        <span>
-                          Mississippi
-                        </span>
+                        Mississippi
                       </option>
                       <option value="MO">
-                        <span>
-                          Missouri
-                        </span>
+                        Missouri
                       </option>
                       <option value="MT">
-                        <span>
-                          Montana
-                        </span>
+                        Montana
                       </option>
                       <option value="NE">
-                        <span>
-                          Nebraska
-                        </span>
+                        Nebraska
                       </option>
                       <option value="NV">
-                        <span>
-                          Nevada
-                        </span>
+                        Nevada
                       </option>
                       <option value="NH">
-                        <span>
-                          New Hampshire
-                        </span>
+                        New Hampshire
                       </option>
                       <option value="NJ">
-                        <span>
-                          New Jersey
-                        </span>
+                        New Jersey
                       </option>
                       <option value="NM">
-                        <span>
-                          New Mexico
-                        </span>
+                        New Mexico
                       </option>
                       <option value="NY">
-                        <span>
-                          New York
-                        </span>
+                        New York
                       </option>
                       <option value="NC">
-                        <span>
-                          North Carolina
-                        </span>
+                        North Carolina
                       </option>
                       <option value="ND">
-                        <span>
-                          North Dakota
-                        </span>
+                        North Dakota
                       </option>
                       <option value="OH">
-                        <span>
-                          Ohio
-                        </span>
+                        Ohio
                       </option>
                       <option value="OK">
-                        <span>
-                          Oklahoma
-                        </span>
+                        Oklahoma
                       </option>
                       <option value="OR">
-                        <span>
-                          Oregon
-                        </span>
+                        Oregon
                       </option>
                       <option value="PA">
-                        <span>
-                          Pennsylvania
-                        </span>
+                        Pennsylvania
                       </option>
                       <option value="RI">
-                        <span>
-                          Rhode Island
-                        </span>
+                        Rhode Island
                       </option>
                       <option value="SC">
-                        <span>
-                          South Carolina
-                        </span>
+                        South Carolina
                       </option>
                       <option value="SD">
-                        <span>
-                          South Dakota
-                        </span>
+                        South Dakota
                       </option>
                       <option value="TN">
-                        <span>
-                          Tennessee
-                        </span>
+                        Tennessee
                       </option>
                       <option value="TX">
-                        <span>
-                          Texas
-                        </span>
+                        Texas
                       </option>
                       <option value="UT">
-                        <span>
-                          Utah
-                        </span>
+                        Utah
                       </option>
                       <option value="VT">
-                        <span>
-                          Vermont
-                        </span>
+                        Vermont
                       </option>
                       <option value="VA">
-                        <span>
-                          Virginia
-                        </span>
+                        Virginia
                       </option>
                       <option value="WA">
-                        <span>
-                          Washington
-                        </span>
+                        Washington
                       </option>
                       <option value="WV">
-                        <span>
-                          West Virginia
-                        </span>
+                        West Virginia
                       </option>
                       <option value="WI">
-                        <span>
-                          Wisconsin
-                        </span>
+                        Wisconsin
                       </option>
                       <option value="WY">
-                        <span>
-                          Wyoming
-                        </span>
+                        Wyoming
                       </option>
                     </select>
                     <div ref="messageContainer"
@@ -600,258 +498,156 @@ exports[`component snapshots component "address" scenario: required matches the 
                       <option value
                               selected="selected"
                       >
-                        <span>
-                        </span>
                       </option>
                       <option value="AL">
-                        <span>
-                          Alabama
-                        </span>
+                        Alabama
                       </option>
                       <option value="AK">
-                        <span>
-                          Alaska
-                        </span>
+                        Alaska
                       </option>
                       <option value="AZ">
-                        <span>
-                          Arizona
-                        </span>
+                        Arizona
                       </option>
                       <option value="AR">
-                        <span>
-                          Arkansas
-                        </span>
+                        Arkansas
                       </option>
                       <option value="CA">
-                        <span>
-                          California
-                        </span>
+                        California
                       </option>
                       <option value="CO">
-                        <span>
-                          Colorado
-                        </span>
+                        Colorado
                       </option>
                       <option value="CT">
-                        <span>
-                          Connecticut
-                        </span>
+                        Connecticut
                       </option>
                       <option value="DE">
-                        <span>
-                          Delaware
-                        </span>
+                        Delaware
                       </option>
                       <option value="FL">
-                        <span>
-                          Florida
-                        </span>
+                        Florida
                       </option>
                       <option value="GA">
-                        <span>
-                          Georgia
-                        </span>
+                        Georgia
                       </option>
                       <option value="HI">
-                        <span>
-                          Hawaii
-                        </span>
+                        Hawaii
                       </option>
                       <option value="ID">
-                        <span>
-                          Idaho
-                        </span>
+                        Idaho
                       </option>
                       <option value="IL">
-                        <span>
-                          Illinois
-                        </span>
+                        Illinois
                       </option>
                       <option value="IN">
-                        <span>
-                          Indiana
-                        </span>
+                        Indiana
                       </option>
                       <option value="IA">
-                        <span>
-                          Iowa
-                        </span>
+                        Iowa
                       </option>
                       <option value="KS">
-                        <span>
-                          Kansas
-                        </span>
+                        Kansas
                       </option>
                       <option value="KY">
-                        <span>
-                          Kentucky
-                        </span>
+                        Kentucky
                       </option>
                       <option value="LA">
-                        <span>
-                          Louisiana
-                        </span>
+                        Louisiana
                       </option>
                       <option value="ME">
-                        <span>
-                          Maine
-                        </span>
+                        Maine
                       </option>
                       <option value="MD">
-                        <span>
-                          Maryland
-                        </span>
+                        Maryland
                       </option>
                       <option value="MA">
-                        <span>
-                          Massachusetts
-                        </span>
+                        Massachusetts
                       </option>
                       <option value="MI">
-                        <span>
-                          Michigan
-                        </span>
+                        Michigan
                       </option>
                       <option value="MN">
-                        <span>
-                          Minnesota
-                        </span>
+                        Minnesota
                       </option>
                       <option value="MS">
-                        <span>
-                          Mississippi
-                        </span>
+                        Mississippi
                       </option>
                       <option value="MO">
-                        <span>
-                          Missouri
-                        </span>
+                        Missouri
                       </option>
                       <option value="MT">
-                        <span>
-                          Montana
-                        </span>
+                        Montana
                       </option>
                       <option value="NE">
-                        <span>
-                          Nebraska
-                        </span>
+                        Nebraska
                       </option>
                       <option value="NV">
-                        <span>
-                          Nevada
-                        </span>
+                        Nevada
                       </option>
                       <option value="NH">
-                        <span>
-                          New Hampshire
-                        </span>
+                        New Hampshire
                       </option>
                       <option value="NJ">
-                        <span>
-                          New Jersey
-                        </span>
+                        New Jersey
                       </option>
                       <option value="NM">
-                        <span>
-                          New Mexico
-                        </span>
+                        New Mexico
                       </option>
                       <option value="NY">
-                        <span>
-                          New York
-                        </span>
+                        New York
                       </option>
                       <option value="NC">
-                        <span>
-                          North Carolina
-                        </span>
+                        North Carolina
                       </option>
                       <option value="ND">
-                        <span>
-                          North Dakota
-                        </span>
+                        North Dakota
                       </option>
                       <option value="OH">
-                        <span>
-                          Ohio
-                        </span>
+                        Ohio
                       </option>
                       <option value="OK">
-                        <span>
-                          Oklahoma
-                        </span>
+                        Oklahoma
                       </option>
                       <option value="OR">
-                        <span>
-                          Oregon
-                        </span>
+                        Oregon
                       </option>
                       <option value="PA">
-                        <span>
-                          Pennsylvania
-                        </span>
+                        Pennsylvania
                       </option>
                       <option value="RI">
-                        <span>
-                          Rhode Island
-                        </span>
+                        Rhode Island
                       </option>
                       <option value="SC">
-                        <span>
-                          South Carolina
-                        </span>
+                        South Carolina
                       </option>
                       <option value="SD">
-                        <span>
-                          South Dakota
-                        </span>
+                        South Dakota
                       </option>
                       <option value="TN">
-                        <span>
-                          Tennessee
-                        </span>
+                        Tennessee
                       </option>
                       <option value="TX">
-                        <span>
-                          Texas
-                        </span>
+                        Texas
                       </option>
                       <option value="UT">
-                        <span>
-                          Utah
-                        </span>
+                        Utah
                       </option>
                       <option value="VT">
-                        <span>
-                          Vermont
-                        </span>
+                        Vermont
                       </option>
                       <option value="VA">
-                        <span>
-                          Virginia
-                        </span>
+                        Virginia
                       </option>
                       <option value="WA">
-                        <span>
-                          Washington
-                        </span>
+                        Washington
                       </option>
                       <option value="WV">
-                        <span>
-                          West Virginia
-                        </span>
+                        West Virginia
                       </option>
                       <option value="WI">
-                        <span>
-                          Wisconsin
-                        </span>
+                        Wisconsin
                       </option>
                       <option value="WY">
-                        <span>
-                          Wyoming
-                        </span>
+                        Wyoming
                       </option>
                     </select>
                     <div ref="messageContainer"
@@ -2665,258 +2461,156 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           <option value
                   selected="selected"
           >
-            <span>
-            </span>
           </option>
           <option value="AL">
-            <span>
-              Alabama
-            </span>
+            Alabama
           </option>
           <option value="AK">
-            <span>
-              Alaska
-            </span>
+            Alaska
           </option>
           <option value="AZ">
-            <span>
-              Arizona
-            </span>
+            Arizona
           </option>
           <option value="AR">
-            <span>
-              Arkansas
-            </span>
+            Arkansas
           </option>
           <option value="CA">
-            <span>
-              California
-            </span>
+            California
           </option>
           <option value="CO">
-            <span>
-              Colorado
-            </span>
+            Colorado
           </option>
           <option value="CT">
-            <span>
-              Connecticut
-            </span>
+            Connecticut
           </option>
           <option value="DE">
-            <span>
-              Delaware
-            </span>
+            Delaware
           </option>
           <option value="FL">
-            <span>
-              Florida
-            </span>
+            Florida
           </option>
           <option value="GA">
-            <span>
-              Georgia
-            </span>
+            Georgia
           </option>
           <option value="HI">
-            <span>
-              Hawaii
-            </span>
+            Hawaii
           </option>
           <option value="ID">
-            <span>
-              Idaho
-            </span>
+            Idaho
           </option>
           <option value="IL">
-            <span>
-              Illinois
-            </span>
+            Illinois
           </option>
           <option value="IN">
-            <span>
-              Indiana
-            </span>
+            Indiana
           </option>
           <option value="IA">
-            <span>
-              Iowa
-            </span>
+            Iowa
           </option>
           <option value="KS">
-            <span>
-              Kansas
-            </span>
+            Kansas
           </option>
           <option value="KY">
-            <span>
-              Kentucky
-            </span>
+            Kentucky
           </option>
           <option value="LA">
-            <span>
-              Louisiana
-            </span>
+            Louisiana
           </option>
           <option value="ME">
-            <span>
-              Maine
-            </span>
+            Maine
           </option>
           <option value="MD">
-            <span>
-              Maryland
-            </span>
+            Maryland
           </option>
           <option value="MA">
-            <span>
-              Massachusetts
-            </span>
+            Massachusetts
           </option>
           <option value="MI">
-            <span>
-              Michigan
-            </span>
+            Michigan
           </option>
           <option value="MN">
-            <span>
-              Minnesota
-            </span>
+            Minnesota
           </option>
           <option value="MS">
-            <span>
-              Mississippi
-            </span>
+            Mississippi
           </option>
           <option value="MO">
-            <span>
-              Missouri
-            </span>
+            Missouri
           </option>
           <option value="MT">
-            <span>
-              Montana
-            </span>
+            Montana
           </option>
           <option value="NE">
-            <span>
-              Nebraska
-            </span>
+            Nebraska
           </option>
           <option value="NV">
-            <span>
-              Nevada
-            </span>
+            Nevada
           </option>
           <option value="NH">
-            <span>
-              New Hampshire
-            </span>
+            New Hampshire
           </option>
           <option value="NJ">
-            <span>
-              New Jersey
-            </span>
+            New Jersey
           </option>
           <option value="NM">
-            <span>
-              New Mexico
-            </span>
+            New Mexico
           </option>
           <option value="NY">
-            <span>
-              New York
-            </span>
+            New York
           </option>
           <option value="NC">
-            <span>
-              North Carolina
-            </span>
+            North Carolina
           </option>
           <option value="ND">
-            <span>
-              North Dakota
-            </span>
+            North Dakota
           </option>
           <option value="OH">
-            <span>
-              Ohio
-            </span>
+            Ohio
           </option>
           <option value="OK">
-            <span>
-              Oklahoma
-            </span>
+            Oklahoma
           </option>
           <option value="OR">
-            <span>
-              Oregon
-            </span>
+            Oregon
           </option>
           <option value="PA">
-            <span>
-              Pennsylvania
-            </span>
+            Pennsylvania
           </option>
           <option value="RI">
-            <span>
-              Rhode Island
-            </span>
+            Rhode Island
           </option>
           <option value="SC">
-            <span>
-              South Carolina
-            </span>
+            South Carolina
           </option>
           <option value="SD">
-            <span>
-              South Dakota
-            </span>
+            South Dakota
           </option>
           <option value="TN">
-            <span>
-              Tennessee
-            </span>
+            Tennessee
           </option>
           <option value="TX">
-            <span>
-              Texas
-            </span>
+            Texas
           </option>
           <option value="UT">
-            <span>
-              Utah
-            </span>
+            Utah
           </option>
           <option value="VT">
-            <span>
-              Vermont
-            </span>
+            Vermont
           </option>
           <option value="VA">
-            <span>
-              Virginia
-            </span>
+            Virginia
           </option>
           <option value="WA">
-            <span>
-              Washington
-            </span>
+            Washington
           </option>
           <option value="WV">
-            <span>
-              West Virginia
-            </span>
+            West Virginia
           </option>
           <option value="WI">
-            <span>
-              Wisconsin
-            </span>
+            Wisconsin
           </option>
           <option value="WY">
-            <span>
-              Wyoming
-            </span>
+            Wyoming
           </option>
         </select>
         <div class="fg-light-slate mt-1">
@@ -2976,258 +2670,156 @@ exports[`component snapshots component "state" scenario: required matches the sn
           <option value
                   selected="selected"
           >
-            <span>
-            </span>
           </option>
           <option value="AL">
-            <span>
-              Alabama
-            </span>
+            Alabama
           </option>
           <option value="AK">
-            <span>
-              Alaska
-            </span>
+            Alaska
           </option>
           <option value="AZ">
-            <span>
-              Arizona
-            </span>
+            Arizona
           </option>
           <option value="AR">
-            <span>
-              Arkansas
-            </span>
+            Arkansas
           </option>
           <option value="CA">
-            <span>
-              California
-            </span>
+            California
           </option>
           <option value="CO">
-            <span>
-              Colorado
-            </span>
+            Colorado
           </option>
           <option value="CT">
-            <span>
-              Connecticut
-            </span>
+            Connecticut
           </option>
           <option value="DE">
-            <span>
-              Delaware
-            </span>
+            Delaware
           </option>
           <option value="FL">
-            <span>
-              Florida
-            </span>
+            Florida
           </option>
           <option value="GA">
-            <span>
-              Georgia
-            </span>
+            Georgia
           </option>
           <option value="HI">
-            <span>
-              Hawaii
-            </span>
+            Hawaii
           </option>
           <option value="ID">
-            <span>
-              Idaho
-            </span>
+            Idaho
           </option>
           <option value="IL">
-            <span>
-              Illinois
-            </span>
+            Illinois
           </option>
           <option value="IN">
-            <span>
-              Indiana
-            </span>
+            Indiana
           </option>
           <option value="IA">
-            <span>
-              Iowa
-            </span>
+            Iowa
           </option>
           <option value="KS">
-            <span>
-              Kansas
-            </span>
+            Kansas
           </option>
           <option value="KY">
-            <span>
-              Kentucky
-            </span>
+            Kentucky
           </option>
           <option value="LA">
-            <span>
-              Louisiana
-            </span>
+            Louisiana
           </option>
           <option value="ME">
-            <span>
-              Maine
-            </span>
+            Maine
           </option>
           <option value="MD">
-            <span>
-              Maryland
-            </span>
+            Maryland
           </option>
           <option value="MA">
-            <span>
-              Massachusetts
-            </span>
+            Massachusetts
           </option>
           <option value="MI">
-            <span>
-              Michigan
-            </span>
+            Michigan
           </option>
           <option value="MN">
-            <span>
-              Minnesota
-            </span>
+            Minnesota
           </option>
           <option value="MS">
-            <span>
-              Mississippi
-            </span>
+            Mississippi
           </option>
           <option value="MO">
-            <span>
-              Missouri
-            </span>
+            Missouri
           </option>
           <option value="MT">
-            <span>
-              Montana
-            </span>
+            Montana
           </option>
           <option value="NE">
-            <span>
-              Nebraska
-            </span>
+            Nebraska
           </option>
           <option value="NV">
-            <span>
-              Nevada
-            </span>
+            Nevada
           </option>
           <option value="NH">
-            <span>
-              New Hampshire
-            </span>
+            New Hampshire
           </option>
           <option value="NJ">
-            <span>
-              New Jersey
-            </span>
+            New Jersey
           </option>
           <option value="NM">
-            <span>
-              New Mexico
-            </span>
+            New Mexico
           </option>
           <option value="NY">
-            <span>
-              New York
-            </span>
+            New York
           </option>
           <option value="NC">
-            <span>
-              North Carolina
-            </span>
+            North Carolina
           </option>
           <option value="ND">
-            <span>
-              North Dakota
-            </span>
+            North Dakota
           </option>
           <option value="OH">
-            <span>
-              Ohio
-            </span>
+            Ohio
           </option>
           <option value="OK">
-            <span>
-              Oklahoma
-            </span>
+            Oklahoma
           </option>
           <option value="OR">
-            <span>
-              Oregon
-            </span>
+            Oregon
           </option>
           <option value="PA">
-            <span>
-              Pennsylvania
-            </span>
+            Pennsylvania
           </option>
           <option value="RI">
-            <span>
-              Rhode Island
-            </span>
+            Rhode Island
           </option>
           <option value="SC">
-            <span>
-              South Carolina
-            </span>
+            South Carolina
           </option>
           <option value="SD">
-            <span>
-              South Dakota
-            </span>
+            South Dakota
           </option>
           <option value="TN">
-            <span>
-              Tennessee
-            </span>
+            Tennessee
           </option>
           <option value="TX">
-            <span>
-              Texas
-            </span>
+            Texas
           </option>
           <option value="UT">
-            <span>
-              Utah
-            </span>
+            Utah
           </option>
           <option value="VT">
-            <span>
-              Vermont
-            </span>
+            Vermont
           </option>
           <option value="VA">
-            <span>
-              Virginia
-            </span>
+            Virginia
           </option>
           <option value="WA">
-            <span>
-              Washington
-            </span>
+            Washington
           </option>
           <option value="WV">
-            <span>
-              West Virginia
-            </span>
+            West Virginia
           </option>
           <option value="WI">
-            <span>
-              Wisconsin
-            </span>
+            Wisconsin
           </option>
           <option value="WY">
-            <span>
-              Wyoming
-            </span>
+            Wyoming
           </option>
         </select>
         <div class="fg-light-slate mt-1">
