@@ -152,6 +152,9 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       <option value="AK">
                         Alaska
                       </option>
+                      <option value="AS">
+                        American Samoa
+                      </option>
                       <option value="AZ">
                         Arizona
                       </option>
@@ -170,11 +173,17 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       <option value="DE">
                         Delaware
                       </option>
+                      <option value="DC">
+                        District of Columbia
+                      </option>
                       <option value="FL">
                         Florida
                       </option>
                       <option value="GA">
                         Georgia
+                      </option>
+                      <option value="GU">
+                        Guam
                       </option>
                       <option value="HI">
                         Hawaii
@@ -248,6 +257,9 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       <option value="ND">
                         North Dakota
                       </option>
+                      <option value="MP">
+                        Northern Mariana Islands
+                      </option>
                       <option value="OH">
                         Ohio
                       </option>
@@ -259,6 +271,9 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       </option>
                       <option value="PA">
                         Pennsylvania
+                      </option>
+                      <option value="PR">
+                        Puerto Rico
                       </option>
                       <option value="RI">
                         Rhode Island
@@ -280,6 +295,9 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                       </option>
                       <option value="VT">
                         Vermont
+                      </option>
+                      <option value="VI">
+                        Virgin Islands
                       </option>
                       <option value="VA">
                         Virginia
@@ -505,6 +523,9 @@ exports[`component snapshots component "address" scenario: required matches the 
                       <option value="AK">
                         Alaska
                       </option>
+                      <option value="AS">
+                        American Samoa
+                      </option>
                       <option value="AZ">
                         Arizona
                       </option>
@@ -523,11 +544,17 @@ exports[`component snapshots component "address" scenario: required matches the 
                       <option value="DE">
                         Delaware
                       </option>
+                      <option value="DC">
+                        District of Columbia
+                      </option>
                       <option value="FL">
                         Florida
                       </option>
                       <option value="GA">
                         Georgia
+                      </option>
+                      <option value="GU">
+                        Guam
                       </option>
                       <option value="HI">
                         Hawaii
@@ -601,6 +628,9 @@ exports[`component snapshots component "address" scenario: required matches the 
                       <option value="ND">
                         North Dakota
                       </option>
+                      <option value="MP">
+                        Northern Mariana Islands
+                      </option>
                       <option value="OH">
                         Ohio
                       </option>
@@ -612,6 +642,9 @@ exports[`component snapshots component "address" scenario: required matches the 
                       </option>
                       <option value="PA">
                         Pennsylvania
+                      </option>
+                      <option value="PR">
+                        Puerto Rico
                       </option>
                       <option value="RI">
                         Rhode Island
@@ -633,6 +666,9 @@ exports[`component snapshots component "address" scenario: required matches the 
                       </option>
                       <option value="VT">
                         Vermont
+                      </option>
+                      <option value="VI">
+                        Virgin Islands
                       </option>
                       <option value="VA">
                         Virginia
@@ -2468,6 +2504,9 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           <option value="AK">
             Alaska
           </option>
+          <option value="AS">
+            American Samoa
+          </option>
           <option value="AZ">
             Arizona
           </option>
@@ -2486,11 +2525,17 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           <option value="DE">
             Delaware
           </option>
+          <option value="DC">
+            District of Columbia
+          </option>
           <option value="FL">
             Florida
           </option>
           <option value="GA">
             Georgia
+          </option>
+          <option value="GU">
+            Guam
           </option>
           <option value="HI">
             Hawaii
@@ -2564,6 +2609,9 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           <option value="ND">
             North Dakota
           </option>
+          <option value="MP">
+            Northern Mariana Islands
+          </option>
           <option value="OH">
             Ohio
           </option>
@@ -2575,6 +2623,9 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           </option>
           <option value="PA">
             Pennsylvania
+          </option>
+          <option value="PR">
+            Puerto Rico
           </option>
           <option value="RI">
             Rhode Island
@@ -2596,6 +2647,9 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
           </option>
           <option value="VT">
             Vermont
+          </option>
+          <option value="VI">
+            Virgin Islands
           </option>
           <option value="VA">
             Virginia
@@ -2677,6 +2731,9 @@ exports[`component snapshots component "state" scenario: required matches the sn
           <option value="AK">
             Alaska
           </option>
+          <option value="AS">
+            American Samoa
+          </option>
           <option value="AZ">
             Arizona
           </option>
@@ -2695,11 +2752,17 @@ exports[`component snapshots component "state" scenario: required matches the sn
           <option value="DE">
             Delaware
           </option>
+          <option value="DC">
+            District of Columbia
+          </option>
           <option value="FL">
             Florida
           </option>
           <option value="GA">
             Georgia
+          </option>
+          <option value="GU">
+            Guam
           </option>
           <option value="HI">
             Hawaii
@@ -2773,6 +2836,9 @@ exports[`component snapshots component "state" scenario: required matches the sn
           <option value="ND">
             North Dakota
           </option>
+          <option value="MP">
+            Northern Mariana Islands
+          </option>
           <option value="OH">
             Ohio
           </option>
@@ -2784,6 +2850,9 @@ exports[`component snapshots component "state" scenario: required matches the sn
           </option>
           <option value="PA">
             Pennsylvania
+          </option>
+          <option value="PR">
+            Puerto Rico
           </option>
           <option value="RI">
             Rhode Island
@@ -2805,6 +2874,9 @@ exports[`component snapshots component "state" scenario: required matches the sn
           </option>
           <option value="VT">
             Vermont
+          </option>
+          <option value="VI">
+            Virgin Islands
           </option>
           <option value="VA">
             Virginia

@@ -13,11 +13,8 @@ export default class StateSelect extends Select {
       template: '{{ item.label }}',
       data: {
         values: [
-          { label: ' ', value: '' },
-          ...states.map(({ name, code }) => ({
-            label: name,
-            value: code
-          }))
+          { value: '', label: ' ' },
+          ...states
         ]
       }
     }, ...extend)
