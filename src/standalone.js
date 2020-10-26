@@ -1,3 +1,4 @@
+import '@ungap/global-this'
 import '../dist/formio-sfds.css'
 import FormioSFDS, { patch } from './index.js'
 
