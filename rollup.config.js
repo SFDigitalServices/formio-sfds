@@ -6,7 +6,7 @@ import pkg from './package.json'
 import postcss from 'rollup-plugin-postcss'
 import resolve from '@rollup/plugin-node-resolve'
 import svgo from 'rollup-plugin-svgo'
-import injectProcessEnv from 'rollup-plugin-inject-process-env'
+import define from 'rollup-plugin-define'
 import { terser } from 'rollup-plugin-terser'
 import rollupYAML from '@rollup/plugin-yaml'
 import yaml from 'js-yaml'
@@ -33,11 +33,11 @@ const commonPlugins = [
       variable: 'ctx'
     }
   }),
-  injectProcessEnv({
-    NODE_ENV,
-    I18N_SERVICE_URL
-  }, {
-    include: 'src/**/*.js'
+  define({
+    replacements: {
+      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      'process.env.I18N_SERVICE_URL': JSON.stringify(I18N_SERVICE_URL)
+    }
   }),
   svgo(
     yaml.safeLoad(
