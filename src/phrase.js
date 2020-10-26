@@ -2,13 +2,8 @@ import interpolate from 'interpolate'
 import loadTranslations from './i18n/load'
 
 const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
-
-const {
-  I18N_SERVICE_URL = 'https://translate.sf.gov',
-  NODE_ENV
-} = process.env
-
-const debugDefault = NODE_ENV !== 'test'
+const I18N_SERVICE_URL = process.env.I18N_SERVICE_URL || 'https://translate.sf.gov'
+const debugDefault = process.env.NODE_ENV !== 'test'
 
 export { I18N_SERVICE_URL, I18NEXT_DEFAULT_NAMESPACE }
 

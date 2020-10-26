@@ -122,7 +122,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                      class="col-md-6 mr-md-2"
                 >
                   <div ref="component"
-                       class="form-group has-feedback formio-component formio-component-state formio-component-state  required"
+                       class="form-group has-feedback formio-component formio-component-state formio-component-state mb-2 mb-md-0 required"
                        id="address-basic-7"
                   >
                     <label for="input-address-basic-7"
@@ -138,6 +138,178 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             required
                             ref="selectContainer"
                     >
+                      <option value
+                              selected="selected"
+                      >
+                      </option>
+                      <option value="AL">
+                        Alabama
+                      </option>
+                      <option value="AK">
+                        Alaska
+                      </option>
+                      <option value="AS">
+                        American Samoa
+                      </option>
+                      <option value="AZ">
+                        Arizona
+                      </option>
+                      <option value="AR">
+                        Arkansas
+                      </option>
+                      <option value="CA">
+                        California
+                      </option>
+                      <option value="CO">
+                        Colorado
+                      </option>
+                      <option value="CT">
+                        Connecticut
+                      </option>
+                      <option value="DE">
+                        Delaware
+                      </option>
+                      <option value="DC">
+                        District of Columbia
+                      </option>
+                      <option value="FL">
+                        Florida
+                      </option>
+                      <option value="GA">
+                        Georgia
+                      </option>
+                      <option value="GU">
+                        Guam
+                      </option>
+                      <option value="HI">
+                        Hawaii
+                      </option>
+                      <option value="ID">
+                        Idaho
+                      </option>
+                      <option value="IL">
+                        Illinois
+                      </option>
+                      <option value="IN">
+                        Indiana
+                      </option>
+                      <option value="IA">
+                        Iowa
+                      </option>
+                      <option value="KS">
+                        Kansas
+                      </option>
+                      <option value="KY">
+                        Kentucky
+                      </option>
+                      <option value="LA">
+                        Louisiana
+                      </option>
+                      <option value="ME">
+                        Maine
+                      </option>
+                      <option value="MD">
+                        Maryland
+                      </option>
+                      <option value="MA">
+                        Massachusetts
+                      </option>
+                      <option value="MI">
+                        Michigan
+                      </option>
+                      <option value="MN">
+                        Minnesota
+                      </option>
+                      <option value="MS">
+                        Mississippi
+                      </option>
+                      <option value="MO">
+                        Missouri
+                      </option>
+                      <option value="MT">
+                        Montana
+                      </option>
+                      <option value="NE">
+                        Nebraska
+                      </option>
+                      <option value="NV">
+                        Nevada
+                      </option>
+                      <option value="NH">
+                        New Hampshire
+                      </option>
+                      <option value="NJ">
+                        New Jersey
+                      </option>
+                      <option value="NM">
+                        New Mexico
+                      </option>
+                      <option value="NY">
+                        New York
+                      </option>
+                      <option value="NC">
+                        North Carolina
+                      </option>
+                      <option value="ND">
+                        North Dakota
+                      </option>
+                      <option value="MP">
+                        Northern Mariana Islands
+                      </option>
+                      <option value="OH">
+                        Ohio
+                      </option>
+                      <option value="OK">
+                        Oklahoma
+                      </option>
+                      <option value="OR">
+                        Oregon
+                      </option>
+                      <option value="PA">
+                        Pennsylvania
+                      </option>
+                      <option value="PR">
+                        Puerto Rico
+                      </option>
+                      <option value="RI">
+                        Rhode Island
+                      </option>
+                      <option value="SC">
+                        South Carolina
+                      </option>
+                      <option value="SD">
+                        South Dakota
+                      </option>
+                      <option value="TN">
+                        Tennessee
+                      </option>
+                      <option value="TX">
+                        Texas
+                      </option>
+                      <option value="UT">
+                        Utah
+                      </option>
+                      <option value="VT">
+                        Vermont
+                      </option>
+                      <option value="VI">
+                        Virgin Islands
+                      </option>
+                      <option value="VA">
+                        Virginia
+                      </option>
+                      <option value="WA">
+                        Washington
+                      </option>
+                      <option value="WV">
+                        West Virginia
+                      </option>
+                      <option value="WI">
+                        Wisconsin
+                      </option>
+                      <option value="WY">
+                        Wyoming
+                      </option>
                     </select>
                     <div ref="messageContainer"
                          class="messages"
@@ -317,7 +489,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                      class="col-md-6 mr-md-2"
                 >
                   <div ref="component"
-                       class="form-group has-feedback formio-component formio-component-state formio-component-state  required"
+                       class="form-group has-feedback formio-component formio-component-state formio-component-state mb-2 mb-md-0 required"
                        id="address-required-7"
                   >
                     <label for="input-address-required-7"
@@ -333,6 +505,178 @@ exports[`component snapshots component "address" scenario: required matches the 
                             required
                             ref="selectContainer"
                     >
+                      <option value
+                              selected="selected"
+                      >
+                      </option>
+                      <option value="AL">
+                        Alabama
+                      </option>
+                      <option value="AK">
+                        Alaska
+                      </option>
+                      <option value="AS">
+                        American Samoa
+                      </option>
+                      <option value="AZ">
+                        Arizona
+                      </option>
+                      <option value="AR">
+                        Arkansas
+                      </option>
+                      <option value="CA">
+                        California
+                      </option>
+                      <option value="CO">
+                        Colorado
+                      </option>
+                      <option value="CT">
+                        Connecticut
+                      </option>
+                      <option value="DE">
+                        Delaware
+                      </option>
+                      <option value="DC">
+                        District of Columbia
+                      </option>
+                      <option value="FL">
+                        Florida
+                      </option>
+                      <option value="GA">
+                        Georgia
+                      </option>
+                      <option value="GU">
+                        Guam
+                      </option>
+                      <option value="HI">
+                        Hawaii
+                      </option>
+                      <option value="ID">
+                        Idaho
+                      </option>
+                      <option value="IL">
+                        Illinois
+                      </option>
+                      <option value="IN">
+                        Indiana
+                      </option>
+                      <option value="IA">
+                        Iowa
+                      </option>
+                      <option value="KS">
+                        Kansas
+                      </option>
+                      <option value="KY">
+                        Kentucky
+                      </option>
+                      <option value="LA">
+                        Louisiana
+                      </option>
+                      <option value="ME">
+                        Maine
+                      </option>
+                      <option value="MD">
+                        Maryland
+                      </option>
+                      <option value="MA">
+                        Massachusetts
+                      </option>
+                      <option value="MI">
+                        Michigan
+                      </option>
+                      <option value="MN">
+                        Minnesota
+                      </option>
+                      <option value="MS">
+                        Mississippi
+                      </option>
+                      <option value="MO">
+                        Missouri
+                      </option>
+                      <option value="MT">
+                        Montana
+                      </option>
+                      <option value="NE">
+                        Nebraska
+                      </option>
+                      <option value="NV">
+                        Nevada
+                      </option>
+                      <option value="NH">
+                        New Hampshire
+                      </option>
+                      <option value="NJ">
+                        New Jersey
+                      </option>
+                      <option value="NM">
+                        New Mexico
+                      </option>
+                      <option value="NY">
+                        New York
+                      </option>
+                      <option value="NC">
+                        North Carolina
+                      </option>
+                      <option value="ND">
+                        North Dakota
+                      </option>
+                      <option value="MP">
+                        Northern Mariana Islands
+                      </option>
+                      <option value="OH">
+                        Ohio
+                      </option>
+                      <option value="OK">
+                        Oklahoma
+                      </option>
+                      <option value="OR">
+                        Oregon
+                      </option>
+                      <option value="PA">
+                        Pennsylvania
+                      </option>
+                      <option value="PR">
+                        Puerto Rico
+                      </option>
+                      <option value="RI">
+                        Rhode Island
+                      </option>
+                      <option value="SC">
+                        South Carolina
+                      </option>
+                      <option value="SD">
+                        South Dakota
+                      </option>
+                      <option value="TN">
+                        Tennessee
+                      </option>
+                      <option value="TX">
+                        Texas
+                      </option>
+                      <option value="UT">
+                        Utah
+                      </option>
+                      <option value="VT">
+                        Vermont
+                      </option>
+                      <option value="VI">
+                        Virgin Islands
+                      </option>
+                      <option value="VA">
+                        Virginia
+                      </option>
+                      <option value="WA">
+                        Washington
+                      </option>
+                      <option value="WV">
+                        West Virginia
+                      </option>
+                      <option value="WI">
+                        Wisconsin
+                      </option>
+                      <option value="WY">
+                        Wyoming
+                      </option>
                     </select>
                     <div ref="messageContainer"
                          class="messages"
@@ -880,6 +1224,84 @@ exports[`component snapshots component "container" scenario: required matches th
 </div>
 `;
 
+exports[`component snapshots component "content" scenario: basic matches the snapshot 1`] = `
+<div id="form-content-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="content-basic-1"
+  >
+    <label for="input-content-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-content formio-component-content"
+           id="content-basic-2"
+      >
+        <div ref="html"
+             class
+        >
+          Hello, world!
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "content" scenario: required matches the snapshot 1`] = `
+<div id="form-content-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="content-required-1"
+  >
+    <label for="input-content-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="formio-component formio-component-content formio-component-content"
+           id="content-required-2"
+      >
+        <div ref="html"
+             class
+        >
+          Hello, world!
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
 <div id="form-datetime-basic"
      class="d-flex flex-column-reverse mb-4"
@@ -1341,15 +1763,15 @@ exports[`component snapshots component "day" scenario: required matches the snap
 </div>
 `;
 
-exports[`component snapshots component "html" scenario: basic matches the snapshot 1`] = `
-<div id="form-html-basic"
+exports[`component snapshots component "htmlelement" scenario: basic matches the snapshot 1`] = `
+<div id="form-htmlelement-basic"
      class="d-flex flex-column-reverse mb-4"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
-       id="html-basic-1"
+       id="htmlelement-basic-1"
   >
-    <label for="input-html-basic-1"
+    <label for="input-htmlelement-basic-1"
            class="control-label--hidden"
     >
     </label>
@@ -1358,10 +1780,14 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
          class="formio-form"
     >
       <div ref="component"
-           class="form-group has-feedback formio-component formio-component-html"
-           id="html-basic-2"
+           class="formio-component formio-component-htmlelement"
+           id="htmlelement-basic-2"
       >
-        Unknown component: html
+        <h1 ref="html"
+            class
+        >
+          Hello, world!
+        </h1>
         <div ref="messageContainer"
              class="messages"
         >
@@ -1376,15 +1802,15 @@ exports[`component snapshots component "html" scenario: basic matches the snapsh
 </div>
 `;
 
-exports[`component snapshots component "html" scenario: required matches the snapshot 1`] = `
-<div id="form-html-required"
+exports[`component snapshots component "htmlelement" scenario: required matches the snapshot 1`] = `
+<div id="form-htmlelement-required"
      class="d-flex flex-column-reverse mb-4"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
-       id="html-required-1"
+       id="htmlelement-required-1"
   >
-    <label for="input-html-required-1"
+    <label for="input-htmlelement-required-1"
            class="control-label--hidden"
     >
     </label>
@@ -1393,10 +1819,14 @@ exports[`component snapshots component "html" scenario: required matches the sna
          class="formio-form"
     >
       <div ref="component"
-           class="form-group has-feedback formio-component formio-component-html  required"
-           id="html-required-2"
+           class="formio-component formio-component-htmlelement"
+           id="htmlelement-required-2"
       >
-        Unknown component: html
+        <h1 ref="html"
+            class
+        >
+          Hello, world!
+        </h1>
         <div ref="messageContainer"
              class="messages"
         >
@@ -2008,6 +2438,451 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
 </div>
 `;
 
+exports[`component snapshots component "state" scenario: basic matches the snapshot 1`] = `
+<div id="form-state-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="state-basic-1"
+  >
+    <label for="input-state-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-state formio-component-state"
+           id="state-basic-2"
+      >
+        <label for="input-state-basic-2"
+               class
+        >
+          This is the state label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[state]"
+                id="input-state-basic-2"
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="AL">
+            Alabama
+          </option>
+          <option value="AK">
+            Alaska
+          </option>
+          <option value="AS">
+            American Samoa
+          </option>
+          <option value="AZ">
+            Arizona
+          </option>
+          <option value="AR">
+            Arkansas
+          </option>
+          <option value="CA">
+            California
+          </option>
+          <option value="CO">
+            Colorado
+          </option>
+          <option value="CT">
+            Connecticut
+          </option>
+          <option value="DE">
+            Delaware
+          </option>
+          <option value="DC">
+            District of Columbia
+          </option>
+          <option value="FL">
+            Florida
+          </option>
+          <option value="GA">
+            Georgia
+          </option>
+          <option value="GU">
+            Guam
+          </option>
+          <option value="HI">
+            Hawaii
+          </option>
+          <option value="ID">
+            Idaho
+          </option>
+          <option value="IL">
+            Illinois
+          </option>
+          <option value="IN">
+            Indiana
+          </option>
+          <option value="IA">
+            Iowa
+          </option>
+          <option value="KS">
+            Kansas
+          </option>
+          <option value="KY">
+            Kentucky
+          </option>
+          <option value="LA">
+            Louisiana
+          </option>
+          <option value="ME">
+            Maine
+          </option>
+          <option value="MD">
+            Maryland
+          </option>
+          <option value="MA">
+            Massachusetts
+          </option>
+          <option value="MI">
+            Michigan
+          </option>
+          <option value="MN">
+            Minnesota
+          </option>
+          <option value="MS">
+            Mississippi
+          </option>
+          <option value="MO">
+            Missouri
+          </option>
+          <option value="MT">
+            Montana
+          </option>
+          <option value="NE">
+            Nebraska
+          </option>
+          <option value="NV">
+            Nevada
+          </option>
+          <option value="NH">
+            New Hampshire
+          </option>
+          <option value="NJ">
+            New Jersey
+          </option>
+          <option value="NM">
+            New Mexico
+          </option>
+          <option value="NY">
+            New York
+          </option>
+          <option value="NC">
+            North Carolina
+          </option>
+          <option value="ND">
+            North Dakota
+          </option>
+          <option value="MP">
+            Northern Mariana Islands
+          </option>
+          <option value="OH">
+            Ohio
+          </option>
+          <option value="OK">
+            Oklahoma
+          </option>
+          <option value="OR">
+            Oregon
+          </option>
+          <option value="PA">
+            Pennsylvania
+          </option>
+          <option value="PR">
+            Puerto Rico
+          </option>
+          <option value="RI">
+            Rhode Island
+          </option>
+          <option value="SC">
+            South Carolina
+          </option>
+          <option value="SD">
+            South Dakota
+          </option>
+          <option value="TN">
+            Tennessee
+          </option>
+          <option value="TX">
+            Texas
+          </option>
+          <option value="UT">
+            Utah
+          </option>
+          <option value="VT">
+            Vermont
+          </option>
+          <option value="VI">
+            Virgin Islands
+          </option>
+          <option value="VA">
+            Virginia
+          </option>
+          <option value="WA">
+            Washington
+          </option>
+          <option value="WV">
+            West Virginia
+          </option>
+          <option value="WI">
+            Wisconsin
+          </option>
+          <option value="WY">
+            Wyoming
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the state description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "state" scenario: required matches the snapshot 1`] = `
+<div id="form-state-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="state-required-1"
+  >
+    <label for="input-state-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-state formio-component-state  required"
+           id="state-required-2"
+      >
+        <label for="input-state-required-2"
+               class="field-required"
+        >
+          This is the state label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[state]"
+                id="input-state-required-2"
+                required
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="AL">
+            Alabama
+          </option>
+          <option value="AK">
+            Alaska
+          </option>
+          <option value="AS">
+            American Samoa
+          </option>
+          <option value="AZ">
+            Arizona
+          </option>
+          <option value="AR">
+            Arkansas
+          </option>
+          <option value="CA">
+            California
+          </option>
+          <option value="CO">
+            Colorado
+          </option>
+          <option value="CT">
+            Connecticut
+          </option>
+          <option value="DE">
+            Delaware
+          </option>
+          <option value="DC">
+            District of Columbia
+          </option>
+          <option value="FL">
+            Florida
+          </option>
+          <option value="GA">
+            Georgia
+          </option>
+          <option value="GU">
+            Guam
+          </option>
+          <option value="HI">
+            Hawaii
+          </option>
+          <option value="ID">
+            Idaho
+          </option>
+          <option value="IL">
+            Illinois
+          </option>
+          <option value="IN">
+            Indiana
+          </option>
+          <option value="IA">
+            Iowa
+          </option>
+          <option value="KS">
+            Kansas
+          </option>
+          <option value="KY">
+            Kentucky
+          </option>
+          <option value="LA">
+            Louisiana
+          </option>
+          <option value="ME">
+            Maine
+          </option>
+          <option value="MD">
+            Maryland
+          </option>
+          <option value="MA">
+            Massachusetts
+          </option>
+          <option value="MI">
+            Michigan
+          </option>
+          <option value="MN">
+            Minnesota
+          </option>
+          <option value="MS">
+            Mississippi
+          </option>
+          <option value="MO">
+            Missouri
+          </option>
+          <option value="MT">
+            Montana
+          </option>
+          <option value="NE">
+            Nebraska
+          </option>
+          <option value="NV">
+            Nevada
+          </option>
+          <option value="NH">
+            New Hampshire
+          </option>
+          <option value="NJ">
+            New Jersey
+          </option>
+          <option value="NM">
+            New Mexico
+          </option>
+          <option value="NY">
+            New York
+          </option>
+          <option value="NC">
+            North Carolina
+          </option>
+          <option value="ND">
+            North Dakota
+          </option>
+          <option value="MP">
+            Northern Mariana Islands
+          </option>
+          <option value="OH">
+            Ohio
+          </option>
+          <option value="OK">
+            Oklahoma
+          </option>
+          <option value="OR">
+            Oregon
+          </option>
+          <option value="PA">
+            Pennsylvania
+          </option>
+          <option value="PR">
+            Puerto Rico
+          </option>
+          <option value="RI">
+            Rhode Island
+          </option>
+          <option value="SC">
+            South Carolina
+          </option>
+          <option value="SD">
+            South Dakota
+          </option>
+          <option value="TN">
+            Tennessee
+          </option>
+          <option value="TX">
+            Texas
+          </option>
+          <option value="UT">
+            Utah
+          </option>
+          <option value="VT">
+            Vermont
+          </option>
+          <option value="VI">
+            Virgin Islands
+          </option>
+          <option value="VA">
+            Virginia
+          </option>
+          <option value="WA">
+            Washington
+          </option>
+          <option value="WV">
+            West Virginia
+          </option>
+          <option value="WI">
+            Wisconsin
+          </option>
+          <option value="WY">
+            Wyoming
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the state description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "textfield" scenario: basic matches the snapshot 1`] = `
 <div id="form-textfield-basic"
      class="d-flex flex-column-reverse mb-4"
@@ -2104,6 +2979,118 @@ exports[`component snapshots component "textfield" scenario: required matches th
         </div>
         <div class="fg-light-slate mt-1">
           This is the textfield description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "zip" scenario: basic matches the snapshot 1`] = `
+<div id="form-zip-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="zip-basic-1"
+  >
+    <label for="input-zip-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-zip formio-component-zip  required"
+           id="zip-basic-2"
+      >
+        <label for="input-zip-basic-2"
+               class="field-required"
+        >
+          This is the zip label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   spellcheck="true"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[zip]"
+                   required
+                   id="input-zip-basic-2"
+                   ref="input"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the zip description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "zip" scenario: required matches the snapshot 1`] = `
+<div id="form-zip-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="zip-required-1"
+  >
+    <label for="input-zip-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-zip formio-component-zip  required"
+           id="zip-required-2"
+      >
+        <label for="input-zip-required-2"
+               class="field-required"
+        >
+          This is the zip label
+        </label>
+        <div ref="element">
+          <div class="form-input">
+            <input value
+                   spellcheck="true"
+                   lang="en"
+                   class="form-control"
+                   type="text"
+                   name="data[zip]"
+                   required
+                   id="input-zip-required-2"
+                   ref="input"
+            >
+          </div>
+        </div>
+        <div class="fg-light-slate mt-1">
+          This is the zip description
         </div>
         <div ref="messageContainer"
              class="messages"

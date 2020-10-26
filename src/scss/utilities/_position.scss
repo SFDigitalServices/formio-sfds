@@ -1,5 +1,7 @@
-@each $position in (relative, absolute, fixed, sticky) {
-  @each $variant, $threshold in $breakpoint-variants {
-    .position#{$variant}-#{$position} { position: $position !important; }
+@each $variant, $threshold in $breakpoint-variants {
+  @include breakpoint($threshold) {
+    @each $position in (relative, absolute, fixed, sticky) {
+      .position#{$variant}-#{$position} { position: $position !important; }
+    }
   }
 }
