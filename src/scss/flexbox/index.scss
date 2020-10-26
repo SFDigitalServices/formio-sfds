@@ -43,7 +43,7 @@ $FLEX-JUSTIFY-CONTENT: (
     }
 
     @each $wrap in $FLEX-WRAPS {
-      .flex#{$variant}-#{$wrap} { flex-direction: #{$wrap} !important; }
+      .flex#{$variant}-#{$wrap} { flex-wrap: #{$wrap} !important; }
     }
 
     @each $key, $value in $FLEX-ALIGN-ITEMS {

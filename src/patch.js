@@ -31,7 +31,7 @@ const defaultEvalContext = {
     return key ? this.t([
       `${key}.${field}`,
       `${key}_${field}`,
-      component[field] || ''
+      component[field] || defaultValue || ''
     ]) : defaultValue
   },
 
