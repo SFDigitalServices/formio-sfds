@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import { createForm, destroyForm } from '../lib/test-helpers'
+import { createForm, destroyForm, sleep } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
-const { FormioUtils } = window
+const { Event, FormioUtils } = window
 
 const components = [
   { type: 'address' },
@@ -49,7 +49,9 @@ const components = [
     components: [
       { type: 'textfield', label: 'Your name' }
     ]
-  }
+  },
+  { type: 'state' },
+  { type: 'zip' }
 ]
 
 describe('component snapshots', () => {
@@ -84,6 +86,13 @@ describe('component snapshots', () => {
                 )
               ]
             })
+
+            const select = form.element.querySelector('select:empty')
+            if (select) {
+              select.focus()
+              select.dispatchEvent(new Event('change'))
+              await sleep(100)
+            }
 
             form.element.id = `form-${comp.type}-${name}`
             const html = form.element.outerHTML
