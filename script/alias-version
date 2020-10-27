@@ -1,0 +1,24 @@
+#!/bin/bash
+VERSION="${1:-$(npm view . version)}"
+ALIAS="v${VERSION//./-}"
+PREFIX=formio-sfds
+SUFFIX=.vercel.app
+PROD_URL="${PREFIX}${SUFFIX}"
+
+ROOT_URL=$(
+  curl -s "https://api.vercel.com/v11/now/deployments/get?url=$PROD_URL" \
+    -H "Authorization: Bearer $VERCEL_TOKEN" \
+    | npx -q fx .url
+)
+
+echo "prod URL: $PROD_URL"
+echo "root URL: $ROOT_URL"
+
+if [[ "$ROOT_URL" != "" ]]; then
+  ALIAS_URL="${PREFIX}-${ALIAS}${SUFFIX}"
+  echo "aliasing:"
+  echo "  $ALIAS_URL → $ROOT_URL"
+  npx -q vercel --token="$VERCEL_TOKEN" alias set "$ALIAS_URL" "$ROOT_URL"
+else
+  echo "no root URL found; skipping version alias"
+fi
