@@ -1,4 +1,4 @@
-{% const key = ctx.component.type === 'html' ? 'content' : 'html' %}
+{% const key = ctx.component.type === 'content' ? 'html' : 'content' %}
 <{{ctx.tag}} class="{{ ctx.component.className }}" ref="html"
   {% ctx.attrs.forEach(function(attr) { %}
     {{attr.attr}}="{{attr.value}}"
