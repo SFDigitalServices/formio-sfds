@@ -130,16 +130,16 @@ on the status icon of the most recent commit:
 | Branch tree view | ![image](https://user-images.githubusercontent.com/113896/80157168-6b3ebf00-857a-11ea-9563-47e41985da39.png)
 
 ### unpkg
-We use [unpkg] as our CDN. As soon as a release is published, you can access it
-on unpkg.com via the version's unique URL:
+We use [unpkg] as our CDN. You can access every release published on npm via the version's unique URL:
 
 ```
 https://unpkg.com/formio-sfds@<version>/
 ```
 
 The trailing slash allows you to browse the published package file hierarchy.
-From there you can navigate to any of the HTML files and then click the <kbd>View
-Raw</kbd> link to render the examples live.
+Previously, our example and test pages were "hosted" as raw HTML from these URLs,
+but you should view them [on the Vercel deployment](https://formio-sfds.vercel.app)
+instead.
 
 **Note:** unpkg.com will strip the query string from any URL you give it, but
 query string parameters can be passed to those URLs (once, on load) via the
