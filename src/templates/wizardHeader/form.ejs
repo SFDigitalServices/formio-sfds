@@ -24,7 +24,7 @@
               ref="{{ ctx.wizardKey }}-link"
             {% } %}
           >
-            {{ ctx.t(panel.properties.displayTitle || panel.title, { context: 'nav' }) }}
+            {{ ctx.t([`${panel.key}.title`, panel.title]) }}
           </button>
         </li>
       {%
