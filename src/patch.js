@@ -129,7 +129,7 @@ function patch (Formio) {
         if (loaded) {
           googleTranslate = false
 
-          if (loaded.projectId && userIsTranslating()) {
+          if (loaded.projectId && userIsTranslating(opts)) {
             phrase.enableEditor()
           } else if (debug) {
             console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
@@ -353,7 +353,10 @@ function scrollToTop () {
   window.scroll(0, 0)
 }
 
-function userIsTranslating () {
+function userIsTranslating (opts) {
+  if (opts?.translate === true) {
+    return true
+  }
   const uid = window.drupalSettings?.user?.uid
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')
