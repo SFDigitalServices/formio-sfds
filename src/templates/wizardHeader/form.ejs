@@ -3,7 +3,7 @@
 
   {% if (properties.backURL) { %}
     <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
-      {{ ctx.t(properties.backTitle || 'Back', { context: 'nav' }) }}
+      {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}
     </a>
   {% } %}
 
