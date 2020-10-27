@@ -11,6 +11,18 @@
     {
       "source": "/examples/:example",
       "destination": "/dist/examples/:example.html"
+    },
+    {
+      "source": "/preview",
+      "destination": "/api/preview"
+    },
+    {
+      "source": "/strings",
+      "destination": "/api/strings"
+    },
+    {
+      "source": "/translate",
+      "destination": "/api/translate"
     }
   ],
   "build": {
