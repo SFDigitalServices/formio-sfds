@@ -1,9 +1,7 @@
 #!/bin/bash
 VERSION="${1:-$(npm view . version)}"
 ALIAS="v${VERSION//./-}"
-PREFIX=formio-sfds
-SUFFIX=.vercel.app
-PROD_URL="${PREFIX}${SUFFIX}"
+PROD_URL=formio-sfds.vercel.app
 
 ROOT_URL=$(
   curl -s "https://api.vercel.com/v11/now/deployments/get?url=$PROD_URL" \
@@ -15,7 +13,7 @@ echo "prod URL: $PROD_URL"
 echo "root URL: $ROOT_URL"
 
 if [[ "$ROOT_URL" != "" ]]; then
-  ALIAS_URL="${PREFIX}-${ALIAS}${SUFFIX}"
+  ALIAS_URL="formio-sfds-${ALIAS}.vercel.app"
   echo "aliasing:"
   echo "  $ALIAS_URL → $ROOT_URL"
   npx -q vercel --token="$VERCEL_TOKEN" alias set "$ALIAS_URL" "$ROOT_URL"
