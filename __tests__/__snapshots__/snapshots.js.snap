@@ -1763,6 +1763,206 @@ exports[`component snapshots component "day" scenario: required matches the snap
 </div>
 `;
 
+exports[`component snapshots component "form" scenario: basic matches the snapshot 1`] = `
+<div id="form-form-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div class="formio-form mb-4">
+    <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
+      <div class="col-md-2">
+        <nav class="fg-light-slate"
+             id="wizard-form-basic-1-header"
+             aria-label="navigation"
+             role="navigation"
+        >
+          <ul class="nav-list mt-2 mb-0 mx-0 p-0">
+            <li aria-current="page"
+                class="mb-1 d-flex flex-items-start"
+            >
+              <span data-icon="square"
+                    class="fg-slate notranslate"
+              >
+                <svg viewbox="0 0 17 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <rect x="5"
+                        y="5"
+                        width="7"
+                        height="7"
+                        rx="2"
+                  >
+                  </rect>
+                </svg>
+              </span>
+              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u">
+                Page 1 link title
+              </button>
+            </li>
+            <li class="mb-1 d-flex flex-items-start">
+              <span data-icon="square"
+                    class="fg-none notranslate"
+              >
+                <svg viewbox="0 0 17 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <rect x="5"
+                        y="5"
+                        width="7"
+                        height="7"
+                        rx="2"
+                  >
+                  </rect>
+                </svg>
+              </span>
+              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u">
+                Page 2
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <h1 class="d1 mb-4 mr-n2">
+            Page 1
+          </h1>
+          <div ref="wizard-form-basic-1"
+               class="components"
+          >
+          </div>
+        </div>
+        <div id="wizard-form-basic-1-nav"
+             class="d-flex flex-justify-between"
+        >
+          <button ref="wizard-form-basic-1-next"
+                  class="btn flex-justify-end"
+          >
+            <div class="d-flex flex-items-center">
+              <span>
+                Get started
+              </span>
+              <span class="d-flex flex-items-center ml-1 notranslate"
+                    data-icon="next"
+              >
+                <svg viewbox="0 0 20 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <path d="M19.635 9.115L13.27 2.75A1.25 1.25 0 0011.5 4.5l4.23 4.23H1.25a1.25 1.25 0 100 2.5h14.5L11.5 15.5a1.252 1.252 0 001.77 1.77l6.365-6.385a1.255 1.255 0 000-1.77z">
+                  </path>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "form" scenario: translate matches the snapshot 1`] = `
+<div id="form-form-translate"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div class="formio-form mb-4">
+    <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
+      <div class="col-md-2">
+        <nav class="fg-light-slate"
+             id="wizard-form-translate-1-header"
+             aria-label="navigation"
+             role="navigation"
+        >
+          <ul class="nav-list mt-2 mb-0 mx-0 p-0">
+            <li aria-current="page"
+                class="mb-1 d-flex flex-items-start"
+            >
+              <span data-icon="square"
+                    class="fg-slate notranslate"
+              >
+                <svg viewbox="0 0 17 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <rect x="5"
+                        y="5"
+                        width="7"
+                        height="7"
+                        rx="2"
+                  >
+                  </rect>
+                </svg>
+              </span>
+              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u">
+                Page 1 link title
+              </button>
+            </li>
+            <li class="mb-1 d-flex flex-items-start">
+              <span data-icon="square"
+                    class="fg-none notranslate"
+              >
+                <svg viewbox="0 0 17 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <rect x="5"
+                        y="5"
+                        width="7"
+                        height="7"
+                        rx="2"
+                  >
+                  </rect>
+                </svg>
+              </span>
+              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u">
+                Page 2
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col-md-4">
+        <div class="mb-3">
+          <h1 class="d1 mb-4 mr-n2">
+            Page 1
+          </h1>
+          <div ref="wizard-form-translate-1"
+               class="components"
+          >
+          </div>
+        </div>
+        <div id="wizard-form-translate-1-nav"
+             class="d-flex flex-justify-between"
+        >
+          <button ref="wizard-form-translate-1-next"
+                  class="btn flex-justify-end"
+          >
+            <div class="d-flex flex-items-center">
+              <span>
+                Get started
+              </span>
+              <span class="d-flex flex-items-center ml-1 notranslate"
+                    data-icon="next"
+              >
+                <svg viewbox="0 0 20 20"
+                     fill="currentColor"
+                     height="20"
+                >
+                  <path d="M19.635 9.115L13.27 2.75A1.25 1.25 0 0011.5 4.5l4.23 4.23H1.25a1.25 1.25 0 100 2.5h14.5L11.5 15.5a1.252 1.252 0 001.77 1.77l6.365-6.385a1.255 1.255 0 000-1.77z">
+                  </path>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "htmlelement" scenario: basic matches the snapshot 1`] = `
 <div id="form-htmlelement-basic"
      class="d-flex flex-column-reverse mb-4"
@@ -1978,35 +2178,8 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
                  id="panel-panel"
         >
           <h1 class="d1 mt-0 mb-4">
-            Panel
+            Panel title
           </h1>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
-               id="panel-basic-3"
-          >
-            <label for="input-panel-basic-3"
-                   class
-            >
-              Your name
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[textField]"
-                       id="input-panel-basic-3"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
         </section>
         <div ref="messageContainer"
              class="messages"
@@ -2046,35 +2219,8 @@ exports[`component snapshots component "panel" scenario: required matches the sn
                  id="panel-panel"
         >
           <h1 class="d1 mt-0 mb-4">
-            Panel
+            Panel title
           </h1>
-          <div ref="component"
-               class="form-group has-feedback formio-component formio-component-textfield formio-component-textField"
-               id="panel-basic-3"
-          >
-            <label for="input-panel-basic-3"
-                   class
-            >
-              Your name
-            </label>
-            <div ref="element">
-              <div class="form-input">
-                <input value
-                       spellcheck="true"
-                       lang="en"
-                       class="form-control"
-                       type="text"
-                       name="data[textField]"
-                       id="input-panel-basic-3"
-                       ref="input"
-                >
-              </div>
-            </div>
-            <div ref="messageContainer"
-                 class="messages"
-            >
-            </div>
-          </div>
         </section>
         <div ref="messageContainer"
              class="messages"
