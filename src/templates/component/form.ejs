@@ -8,4 +8,20 @@
     {{ ctx.children }}
     <div class="messages" ref="messageContainer"></div>
   {% } %}
+
+  {% if (ctx.options.translate && ctx.component.type !== 'panel') { %}
+    {% const validateCustom = ctx.tk('validate.custom') %}
+    {% if (validateCustom) { %}
+      <div class="fg-red-4 mt-2">
+        <b>Custom validation message:</b> {{ validateCustom }}
+      </div>
+    {% } %}
+
+    {% const customError = ctx.tk('customError') %}
+    {% if (customError) { %}
+      <div class="fg-red-4">
+        <b>Custom error message:</b> {{ customError }}
+      </div>
+    {% } %}
+  {% } %}
 </div>
