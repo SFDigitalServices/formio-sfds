@@ -356,48 +356,33 @@ describe('i18n extraction', () => {
         expect(strings[0].key).toBe('yo.validate.customMessage')
         expect(strings[0].value).toBe('This is wrong')
       })
+    })
 
-      describe('possible strings in component.validate.custom', () => {
-        function testValidateCustom (value, expectedStrings) {
-          const strings = getStrings({
-            components: [
-              {
-                key: 'yo',
-                validate: {
-                  custom: value
-                }
+    describe('errors map', () => {
+      it('gets a string for each non-empty key/value in component.errors', () => {
+        const strings = getStrings({
+          components: [
+            {
+              key: 'a',
+              errors: {
+                required: 'A is required!',
+                pattern: ''
               }
-            ]
-          })
-
-          expect(strings).toHaveLength(expectedStrings.length)
-          for (const [i, { key, value, context }] of Object.entries(expectedStrings)) {
-            expect(strings[i].key).toBe(key)
-            expect(strings[i].value).toBe(value)
-            expect(strings[i].context).toBe(context)
-          }
-        }
-
-        it('finds a string in double quotes', () => {
-          testValidateCustom('valid = "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
+            },
+            {
+              key: 'b',
+              errors: {
+                pattern: 'B must match the pattern'
+              }
+            }
+          ]
         })
 
-        it('finds a string in single quotes', () => {
-          testValidateCustom('valid = "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-        })
-
-        it('ignores quoted property accessors', () => {
-          testValidateCustom('valid = data["wut"] || "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-          testValidateCustom("valid = data['wut'] || 'Nope'", [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-        })
+        expect(strings).toHaveLength(2)
+        expect(strings[0].key).toBe('a.errors.required')
+        expect(strings[0].value).toBe('A is required!')
+        expect(strings[1].key).toBe('b.errors.pattern')
+        expect(strings[1].value).toBe('B must match the pattern')
       })
     })
 
