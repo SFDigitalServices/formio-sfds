@@ -77,7 +77,7 @@ conventions](https://semver.org) to track the types of changes:
 * Minor versions (`1.0.1` → `1.1.0`) when new keys and/or translations are added
 * Major versions (`1.0.0` → `2.0.0`) when keys are deleted
 
-When in doubt, drop into **#topic-translations** and ask for help! 💪
+When in doubt, drop into **#topic-translations** on Slack and ask for help! 💪
 
 [Phrase]: https://phrase.com
 [Phrase in-context editor]: https://help.phrase.com/help/set-up-in-context-editor
