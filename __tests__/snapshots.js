@@ -25,7 +25,7 @@ const components = [
   { type: 'day' },
   { type: 'datetime' },
   { type: 'htmlelement', tag: 'h1', content: 'Hello, world!' },
-  { type: 'content', content: 'Hello, world!' },
+  { type: 'content', html: 'Hello, world!' },
   { type: 'number' },
   {
     type: 'radio',
