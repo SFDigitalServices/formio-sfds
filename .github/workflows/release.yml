@@ -1,3 +1,4 @@
+name: Release
 on:
   workflow_dispatch:
     inputs:
@@ -16,7 +17,7 @@ jobs:
         with:
           node-version: 12
       - run: |
-          script/version "${{ github.event.inputs.version }}"
+          npm version "${{ github.event.inputs.version }}"
           echo "RELEASE_VERSION=$(npm view . version)" >> $GITHUB_ENV
       - uses: peter-evans/create-pull-request@v3
         with:
