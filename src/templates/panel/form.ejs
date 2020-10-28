@@ -1,4 +1,13 @@
 <section id="panel-{{ ctx.component.key }}" class="border-1 border-grey-2 p-2 round-1 mb-4">
+  {% if (ctx.options.translate) { %}
+    {% const displayTitle = ctx.tk('displayTitle', ctx.component.properties.displayTitle) %}
+    {% if (displayTitle) { %}
+      <h2 class="h5 m-0">
+        <b class="fg-light-slate">Link title:</b>
+        {{ displayTitle }}
+      </h2>
+    {% } %}
+  {% } %}
   <h1 class="d1 mt-0 mb-4">
     {{ ctx.tk('title') }}
   </h1>
