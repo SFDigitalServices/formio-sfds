@@ -1,8 +1,17 @@
 {{ ctx.labelMarkup }}
 
+{% if (['datagrid'].indexOf(ctx.component.type) > -1) { %}
+  {% const desc = ctx.tk('description') %}
+  {% if (desc) { %}
+    <div class="fg-light-slate mt-1">
+      {{ desc }}
+    </div>
+  {% } %}
+{% } %}
+
 {{ ctx.element }}
 
-{% if (['address', 'checkbox', 'radio', 'review', 'selectboxes', 'well'].indexOf(ctx.component.type) === -1) { %}
+{% if (['address', 'checkbox', 'radio', 'review', 'selectboxes', 'well', 'datagrid'].indexOf(ctx.component.type) === -1) { %}
   {% const desc = ctx.tk('description') %}
   {% if (desc) { %}
     <div class="fg-light-slate mt-1">
