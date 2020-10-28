@@ -417,6 +417,42 @@ describe('i18n extraction', () => {
       })
     })
 
+    describe('properties.displayTitle -> displayTitle mapping', () => {
+      it('maps component.properites.displayTitle to "displayTitle" for panels', () => {
+        const strings = getStrings({
+          components: [
+            {
+              type: 'panel',
+              key: 'page1',
+              properties: {
+                displayTitle: 'Display title'
+              }
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(1)
+        expect(strings[0].key).toBe('page1.displayTitle')
+        expect(strings[0].value).toBe('Display title')
+      })
+
+      it('does *not* map component.properites.displayTitle for non-panels', () => {
+        const strings = getStrings({
+          components: [
+            {
+              type: 'textfield',
+              key: 'name',
+              properties: {
+                displayTitle: 'Name'
+              }
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(0)
+      })
+    })
+
     describe('interpolations', () => {
       it('finds $t() interpolations', () => {
         const strings = getStrings({
