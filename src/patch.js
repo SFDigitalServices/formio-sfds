@@ -117,7 +117,9 @@ function patch (Formio) {
         return form
       }
 
-      if (debug) console.log('SFDS form created!')
+      if (debug) {
+        // console.log('SFDS form created!')
+      }
 
       const phrase = new Phrase(form)
       form.phrase = phrase
