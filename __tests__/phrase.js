@@ -70,8 +70,8 @@ describe('Phrase helpers', () => {
       expect(phrase.formatKey(['foo', 'Foo!'])).toEqual('[[__phrase_foo__]]')
     })
 
-    it('returns an empty string (" ") if given an array with an empty last value', () => {
-      expect(phrase.formatKey(['foo', ''])).toEqual(' ')
+    it('returns an empty string if given an array with an empty last value', () => {
+      expect(phrase.formatKey(['foo', ''])).toEqual('')
     })
 
     it('respects the "context" option', () => {
