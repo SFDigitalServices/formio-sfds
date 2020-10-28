@@ -24,7 +24,13 @@
               ref="{{ ctx.wizardKey }}-link"
             {% } %}
           >
-            {{ ctx.t([`${panel.key}.title`, panel.title]) }}
+            {{
+              ctx.t([
+                `${panel.key}.displayTitle`,
+                `${panel.key}.title`,
+                panel.properties.displayTitle || panel.title
+              ])
+            }}
           </button>
         </li>
       {%
