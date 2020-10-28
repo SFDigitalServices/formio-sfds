@@ -166,6 +166,9 @@ function patch (Formio) {
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
+      if (opts.disableConditionals) {
+        disableConditionals(model.components)
+      }
       patchSelectMode(model)
       form.form = model
 
@@ -351,6 +354,13 @@ function getFlatpickrLocale (code) {
 
 function scrollToTop () {
   window.scroll(0, 0)
+}
+
+function disableConditionals (components) {
+  util.eachComponent(components, comp => {
+    comp.properties.conditional = comp.conditional
+    comp.conditional = {}
+  })
 }
 
 function userIsTranslating (opts) {
