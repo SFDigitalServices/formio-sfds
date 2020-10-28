@@ -117,7 +117,9 @@ function patch (Formio) {
         return form
       }
 
-      if (debug) console.log('SFDS form created!')
+      if (debug) {
+        // console.log('SFDS form created!')
+      }
 
       const phrase = new Phrase(form)
       form.phrase = phrase
@@ -129,7 +131,7 @@ function patch (Formio) {
         if (loaded) {
           googleTranslate = false
 
-          if (loaded.projectId && userIsTranslating()) {
+          if (loaded.projectId && userIsTranslating(opts)) {
             phrase.enableEditor()
           } else if (debug) {
             console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
@@ -166,6 +168,9 @@ function patch (Formio) {
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
+      if (opts.disableConditionals) {
+        disableConditionals(model.components)
+      }
       patchSelectMode(model)
       form.form = model
 
@@ -353,7 +358,17 @@ function scrollToTop () {
   window.scroll(0, 0)
 }
 
-function userIsTranslating () {
+function disableConditionals (components) {
+  util.eachComponent(components, comp => {
+    comp.properties.conditional = comp.conditional
+    comp.conditional = {}
+  })
+}
+
+function userIsTranslating (opts) {
+  if (opts?.translate === true) {
+    return true
+  }
   const uid = window.drupalSettings?.user?.uid
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')

@@ -55,17 +55,15 @@ export default class Phrase {
     }
   }
 
-  formatKey (keyOrKeys, options = {}) {
-    const multiple = Array.isArray(keyOrKeys) && keyOrKeys.length > 1
-    const english = multiple ? keyOrKeys[keyOrKeys.length - 1] : ''
-    if (multiple && !english) {
-      // we need to return a "truthy" string here, otherwise form.io
-      // will use the key provided as a fallback
-      return ' '
+  formatKey (keys, options = {}) {
+    const multiple = Array.isArray(keys) && keys.length > 1
+    const fallback = multiple ? keys[keys.length - 1] : ''
+    if (multiple && !fallback) {
+      return ''
     }
 
     const { prefix, suffix } = this.config
-    let key = multiple ? keyOrKeys[0] : keyOrKeys
+    let key = multiple ? keys[0] : keys
     const { context, contextSeparator = '._.' } = options || {}
     if (context) {
       key = `${key}${contextSeparator}${context}`
@@ -73,18 +71,15 @@ export default class Phrase {
     return `${prefix}phrase_${key}${suffix}`
   }
 
-  t (keyOrKeys, options) {
-    const { form: { i18next }, reverseLookup } = this
+  t (keys, options) {
+    const value = Array.isArray(keys) ? keys[keys.length - 1] : keys
 
-    if (Array.isArray(keyOrKeys)) {
-      const key = keyOrKeys.find(k => i18next.exists(k)) || keyOrKeys[0]
-      return this.formatKey(key, options)
-    } else if (reverseLookup.has(keyOrKeys)) {
-      const key = reverseLookup.get(keyOrKeys)
+    if (value && this.reverseLookup.has(value)) {
+      const key = this.reverseLookup.get(value)
       return this.formatKey(key, options)
     }
 
-    return this.formatKey(keyOrKeys, options)
+    return this.formatKey(keys, options)
   }
 
   get props () {
