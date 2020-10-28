@@ -8,8 +8,9 @@ module.exports = async (req, res) => {
   try {
     options = Object.assign(
       {
-        translate: true,
         disableConditionals: true,
+        renderMode: 'flat',
+        translate: true,
         unlockNavigation: true
       },
       options ? JSON.parse(options) : null
