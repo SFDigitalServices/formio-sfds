@@ -24,13 +24,13 @@ const {
 
 const outDir = join(__dirname, '../dist')
 
+const examples = yaml
+  .safeLoad(readFileSync('src/examples.yml', 'utf8'))
+  .sort((a, b) => a.title.localeCompare(b.title))
+
 const data = Object.assign(
   require('../views/data'),
-  {
-    examples: yaml
-      .safeLoad(readFileSync('src/examples.yml', 'utf8'))
-      .sort((a, b) => a.title.localeCompare(b.title))
-  }
+  { examples }
 )
 
 const env = nunjucks.configure(join(__dirname, '../views'), {
