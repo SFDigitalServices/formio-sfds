@@ -19,18 +19,19 @@ const { readFileSync, writeFileSync } = require('fs')
 require('dotenv').config()
 
 const {
-  VERCEL_URL = 'formio-sfds.vercel.app'
+  VERCEL_URL: deploymentURL
 } = process.env
 
 const outDir = join(__dirname, '../dist')
 
-const data = require('../views/data')
-data.debug = process.env.NODE_ENV === 'test'
-data.env = process.env
-
-const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
-data.examples = examples
-  .sort((a, b) => a.title.localeCompare(b.title))
+const data = Object.assign(
+  require('../views/data'),
+  {
+    examples: yaml
+      .safeLoad(readFileSync('src/examples.yml', 'utf8'))
+      .sort((a, b) => a.title.localeCompare(b.title))
+  }
+)
 
 const env = nunjucks.configure(join(__dirname, '../views'), {
   autoescape: false
@@ -88,15 +89,15 @@ globby(['README.md', 'docs/*.md'])
           node.url = node.url
             .replace('.md', '.html')
             .replace(/#readme$/, '')
-          if (VERCEL_URL) {
+          if (deploymentURL) {
             node.url = node.url
-              .replace('formio-sfds.vercel.app', VERCEL_URL)
+              .replace('formio-sfds.vercel.app', deploymentURL)
           }
         })
       })
       .use(remarkSlug)
       .use(remarkAutolinkHeaders, {
-        content: h('span.pr-1', '#')
+        content: h('span.pr-1.fg-grey-4', '#')
       })
       .use(remarkHighlight)
 

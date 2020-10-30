@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/dist/common.css">
     <link rel="stylesheet" href="https://unpkg.com/highlight.js/styles/github.css">
+    <style type="text/css">
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        position: relative;
+      }
+
+      a[aria-hidden="true"] {
+        position: absolute;
+        right: 100%;
+        font-weight: normal;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <div class="formio-sfds">
@@ -24,12 +40,11 @@
           {{ content }}
         </main>
 
-        <hr>
-        <p class="fg-light-slate">
-          <a href="https://github.com/SFDigitalServices/formio-sfds/edit/{{ env.VERCEL_GITHUB_COMMIT_REF | default('main') }}/{{ page.path }}">
+        <div class="bg-grey-1 p-2 round-1 mt-4">
+          <a href="https://github.com/{{ pkg.repository }}/edit/{{ git.branch }}/{{ page.path }}">
             Edit this page on GitHub
           </a>
-        </p>
+        </div>
 
         {% if debug %}
           <details>
