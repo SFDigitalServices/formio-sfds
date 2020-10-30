@@ -10,16 +10,18 @@
   {% } %}
 
   {% if (ctx.options.translate && ['panel', 'content', 'htmlelement'].indexOf(ctx.component.type) === -1) { %}
-    {% const validateCustom = ctx.tk('validate.custom', ctx.component.validate.custom) %}
-    {% if (validateCustom) { %}
-      <div class="fg-red-4 mt-2">
-        <b>Custom validation message:</b> {{ validateCustom }}
-      </div>
+    {% for (const key in ctx.component.errors) { %}
+      {% const error = ctx.t(`${ctx.component.key}.errors.${key}`, ctx.component.errors[key] || '') %}
+      {% if (error) { %}
+        <div class="fg-red-4 mt-1">
+          <b>Custom "{{ key }}" error:</b> {{ error }}
+        </div>
+      {% } %}
     {% } %}
 
-    {% const customError = ctx.tk('customError') %}
+    {% const customError = ctx.tk('validate.customMessage', ctx.component.validate.customMessage || '') %}
     {% if (customError) { %}
-      <div class="fg-red-4">
+      <div class="fg-red-4 mt-1">
         <b>Custom error message:</b> {{ customError }}
       </div>
     {% } %}
