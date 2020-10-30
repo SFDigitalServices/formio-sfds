@@ -1,3 +1,7 @@
+---
+title: Localization
+---
+
 # Localization
 We use [Phrase] to manage translations of both "generic" form strings and
 content specific to each form. There are a couple of different workflows to be
