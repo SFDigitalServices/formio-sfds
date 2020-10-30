@@ -44,6 +44,7 @@
           <a href="https://github.com/{{ pkg.repository }}/edit/{{ git.branch }}/{{ page.path }}">
             Edit this page on GitHub
           </a>
+          <pre class="m-0">git meta: {{ git | dump(2) }}</pre>
         </div>
 
         {% if debug %}
