@@ -29,7 +29,6 @@ const examples = yaml
   .sort((a, b) => a.title.localeCompare(b.title))
 
 const data = require('../views/data')
-console.log('view data:', JSON.stringify(data, null, 2))
 Object.assign(data, { examples })
 
 const env = nunjucks.configure(join(__dirname, '../views'), {
