@@ -18,7 +18,8 @@ module.exports = {
   url: VERCEL_URL,
   git: {
     branch: VERCEL_GITHUB_COMMIT_REF,
-    github: VERCEL_GITHUB_DEPLOYMENT ? {
+    github: {
+      is: VERCEL_GITHUB_DEPLOYMENT,
       org: VERCEL_GITHUB_ORG,
       repo: VERCEL_GITHUB_REPO,
       commit: {
@@ -31,6 +32,6 @@ module.exports = {
           name: VERCEL_GITHUB_COMMIT_AUTHOR_NAME
         }
       }
-    } : false
+    }
   }
 }
