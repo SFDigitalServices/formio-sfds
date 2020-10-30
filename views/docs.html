@@ -43,13 +43,6 @@
     <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
     <script src="/dist/formio-sfds.standalone.js"></script>
     <script src="/dist/examples.js"></script>
-    <script>
-      for (const link of document.querySelectorAll('a[href*="formio-sfds.vercel.app"]')) {
-        const url = new URL(link.href)
-        url.host = location.host
-        link.href = url.toString()
-      }
-    </script>
   </body>
 
 </html>

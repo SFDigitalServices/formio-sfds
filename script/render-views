@@ -18,6 +18,10 @@ const { readFileSync, writeFileSync } = require('fs')
 
 require('dotenv').config()
 
+const {
+  VERCEL_URL = 'formio-sfds.vercel.app'
+} = process.env
+
 const outDir = join(__dirname, '../dist')
 
 const data = require('../views/data')
@@ -84,6 +88,10 @@ globby(['README.md', 'docs/*.md'])
           node.url = node.url
             .replace('.md', '.html')
             .replace(/#readme$/, '')
+          if (VERCEL_URL) {
+            node.url = node.url
+              .replace('formio-sfds.vercel.app', VERCEL_URL)
+          }
         })
       })
       .use(remarkSlug)
