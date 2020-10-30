@@ -28,10 +28,9 @@ const examples = yaml
   .safeLoad(readFileSync('src/examples.yml', 'utf8'))
   .sort((a, b) => a.title.localeCompare(b.title))
 
-const data = Object.assign(
-  require('../views/data'),
-  { examples }
-)
+const data = require('../views/data')
+console.log('view data:', JSON.stringify(data, null, 2))
+Object.assign(data, { examples })
 
 const env = nunjucks.configure(join(__dirname, '../views'), {
   autoescape: false
