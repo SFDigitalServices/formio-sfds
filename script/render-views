@@ -2,21 +2,39 @@
 const globby = require('globby')
 const nunjucks = require('nunjucks')
 const mkdirp = require('mkdirp')
+const remark = require('remark')
+const remarkHTML = require('remark-html')
+const remarkFrontmatter = require('remark-frontmatter')
+const remarkGitHub = require('remark-github')
+const remarkGFM = require('remark-gfm')
+const remarkAutolinkHeaders = require('remark-autolink-headings')
+const remarkSlug = require('remark-slug')
+const remarkHighlight = require('remark-highlight.js')
+const h = require('hastscript')
+const visit = require('unist-util-visit')
 const yaml = require('js-yaml')
 const { basename, join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 
+require('dotenv').config()
+
 const outDir = join(__dirname, '../dist')
 
 const data = require('../views/data')
-const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
-data.examples = examples.sort((a, b) => a.title.localeCompare(b.title))
+data.debug = process.env.NODE_ENV === 'test'
+data.env = process.env
 
-const env = nunjucks.configure(join(__dirname, '../views'))
+const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
+data.examples = examples
+  .sort((a, b) => a.title.localeCompare(b.title))
+
+const env = nunjucks.configure(join(__dirname, '../views'), {
+  autoescape: false
+})
 
 console.warn('finding views...')
 
-globby('views/*.html')
+globby(['views/*.html', '!views/docs.html'])
   .then(paths => {
     for (const templatePath of paths) {
       const filename = basename(templatePath)
@@ -34,6 +52,57 @@ globby('views/*.html')
       console.warn('rendering example "%s"...', example.id)
       const output = env.render('example.html', Object.assign({ example }, data))
       const outPath = join(exDir, `${example.id}.html`)
+      writeFileSync(outPath, output, 'utf8')
+    }
+  })
+
+globby(['README.md', 'docs/*.md'])
+  .then(async paths => {
+    const docsDir = join(outDir, 'docs')
+    await mkdirp(docsDir)
+
+    let page = {}
+    let parsed
+    const processor = remark()
+      .use(remarkFrontmatter, ['yaml'])
+      .use(options => tree => {
+        const [node] = tree.children
+        if (node && node.type === 'yaml') {
+          Object.assign(page, yaml.safeLoad(node.value, 'utf8'))
+        }
+      })
+      .use(remarkGitHub)
+      .use(remarkGFM)
+      .use(remarkHTML)
+      .use(options => tree => {
+        parsed = tree
+        visit(tree, 'heading', node => { node.depth += 1 })
+        visit(tree, 'link', node => {
+          if (node.url.startsWith('docs/')) {
+            node.url = node.url.replace(/^docs\//, '')
+          }
+          node.url = node.url
+            .replace('.md', '.html')
+            .replace(/#readme$/, '')
+        })
+      })
+      .use(remarkSlug)
+      .use(remarkAutolinkHeaders, {
+        content: h('span.pr-1', '#')
+      })
+      .use(remarkHighlight)
+
+    for (const mdPath of paths) {
+      page = { path: mdPath.replace(`${process.cwd()}/`, '') }
+      const markdown = readFileSync(mdPath, 'utf8')
+      const file = await processor.process(markdown)
+      const content = file.toString()
+      const output = env.render('docs.html', Object.assign({ content, page, parsed }, data))
+      const filename = basename(mdPath)
+        .replace('README', 'index')
+        .replace('.md', '.html')
+      const outPath = join(docsDir, filename)
+      console.log('docs: %s → %s', mdPath, outPath, page)
       writeFileSync(outPath, output, 'utf8')
     }
   })
