@@ -11,6 +11,14 @@
     {
       "source": "/examples/:example",
       "destination": "/dist/examples/:example.html"
+    },
+    {
+      "source": "/docs/",
+      "destination": "/dist/docs/index.html"
+    },
+    {
+      "source": "/docs/:page",
+      "destination": "/dist/docs/:page"
     }
   ],
   "build": {
