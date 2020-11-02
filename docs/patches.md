@@ -1,3 +1,7 @@
+---
+title: Patches
+---
+
 # Patches to formio.js
 
 ## Form options
