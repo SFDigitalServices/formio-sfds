@@ -1,5 +1,4 @@
 import interpolate from 'interpolate'
-import loadTranslations from './i18n/load'
 
 const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
 const I18N_SERVICE_URL = process.env.I18N_SERVICE_URL || 'https://translate.sf.gov'
@@ -84,7 +83,11 @@ export default class Phrase {
 
   get props () {
     const { form } = this
-    const props = Object.assign({}, form.form.properties, form.options)
+    const props = Object.assign(
+      {},
+      form.properties || form.form.properties,
+      form.options
+    )
     const {
       phraseProjectId,
       phraseProjectVersion,
@@ -122,7 +125,7 @@ export default class Phrase {
     return undefined
   }
 
-  async loadTranslations () {
+  async load (loadTranslations) {
     const { form, reverseLookup } = this
     const { i18next, options: { debug = debugDefault } } = form
     const info = this.getTranslationInfo()

@@ -127,7 +127,7 @@ function patch (Formio) {
       let { googleTranslate } = opts
 
       try {
-        const loaded = await phrase.loadTranslations()
+        const loaded = await phrase.load(loadTranslations)
         if (loaded) {
           googleTranslate = false
 
