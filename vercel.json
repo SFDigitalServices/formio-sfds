@@ -17,6 +17,10 @@
       "destination": "/dist/docs/index.html"
     },
     {
+      "source": "/docs/:page/",
+      "destination": "/dist/docs/:page.html"
+    },
+    {
       "source": "/docs/:page",
       "destination": "/dist/docs/:page"
     }

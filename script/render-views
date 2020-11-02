@@ -2,25 +2,12 @@
 const globby = require('globby')
 const nunjucks = require('nunjucks')
 const mkdirp = require('mkdirp')
-const remark = require('remark')
-const remarkHTML = require('remark-html')
-const remarkFrontmatter = require('remark-frontmatter')
-const remarkGitHub = require('remark-github')
-const remarkGFM = require('remark-gfm')
-const remarkAutolinkHeaders = require('remark-autolink-headings')
-const remarkSlug = require('remark-slug')
-const remarkHighlight = require('remark-highlight.js')
-const h = require('hastscript')
-const visit = require('unist-util-visit')
 const yaml = require('js-yaml')
 const { basename, join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
+const remarkProcessor = require('../lib/remark')
 
 require('dotenv').config()
-
-const {
-  VERCEL_URL: deploymentURL
-} = process.env
 
 const outDir = join(__dirname, '../dist')
 
@@ -66,50 +53,14 @@ globby(['README.md', 'docs/*.md'])
 
     let page = {}
     let parsed
-    const processor = remark()
-      .use(remarkFrontmatter, ['yaml'])
+    const processor = remarkProcessor(data)
       .use(options => tree => {
+        parsed = tree
         const [node] = tree.children
         if (node && node.type === 'yaml') {
           Object.assign(page, yaml.safeLoad(node.value, 'utf8'))
         }
       })
-      .use(remarkGitHub)
-      .use(remarkGFM)
-      .use(remarkHTML)
-      .use(options => tree => {
-        parsed = tree
-        visit(tree, 'heading', node => { node.depth += 1 })
-        visit(tree, 'link', node => {
-          const gitURL = `https://github.com/SFDigitalServices/formio-sfds/tree/${data.git.ref}`
-          const oldURL = node.url
-          if (node.url.startsWith('docs/')) {
-            node.url = node.url.replace(/^docs\//, '')
-          }
-          node.url = node.url
-            .replace('.md', '.html')
-            .replace('../src', `${gitURL}/src`)
-            .replace(/#readme$/, '')
-          if (deploymentURL) {
-            node.url = node.url
-              .replace('formio-sfds.vercel.app', deploymentURL)
-          } else {
-            node.url = node.url
-              .replace('https://formio-sfds.vercel.app', '')
-            if (!node.url) {
-              node.url = '/'
-            }
-          }
-          if (node.url !== oldURL) {
-            console.log('  link change: %s → %s', oldURL, node.url)
-          }
-        })
-      })
-      .use(remarkSlug)
-      .use(remarkAutolinkHeaders, {
-        content: h('span.pr-1.fg-grey-4', '#')
-      })
-      .use(remarkHighlight)
 
     for (const mdPath of paths) {
       page = { path: mdPath.replace(`${process.cwd()}/`, '') }
