@@ -20,7 +20,7 @@
     "watch-all": "run-p watch-css watch-js watch-views",
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
-    "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -- npm run build-views",
+    "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -w lib/remark.js -- npm run build-views",
     "watch-test": "jest --watch",
     "vercel-dev": "vercel dev"
   },
