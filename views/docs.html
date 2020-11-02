@@ -65,6 +65,12 @@
 
     <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
     <script src="/dist/formio-sfds.standalone.js"></script>
-    <script src="/dist/examples.js"></script>
+    <script>
+      // fix images with height attributes that get
+      // `height: auto` from drupal.css
+      for (const img of document.querySelectorAll('img[height]')) {
+        img.setAttribute('style', `height: ${img.getAttribute('height')}px;`)
+      }
+    </script>
   </body>
 </html>
