@@ -5,6 +5,10 @@ import nunjucks from 'nunjucks'
 import Phrase from '../src/phrase'
 import { Proxy } from '../lib/proxy'
 
+const {
+  FORMS_API_URL = 'https://sfgov-forms.vercel.app'
+} = process.env
+
 const templates = nunjucks.configure(join(__dirname, '../views'), {
   autoescape: false
 })
@@ -14,54 +18,20 @@ module.exports = async (req, res) => {
   const { url } = query
 
   const data = {
-    input: query,
+    query,
     sfgov: {},
     formio: {},
     formiojs: {},
     theme: {},
-    translation: {}
+    translation: {},
+    warnings: []
   }
 
   if (url) {
     const parsed = new URL(url)
 
     if (isSFGovURL(parsed)) {
-      data.sfgov.url = url
-
-      const proxy = new Proxy({ base: url })
-      const { document } = await proxy.fetch(parsed.path)
-      const element = document.querySelector('[data-source]')
-      if (element) {
-        data.formio.url = element.getAttribute('data-source')
-        const form = await fetch(data.formio.url).then(res => res.json())
-        data.formio.form = form
-
-        if (element.hasAttribute('data-options')) {
-          const options = JSON.parse(element.getAttribute('data-options'))
-          data.formio.options = options
-
-          if (typeof options.i18n === 'string') {
-            data.translation.url = options.i18n
-            const match = options.i18n.match(/google\/([^@])/)
-            data.translation.source = {
-              title: 'Google Sheets',
-              url: `https://docs.google.com/spreadsheets/d/${match[1]}/edit`
-            }
-          }
-        }
-      }
-
-      const formioScript = proxy.getScript('formiojs')
-      if (formioScript) {
-        data.formiojs.url = formioScript.src
-        data.formiojs.version = getUnpkgVersion(formioScript.src)
-      }
-
-      const themeScript = proxy.getScript('formio-sfds')
-      if (themeScript) {
-        data.theme.url = themeScript.src
-        data.theme.version = getUnpkgVersion(themeScript.src)
-      }
+      await getSFgovData(url, data)
     } else if (isFormioPortalURL(parsed)) {
       const parts = parsed.hash.replace(/^#\//, '').split('/')
       if (parts[0] === 'project' && parts[2] === 'form' && parts[3]) {
@@ -88,6 +58,36 @@ module.exports = async (req, res) => {
         data.translation.source = {
           title: `Phrase project ${info.projectId}`,
           url: '' // TODO
+        }
+      }
+
+      if (!data.sfgov.url) {
+        const dataSourceURL = data.formio.url
+        console.warn('Looking up sf.gov page by form URL:', dataSourceURL)
+        const { data: { forms } } = await fetch(`${FORMS_API_URL}/api/sfgov`)
+          .then(res => res.json())
+        const pages = forms.filter(d => {
+          const url = d.field_formio_data_source
+          console.warn('  ?', url)
+          return url === dataSourceURL
+        })
+        if (pages.length >= 1) {
+          const [page] = pages
+          data.sfgov.url = page.url
+          data.sfgov.title = page.title
+          await getSFgovData(page.url, data)
+          if (pages.length > 1) {
+            data.warnings.push(`
+              More than one page on sf.gov was found with this data source URL:
+              <ul>
+                ${pages.slice(1).map(page => `
+                  <li><a href="${page.url}">${page.title}</a></li>
+                `)}
+              </ul>
+            `)
+          }
+        } else if (pages.length === 0) {
+          data.error = `No sf.gov form pages were found with data source URL: "${dataSourceURL}"`
         }
       }
     }
@@ -119,4 +119,46 @@ function isDataSourceURL (url) {
 function getUnpkgVersion (url) {
   const match = url.match(/@([^/]+)/)
   return match ? match[1] : undefined
+}
+
+async function getSFgovData (url, data) {
+  const proxy = new Proxy({ base: url })
+  const { body, document } = await proxy.fetch('')
+  data.body = body
+
+  data.sfgov.url = url
+  data.sfgov.title = document.title
+
+  const element = document.querySelector('[data-source]')
+  if (element) {
+    data.formio.url = element.getAttribute('data-source')
+    const form = await fetch(data.formio.url).then(res => res.json())
+    data.formio.form = form
+
+    if (element.hasAttribute('data-options')) {
+      const options = JSON.parse(element.getAttribute('data-options'))
+      data.formio.options = options
+
+      if (typeof options.i18n === 'string') {
+        data.translation.url = options.i18n
+        const match = options.i18n.match(/google\/([^@])/)
+        data.translation.source = {
+          title: 'Google Sheets',
+          url: `https://docs.google.com/spreadsheets/d/${match[1]}/edit`
+        }
+      }
+    }
+  }
+
+  const formioScript = proxy.getScript('formiojs')
+  if (formioScript) {
+    data.formiojs.url = formioScript.src
+    data.formiojs.version = getUnpkgVersion(formioScript.src)
+  }
+
+  const themeScript = proxy.getScript('formio-sfds')
+  if (themeScript) {
+    data.theme.url = themeScript.src
+    data.theme.version = getUnpkgVersion(themeScript.src)
+  }
 }
