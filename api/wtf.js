@@ -4,6 +4,7 @@ import { join } from 'path'
 import nunjucks from 'nunjucks'
 import Phrase from '../src/phrase'
 import { Proxy } from '../lib/proxy'
+import defaultData from '../views/data'
 
 const {
   FORMS_API_URL = 'https://sfgov-forms.vercel.app'
@@ -17,7 +18,7 @@ module.exports = async (req, res) => {
   const { query } = req
   const { url } = query
 
-  const data = {
+  const data = Object.assign({
     query,
     sfgov: {},
     formio: {},
@@ -25,7 +26,7 @@ module.exports = async (req, res) => {
     theme: {},
     translation: {},
     warnings: []
-  }
+  }, defaultData)
 
   if (url) {
     const parsed = new URL(url)
@@ -56,8 +57,7 @@ module.exports = async (req, res) => {
       if (info && info.url) {
         data.translation.url = info.url
         data.translation.source = {
-          title: `Phrase project ${info.projectId}`,
-          url: '' // TODO
+          title: `Phrase project <code>${info.projectId}</code>`
         }
       }
 
@@ -78,11 +78,14 @@ module.exports = async (req, res) => {
           await getSFgovData(page.url, data)
           if (pages.length > 1) {
             data.warnings.push(`
-              More than one page on sf.gov was found with this data source URL:
+              Multiple pages on sf.gov were found with this data source URL:
               <ul>
-                ${pages.slice(1).map(page => `
-                  <li><a href="${page.url}">${page.title}</a></li>
-                `)}
+                ${pages.map(page => `
+                  <li>
+                    <b>${page.title}</b>
+                    (<a href="${page.url}"><code>${new URL(page.url).pathname}</code></a>)
+                  </li>
+                `).join('')}
               </ul>
             `)
           }
@@ -127,7 +130,7 @@ async function getSFgovData (url, data) {
   data.body = body
 
   data.sfgov.url = url
-  data.sfgov.title = document.title
+  data.sfgov.title = document.title.replace(/\s*\|\s*San Francisco\s*$/, '')
 
   const element = document.querySelector('[data-source]')
   if (element) {
