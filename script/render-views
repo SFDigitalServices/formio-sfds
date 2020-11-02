@@ -81,12 +81,14 @@ globby(['README.md', 'docs/*.md'])
         parsed = tree
         visit(tree, 'heading', node => { node.depth += 1 })
         visit(tree, 'link', node => {
+          const gitURL = `https://github.com/SFDigitalServices/formio-sfds/tree/${data.git.ref}`
           const oldURL = node.url
           if (node.url.startsWith('docs/')) {
             node.url = node.url.replace(/^docs\//, '')
           }
           node.url = node.url
             .replace('.md', '.html')
+            .replace('../src', `${gitURL}/src`)
             .replace(/#readme$/, '')
           if (deploymentURL) {
             node.url = node.url
