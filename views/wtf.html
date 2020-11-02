@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>What the form | formio-sfds</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/dist/common.css">
+  </head>
+  <body>
+    <div class="formio-sfds">
+      <div class="container p-2">
+        <h1 class="h3 mb-4">
+          <a href="/">formio-sfds@{{ pkg.version }}</a> /
+          What the form
+        </h1>
+        <form class="mb-2">
+          <h2>
+            <label for="url-input">Enter a URL</label>
+          </h2>
+          <div>
+            <input type="text" id="url-input" name="url" value="{{ input.url }}">
+          </div>
+        </form>
+
+        {% if error %}
+          <div class="bg-red-1 p-2 border-1 border-red-3 round-1">
+            {{ error }}
+          </div>
+        {% else %}
+          <dl>
+            {% if sfgov.url %}
+              <dt>SFgov URL</dt>
+              <dd>
+                <a href="{{ sfgov.url }}">{{ sfgov.url }}</a>
+              </dd>
+            {% endif %}
+
+            {% if formio.form %}
+              <dt>Form.io form</dt>
+              <dd>
+                <a href="{{ formio.url }}">{{ formio.form.title }}</a>
+                {% set formio_url -%}
+                  https://portal.form.io/#/project/{{ formio.form.project }}/form/{{ formio.form._id }}
+                {%- endset %}
+                (
+                  <a href="{{ formio_url }}/edit">edit</a> |
+                  <a href="{{ formio_url }}/settings">settings</a> |
+                  <a href="{{ formio_url }}/submission">submissions</a>
+                )
+              </dd>
+            {% elif formio.url %}
+              <dt>Form.io data source URL</dt>
+              <dd>
+                <a href="{{ formio.url }}">{{ formio.url }}</a>
+              </dd>
+            {% endif %}
+
+            {% if formio.options %}
+              <dt>Form.io render options</dt>
+              <dd>
+                <pre>{{ formio.options | dump(2) }}</pre>
+              </dd>
+            {% endif %}
+
+            {% if translation.url %}
+              <dt>Translation</dt>
+              <dd>
+                {% if translation.source %}
+                  <a href="{{ translation.source.url }}">{{ translation.source.title }}</a>
+                → {% endif %}<a href="{{ translation.url }}">API data</a>
+              </dd>
+            {% endif %}
+
+            {% if formiojs.version %}
+              <dt>formio.js version</dt>
+              <dd>
+                <a href="https://unpkg.com/formiojs@{{ formiojs.version }}/">
+                  <code>{{ formiojs.version }}</code>
+                </a>
+                (<a href="https://github.com/formio/formio.js/blob/v{{ formiojs.version }}/Changelog.md#readme">
+                  changelog
+                </a>)
+              </dd>
+            {% endif %}
+            {% if theme.version %}
+              <dt>formio-sfds theme version</dt>
+              <dd>
+                <a href="https://unpkg.com/formio-sfds@{{ theme.version }}/">
+                  <code>{{ theme.version }}</code>
+                </a>
+                (<a href="https://github.com/SFDigitalServices/formio-sfds/releases/tag/v{{ theme.version }}">
+                  release notes
+                </a>)
+              </dd>
+            {% endif %}
+          </dl>
+        {% endif %}
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
+    <script src="/dist/formio-sfds.standalone.js"></script>
+  </body>
+</html>
