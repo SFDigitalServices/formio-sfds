@@ -46,7 +46,7 @@ Before you can translate a form, you'll need to do some one-time setup in both P
 
     > ![image of the custom properties in form.io](https://user-images.githubusercontent.com/113896/88114083-fa527780-cb67-11ea-98a1-b85273db617a.png)
    
-1. Visit `https://formio-sfds.vercel.app/api/strings?formUrl=<URL>`, where `<URL>` is your form.io data source URL
+1. Visit [/api/strings?formUrl=`<URL>`](https://formio-sfds.vercel.app/api/strings?formUrl=<URL>) where `<URL>` is your form.io data source URL
 1. Save the JSON to your computer
 1. Upload the JSON to your Phrase project:
 
