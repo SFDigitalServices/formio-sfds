@@ -119,7 +119,7 @@ module.exports = async (req, res) => {
       }
     }
   } else {
-    data.error = 'Please enter a URL from sf.gov or form.io'
+    // data.error = 'Please enter a URL from sf.gov or form.io'
   }
 
   res.setHeader('Content-Type', 'text/html')

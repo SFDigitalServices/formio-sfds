@@ -112,41 +112,43 @@
             </dd>
           {% endif %}
 
-          <dt class="{% if not translation.url %}fg-red-4{% endif %}">Translation</dt>
-          <dd class="mb-2">
-            {% if translation.url %}
-              {% if translation.source %}
-                {% if translation.source.url %}
-                  <a href="{{ translation.source.url }}">{{ translation.source.title }}</a>
-                {% else %}
-                  {{ translation.source.title }}
+          {% if query.url %}
+            <dt class="{% if not translation.url %}fg-red-4{% endif %}">Translation</dt>
+            <dd class="mb-2">
+              {% if translation.url %}
+                {% if translation.source %}
+                  {% if translation.source.url %}
+                    <a href="{{ translation.source.url }}">{{ translation.source.title }}</a>
+                  {% else %}
+                    {{ translation.source.title }}
+                  {% endif %}
+                {% endif %}
+                (
+                  <a href="/api/translate?url={{ sfgov.url }}">translate</a> |
+                  <a href="/api/strings?formUrl={{ formio.url }}">get strings</a> |
+                  <a href="{{ translation.url }}">data API</a>
+                )
+              {% else %}
+                <div>
+                  ⚠️  <b>This form has not been translated.</b>
+                  Please <a href="/docs/localization/#translate-a-form">see
+                  the docs</a> to start the translation process.
+                </div>
+                <div class="mt-1">
+                  Download the strings for this form by holding <kbd>option</kbd>
+                  when clicking <a href="/api/strings?formUrl={{ formio.url }}">this JSON link</a>.
+                </div>
+                {% if sfgov.url %}
+                  <div class="mt-1">
+                    Once you&rsquo;ve uploaded strings and connected the
+                    form to Phrase, you can visit the
+                    <a href="/api/translate?url={{ sfgov.url }}">translate view</a>
+                    to translate them in context.
+                  </div>
                 {% endif %}
               {% endif %}
-              (
-                <a href="/api/translate?url={{ sfgov.url }}">translate</a> |
-                <a href="/api/strings?formUrl={{ formio.url }}">get strings</a> |
-                <a href="{{ translation.url }}">data API</a>
-              )
-            {% else %}
-              <div>
-                ⚠️  <b>This form has not been translated.</b>
-                Please <a href="/docs/localization/#translate-a-form">see
-                the docs</a> to start the translation process.
-              </div>
-              <div class="mt-1">
-                Download the strings for this form by holding <kbd>option</kbd>
-                when clicking <a href="/api/strings?formUrl={{ formio.url }}">this JSON link</a>.
-              </div>
-              {% if sfgov.url %}
-                <div class="mt-1">
-                  Once you&rsquo;ve uploaded strings and connected the
-                  form to Phrase, you can visit the
-                  <a href="/api/translate?url={{ sfgov.url }}">translate view</a>
-                  to translate them in context.
-                </div>
-              {% endif %}
-            {% endif %}
-          </dd>
+            </dd>
+          {% endif %}
 
           {% if formiojs.version %}
             <dt>formio.js version</dt>
@@ -185,10 +187,12 @@
           {% endif %}
         </dl>
 
-        <details>
-          <summary>Response HTML</summary>
-          <pre class="border-1 border-bright-blue p-2 m-0 round-bottom-1"><code class="language-html bg-none">{{ body | e }}</code></pre>
-        </details>
+        {% if body %}
+          <details>
+            <summary>Response HTML</summary>
+            <pre class="border-1 border-bright-blue p-2 m-0 round-bottom-1"><code class="language-html bg-none">{{ body | e }}</code></pre>
+          </details>
+        {% endif %}
 
       </div>
     </div>
