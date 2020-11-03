@@ -1,12 +1,24 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>What the form | formio-sfds</title>
+    <title>WTF | formio-sfds</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="/dist/common.css">
+    <link rel="stylesheet" href="//unpkg.com/highlight.js@10.3.2/styles/github.css">
     <style>
-      dt { font-weight: bold; }
+      dt {
+        font-weight: bold;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .hljs {
+        padding: 0;
+      }
     </style>
   </head>
   <body>
@@ -14,11 +26,12 @@
       <div class="container p-2">
         <h1 class="h3 mb-4">
           <a href="/">formio-sfds@{{ pkg.version }}</a> /
-          What the form
+          WTF
         </h1>
+        <h2 class="d-1">What the form</h2>
         <form class="mb-4">
           <h2>
-            <label for="url-input">Enter a URL</label>
+            <label for="url-input">Enter a URL:</label>
           </h2>
           <div class="d-flex flex-align-start">
             <div class="flex-auto mr-2">
@@ -28,9 +41,12 @@
               <button class="btn" type="submit">Go!</button>
             </div>
           </div>
+          <div class="small fg-light-slate mt-1">
+            Form page URLs on sf.gov (or Pantheon sites) and form.io URLs (including edit links) <em>should</em> work.
+          </div>
           {% if pages %}
             <div class="mt-1">
-              <label for="page-select">...or choose a live form:</label>
+              <label for="page-select">or choose a live form:</label>
               <select id="page-select">
                 <option></option>
                 {% for page in pages %}
@@ -39,6 +55,9 @@
                   </option>
                 {% endfor %}
               </select>
+              <div class="small fg-light-slate mt-1">
+                Selecting a page will populate the URL field above and submit the form automatically.
+              </div>
             </div>
           {% endif %}
         </form>
@@ -59,10 +78,19 @@
 
         <dl>
           {% if sfgov.url %}
-            <dt>SF.gov page</dt>
+            <dt>SF.gov form page</dt>
             <dd class="mb-2">
-              {{ sfgov.title }}:<br>
+              {{ sfgov.title }}<br>
               <a href="{{ sfgov.url }}">{{ sfgov.url }}</a>
+              ( <a href="{{ sfgov.url }}/edit">edit</a> )<br>
+              Document language: {{ lang.name | default('English') }} ( <code>{{ lang.code | default('en') }}</code> )
+              {% if lang.links %}
+                <br>View in other languages:
+                {% for link in lang.links %}
+                  <a href="?url={{ link.href }}">{{ link.lang.name }}</a>
+                  {% if not loop.last %} | {% endif %}
+                {% endfor %}
+              {% endif %}
             </dd>
           {% endif %}
 
@@ -70,9 +98,7 @@
             <dt>Form.io form</dt>
             <dd class="mb-2">
               <a href="{{ formio.url }}">{{ formio.form.title }}</a>
-              {% set formio_url -%}
-                https://portal.form.io/#/project/{{ formio.form.project }}/form/{{ formio.form._id }}
-              {%- endset %}
+              {% set formio_url %}https://portal.form.io/#/project/{{ formio.form.project }}/form/{{ formio.form._id }}{% endset %}
               (
                 <a href="{{ formio_url }}/edit">edit</a> |
                 <a href="{{ formio_url }}/settings">settings</a> |
@@ -86,16 +112,9 @@
             </dd>
           {% endif %}
 
-          {% if formio.options %}
-            <dt>Form.io render options</dt>
-            <dd class="mb-2">
-              <pre class="my-0">{{ formio.options | dump(2) }}</pre>
-            </dd>
-          {% endif %}
-
-          {% if translation.url %}
-            <dt>Translation</dt>
-            <dd class="mb-2">
+          <dt class="{% if not translation.url %}fg-red-4{% endif %}">Translation</dt>
+          <dd class="mb-2">
+            {% if translation.url %}
               {% if translation.source %}
                 {% if translation.source.url %}
                   <a href="{{ translation.source.url }}">{{ translation.source.title }}</a>
@@ -107,8 +126,12 @@
                 <a href="/api/strings?formUrl={{ formio.url }}">get strings</a> |
                 <a href="{{ translation.url }}">data API</a>
               )
-            </dd>
-          {% endif %}
+            {% else %}
+              ⚠️  <b>This form has not been translated.</b>
+              Please <a href="/docs/localization/#translate-a-form">see the docs</a>
+              to start the translation process.
+            {% endif %}
+          </dd>
 
           {% if formiojs.version %}
             <dt>formio.js version</dt>
@@ -116,9 +139,9 @@
               <a href="https://unpkg.com/formiojs@{{ formiojs.version }}/">
                 <code>{{ formiojs.version }}</code>
               </a>
-              (<a href="https://github.com/formio/formio.js/blob/v{{ formiojs.version }}/Changelog.md#readme">
+              ( <a href="https://github.com/formio/formio.js/blob/v{{ formiojs.version }}/Changelog.md#readme">
                 changelog
-              </a>)
+              </a> )
             </dd>
           {% endif %}
           {% if theme.version %}
@@ -127,9 +150,9 @@
               <a href="https://unpkg.com/formio-sfds@{{ theme.version }}/">
                 <code>{{ theme.version }}</code>
               </a>
-              (<a href="https://github.com/SFDigitalServices/formio-sfds/releases/tag/v{{ theme.version }}">
+              ( <a href="https://github.com/SFDigitalServices/formio-sfds/releases/tag/v{{ theme.version }}">
                 release notes
-              </a>)
+              </a> )
               <form action="/api/preview">
                 Preview this page with formio-sfds version:
                 <input type="text" name="version" value="latest" class="d-inline-block mx-1" style="width: 8em;">
@@ -138,14 +161,29 @@
               </form>
             </dd>
           {% endif %}
+
+          {% if formio.options %}
+            <dt>Form.io render options</dt>
+            <dd class="mb-2">
+              <pre class="my-0"><code class="language-json bg-none">{{ formio.options | dump(2) }}</code></pre>
+            </dd>
+          {% endif %}
         </dl>
+
+        <details>
+          <summary>Response HTML</summary>
+          <pre class="border-1 border-bright-blue p-2 m-0 round-bottom-1"><code class="language-html bg-none">{{ body | e }}</code></pre>
+        </details>
 
       </div>
     </div>
 
-    <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
+    <script src="//unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
     <script src="/dist/formio-sfds.standalone.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
     <script>
+      hljs.initHighlightingOnLoad()
+
       var select = document.getElementById('page-select')
       if (select) {
         select.addEventListener('change', e => {
