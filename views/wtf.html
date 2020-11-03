@@ -16,18 +16,35 @@
           <a href="/">formio-sfds@{{ pkg.version }}</a> /
           What the form
         </h1>
-        <form class="mb-2">
+        <form class="mb-4">
           <h2>
             <label for="url-input">Enter a URL</label>
           </h2>
-          <div>
-            <input type="text" id="url-input" name="url" value="{{ query.url }}" class="mb-1">
-            <button class="btn" type="submit">Go!</button>
+          <div class="d-flex flex-align-start">
+            <div class="flex-auto mr-2">
+              <input type="text" id="url-input" name="url" value="{{ query.url }}">
+            </div>
+            <div>
+              <button class="btn" type="submit">Go!</button>
+            </div>
           </div>
+          {% if pages %}
+            <div class="mt-1">
+              <label for="page-select">...or select an existing form:</label>
+              <select id="page-select">
+                <option></option>
+                {% for page in pages %}
+                  <option value="{{ page.url }}">
+                  {{ page.title }} ({{ page.url }})
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endif %}
         </form>
 
         {% if error %}
-          <div class="bg-red-1 p-2 border-1 border-red-3 round-1">
+          <div class="bg-red-1 p-2 border-1 border-red-3 round-1 mb-2">
             {{ error }}
           </div>
         {% endif %}
@@ -115,7 +132,7 @@
               </a>)
               <form action="/api/preview">
                 Preview this page with formio-sfds version:
-                <input type="text" name="version" value="latest" class="d-inline" style="width: 5em;">
+                <input type="text" name="version" value="latest" class="d-inline-block mx-1" style="width: 8em;">
                 <input type="hidden" name="url" value="{{ sfgov.url }}">
                 <button type="submit" class="btn">Go!</button>
               </form>
@@ -128,5 +145,16 @@
 
     <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
     <script src="/dist/formio-sfds.standalone.js"></script>
+    <script>
+      var select = document.getElementById('page-select')
+      if (select) {
+        select.addEventListener('change', e => {
+          if (select.value) {
+            select.form.querySelector('[name=url]').value = select.value
+            select.form.submit()
+          }
+        })
+      }
+    </script>
   </body>
 </html>

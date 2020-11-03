@@ -18,8 +18,22 @@ module.exports = async (req, res) => {
   const { query } = req
   const { url } = query
 
+  const allPages = await getSFGovPages()
+  const uniques = new Set()
+  const uniquePages = allPages
+    .filter(node => {
+      if (uniques.has(node.url)) {
+        return false
+      } else {
+        uniques.add(node.url)
+        return true
+      }
+    })
+    .sort((a, b) => a.title.localeCompare(b.title))
+
   const data = Object.assign({
     query,
+    pages: uniquePages,
     sfgov: {},
     formio: {},
     formiojs: {},
@@ -64,9 +78,8 @@ module.exports = async (req, res) => {
       if (!data.sfgov.url) {
         const dataSourceURL = data.formio.url
         console.warn('Looking up sf.gov page by form URL:', dataSourceURL)
-        const { data: { forms } } = await fetch(`${FORMS_API_URL}/api/sfgov`)
-          .then(res => res.json())
-        const pages = forms.filter(d => {
+
+        const pages = uniquePages.filter(d => {
           const url = d.field_formio_data_source
           console.warn('  ?', url)
           return url === dataSourceURL
@@ -164,4 +177,10 @@ async function getSFgovData (url, data) {
     data.theme.url = themeScript.src
     data.theme.version = getUnpkgVersion(themeScript.src)
   }
+}
+
+async function getSFGovPages (options) {
+  const { data } = await fetch(`${FORMS_API_URL}/api/sfgov`)
+    .then(res => res.json())
+  return data && data.forms || []
 }
