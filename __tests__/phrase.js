@@ -102,7 +102,7 @@ describe('Phrase helpers', () => {
         }
       }))
 
-      await phrase.loadTranslations()
+      await phrase.load(loadTranslations)
 
       expect(phrase.reverseLookup.has('Hello')).toBe(true)
       expect(phrase.t('Hello')).toEqual('[[__phrase_greeting__]]')
