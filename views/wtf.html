@@ -123,6 +123,7 @@
                 {% endif %}
               {% endif %}
               (
+                <a href="/api/translate?url={{ sfgov.url }}">translate</a> |
                 <a href="/api/strings?formUrl={{ formio.url }}">get strings</a> |
                 <a href="{{ translation.url }}">data API</a>
               )
@@ -136,6 +137,14 @@
                 Download the strings for this form by holding <kbd>option</kbd>
                 when clicking <a href="/api/strings?formUrl={{ formio.url }}">this JSON link</a>.
               </div>
+              {% if sfgov.url %}
+                <div class="mt-1">
+                  Once you&rsquo;ve uploaded strings and connected the
+                  form to Phrase, you can visit the
+                  <a href="/api/translate?url={{ sfgov.url }}">translate view</a>
+                  to translate them in context.
+                </div>
+              {% endif %}
             {% endif %}
           </dd>
 
