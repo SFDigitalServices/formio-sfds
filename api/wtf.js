@@ -14,6 +14,17 @@ const templates = nunjucks.configure(join(__dirname, '../views'), {
   autoescape: false
 })
 
+const languageNames = {
+  en: 'English',
+  es: 'Spanish',
+  zh: 'Chinese',
+  'zh-hant': 'Chinese (Traditional)',
+  'zh-hans': 'Chinese (Simplified)',
+  'zh-tw': 'Chinese (Taiwan)',
+  fil: 'Filipino',
+  tl: 'Tagalog'
+}
+
 module.exports = async (req, res) => {
   const { query } = req
   const { url } = query
@@ -145,6 +156,23 @@ async function getSFgovData (url, data) {
   data.sfgov.url = url
   data.sfgov.title = document.title.replace(/\s*\|\s*San Francisco\s*$/, '')
 
+  const { lang } = document.documentElement
+  data.lang = {
+    code: lang,
+    name: languageNames[lang.toLowerCase()],
+    links: Array.from(document.querySelectorAll('link[rel="alternate"]'), link => {
+      const code = link.hreflang
+      return {
+        href: link.href,
+        lang: {
+          code,
+          name: languageNames[code]
+        }
+      }
+    })
+      .filter(link => link.lang.code !== lang)
+  }
+
   const element = document.querySelector('[data-source]')
   if (element) {
     data.formio.url = element.getAttribute('data-source')
@@ -182,5 +210,5 @@ async function getSFgovData (url, data) {
 async function getSFGovPages (options) {
   const { data } = await fetch(`${FORMS_API_URL}/api/sfgov`)
     .then(res => res.json())
-  return data && data.forms || []
+  return (data && data.forms) || []
 }
