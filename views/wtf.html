@@ -127,9 +127,15 @@
                 <a href="{{ translation.url }}">data API</a>
               )
             {% else %}
-              ⚠️  <b>This form has not been translated.</b>
-              Please <a href="/docs/localization/#translate-a-form">see the docs</a>
-              to start the translation process.
+              <div>
+                ⚠️  <b>This form has not been translated.</b>
+                Please <a href="/docs/localization/#translate-a-form">see
+                the docs</a> to start the translation process.
+              </div>
+              <div class="mt-1">
+                Download the strings for this form by holding <kbd>option</kbd>
+                when clicking <a href="/api/strings?formUrl={{ formio.url }}">this JSON link</a>.
+              </div>
             {% endif %}
           </dd>
 
