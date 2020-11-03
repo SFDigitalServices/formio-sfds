@@ -50,7 +50,11 @@
               <select id="page-select">
                 <option></option>
                 {% for page in pages %}
-                  <option value="{{ page.url }}">
+                  <option value="{{ page.url }}"
+                    {% if page.url == sfgov.url %}
+                      selected
+                    {% endif %}
+                  >
                   {{ page.title }} ({{ page.url }})
                   </option>
                 {% endfor %}
