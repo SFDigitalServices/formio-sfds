@@ -80,7 +80,3 @@ label {
 .alert.alert-success {
   display: none;
 }
-
-.formio-component + .formio-component:not(.formio-hidden) {
-  margin-top: spacer(3);
-}
