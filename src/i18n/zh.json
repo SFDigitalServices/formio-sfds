@@ -1,0 +1,22 @@
+{
+  "Browse": "瀏覽",
+  "Cancel": "取消",
+  "characters": "字",
+  "Close": "關閉",
+  "Copy": "複製",
+  "Create Page": "創建新頁",
+  "Drop files to attach, or": "拖入以附上文件，或",
+  "error": "錯誤",
+  "File is the wrong type; it must be {{ pattern }}": "文件格式錯誤; 必須是{{pattern}}",
+  "File Name": "文件名",
+  "File name": "文件名",
+  "january": "一月",
+  "march": "三月",
+  "may": "五月",
+  "minWords": "{{field}} 至少要有{{length}}個字",
+  "next": "繼續",
+  "or": "或",
+  "Size": "大小",
+  "Starting upload": "開始上傳",
+  "Submit": "提交"
+}

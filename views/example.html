@@ -14,8 +14,8 @@
           {{ example.title }}
         </h1>
         <sfgov-form
-           data-form="{{ example.form | dump }}"
-           data-options="{{ example.options | dump }}">
+           data-form="{{ example.form | dump | e }}"
+           data-options="{{ example.options | dump | e }}">
         </sfgov-form>
       </div>
     </div>

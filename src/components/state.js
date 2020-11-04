@@ -12,10 +12,7 @@ export default class StateSelect extends Select {
       lazyLoad: false,
       template: '{{ item.label }}',
       data: {
-        values: [
-          { value: '', label: ' ' },
-          ...states
-        ]
+        values: states
       }
     }, ...extend)
   }

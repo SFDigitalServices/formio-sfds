@@ -1,18 +1,17 @@
-<div class="mb-2 card border">
-  <div class="card-header {{ctx.transform('class', 'bg-' + ctx.component.theme)}}" ref="header">
-    <span class="mb-0 card-title">
-      {% if (ctx.component.collapsible) { %}
-        <i class="formio-collapse-icon {{ctx.iconClass(ctx.collapsed ? 'plus-square-o' : 'minus-square-o')}} text-muted" data-title="Collapse Panel"></i>
-      {% } %}
-      {{ctx.t(ctx.component.title)}}
-      {% if (ctx.component.tooltip) { %}
-        <i ref="tooltip" class="{{ctx.iconClass('question-sign')}} text-muted"></i>
-      {% } %}
-    </span>
-  </div>
-  {% if (!ctx.collapsed || ctx.builder) { %}
-  <div class="card-body" ref="{{ctx.nestedKey}}">
-    {{ctx.children}}
-  </div>
+<section id="panel-{{ ctx.component.key }}" class="border-1 border-grey-2 p-2 round-1 mb-4">
+  {% if (ctx.options.translate) { %}
+    {% const displayTitle = ctx.tk('displayTitle', ctx.component.properties.displayTitle) %}
+    {% if (displayTitle) { %}
+      <h2 class="h5 m-0">
+        <b class="fg-light-slate">Link title:</b>
+        {{ displayTitle }}
+      </h2>
+    {% } %}
   {% } %}
-</div>
+  <h1 class="d1 mt-0 mb-4">
+    {{ ctx.tk('title') }}
+  </h1>
+  {% if (!ctx.collapsed || ctx.builder) { %}
+    {{ctx.children}}
+  {% } %}
+</section>

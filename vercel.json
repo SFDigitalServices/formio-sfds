@@ -5,16 +5,29 @@
       "destination": "/dist/index.html"
     },
     {
-      "source": "/:view.html",
-      "destination": "/dist/:view.html"
-    },
-    {
-      "source": "/examples/:id",
-      "destination": "/dist/examples/:id.html"
-    },
-    {
       "source": "/:view",
       "destination": "/dist/:view.html"
+    },
+    {
+      "source": "/examples/:example",
+      "destination": "/dist/examples/:example.html"
+    },
+    {
+      "source": "/docs/",
+      "destination": "/dist/docs/index.html"
+    },
+    {
+      "source": "/docs/:page/",
+      "destination": "/dist/docs/:page.html"
+    },
+    {
+      "source": "/docs/:page",
+      "destination": "/dist/docs/:page"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "I18N_SERVICE_URL": "https://translate.sf.gov"
+    }
+  }
 }

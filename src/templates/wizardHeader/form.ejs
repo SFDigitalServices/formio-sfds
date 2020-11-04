@@ -3,7 +3,7 @@
 
   {% if (properties.backURL) { %}
     <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
-      {{ ctx.t(properties.backTitle || 'Back', { context: 'nav' }) }}
+      {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}
     </a>
   {% } %}
 
@@ -24,7 +24,13 @@
               ref="{{ ctx.wizardKey }}-link"
             {% } %}
           >
-            {{ ctx.t(panel.properties.displayTitle || panel.title, { context: 'nav' }) }}
+            {{
+              ctx.t([
+                `${panel.key}.displayTitle`,
+                `${panel.key}.title`,
+                panel.properties.displayTitle || panel.title
+              ])
+            }}
           </button>
         </li>
       {%

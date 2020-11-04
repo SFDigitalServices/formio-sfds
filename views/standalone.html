@@ -22,18 +22,19 @@
 
       const params = new URLSearchParams(location.search || location.hash.substr(1))
       const language = params.get('lang')
-      const resource = params.get('res') || 'https://sfds.form.io/workers-families-first'
+      const i18n = tryParse(params.get('i18n'))
+      const i18nServiceUrl = params.get('i18nServiceUrl')
+      const resource = params.get('res') || root.getAttribute('data-resource')
 
-      if (language) {
-        document.documentElement.setAttribute('lang', language)
-      }
+      window.drupalSettings = { user: { uid: '123' } }
 
       const options = {
         language,
+        i18n,
+        i18nServiceUrl,
         renderMode: params.get('mode'),
         hooks: tryParse(params.get('hooks')),
         unlockNavigation: params.get('nav') !== 'false',
-        i18n: tryParse(params.get('i18n')),
         googleTranslate: params.get('googleTranslate') === 'true',
         prefill: params,
         properties: tryParse(params.get('properties'))

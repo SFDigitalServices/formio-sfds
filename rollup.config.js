@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel'
+import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import jst from 'rollup-plugin-jst'
@@ -14,11 +14,13 @@ import { readFileSync } from 'fs'
 
 const {
   NODE_ENV = 'development',
-  I18N_SERVICE_URL
+  I18N_SERVICE_URL = 'https://translate.sf.gov'
 } = process.env
 
 const prod = NODE_ENV === 'production'
 const name = 'FormioSFDS'
+
+const external = []
 
 const commonPlugins = [
   resolve(),
@@ -44,13 +46,16 @@ const commonPlugins = [
       readFileSync('svgo.config.yml', 'utf8')
     )
   ),
-  babel(),
+  babel({
+    babelHelpers: 'runtime'
+  }),
   prod ? terser() : null
 ].filter(Boolean)
 
 export default [
   {
     input: 'src/standalone.js',
+    external,
     plugins: [
       ...commonPlugins,
       postcss({
@@ -67,6 +72,7 @@ export default [
   },
   {
     input: 'src/example.js',
+    external,
     plugins: commonPlugins,
     output: {
       format: 'umd',
@@ -76,6 +82,7 @@ export default [
   },
   {
     input: 'src/examples.js',
+    external,
     plugins: [
       ...commonPlugins,
       rollupYAML()
@@ -88,6 +95,7 @@ export default [
   },
   {
     input: 'src/portal.js',
+    external,
     plugins: [
       ...commonPlugins,
       rollupYAML()

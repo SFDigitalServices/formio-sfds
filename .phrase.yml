@@ -1,0 +1,12 @@
+phrase:
+  project_id: ff36e9439ea05e3d16ccbd254125135f
+  push:
+    sources:
+      - file: src/i18n/en.json
+        params:
+          file_format: i18next
+  pull:
+    targets:
+      - file: src/i18n/<locale_code>.json
+        params:
+          file_format: i18next
