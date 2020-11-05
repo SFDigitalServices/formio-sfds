@@ -5,6 +5,7 @@ PROD_URL=formio-sfds.vercel.app
 
 # make this work locally, too
 if [ -f .env ]; then
+  # shellcheck disable=SC1091
   source .env
 fi
 
