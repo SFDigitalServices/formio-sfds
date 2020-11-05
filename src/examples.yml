@@ -26,6 +26,32 @@
         description: And this is the description
         tooltip: And this is the tooltip
 
+- id: datagrid
+  title: Data grid
+  form:
+    components:
+      - type: datagrid
+        label: Enter the relevant information for each ADU
+        components:
+          - type: select
+            label: Unit type
+            data:
+              values:
+                - label: Studio
+                  value: studio
+                - label: 1 bedroom
+                  value: 1br
+                - label: 2 bedroom
+                  value: 2br
+                - label: 3 bedroom
+                  value: 3br
+            validate:
+              required: true
+          - type: number
+            label: Square footage
+            validate:
+              required: true
+
 - id: radio
   title: Radio
   form:
