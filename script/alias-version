@@ -3,6 +3,11 @@ VERSION="${1:-$(npm view . version)}"
 ALIAS="v${VERSION//./-}"
 PROD_URL=formio-sfds.vercel.app
 
+# make this work locally, too
+if [ -f .env ]; then
+  source .env
+fi
+
 ROOT_URL=$(
   curl -s "https://api.vercel.com/v11/now/deployments/get?url=$PROD_URL" \
     -H "Authorization: Bearer $VERCEL_TOKEN" \
@@ -16,7 +21,7 @@ if [[ "$ROOT_URL" != "" ]]; then
   ALIAS_URL="formio-sfds-${ALIAS}.vercel.app"
   echo "aliasing:"
   echo "  $ALIAS_URL → $ROOT_URL"
-  npx -q vercel --token="$VERCEL_TOKEN" alias set "$ALIAS_URL" "$ROOT_URL"
+  npx -q vercel --scope sfds --token="$VERCEL_TOKEN" alias set "$ROOT_URL" "$ALIAS_URL"
 else
   echo "no root URL found; skipping version alias"
 fi
