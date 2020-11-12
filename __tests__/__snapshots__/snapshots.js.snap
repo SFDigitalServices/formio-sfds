@@ -1776,9 +1776,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
              role="navigation"
         >
           <ul class="nav-list mt-2 mb-0 mx-0 p-0">
-            <li aria-current="page"
-                class="mb-1 d-flex flex-items-start"
-            >
+            <li class="mb-1 d-flex flex-items-start">
               <span data-icon="square"
                     class="fg-slate notranslate"
               >
@@ -1795,7 +1793,10 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </rect>
                 </svg>
               </span>
-              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u">
+              <button disabled
+                      aria-current="page"
+                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
+              >
                 Page 1 link title
               </button>
             </li>
@@ -1816,7 +1817,9 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </rect>
                 </svg>
               </span>
-              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u">
+              <button disabled
+                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u"
+              >
                 Page 2
               </button>
             </li>
@@ -1876,9 +1879,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
              role="navigation"
         >
           <ul class="nav-list mt-2 mb-0 mx-0 p-0">
-            <li aria-current="page"
-                class="mb-1 d-flex flex-items-start"
-            >
+            <li class="mb-1 d-flex flex-items-start">
               <span data-icon="square"
                     class="fg-slate notranslate"
               >
@@ -1895,7 +1896,10 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </rect>
                 </svg>
               </span>
-              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u">
+              <button disabled
+                      aria-current="page"
+                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
+              >
                 Page 1 link title
               </button>
             </li>
@@ -1916,7 +1920,9 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </rect>
                 </svg>
               </span>
-              <button class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u">
+              <button disabled
+                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u"
+              >
                 Page 2
               </button>
             </li>
