@@ -9,7 +9,6 @@
 
   <ul class="nav-list mt-2 mb-0 mx-0 p-0">
     {% ctx.panels.forEach(function(panel, index) { %}
-
       {% if (panel.properties.hideFromNavigation !== "false") { %}
         {%
           const completed = index < ctx.currentPage
@@ -33,9 +32,8 @@
             {{
               ctx.t([
                 `${panel.key}.displayTitle`,
-                panel.properties.displayTitle || '',
                 `${panel.key}.title`,
-                panel.title
+                panel.properties.displayTitle || panel.title
               ])
             }}
           </button>
