@@ -1,8 +1,8 @@
-@each $index, $space in $spacers {
-  @each $variant, $threshold in $breakpoint-variants {
-    $suffix: "#{$variant}-#{$index}";
+@each $variant, $threshold in $breakpoint-variants {
+  @include breakpoint($threshold) {
+    @each $index, $space in $spacers {
+      $suffix: "#{$variant}-#{$index}";
 
-    @include breakpoint($threshold) {
       .m#{$suffix} { margin: $space !important; }
       .p#{$suffix} { padding: $space !important; }
 

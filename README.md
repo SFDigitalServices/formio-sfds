@@ -1,3 +1,7 @@
+---
+title: Docs
+---
+
 # formio-sfds
 This is the [Form.io] theme for [sf.gov](https://sf.gov).
 

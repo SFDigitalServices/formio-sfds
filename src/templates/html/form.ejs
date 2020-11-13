@@ -1,3 +1,10 @@
 <{{ ctx.tag }}
-{{ ctx.attrs({ ref: 'html', class: ctx.component.className }, ctx.attrs) }}
->{{ ctx.tk('content') }}{% if (!ctx.singleTags || ctx.singleTags.indexOf(ctx.tag) === -1) { %}</{{ctx.tag}}>{% } %}
+  {{
+    ctx.attrs({
+      ref: 'html',
+      class: ctx.component.className
+    }, ctx.attrs)
+  }}
+>{{
+  ctx.tk(ctx.component.type === 'content' ? 'html' : 'content', ctx.content)
+}}{% if (!ctx.singleTags || ctx.singleTags.indexOf(ctx.tag) === -1) { %}</{{ctx.tag}}>{% } %}

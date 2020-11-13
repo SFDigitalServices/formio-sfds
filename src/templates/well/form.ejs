@@ -11,7 +11,7 @@
 
   {% const desc = ctx.tk('description') %}
   {% if (desc) { %}
-    <div class="mb-1">{{ desc }}</div>
+    <div class="{{ visible ? '' : 'fg-light-slate ' }}mb-1">{{ desc }}</div>
   {% } %}
 
   {{ ctx.children }}

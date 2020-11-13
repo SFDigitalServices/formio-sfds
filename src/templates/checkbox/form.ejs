@@ -15,9 +15,12 @@
       <span class="label-required">
         {{ ctx.tk('label') }}
       </span>
+
       {% const desc = ctx.tk('description') %}
       {% if (desc) { %}
-        <span class="d-block fg-light-slate">{{ desc }}</span>
+        <span class="d-block fg-light-slate small">
+          {{ desc }}
+        </span>
       {% } %}
     </span>
   </label>

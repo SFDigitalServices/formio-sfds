@@ -9,7 +9,7 @@
   {% } %}
 
   {% if (ctx.buttons.next) { %}
-    <button class="btn flex-justify-end" ref="{{ctx.wizardKey}}-next">
+    <button class="btn flex-justify-end {{ ctx.currentPage === 0 ? '' : 'ml-2' }}" ref="{{ctx.wizardKey}}-next">
       <div class="d-flex flex-items-center">
         <span>{{ ctx.t(ctx.currentPage === 0 ? 'Get started' : 'Next') }}</span>
         <span data-icon="next" class="d-flex flex-items-center ml-1"></span>

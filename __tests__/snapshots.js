@@ -1,9 +1,9 @@
 /* eslint-env jest */
-import { createForm, destroyForm } from '../lib/test-helpers'
 import 'html-validate/jest'
+import { createForm, destroyForm, sleep } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
-const { FormioUtils } = window
+const { Event, FormioUtils } = window
 
 const validateConfig = {
   root: true,
@@ -58,7 +58,7 @@ const components = [
   }),
   comp('day'),
   comp('datetime'),
-  comp('html', {
+  comp('htmlelement', {
     tag: 'h1',
     content: 'Hello, world!'
   }),
@@ -95,15 +95,48 @@ const components = [
     components: [
       comp('textfield', { label: 'Your name' })
     ]
-  })
+  }),
+  comp('panel', {
+    title: 'Panel title',
+    components: []
+  }),
+  comp('form', {
+    display: 'wizard',
+    components: [
+      {
+        type: 'panel',
+        title: 'Page 1',
+        properties: {
+          displayTitle: 'Page 1 link title'
+        },
+        components: []
+      },
+      {
+        type: 'panel',
+        title: 'Page 2',
+        components: []
+      }
+    ]
+  }),
+  comp('state'),
+  comp('zip')
 ]
 
 describe('component snapshots', () => {
   const scenarios = {
     basic: {},
     required: {
-      validate: {
-        required: true
+      filter: model => model.type !== 'form',
+      component: {
+        validate: {
+          required: true
+        }
+      }
+    },
+    translate: {
+      filter: model => model.type === 'form',
+      options: {
+        translate: true
       }
     }
   }
@@ -113,16 +146,42 @@ describe('component snapshots', () => {
   for (const comp of components) {
     describe(`component "${comp.type}"`, () => {
       for (const [name, props] of Object.entries(scenarios)) {
+        const model = comp.type === 'form'
+          ? Object.assign(
+            {},
+            comp,
+            props.form
+          )
+          : {
+            components: [
+              Object.assign(
+                {
+                  label: `This is the ${comp.type} label`,
+                  description: `This is the ${comp.type} description`
+                },
+                comp,
+                props.component
+              )
+            ]
+          }
+
+        if (typeof props.filter === 'function' && !props.filter(model, props)) {
+          // console.info('Skipping scenario "%s" for component "%s"', name, comp.type)
+          continue
+        }
+
         describe(`scenario: ${name}`, () => {
           it('matches the snapshot', async () => {
             let i = 0
             FormioUtils.getRandomComponentId = () => `${comp.type}-${name}-${i++}`
 
-            const form = await createForm({
-              components: [
-                Object.assign({}, comp, props)
-              ]
-            })
+            const form = await createForm(model, props.options)
+            const select = form.element.querySelector('select:empty')
+            if (select) {
+              select.focus()
+              select.dispatchEvent(new Event('change'))
+              await sleep(100)
+            }
 
             const rendered = form.render()
             expect(rendered).toHTMLValidate(validateConfig)
@@ -130,6 +189,8 @@ describe('component snapshots', () => {
             form.element.removeAttribute('id')
             const html = form.element.outerHTML
             expect(html).toMatchSnapshot()
+
+            expect(form.element.textContent).not.toContain('Unknown component:')
 
             destroyForm(form)
 

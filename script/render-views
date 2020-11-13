@@ -5,18 +5,26 @@ const mkdirp = require('mkdirp')
 const yaml = require('js-yaml')
 const { basename, join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
+const remarkProcessor = require('../lib/remark')
+
+require('dotenv').config()
 
 const outDir = join(__dirname, '../dist')
 
-const data = require('../views/data')
-const examples = yaml.safeLoad(readFileSync('src/examples.yml', 'utf8'))
-data.examples = examples.sort((a, b) => a.title.localeCompare(b.title))
+const examples = yaml
+  .safeLoad(readFileSync('src/examples.yml', 'utf8'))
+  .sort((a, b) => a.title.localeCompare(b.title))
 
-const env = nunjucks.configure(join(__dirname, '../views'))
+const data = require('../views/data')
+Object.assign(data, { examples })
+
+const env = nunjucks.configure(join(__dirname, '../views'), {
+  autoescape: false
+})
 
 console.warn('finding views...')
 
-globby('views/*.html')
+globby(['views/*.html', '!views/docs.html'])
   .then(paths => {
     for (const templatePath of paths) {
       const filename = basename(templatePath)
@@ -34,6 +42,37 @@ globby('views/*.html')
       console.warn('rendering example "%s"...', example.id)
       const output = env.render('example.html', Object.assign({ example }, data))
       const outPath = join(exDir, `${example.id}.html`)
+      writeFileSync(outPath, output, 'utf8')
+    }
+  })
+
+globby(['README.md', 'docs/*.md'])
+  .then(async paths => {
+    const docsDir = join(outDir, 'docs')
+    await mkdirp(docsDir)
+
+    let page = {}
+    let parsed
+    const processor = remarkProcessor(data)
+      .use(options => tree => {
+        parsed = tree
+        const [node] = tree.children
+        if (node && node.type === 'yaml') {
+          Object.assign(page, yaml.safeLoad(node.value, 'utf8'))
+        }
+      })
+
+    for (const mdPath of paths) {
+      page = { path: mdPath.replace(`${process.cwd()}/`, '') }
+      const markdown = readFileSync(mdPath, 'utf8')
+      const file = await processor.process(markdown)
+      const content = file.toString()
+      const output = env.render('docs.html', Object.assign({ content, page, parsed }, data))
+      const filename = basename(mdPath)
+        .replace('README', 'index')
+        .replace('.md', '.html')
+      const outPath = join(docsDir, filename)
+      console.log('docs: %s → %s', mdPath, outPath, page)
       writeFileSync(outPath, output, 'utf8')
     }
   })

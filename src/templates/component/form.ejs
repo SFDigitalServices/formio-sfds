@@ -1,11 +1,29 @@
 <div
   id="{{ ctx.id }}"
-  class="{{ ctx.classes || (ctx.visible && ctx.component.type === 'well' ? 'formio-component formio-component-well' : '') }}"
+  class="{{ ctx.classes }}"
   {% if (ctx.styles) { %} style="{{ ctx.styles }}"{% } %}
   ref="component"
 >
   {% if (ctx.visible) { %}
     {{ ctx.children }}
     <div class="messages" ref="messageContainer"></div>
+  {% } %}
+
+  {% if (ctx.options.translate && ['panel', 'content', 'htmlelement'].indexOf(ctx.component.type) === -1) { %}
+    {% for (const key in ctx.component.errors) { %}
+      {% const error = ctx.t(`${ctx.component.key}.errors.${key}`, ctx.component.errors[key] || '') %}
+      {% if (error) { %}
+        <div class="fg-red-4 mt-1">
+          <b>Custom "{{ key }}" error:</b> {{ error }}
+        </div>
+      {% } %}
+    {% } %}
+
+    {% const customError = ctx.tk('validate.customMessage', ctx.component.validate.customMessage || '') %}
+    {% if (customError) { %}
+      <div class="fg-red-4 mt-1">
+        <b>Custom error message:</b> {{ customError }}
+      </div>
+    {% } %}
   {% } %}
 </div>
