@@ -27,17 +27,21 @@ const defaultEvalContext = {
 
   tk (field, defaultValue = '') {
     const { component = {} } = this
-    const { type, key = type } = component
-    const keys = [
-      key && `${key}.${field}`,
-      `component.${type}.${field}`
-    ].filter(Boolean)
-    return getLocalizedProperty(keys, this.instance) || this.t([
-      ...keys,
+    const { type, key = type, properties } = component
+    const { i18next } = this.instance
+    if (properties && i18next) {
+      const prop = `${i18next.language}:${field}`
+      if (properties[prop]) {
+        return properties[prop]
+      }
+    }
+    return key ? this.t([
+      `${key}.${field}`,
       // this is the "legacy" naming scheme
-      key && `${key}_${field}`,
+      `${key}_${field}`,
+      `component.${type}.${field}`,
       dot.get(component, field) || defaultValue || ''
-    ])
+    ]) : defaultValue
   },
 
   requiredAttributes () {
@@ -380,24 +384,4 @@ function userIsTranslating (opts) {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
-}
-
-function getLocalizedProperty (keys, instance) {
-  if (!instance.component?.properties) {
-    return undefined
-  }
-
-  const { properties } = instance.component
-  const lang = instance.i18next?.language
-  if (!lang) {
-    return undefined
-  }
-
-  for (const key of keys) {
-    const prop = `${lang}:${key}`
-    if (properties[prop]) {
-      return properties[prop]
-    }
-  }
-  return undefined
 }
