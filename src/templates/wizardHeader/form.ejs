@@ -12,15 +12,15 @@
       {% if (panel.properties.hideFromNavigation !== "false") { %}
         {%
           const completed = index < ctx.currentPage
-          const enabled = completed || ctx.options.unlockNavigation
           const active = index === ctx.currentPage
-          const color = active || completed ? 'slate' : 'inherit'
+          const enabled = active || completed || ctx.options.unlockNavigation
+          const color = active || completed ? 'fg-slate' : 'fg-inherit'
           const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
         %}
         <li class="mb-1 d-flex flex-items-start">
-          <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
+          <span class="{{ active ? color : 'fg-none' }}" data-icon="square"></span>
           <button
-            class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
+            class="btn-link flex-auto align-left m-0 pl-1 py-0 {{ color }} {{ style }}"
             {% if (active) { %}
               aria-current="page"
             {% } %}

@@ -1793,7 +1793,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </rect>
                 </svg>
               </span>
-              <button disabled
+              <button ref="wizard-form-basic-1-link"
                       aria-current="page"
                       class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
               >
@@ -1896,7 +1896,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </rect>
                 </svg>
               </span>
-              <button disabled
+              <button ref="wizard-form-translate-1-link"
                       aria-current="page"
                       class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
               >

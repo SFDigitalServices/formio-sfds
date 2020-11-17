@@ -160,20 +160,33 @@ describe('a11y', () => {
           {
             type: 'panel',
             title: 'Page 2'
+          },
+          {
+            type: 'panel',
+            title: 'Page 3'
           }
         ]
       })
 
       let buttons = form.element.querySelectorAll('nav button')
-      expect(buttons).toHaveLength(2)
+      expect(buttons).toHaveLength(3)
       expect(buttons[0].getAttribute('aria-current')).toEqual('page')
-      expect(buttons[1].getAttribute('aria-current')).toEqual(null)
+      expect(buttons[1].hasAttribute('aria-current')).toBe(false)
+      expect(buttons[2].hasAttribute('aria-current')).toBe(false)
 
       await form.setPage(1)
       buttons = form.element.querySelectorAll('nav button')
-      expect(buttons).toHaveLength(2)
-      expect(buttons[0].getAttribute('aria-current')).toEqual(null)
+      expect(buttons).toHaveLength(3)
+      expect(buttons[0].hasAttribute('aria-current')).toBe(false)
       expect(buttons[1].getAttribute('aria-current')).toEqual('page')
+      expect(buttons[2].hasAttribute('aria-current')).toBe(false)
+
+      await form.setPage(2)
+      buttons = form.element.querySelectorAll('nav button')
+      expect(buttons).toHaveLength(3)
+      expect(buttons[0].hasAttribute('aria-current')).toBe(false)
+      expect(buttons[1].hasAttribute('aria-current')).toBe(false)
+      expect(buttons[2].getAttribute('aria-current')).toEqual('page')
     })
 
     it('adds the disabled attribute to inaccessible pages', async () => {
@@ -197,15 +210,21 @@ describe('a11y', () => {
 
       let buttons = form.element.querySelectorAll('nav button')
       expect(buttons).toHaveLength(3)
-      expect(buttons[0].disabled).toBe(true)
+      expect(buttons[0].disabled).toBe(false)
       expect(buttons[1].disabled).toBe(true)
       expect(buttons[2].disabled).toBe(true)
 
       await form.setPage(1)
       buttons = form.element.querySelectorAll('nav button')
       expect(buttons[0].disabled).toBe(false)
-      expect(buttons[1].disabled).toBe(true)
+      expect(buttons[1].disabled).toBe(false)
       expect(buttons[2].disabled).toBe(true)
+
+      await form.setPage(2)
+      buttons = form.element.querySelectorAll('nav button')
+      expect(buttons[0].disabled).toBe(false)
+      expect(buttons[1].disabled).toBe(false)
+      expect(buttons[2].disabled).toBe(false)
     })
   })
 })
