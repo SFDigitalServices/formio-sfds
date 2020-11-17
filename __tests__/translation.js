@@ -7,18 +7,16 @@ import { createForm, destroyForm } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
 describe('field translations', () => {
-  const components = [
-    {
-      key: 'name',
-      type: 'textfield',
-      label: 'Name',
-      description: 'Please enter your name'
-    }
-  ]
+  const component = {
+    key: 'name',
+    type: 'textfield',
+    label: 'Name',
+    description: 'Please enter your name'
+  }
 
   it('translates labels', async () => {
     const form = await createForm({
-      components
+      components: [{ ...component }]
     }, {
       language: 'es',
       i18n: {
@@ -33,6 +31,27 @@ describe('field translations', () => {
 
     const label = form.element.querySelector('label:not(.control-label--hidden)')
     expect(label.textContent.trim()).toEqual('Nombre')
+
+    destroyForm(form)
+  })
+
+  it('finds translations in component properties', async () => {
+    const form = await createForm({
+      components: [
+        {
+          properties: {
+            'de:name.label': 'der Name'
+          },
+          ...component
+        }
+      ]
+    }, {
+      language: 'de'
+    })
+
+    expect(form.i18next.language).toEqual('de')
+    const label = form.element.querySelector('label:not(.control-label--hidden)')
+    expect(label.textContent.trim()).toEqual('der Name')
 
     destroyForm(form)
   })
