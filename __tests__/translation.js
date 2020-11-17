@@ -40,7 +40,7 @@ describe('field translations', () => {
       components: [
         {
           properties: {
-            'de:name.label': 'der Name'
+            'de:label': 'der Name'
           },
           ...component
         }
