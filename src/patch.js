@@ -1,3 +1,4 @@
+import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
@@ -27,11 +28,16 @@ const defaultEvalContext = {
   tk (field, defaultValue = '') {
     const { component = {} } = this
     const { type, key = type } = component
-    return key ? this.t([
-      `${key}.${field}`,
-      `${key}_${field}`,
-      component[field] || defaultValue || ''
-    ]) : defaultValue
+    const keys = [
+      key && `${key}.${field}`,
+      `component.${type}.${field}`
+    ].filter(Boolean)
+    return getLocalizedProperty(keys, this.instance) || this.t([
+      ...keys,
+      // this is the "legacy" naming scheme
+      key && `${key}_${field}`,
+      dot.get(component, field) || defaultValue || ''
+    ])
   },
 
   requiredAttributes () {
@@ -374,4 +380,24 @@ function userIsTranslating (opts) {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
+}
+
+function getLocalizedProperty (keys, instance) {
+  if (!instance.component?.properties) {
+    return undefined
+  }
+
+  const { properties } = instance.component
+  const lang = instance.i18next?.language
+  if (!lang) {
+    return undefined
+  }
+
+  for (const key of keys) {
+    const prop = `${lang}:${key}`
+    if (properties[prop]) {
+      return properties[prop]
+    }
+  }
+  return undefined
 }
