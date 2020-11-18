@@ -41,7 +41,7 @@
   "dependencies": {
     "choices.js": "^9.0.1",
     "dotmap": "^0.1.0",
-    "flatpickr": "4.6.6",
+    "flatpickr": "^4.6.3",
     "formiojs": "4.12.1",
     "interpolate": "^0.1.0",
     "uri-template-lite": "^19.12.0",
