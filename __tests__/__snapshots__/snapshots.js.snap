@@ -2162,6 +2162,145 @@ exports[`component snapshots component "radio" scenario: required matches the sn
 </div>
 `;
 
+exports[`component snapshots component "select" scenario: basic matches the snapshot 1`] = `
+<div id="form-select-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-basic-1"
+  >
+    <label for="input-select-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select"
+           id="select-basic-2"
+      >
+        <label for="input-select-basic-2"
+               class
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-basic-2"
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="a">
+            <span>
+              A
+            </span>
+          </option>
+          <option value="b">
+            <span>
+              B
+            </span>
+          </option>
+          <option value="c">
+            <span>
+              C
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: required matches the snapshot 1`] = `
+<div id="form-select-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-required-1"
+  >
+    <label for="input-select-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select  required"
+           id="select-required-2"
+      >
+        <label for="input-select-required-2"
+               class="field-required"
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-required-2"
+                required
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="a">
+            <span>
+              A
+            </span>
+          </option>
+          <option value="b">
+            <span>
+              B
+            </span>
+          </option>
+          <option value="c">
+            <span>
+              C
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "selectboxes" scenario: basic matches the snapshot 1`] = `
 <div id="form-selectboxes-basic"
      class="d-flex flex-column-reverse mb-4"

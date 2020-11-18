@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import { createForm, destroyForm, sleep } from '../lib/test-helpers'
+import { createForm, destroyForm } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
-const { Event, FormioUtils } = window
+const { FormioUtils } = window
 
 const components = [
   { type: 'address' },
@@ -68,6 +68,17 @@ const components = [
       }
     ]
   },
+  {
+    type: 'select',
+    widget: 'html5',
+    data: {
+      values: [
+        { label: 'A', value: 'a' },
+        { label: 'B', value: 'b' },
+        { label: 'C', value: 'c' }
+      ]
+    }
+  },
   { type: 'state' },
   { type: 'zip' }
 ]
@@ -126,12 +137,8 @@ describe('component snapshots', () => {
             FormioUtils.getRandomComponentId = () => `${comp.type}-${name}-${i++}`
 
             const form = await createForm(model, props.options)
-            const select = form.element.querySelector('select:empty')
-            if (select) {
-              select.focus()
-              select.dispatchEvent(new Event('change'))
-              await sleep(100)
-            }
+
+            updateSelectItems(form)
 
             form.element.id = `form-${comp.type}-${name}`
             const html = form.element.outerHTML
@@ -148,3 +155,16 @@ describe('component snapshots', () => {
     })
   }
 })
+
+function updateSelectItems (form) {
+  const selects = form.element.querySelectorAll('select.form-control')
+  for (const select of selects) {
+    const { id } = select.closest('[ref=component]')
+    if (id) {
+      const comp = form.getComponentById(id)
+      if (typeof comp?.updateItems === 'function') {
+        comp.updateItems()
+      }
+    }
+  }
+}
