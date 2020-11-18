@@ -5,10 +5,7 @@ import buildHooks from './hooks'
 import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
 import Phrase from './phrase'
 import { mergeObjects } from './utils'
-import 'flatpickr/dist/l10n/es'
-// import 'flatpickr/dist/l10n/tl'
-// import 'flatpickr/dist/l10n/zh'
-import 'flatpickr/dist/l10n/zh-tw'
+import flatpickrLocales from './i18n/flatpickr'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
