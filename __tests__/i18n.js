@@ -2,7 +2,7 @@
 import patch from '../src/patch'
 import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
-import loadTranslations from '../src/i18n/load'
+import { loadTranslations } from '../src/i18n/load'
 import defaultTranslations from '../src/i18n'
 
 jest.mock('../src/i18n/load')

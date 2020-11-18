@@ -2,8 +2,8 @@ import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
-import loadTranslations from './i18n/load'
-import Phrase, { I18NEXT_DEFAULT_NAMESPACE } from './phrase'
+import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
+import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
@@ -42,16 +42,14 @@ const defaultEvalContext = {
   }
 }
 
-let util
-const forms = []
+const { FormioUtils } = window
+
+export const forms = []
 
 export default Formio => {
   if (Formio[PATCHED]) {
     return
   }
-
-  const { FormioUtils } = window
-  util = FormioUtils
 
   patch(Formio)
   Formio[PATCHED] = true
@@ -231,7 +229,7 @@ function patch (Formio) {
 }
 
 function patchSelectMode (model) {
-  const selects = util.searchComponents(model.components, { type: 'select' })
+  const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
     if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
@@ -365,7 +363,7 @@ function scrollToTop () {
 }
 
 function disableConditionals (components) {
-  util.eachComponent(components, comp => {
+  FormioUtils.eachComponent(components, comp => {
     comp.properties.conditional = comp.conditional
     comp.conditional = {}
   })
@@ -380,19 +378,4 @@ function userIsTranslating (opts) {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
-}
-
-function loadEmbeddedTranslations (model, i18next) {
-  util.eachComponent(model.components, ({ key, properties }) => {
-    if (properties) {
-      for (const prop in properties) {
-        if (prop.includes(':')) {
-          const [lang, field] = prop.split(':')
-          i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, {
-            [`${key}.${field}`]: properties[prop]
-          })
-        }
-      }
-    }
-  })
 }
