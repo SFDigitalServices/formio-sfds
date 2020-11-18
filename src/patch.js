@@ -72,7 +72,7 @@ export default Formio => {
 // Prevent users from navigating away and losing their entries.
 let warnBeforeLeaving = false
 
-window.addEventListener('beforeunload', (event) => {
+window.addEventListener('beforeunload', event => {
   if (warnBeforeLeaving) {
     // Most browsers will show a default message instead of this one.
     event.returnValue = 'Leave site? Changes you made may not be saved.'
@@ -174,6 +174,7 @@ function patch (Formio) {
       loadEmbeddedTranslations(model, form.i18next)
 
       patchSelectMode(model, form)
+
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -188,11 +189,11 @@ function patch (Formio) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
         form.on('prevPage', () => { doToggle(element) })
-        form.on('nextPage', () => { 
+        form.on('nextPage', () => {
           warnBeforeLeaving = true
           doToggle(element)
         })
-        form.on('wizardNavigationClicked', () => { 
+        form.on('wizardNavigationClicked', () => {
           doToggle(element, true)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
@@ -241,7 +242,6 @@ function patch (Formio) {
 
 function patchSelectMode (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
-  const keyPrefix = 'autocomplete'
 
   // forEach() instead of for...of gives us a closure,
   // which is important because the component reference needs to
@@ -453,12 +453,12 @@ function userIsTranslating (opts) {
   }
 }
 
-function toggleComponent() {
+function toggleComponent () {
   observe('[data-toggle-container]', {
-    add(el) {
+    add (el) {
       const ariaControl = el.querySelector('[aria-controls]')
 
-      ariaControl.addEventListener('click', (event) => {        
+      ariaControl.addEventListener('click', event => {
         if (ariaControl.hasAttribute('aria-expanded')) {
           const expanded = ariaControl.getAttribute('aria-expanded')
           doToggle(el, expanded !== 'true')
@@ -468,13 +468,14 @@ function toggleComponent() {
   })
 }
 
-function doToggle(element, show = false) {
-  const toggler = element.hasAttribute('data-toggle-container') ? element : element.querySelector('[data-toggle-container]')
+function doToggle (element, show = false) {
+  const toggler = element.closest('[data-toggle-container]')
   if (toggler) {
     const ariaControl = toggler.querySelector('[aria-controls]')
-    if(!ariaControl) return
+    if (!ariaControl) return false
 
-    const content = document.getElementById(ariaControl.getAttribute('aria-controls'));
+    const content = document.getElementById(ariaControl.getAttribute('aria-controls'))
+    if (!content) return false
     if (show) {
       ariaControl.setAttribute('aria-expanded', 'true')
       content.hidden = false
