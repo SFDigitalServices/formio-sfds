@@ -3,7 +3,7 @@ import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import loadTranslations from './i18n/load'
-import Phrase from './phrase'
+import Phrase, { I18NEXT_DEFAULT_NAMESPACE } from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
 // import 'flatpickr/dist/l10n/tl'
@@ -27,14 +27,7 @@ const defaultEvalContext = {
 
   tk (field, defaultValue = '') {
     const { component = {} } = this
-    const { type, key = type, properties } = component
-    const { i18next } = this.instance
-    if (properties && i18next) {
-      const prop = `${i18next.language}:${field}`
-      if (properties[prop]) {
-        return properties[prop]
-      }
-    }
+    const { type, key = type } = component
     return key ? this.t([
       `${key}.${field}`,
       // this is the "legacy" naming scheme
@@ -181,6 +174,9 @@ function patch (Formio) {
       if (opts.disableConditionals) {
         disableConditionals(model.components)
       }
+
+      loadEmbeddedTranslations(model, form.i18next)
+
       patchSelectMode(model)
       form.form = model
 
@@ -384,4 +380,19 @@ function userIsTranslating (opts) {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
+}
+
+function loadEmbeddedTranslations (model, i18next) {
+  util.eachComponent(model.components, ({ key, properties }) => {
+    if (properties) {
+      for (const prop in properties) {
+        if (prop.includes(':')) {
+          const [lang, field] = prop.split(':')
+          i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, {
+            [`${key}.${field}`]: properties[prop]
+          })
+        }
+      }
+    }
+  })
 }
