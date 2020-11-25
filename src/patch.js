@@ -126,30 +126,7 @@ function patch (Formio) {
 
       let { googleTranslate } = opts
 
-      try {
-        const loaded = await phrase.load(loadTranslations)
-        if (loaded) {
-          googleTranslate = false
-
-          if (loaded.projectId && userIsTranslating(opts)) {
-            phrase.enableEditor()
-          } else if (debug) {
-            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
-          }
-        }
-      } catch (error) {
-        if (debug) console.warn('Failed to load translations:', error)
-      }
-
-      if (opts.scroll !== false) {
-        form.on('nextPage', scrollToTop)
-        form.on('prevPage', scrollToTop)
-        form.on('nextPage', () => { warnBeforeLeaving = true })
-        form.on('submit', () => { warnBeforeLeaving = false })
-      }
-
       const { element } = form
-
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
 
       if (googleTranslate === false) {
@@ -163,6 +140,21 @@ function patch (Formio) {
         wrapper.className = WRAPPER_CLASS
         element.parentNode.insertBefore(wrapper, element)
         wrapper.appendChild(element)
+      }
+
+      try {
+        const loaded = await phrase.load(loadTranslations)
+        if (loaded) {
+          googleTranslate = false
+
+          if (loaded.projectId && userIsTranslating(opts)) {
+            phrase.enableEditor()
+          } else if (debug) {
+            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
+          }
+        }
+      } catch (error) {
+        if (debug) console.warn('Failed to load translations:', error)
       }
 
       // Note: we create a shallow copy of the form model so the .form setter
@@ -180,6 +172,13 @@ function patch (Formio) {
 
       if (opts.data) {
         form.submission = { data: opts.data }
+      }
+
+      if (opts.scroll !== false) {
+        form.on('nextPage', scrollToTop)
+        form.on('prevPage', scrollToTop)
+        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('submit', () => { warnBeforeLeaving = false })
       }
 
       if (opts.prefill) {

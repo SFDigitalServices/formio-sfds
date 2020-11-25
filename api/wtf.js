@@ -185,7 +185,7 @@ async function getSFgovData (url, data) {
 
       if (typeof options.i18n === 'string') {
         data.translation.url = options.i18n
-        const match = options.i18n.match(/google\/([^@])/)
+        const match = options.i18n.match(/google\/([^@]+)/)
         data.translation.source = {
           title: 'Google Sheets',
           url: `https://docs.google.com/spreadsheets/d/${match[1]}/edit`
