@@ -1,10 +1,15 @@
 {% const panel = ctx.panels[ctx.currentPage] %}
 <div class="{{ ctx.className }} mb-4">
-  <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
+  <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
+    <div class="col-md-2">
+      {% if (!panel.properties.hideSidebar || panel.properties.hideSidebar !== "true") { %}
+        {{ ctx.wizardHeader }}
+      {% } %}
+    </div>
     <div class="col-md-4">
       <div class="mb-3">
         {% if (panel) { %}
-          <h1 class="d1 mb-4 mr-n2">
+          <h1 class="d1 mb-4 mr-n2 mt-0">
             {{ ctx.t([`${panel.key}.title`, panel.title]) }}
           </h1>
         {% } %}
@@ -13,11 +18,6 @@
         </div>
       </div>
       {{ ctx.wizardNav }}
-    </div>
-    <div class="col-md-2">
-      {% if (!panel.properties.hideSidebar || panel.properties.hideSidebar !== "true") { %}
-        {{ ctx.wizardHeader }}
-      {% } %}
     </div>
   </div>
 </div>
