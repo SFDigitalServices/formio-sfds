@@ -1,45 +1,56 @@
 {% const { properties = {} } = ctx.options %}
 <nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate">
-
-  {% if (properties.backURL) { %}
-    <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
-      {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}
-    </a>
-  {% } %}
-
-  <ul class="nav-list mt-2 mb-0 mx-0 p-0">
-    {% ctx.panels.forEach(function(panel, index) { %}
-
-      {% const completed = index < ctx.currentPage %}
-      {% const active = index === ctx.currentPage %}
-
-      {% if (panel.properties.hideFromNavigation !== "false") { %}
-        {% const color = active || completed ? 'slate' : 'inherit' %}
-        {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
-        <li class="mb-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %}>
-          <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
-          <button
-            class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
-            {% if (completed || ctx.options.unlockNavigation) { %}
-              ref="{{ ctx.wizardKey }}-link"
-            {% } %}
-          >
-            {{
-              ctx.t([
-                `${panel.key}.displayTitle`,
-                `${panel.key}.title`,
-                panel.properties.displayTitle || panel.title
-              ])
-            }}
-          </button>
-        </li>
-      {%
-        } else {
-          // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place
-      %}
-        <li ref="{{ ctx.wizardKey }}-link" hidden></li>
+  <details open>
+    <summary class="small d-md-none bg-dark-blue border-0 fg-white">
+      Sections
+      <span data-icon="chevron"></span>
+    </summary>
+    <div>
+      {% if (properties.backURL) { %}
+        <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
+          {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}
+        </a>
       {% } %}
-
-    {% }) %}
-  </ul>
+    
+      <ul class="nav-list mb-0 mx-0 p-0 mt-0">
+        {% ctx.panels.forEach(function(panel, index) { %}
+    
+          {% const completed = index < ctx.currentPage %}
+          {% const active = index === ctx.currentPage %}
+    
+          {% if (panel.properties.hideFromNavigation !== "false") { %}
+            {% const color = active || completed ? 'slate' : 'inherit' %}
+            {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
+            <li class="mb-md-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %} {% if (completed) { %} data-complete {% } %}>
+              {% if (completed) { %}
+                <span class="fg-{{ active ? color : 'none' }}" data-icon="circleCheck"></span>
+              {% } else { %}
+                <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
+              {% } %}
+              <button
+                class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-{{ color }} {{ style }}"
+                {% if (completed || ctx.options.unlockNavigation) { %}
+                  ref="{{ ctx.wizardKey }}-link"
+                {% } %}
+              >
+                {{
+                  ctx.t([
+                    `${panel.key}.displayTitle`,
+                    `${panel.key}.title`,
+                    panel.properties.displayTitle || panel.title
+                  ])
+                }}
+              </button>
+            </li>
+          {%
+            } else {
+              // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place
+          %}
+            <li ref="{{ ctx.wizardKey }}-link" hidden></li>
+          {% } %}
+    
+        {% }) %}
+      </ul>
+    </div>
+  </details>
 </nav>

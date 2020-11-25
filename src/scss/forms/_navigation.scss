@@ -1,16 +1,120 @@
 nav {
-  @media (min-width: $mq-medium) {
-    margin-top: 10rem;
-    position: sticky;
-    top: 170px;
-    margin-right: spacer(5);
+  [data-icon] {
+    margin-left: -9px;
   }
 
   [data-icon=square] {
     margin-top: 5px !important;
   }
 
+  [data-icon=chevron] {
+    float: right;
+  }
+
   .back-link {
     font-size: 20px;
+  }
+
+  details {
+    summary {
+      padding: 15px !important;
+      &:after {
+        display: none;
+      }
+      [data-icon=chevron] {
+        margin-top: 2px;
+      }
+    }
+    &[open] {
+      summary {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        [data-icon=chevron] {
+          margin-top: -2px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+    > div {
+      background: $grey-1;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      box-shadow: 0 0 6px 0 rgba(0,0,0,.25);
+      padding: 15px 18px;
+    }
+  }
+
+  ul {
+    li {
+      background-color: transparent;
+      background-image: linear-gradient($grey-4 50%, $grey-4 50%);
+      background-size: 2px 100%;
+      background-repeat: no-repeat;
+      [data-icon] {
+        margin-left: -9px;
+        margin-top: 7px;
+        rect {
+          width: 10px;
+          height: 10px;
+        }
+      }
+      &:first-of-type {
+        background-image: linear-gradient(transparent 10%, $grey-4 40%);
+      }
+      &:last-of-type {
+        background-image: linear-gradient($grey-4 40%, transparent 40%);
+      }
+      &:not([aria-current]) {
+        [data-icon] {
+          color: $grey-4 !important;
+        }
+        [data-icon="circleCheck"] {
+          color: $green-3 !important;
+          svg > svg {
+            color: $white !important;
+          }
+        }
+      }
+      &[data-complete] {
+        background-image: linear-gradient($green-2 50%, $green-2 50%);
+        &+ li:not([data-complete]) {
+          background-image: linear-gradient($green-2 50%, $grey-4 50%);
+        }
+        &:first-of-type {
+          background-image: linear-gradient(transparent 10%, $green-2 40%);
+        }
+      }
+    }
+  }
+  @media (min-width: $mq-medium) {
+    position: sticky;
+    top: 170px;
+    margin-left: spacer(4);
+
+    details > div {
+      background: none;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    ul {
+      li {
+        background-image: none;
+        margin-left: 0;
+        &:first-of-type, &:last-of-type {
+          background-image: none;
+        }
+        &:not([aria-current]) {
+          [data-icon] {
+            color: transparent !important;
+          }
+        }
+
+        [data-icon] {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
