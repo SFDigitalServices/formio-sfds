@@ -3,6 +3,8 @@ import next from './Arrow-right.svg'
 import prev from './Arrow-left.svg'
 import calendar from './Calendar.svg'
 import check from './Check.svg'
+import circleCheck from './Circle-check.svg'
+import chevron from './Chevron.svg'
 import close from './Close.svg'
 import document from './Document.svg'
 import alert from './Alert.svg'
@@ -15,6 +17,8 @@ const icons = {
   add: plus,
   calendar,
   check,
+  chevron,
+  circleCheck,
   close,
   delete: close,
   document,
