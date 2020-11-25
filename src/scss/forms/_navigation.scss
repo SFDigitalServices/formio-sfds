@@ -110,7 +110,15 @@ nav {
             color: transparent !important;
           }
         }
-
+        &[data-complete] {
+          background-image: none;
+          &+ li:not([data-complete]) {
+            background-image: none;
+          }
+          &:first-of-type {
+            background-image: none;
+          }
+        }
         [data-icon] {
           margin-left: 0;
         }
