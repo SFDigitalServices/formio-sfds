@@ -50,6 +50,7 @@ nav {
       background-image: linear-gradient($grey-4 50%, $grey-4 50%);
       background-size: 2px 100%;
       background-repeat: no-repeat;
+      padding-bottom: 15px;
       [data-icon] {
         margin-left: -9px;
         margin-top: 7px;
@@ -59,12 +60,12 @@ nav {
         }
       }
       &:first-of-type {
-        background-image: linear-gradient(transparent 10%, $grey-4 40%);
+        background-image: linear-gradient(transparent 15%, $grey-4 20%);
       }
       &:last-of-type {
         background-image: linear-gradient($grey-4 40%, transparent 40%);
       }
-      &:not([aria-current]) {
+      &:not([data-current]) {
         [data-icon] {
           color: $grey-4 !important;
         }
@@ -78,10 +79,10 @@ nav {
       &[data-complete] {
         background-image: linear-gradient($green-2 50%, $green-2 50%);
         &+ li:not([data-complete]) {
-          background-image: linear-gradient($green-2 50%, $grey-4 50%);
+          background-image: linear-gradient($green-2 35%, $grey-4 50%);
         }
         &:first-of-type {
-          background-image: linear-gradient(transparent 10%, $green-2 40%);
+          background-image: linear-gradient(transparent 15%, $green-2 20%);
         }
       }
     }
@@ -105,7 +106,7 @@ nav {
         &:first-of-type, &:last-of-type {
           background-image: none;
         }
-        &:not([aria-current]) {
+        &:not([data-current]) {
           [data-icon] {
             color: transparent !important;
           }
