@@ -73,6 +73,7 @@ nav {
 
       &:last-of-type {
         background-image: linear-gradient($grey-4 10%, transparent 40%);
+        padding-bottom: 20px;
       }
 
       &:not([data-current]) {
@@ -93,7 +94,7 @@ nav {
         background-image: linear-gradient($green-2 50%, $green-2 50%);
 
         & + li:not([data-complete]) {
-          background-image: linear-gradient($green-2 35%, $grey-4 50%);
+          background-image: linear-gradient($green-2 0%, $grey-4 30%);
         }
 
         &:first-of-type {
