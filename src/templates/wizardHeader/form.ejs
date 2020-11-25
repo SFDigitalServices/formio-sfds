@@ -1,12 +1,12 @@
 {% const { properties = {} } = ctx.options %}
-<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate">
+<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate mb-4 mb-md-0">
 
   <details open>
     <summary class="small d-md-none bg-dark-blue border-0 fg-white">
       Sections
       <span data-icon="chevron"></span>
     </summary>
-    <div>
+    <div class="p-md-0">
       {% if (properties.backURL) { %}
         <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
           {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}

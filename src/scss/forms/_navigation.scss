@@ -17,7 +17,7 @@ nav {
 
   details {
     summary {
-      padding: 15px !important;
+      padding: 15px 20px;
 
       &::after {
         display: none;
@@ -45,7 +45,7 @@ nav {
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
       box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
-      padding: 15px 18px;
+      padding: 10px 30px;
     }
   }
 
@@ -55,7 +55,7 @@ nav {
       background-image: linear-gradient($grey-4 50%, $grey-4 50%);
       background-size: 2px 100%;
       background-repeat: no-repeat;
-      padding-bottom: 15px;
+      padding-bottom: 30px;
 
       [data-icon] {
         margin-left: -9px;
@@ -72,7 +72,7 @@ nav {
       }
 
       &:last-of-type {
-        background-image: linear-gradient($grey-4 40%, transparent 40%);
+        background-image: linear-gradient($grey-4 10%, transparent 40%);
       }
 
       &:not([data-current]) {
