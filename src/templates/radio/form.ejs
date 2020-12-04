@@ -31,7 +31,7 @@
           id="{{ctx.id}}{{ctx.row}}-{{item.value}}">
       </span>
       <span class="flex-auto">
-        {{ ctx.t(item.label) }}
+        {{ ctx.t([`${ctx.component.key}.values.${item.value}`, item.label]) }}
       </span>
     </label>
   {% } %}
