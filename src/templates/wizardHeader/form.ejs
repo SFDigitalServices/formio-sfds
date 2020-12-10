@@ -3,8 +3,12 @@
 
   <details open>
     <summary class="small d-md-none bg-dark-blue border-0 fg-white">
-      Sections
-      <span data-icon="chevron"></span>
+      <div class="d-flex">
+        <div class="flex-auto" style="width:100%">Sections</div>
+        <div>
+          <span class="d-block" data-icon="chevron"></span>
+        </div>
+      </div>
     </summary>
     <div class="p-md-0">
       {% if (properties.backURL) { %}
@@ -22,8 +26,9 @@
               const enabled = active || completed || ctx.options.unlockNavigation
               const color = active || completed ? 'fg-slate' : 'fg-inherit'
               const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
+              const last = index === ctx.panels.length-1
             %}
-            <li class="mb-md-1 d-flex flex-items-start pb-md-0"
+            <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }}" style="padding-bottom: 30px"
               {% if (active) { %} 
                 data-current
               {% } %} 
@@ -31,13 +36,14 @@
                 data-complete 
               {% } %}
             >
+              
               {% if (completed) { %}
-                <span class="bg-green-3 round-round fg-white" data-icon="check"></span>
+                <span class="bg-green-3 round-round fg-white" style="margin: 6px -5px 0 -9px" data-icon="check"></span>
               {% } else { %}
-                <span class="{{ active ? color : 'fg-none' }}" data-icon="square"></span>
+                <span class="{{ active ? color : 'fg-none' }}" style="margin: 2px 0 0 -5px" data-icon="square" data-width="10"></span>
               {% } %}
               <button
-                class="btn-link flex-auto align-left m-0 pl-2 pl-md-1 py-0 {{ color }} {{ style }}"
+                class="btn-link flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
                 {% if (active) { %}
                   aria-current="page"
                 {% } %}
