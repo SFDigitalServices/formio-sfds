@@ -1,0 +1,11 @@
+[data-toggle-container] {
+  &[data-toggle-show] {
+    [data-toggle-content] {
+      display: block;
+    }
+  }
+
+  [data-toggle-content] {
+    display: none;
+  }
+}

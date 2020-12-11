@@ -7,8 +7,8 @@ nav {
     font-size: 20px;
   }
 
-  details {
-    summary {
+  [data-toggle-container] {
+    [data-toggle-trigger] {
       padding: 15px 20px;
 
       &::after {
@@ -20,8 +20,8 @@ nav {
       }
     }
 
-    &[open] {
-      summary {
+    &[data-toggle-show] {
+      [data-toggle-trigger] {
         border-bottom-left-radius: 0 !important;
         border-bottom-right-radius: 0 !important;
 
@@ -30,9 +30,13 @@ nav {
           transform: rotate(180deg);
         }
       }
+
+      [data-toggle-content] {
+        display: block !important;
+      }
     }
 
-    > div {
+    [data-toggle-content] {
       background: $grey-1;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
@@ -95,7 +99,8 @@ nav {
     top: 170px;
     margin-left: spacer(4);
 
-    details > div {
+    [data-toggle-container] > [data-toggle-content] {
+      display: block !important;
       background: none;
       border: 0;
       box-shadow: none;

@@ -60,6 +60,10 @@ export default Formio => {
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
+
+  // toggles
+  util.wizNavUsed = false;
+  toggleComponent()
 }
 
 // Prevent users from navigating away and losing their entries.
@@ -177,7 +181,16 @@ function patch (Formio) {
       if (opts.scroll !== false) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
-        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('prevPage', () => {
+          el.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
+        })
+        form.on('nextPage', () => { 
+          warnBeforeLeaving = true
+          el.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
+        })
+        form.on('wizardNavigationClicked', () => { 
+          util.wizNavUsed = true;
+        })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
 
@@ -373,4 +386,24 @@ function userIsTranslating (opts) {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
   }
+}
+
+function toggleComponent() {
+  observe('[data-toggle-container]', {
+    add(el) {
+      // special behavior for wizard nav
+      if (util.wizNavUsed) {
+        el.setAttribute('data-toggle-show', '')
+      }
+
+      // standard toggle behavior
+      el.querySelector('[data-toggle-trigger]').addEventListener('click', () => {
+        if(el.hasAttribute('data-toggle-show')) {
+          el.removeAttribute('data-toggle-show')
+        } else {
+          el.setAttribute('data-toggle-show', '')
+        }
+      })
+    }
+  })
 }
