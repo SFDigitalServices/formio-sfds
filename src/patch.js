@@ -182,11 +182,11 @@ function patch (Formio) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
         form.on('prevPage', () => {
-          el.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
+          element.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
         })
         form.on('nextPage', () => { 
           warnBeforeLeaving = true
-          el.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
+          element.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
         })
         form.on('wizardNavigationClicked', () => { 
           util.wizNavUsed = true;
