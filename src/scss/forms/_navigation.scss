@@ -88,7 +88,7 @@ nav {
         }
 
         &:first-of-type {
-          background-image: linear-gradient($grey-1 20%, $green-2 20%);
+          background-image: linear-gradient(transparent 20%, $green-2 20%);
         }
       }
     }
