@@ -46,11 +46,13 @@
                 class="btn-link flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
                 {% if (active) { %}
                   aria-current="page"
+                  style="cursor:default"
                 {% } %}
                 {% if (enabled) { %}
                   ref="{{ ctx.wizardKey }}-link"
                 {% } else { %}
                   disabled
+                  style="cursor:default"
                 {% } %}>
                 {{
                   ctx.t([
