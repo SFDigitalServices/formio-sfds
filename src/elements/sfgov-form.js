@@ -58,8 +58,14 @@ export default class SFGovForm extends window.HTMLElement {
     const data = this.formData
     const options = this.options
     Formio.createForm(this, data, options)
-      .then(form => {
+      .then(async form => {
         this.form = form
+        if (options.example?.submit) {
+          await form.submit()
+            .catch(error => {
+              this.dispatchEvent(new Event('form:error', { error }))
+            })
+        }
         this.dispatchEvent(new Event('form:ready', { form }))
         this._resolve(form)
       })
