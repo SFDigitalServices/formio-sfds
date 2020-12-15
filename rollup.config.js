@@ -71,16 +71,6 @@ export default [
     }
   },
   {
-    input: 'src/example.js',
-    external,
-    plugins: commonPlugins,
-    output: {
-      format: 'umd',
-      file: 'dist/examples/example.js',
-      sourcemap: true
-    }
-  },
-  {
     input: 'src/examples.js',
     external,
     plugins: [
