@@ -428,3 +428,60 @@
         label: File field
         description: The description
         storage: base64
+
+- id: error-messages
+  title: Error messages
+  options:
+    example:
+      submit: true
+  form:
+    components:
+      - type: textfield
+        key: textfieldMaxLength
+        label: Max length
+        defaultValue: this is too long
+        validate:
+          maxLength: 10
+
+      - type: textfield
+        key: textfieldMaxLengthCustom
+        label: Max length + custom message
+        defaultValue: this is too long
+        validate:
+          maxLength: 10
+          customMessage: Custom error message
+
+      - type: textfield
+        key: textfieldMaxLengthRequired
+        label: Max length (required)
+        defaultValue: this is too long
+        validate:
+          required: true
+          maxLength: 10
+
+      - type: textfield
+        key: textfieldMaxLengthRequiredCustom
+        label: Max length (required) custom message
+        defaultValue: this is too long
+        validate:
+          required: true
+          maxLength: 10
+          customMessage: Custom error message
+
+      - type: email
+        key: emailInvalid
+        label: Email (invalid)
+        defaultValue: not an email
+        validate:
+          required: false
+
+      - type: email
+        key: emailRequired
+        label: Email (invalid + required)
+        defaultValue: not an email
+        validate:
+          required: true
+
+      - type: button
+        action: submit
+        label: Submit
