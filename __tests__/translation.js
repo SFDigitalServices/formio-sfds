@@ -31,16 +31,16 @@ describe('generic string translations', () => {
 })
 
 describe('field translations', () => {
+  const component = {
+    key: 'name',
+    type: 'textfield',
+    label: 'Name',
+    description: 'Please enter your name'
+  }
+
   it('translates labels', async () => {
     const form = await createForm({
-      components: [
-        {
-          key: 'name',
-          type: 'textfield',
-          label: 'Name',
-          description: 'Please enter your name'
-        }
-      ]
+      components: [{ ...component }]
     }, {
       language: 'es',
       i18n: {
@@ -56,6 +56,26 @@ describe('field translations', () => {
     const label = form.element.querySelector('label:not(.control-label--hidden)')
     expect(label.textContent.trim()).toEqual('Nombre')
 
+    destroyForm(form)
+  })
+
+  it('finds translations in component properties', async () => {
+    const form = await createForm({
+      components: [
+        {
+          properties: {
+            'de:label': 'der Name'
+          },
+          ...component
+        }
+      ]
+    }, {
+      language: 'de'
+    })
+
+    expect(form.i18next.language).toEqual('de')
+    const label = form.element.querySelector('label:not(.control-label--hidden)')
+    expect(label.textContent.trim()).toEqual('der Name')
     destroyForm(form)
   })
 
