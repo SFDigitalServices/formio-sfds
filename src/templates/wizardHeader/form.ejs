@@ -9,21 +9,26 @@
 
   <ul class="nav-list mt-2 mb-0 mx-0 p-0">
     {% ctx.panels.forEach(function(panel, index) { %}
-
-      {% const completed = index < ctx.currentPage %}
-      {% const active = index === ctx.currentPage %}
-
       {% if (panel.properties.hideFromNavigation !== "false") { %}
-        {% const color = active || completed ? 'slate' : 'inherit' %}
-        {% const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}` %}
-        <li class="mb-1 d-flex flex-items-start" {% if (active) { %} aria-current="page" {% } %}>
-          <span class="fg-{{ active ? color : 'none' }}" data-icon="square"></span>
+        {%
+          const completed = index < ctx.currentPage
+          const active = index === ctx.currentPage
+          const enabled = active || completed || ctx.options.unlockNavigation
+          const color = active || completed ? 'fg-slate' : 'fg-inherit'
+          const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
+        %}
+        <li class="mb-1 d-flex flex-items-start">
+          <span class="{{ active ? color : 'fg-none' }}" data-icon="square"></span>
           <button
-            class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-{{ color }} {{ style }}"
-            {% if (completed || ctx.options.unlockNavigation) { %}
-              ref="{{ ctx.wizardKey }}-link"
+            class="btn-link flex-auto align-left m-0 pl-1 py-0 {{ color }} {{ style }}"
+            {% if (active) { %}
+              aria-current="page"
             {% } %}
-          >
+            {% if (enabled) { %}
+              ref="{{ ctx.wizardKey }}-link"
+            {% } else { %}
+              disabled
+            {% } %}>
             {{
               ctx.t([
                 `${panel.key}.displayTitle`,
