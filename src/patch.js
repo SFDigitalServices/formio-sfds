@@ -252,10 +252,18 @@ function patchLanguageObserver () {
   return observer
 }
 
-function updateLanguage (form) {
+async function updateLanguage (form) {
   const closestLangElement = form.element.closest('[lang]:not([class*=sfgov-translate-lang-])')
   if (closestLangElement) {
-    form.language = closestLangElement.getAttribute('lang')
+    const lang = closestLangElement.getAttribute('lang')
+    const currentLang = form.language || form.i18next.language
+    if (currentLang === lang) {
+      await form.redraw()
+      return lang
+    } else {
+      await (form.language = lang)
+      return lang
+    }
   }
 }
 
