@@ -46,6 +46,15 @@ describe('form localization', () => {
       destroyForm(form)
       document.documentElement.removeAttribute('lang')
     })
+
+    it('allows "language" option to override DOM lang', async () => {
+      const lang = 'es'
+      document.documentElement.setAttribute('lang', 'en')
+      const form = await createForm({}, { language: lang })
+      expect(form.options.language).toEqual(lang)
+      destroyForm(form)
+      document.documentElement.removeAttribute('lang')
+    })
   })
 
   describe('"i18n" option', () => {
