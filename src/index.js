@@ -8,12 +8,21 @@ const framework = 'sfds'
 
 const plugin = {
   framework,
-  version,
   components,
+  options: {},
   templates: {
     [framework]: templates
   }
 }
+
+Object.defineProperty(plugin, 'version', {
+  // Formio complains about the "version" key if
+  // the property is enumerable :shrug:
+  enumerable: false,
+  get () {
+    return version
+  }
+})
 
 export default plugin
 export { patch }

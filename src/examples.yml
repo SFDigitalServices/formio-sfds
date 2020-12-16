@@ -1,3 +1,7 @@
+- id: shared-components
+  title: Shared components
+  form: https://sfds.form.io/sharedcomponents
+
 - id: single-file
   title: Single file upload
   form:

@@ -219,7 +219,6 @@ function patch (Formio) {
         }
       }
 
-      updateLanguage(form)
       forms.push(form)
 
       return form
