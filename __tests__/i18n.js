@@ -47,7 +47,7 @@ describe('form localization', () => {
       document.documentElement.removeAttribute('lang')
     })
 
-    it('allows "language" option to override DOM lang', async () => {
+    it('prioritizes "language" option over DOM lang', async () => {
       const lang = 'es'
       document.documentElement.setAttribute('lang', 'en')
       const form = await createForm({}, { language: lang })
