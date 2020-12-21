@@ -1,7 +1,8 @@
+import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
-import loadTranslations from './i18n/load'
+import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
 import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
@@ -29,8 +30,10 @@ const defaultEvalContext = {
     const { type, key = type } = component
     return key ? this.t([
       `${key}.${field}`,
+      // this is the "legacy" naming scheme
       `${key}_${field}`,
-      component[field] || defaultValue || ''
+      `component.${type}.${field}`,
+      dot.get(component, field) || defaultValue || ''
     ]) : defaultValue
   },
 
@@ -39,16 +42,14 @@ const defaultEvalContext = {
   }
 }
 
-let util
-const forms = []
+const { FormioUtils } = window
+
+export const forms = []
 
 export default Formio => {
   if (Formio[PATCHED]) {
     return
   }
-
-  const { FormioUtils } = window
-  util = FormioUtils
 
   patch(Formio)
   Formio[PATCHED] = true
@@ -163,6 +164,9 @@ function patch (Formio) {
       if (opts.disableConditionals) {
         disableConditionals(model.components)
       }
+
+      loadEmbeddedTranslations(model, form.i18next)
+
       patchSelectMode(model)
       form.form = model
 
@@ -215,7 +219,6 @@ function patch (Formio) {
         }
       }
 
-      updateLanguage(form)
       forms.push(form)
 
       return form
@@ -224,7 +227,7 @@ function patch (Formio) {
 }
 
 function patchSelectMode (model) {
-  const selects = util.searchComponents(model.components, { type: 'select' })
+  const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
     if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
@@ -252,10 +255,18 @@ function patchLanguageObserver () {
   return observer
 }
 
-function updateLanguage (form) {
+async function updateLanguage (form) {
   const closestLangElement = form.element.closest('[lang]:not([class*=sfgov-translate-lang-])')
   if (closestLangElement) {
-    form.language = closestLangElement.getAttribute('lang')
+    const lang = closestLangElement.getAttribute('lang')
+    const currentLang = form.language || form.i18next.language
+    if (currentLang === lang) {
+      await form.redraw()
+      return lang
+    } else {
+      await (form.language = lang)
+      return lang
+    }
   }
 }
 
@@ -358,7 +369,7 @@ function scrollToTop () {
 }
 
 function disableConditionals (components) {
-  util.eachComponent(components, comp => {
+  FormioUtils.eachComponent(components, comp => {
     comp.properties.conditional = comp.conditional
     comp.conditional = {}
   })

@@ -1,7 +1,14 @@
 import { mergeObjects } from '../utils'
 import { fallbackCSS, tryParse } from './utils'
 
-const { Event, Formio } = window
+const {
+  customElements,
+  Event,
+  Formio,
+  FormioSFDS,
+  HTMLElement,
+  Promise
+} = window
 
 const defaultOptions = {
   display: 'form',
@@ -9,13 +16,13 @@ const defaultOptions = {
   language: 'en'
 }
 
-export default class SFGovForm extends window.HTMLElement {
+export default class SFGovForm extends HTMLElement {
   static get elementName () {
     return 'sfgov-form'
   }
 
   static register () {
-    window.customElements.define(SFGovForm.elementName, SFGovForm)
+    customElements.define(SFGovForm.elementName, SFGovForm)
   }
 
   constructor () {
@@ -32,7 +39,8 @@ export default class SFGovForm extends window.HTMLElement {
     return mergeObjects(
       {},
       defaultOptions,
-      optionString ? tryParse(optionString) : {},
+      FormioSFDS.options,
+      optionString && tryParse(optionString),
       this.otherOptions
     )
   }
@@ -56,10 +64,17 @@ export default class SFGovForm extends window.HTMLElement {
 
   connectedCallback () {
     const data = this.formData
-    const options = this.options
-    Formio.createForm(this, data, options)
-      .then(form => {
+    const { options } = this
+
+    this.created = Formio.createForm(this, data, options)
+      .then(async form => {
         this.form = form
+        if (options.example?.submit) {
+          await form.submit()
+            .catch(error => {
+              this.dispatchEvent(new Event('form:error', { error }))
+            })
+        }
         this.dispatchEvent(new Event('form:ready', { form }))
         this._resolve(form)
       })
