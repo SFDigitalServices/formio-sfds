@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "The Form.io theme for sf.gov",
   "module": "src/index.js",
   "browser": "dist/formio-sfds.standalone.js",
