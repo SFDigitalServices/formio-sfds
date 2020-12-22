@@ -1,8 +1,8 @@
 {% const { properties = {} } = ctx.options %}
-<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate mb-4 mb-md-0">
+<nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate mb-4 mb-md-0 ml-md-3">
 
   <div data-toggle-container>
-    <div data-toggle-trigger class="small d-md-none bg-dark-blue border-0 fg-white round-1">
+    <div aria-expanded="true" aria-controls="nav-content" id="nav-accordion" class="small d-md-none bg-dark-blue border-0 fg-white round-1">
       <div class="d-flex">
         <div class="flex-auto" style="width:100%">Sections</div>
         <div>
@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div data-toggle-content class="p-md-0">
+    <div aria-labeledby="nav-accordion" id="nav-content" class="p-md-0">
       {% if (properties.backURL) { %}
         <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
           {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}

@@ -62,7 +62,6 @@ export default Formio => {
   patchLanguageObserver()
 
   // toggles
-  util.wizNavUsed = false;
   toggleComponent()
 }
 
@@ -181,15 +180,13 @@ function patch (Formio) {
       if (opts.scroll !== false) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
-        form.on('prevPage', () => {
-          element.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
-        })
+        form.on('prevPage', () => { doToggle(element) })
         form.on('nextPage', () => { 
           warnBeforeLeaving = true
-          element.querySelector('nav [data-toggle-container]').removeAttribute('data-toggle-show')
+          doToggle(element)
         })
         form.on('wizardNavigationClicked', () => { 
-          util.wizNavUsed = true;
+          doToggle(element, true)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
@@ -391,19 +388,29 @@ function userIsTranslating (opts) {
 function toggleComponent() {
   observe('[data-toggle-container]', {
     add(el) {
-      // special behavior for wizard nav
-      if (util.wizNavUsed) {
-        el.setAttribute('data-toggle-show', '')
-      }
+      const ariaControl = el.querySelector('[aria-controls]')
 
-      // standard toggle behavior
-      el.querySelector('[data-toggle-trigger]').addEventListener('click', () => {
-        if(el.hasAttribute('data-toggle-show')) {
-          el.removeAttribute('data-toggle-show')
-        } else {
-          el.setAttribute('data-toggle-show', '')
+      ariaControl.addEventListener('click', (event) => {        
+        if (ariaControl.hasAttribute('aria-expanded')) {
+          const expanded = ariaControl.getAttribute('aria-expanded')
+          expanded === 'true' ? doToggle(el) : doToggle(el, true)
         }
       })
     }
   })
+}
+
+function doToggle(element, show = false) {
+  const toggler = element.hasAttribute('data-toggle-container') ? element : element.querySelector('[data-toggle-container]')
+  if (toggler) {
+    const ariaControl = toggler.querySelector('[aria-controls]')
+    const content = document.getElementById(ariaControl.getAttribute('aria-controls'));
+    if (show) {
+      ariaControl.setAttribute('aria-expanded', 'true')
+      content.style.display = 'block'
+    } else {
+      ariaControl.setAttribute('aria-expanded', 'false')
+      content.style.display = 'none'
+    }
+  }
 }
