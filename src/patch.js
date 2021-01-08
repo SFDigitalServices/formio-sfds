@@ -393,7 +393,7 @@ function toggleComponent() {
       ariaControl.addEventListener('click', (event) => {        
         if (ariaControl.hasAttribute('aria-expanded')) {
           const expanded = ariaControl.getAttribute('aria-expanded')
-          expanded === 'true' ? doToggle(el) : doToggle(el, true)
+          doToggle(el, expanded !== 'true')
         }
       })
     }
@@ -407,10 +407,10 @@ function doToggle(element, show = false) {
     const content = document.getElementById(ariaControl.getAttribute('aria-controls'));
     if (show) {
       ariaControl.setAttribute('aria-expanded', 'true')
-      content.style.display = 'block'
+      content.hidden = false
     } else {
       ariaControl.setAttribute('aria-expanded', 'false')
-      content.style.display = 'none'
+      content.hidden = true
     }
   }
 }
