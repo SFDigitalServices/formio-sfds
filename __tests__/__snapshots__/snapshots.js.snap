@@ -1814,7 +1814,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   <span data-width="10"
                         data-icon="square"
                         style="margin: 2px 0 0 -.25em"
-                        class="fg-slate notranslate"
+                        class="fg-slate flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1841,7 +1841,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   <span data-width="10"
                         data-icon="square"
                         style="margin: 2px 0 0 -.25em"
-                        class="fg-grey-4 notranslate"
+                        class="fg-grey-4 flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1957,7 +1957,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   <span data-width="10"
                         data-icon="square"
                         style="margin: 2px 0 0 -.25em"
-                        class="fg-slate notranslate"
+                        class="fg-slate flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1984,7 +1984,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   <span data-width="10"
                         data-icon="square"
                         style="margin: 2px 0 0 -.25em"
-                        class="fg-grey-4 notranslate"
+                        class="fg-grey-4 flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
