@@ -1,5 +1,5 @@
 import components from './components'
-import patch from './patch'
+import patch, { forms } from './patch'
 import templates from './templates'
 import { observeIcons } from './icons'
 import { version } from '../package.json'
@@ -10,6 +10,7 @@ const plugin = {
   framework,
   components,
   options: {},
+  forms,
   templates: {
     [framework]: templates
   }
