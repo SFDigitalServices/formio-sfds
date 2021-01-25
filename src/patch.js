@@ -241,7 +241,7 @@ function patchSelectMode (model) {
 }
 
 function patchValidateOnBlur (model) {
-  util.eachComponent(model.components, component => {
+  FormioUtils.eachComponent(model.components, component => {
     if (component.validateOn === 'change' && !component.properties?.validateOn) {
       component.validateOn = 'blur'
     }
