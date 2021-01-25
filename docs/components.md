@@ -1,3 +1,7 @@
+---
+title: Components
+---
+
 ## Components
 
 This theme introduces several custom Formio components. There are two different

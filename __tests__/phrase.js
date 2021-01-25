@@ -1,6 +1,7 @@
 /* eslint-env jest */
-import Phrase, { I18N_SERVICE_URL } from '../src/phrase'
-import loadTranslations from '../src/i18n/load'
+import Phrase from '../src/phrase'
+import { I18N_SERVICE_URL } from '../src/constants'
+import { loadTranslations } from '../src/i18n/load'
 import patch from '../src/patch'
 import { createForm, destroyForm } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'
@@ -70,8 +71,8 @@ describe('Phrase helpers', () => {
       expect(phrase.formatKey(['foo', 'Foo!'])).toEqual('[[__phrase_foo__]]')
     })
 
-    it('returns an empty string (" ") if given an array with an empty last value', () => {
-      expect(phrase.formatKey(['foo', ''])).toEqual(' ')
+    it('returns an empty string if given an array with an empty last value', () => {
+      expect(phrase.formatKey(['foo', ''])).toEqual('')
     })
 
     it('respects the "context" option', () => {
@@ -102,7 +103,7 @@ describe('Phrase helpers', () => {
         }
       }))
 
-      await phrase.loadTranslations()
+      await phrase.load(loadTranslations)
 
       expect(phrase.reverseLookup.has('Hello')).toBe(true)
       expect(phrase.t('Hello')).toEqual('[[__phrase_greeting__]]')

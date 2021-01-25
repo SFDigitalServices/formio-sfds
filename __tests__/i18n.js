@@ -1,5 +1,118 @@
 /* eslint-env jest */
+import patch from '../src/patch'
 import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
+import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
+import { loadTranslations } from '../src/i18n/load'
+import defaultTranslations from '../src/i18n'
+
+jest.mock('../src/i18n/load')
+
+const SENTINEL_I18N_KEY = 'derp'
+const SENTINEL_I18N_VALUE = 'DERP!'
+defaultTranslations.en[SENTINEL_I18N_KEY] = SENTINEL_I18N_VALUE
+
+const { Formio } = window
+patch(Formio)
+
+describe('form localization', () => {
+  describe('i18next.t() fallback support', () => {
+    it('works with multiple fallback keys in an array', async () => {
+      const form = await createForm()
+      expect(form.t(['bleep.bloop', 'blurp'])).toEqual('blurp')
+    })
+  })
+
+  describe('"language" option', () => {
+    it('defaults to "en" if none is provided', async () => {
+      const form = await createForm()
+      expect(form.options.language).toEqual('en')
+      destroyForm(form)
+    })
+
+    it('uses element.lang if present', async () => {
+      const lang = 'es'
+      const el = createElement('div', { lang })
+      document.body.appendChild(el)
+      const form = await Formio.createForm(el, {})
+      expect(form.options.language).toEqual(lang)
+      destroyForm(form)
+    })
+
+    it('uses document.documentElement.lang if present', async () => {
+      const lang = 'es'
+      document.documentElement.setAttribute('lang', lang)
+      const form = await createForm()
+      expect(form.options.language).toEqual(lang)
+      destroyForm(form)
+      document.documentElement.removeAttribute('lang')
+    })
+
+    it('prioritizes "language" option over DOM lang', async () => {
+      const lang = 'es'
+      document.documentElement.setAttribute('lang', 'en')
+      const form = await createForm({}, { language: lang })
+      expect(form.options.language).toEqual(lang)
+      destroyForm(form)
+      document.documentElement.removeAttribute('lang')
+    })
+  })
+
+  describe('"i18n" option', () => {
+    const mockUrl = 'http://my-translations.example.app'
+    it('gets the default translations with no "i18n" option', async () => {
+      const form = await createForm()
+      expect(form.t(SENTINEL_I18N_KEY)).toEqual(SENTINEL_I18N_VALUE)
+      destroyForm(form)
+    })
+
+    it('fetches translations from the URL if provided a string', async () => {
+      loadTranslations.mockImplementationOnce(() => ({
+        es: {
+          hello: 'hola'
+        }
+      }))
+      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
+      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
+      expect(form.t('hello')).toEqual('hola')
+      destroyForm(form)
+    })
+
+    it('fails gracefully if translations fail to load', async () => {
+      loadTranslations.mockImplementationOnce(() => {
+        throw new Error('eeeek')
+      })
+      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
+      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
+      destroyForm(form)
+    })
+
+    it('fails gracefully if translation data is malformed', async () => {
+      loadTranslations.mockImplementationOnce(() => 'lolwut')
+      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
+      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
+      destroyForm(form)
+    })
+  })
+
+  describe('machine translation', () => {
+    it('disables machine translation if "googleTranslate" === false', async () => {
+      const form = await createForm({}, { googleTranslate: false })
+      expect(form.element.getAttribute('translate')).toEqual('no')
+      expect(Array.from(form.element.classList)).toContain('notranslate')
+      destroyForm(form)
+    })
+
+    it('disables machine translation on .flatpickr-calendar elements', async () => {
+      const el = createElement('div', { class: 'flatpickr-calendar' })
+      document.body.appendChild(el)
+      // selector-observer is async, so we need to wait a bit
+      await sleep(50)
+      expect(el.getAttribute('translate')).toEqual('no')
+      expect(Array.from(el.classList)).toContain('notranslate')
+      el.remove()
+    })
+  })
+})
 
 describe('i18n extraction', () => {
   describe('UIString', () => {
@@ -252,48 +365,33 @@ describe('i18n extraction', () => {
         expect(strings[0].key).toBe('yo.validate.customMessage')
         expect(strings[0].value).toBe('This is wrong')
       })
+    })
 
-      describe('possible strings in component.validate.custom', () => {
-        function testValidateCustom (value, expectedStrings) {
-          const strings = getStrings({
-            components: [
-              {
-                key: 'yo',
-                validate: {
-                  custom: value
-                }
+    describe('errors map', () => {
+      it('gets a string for each non-empty key/value in component.errors', () => {
+        const strings = getStrings({
+          components: [
+            {
+              key: 'a',
+              errors: {
+                required: 'A is required!',
+                pattern: ''
               }
-            ]
-          })
-
-          expect(strings).toHaveLength(expectedStrings.length)
-          for (const [i, { key, value, context }] of Object.entries(expectedStrings)) {
-            expect(strings[i].key).toBe(key)
-            expect(strings[i].value).toBe(value)
-            expect(strings[i].context).toBe(context)
-          }
-        }
-
-        it('finds a string in double quotes', () => {
-          testValidateCustom('valid = "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
+            },
+            {
+              key: 'b',
+              errors: {
+                pattern: 'B must match the pattern'
+              }
+            }
+          ]
         })
 
-        it('finds a string in single quotes', () => {
-          testValidateCustom('valid = "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-        })
-
-        it('ignores quoted property accessors', () => {
-          testValidateCustom('valid = data["wut"] || "Nope"', [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-          testValidateCustom("valid = data['wut'] || 'Nope'", [
-            { key: 'Nope', value: 'Nope', context: 'yo.validate.custom' }
-          ])
-        })
+        expect(strings).toHaveLength(2)
+        expect(strings[0].key).toBe('a.errors.required')
+        expect(strings[0].value).toBe('A is required!')
+        expect(strings[1].key).toBe('b.errors.pattern')
+        expect(strings[1].value).toBe('B must match the pattern')
       })
     })
 
@@ -310,6 +408,42 @@ describe('i18n extraction', () => {
         expect(strings).toHaveLength(1)
         expect(strings[0].key).toBe('a.customError')
         expect(strings[0].value).toBe('Custom error')
+      })
+    })
+
+    describe('properties.displayTitle -> displayTitle mapping', () => {
+      it('maps component.properites.displayTitle to "displayTitle" for panels', () => {
+        const strings = getStrings({
+          components: [
+            {
+              type: 'panel',
+              key: 'page1',
+              properties: {
+                displayTitle: 'Display title'
+              }
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(1)
+        expect(strings[0].key).toBe('page1.displayTitle')
+        expect(strings[0].value).toBe('Display title')
+      })
+
+      it('does *not* map component.properites.displayTitle for non-panels', () => {
+        const strings = getStrings({
+          components: [
+            {
+              type: 'textfield',
+              key: 'name',
+              properties: {
+                displayTitle: 'Name'
+              }
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(0)
       })
     })
 

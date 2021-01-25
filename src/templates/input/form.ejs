@@ -1,6 +1,8 @@
 {%
-  const prefix = ctx.prefix instanceof HTMLElement ? ctx.prefix.outerHTML : ctx.prefix || ''
-  const suffix = ctx.suffix instanceof HTMLElement ? ctx.suffix.outerHTML : ctx.suffix || ''
+  let prefix = ctx.tk('prefix') || ctx.prefix
+  if (prefix instanceof HTMLElement) prefix = prefix.outerHTML
+  let suffix = ctx.tk('suffix') || ctx.suffix
+  if (suffix instanceof HTMLElement) suffix = suffix.outerHTML
 %}
 {% if (prefix || suffix) { %}
   <div class="input-group">
@@ -9,7 +11,7 @@
 {% if (prefix) { %}
   <div class="input-group-prepend" ref="prefix">
     <span class="input-group-text">
-      {{ prefix = ctx.t([`${ctx.component.key}.prefix`, `${ctx.component.key}_prefix`, prefix]) }}
+      {{ prefix }}
     </span>
   </div>
 {% } %}
@@ -36,7 +38,7 @@
 {% if (suffix) { %}
   <div class="input-group-append" ref="suffix">
     <span class="input-group-text">
-      {{ ctx.t([`${ctx.component.key}.suffix`, `${ctx.component.key}_suffix`, suffix]) }}
+      {{ suffix }}
     </span>
   </div>
 {% } %}

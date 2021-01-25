@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+const { writeFileSync } = require('fs')
+const { STATES_AND_TERRITORIES } = require('us')
+
+const states = STATES_AND_TERRITORIES
+  .map(({ name, abbr }) => ({ label: name, value: abbr }))
+
+const json = JSON.stringify(states, null, 2)
+writeFileSync('data/states.json', json, 'utf8')

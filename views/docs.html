@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{{ page.title }} | formio-sfds documentation</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="/dist/common.css">
+    <link rel="stylesheet" href="https://unpkg.com/highlight.js/styles/github.css">
+    <style type="text/css">
+      .h-1em { height: 1em !important; }
+
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        position: relative;
+      }
+
+      main p {
+        margin: 0;
+      }
+
+      main p + p {
+        margin-top: 20px;
+      }
+
+      a[aria-hidden="true"] {
+        position: absolute;
+        right: 100%;
+        font-weight: normal;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="formio-sfds">
+      <div class="container p-2">
+        <h1 class="h3 mb-4">
+          <a href="/">formio-sfds@{{ pkg.version }}</a> /
+          {% if page.path == 'README.md' %}
+            {{ page.title }}
+          {% else %}
+            <a href="/docs/">Docs</a> /
+            {{ page.title }}
+          {% endif %}
+        </h1>
+
+        <main>
+          {{ content }}
+        </main>
+
+        <div class="bg-grey-1 p-2 round-1 mt-4 d-flex flex-justify-between">
+          <div class="mr-2">
+            <a href="https://github.com/{{ pkg.repository }}/edit/{{ git.ref }}/{{ page.path }}">
+              Edit this page on GitHub
+            </a>
+          </div>
+          <div>
+            Last <a href="https://github.com/{{ pkg.repository }}/commit/{{ git.sha }}">edited</a> by
+            <a href="https://github.com/{{ git.author.login }}">{{ git.author.login }}</a>
+          </div>
+        </div>
+
+        {% if debug %}
+          <details>
+            <summary>Parsed markdown</summary>
+            <pre class="p-2 round-1 bg-grey-1">{{ parsed | dump(2) | e }}</pre>
+          </details>
+        {% endif %}
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/formiojs@{{ pkg.dependencies.formiojs }}/dist/formio.full.min.js"></script>
+    <script src="/dist/formio-sfds.standalone.js"></script>
+    <script>
+      // fix images with height attributes that get
+      // `height: auto` from drupal.css
+      for (const img of document.querySelectorAll('img[height]')) {
+        img.setAttribute('style', `height: ${img.getAttribute('height')}px;`)
+      }
+    </script>
+  </body>
+</html>

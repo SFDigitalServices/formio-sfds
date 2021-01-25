@@ -1,6 +1,6 @@
 <div class="form-checkbox">
   <label class="d-flex flex-items-center fs-inherit fg-inherit">
-    <div class="flex-shrink-0 flex-self-start">
+    <span class="flex-shrink-0 flex-self-start">
       <{{ ctx.input.type }}
         class="input-checkbox position-relative d-block mr-2 mb-0"
         ref="input"
@@ -8,17 +8,22 @@
           {{attr}}="{{ctx.input.attr[attr]}}"
         {% } %}
         value="{{ ctx.value }}"
-        {% if (ctx.checked) { %}checked{% } %}
+        {% if (ctx.checked) { %}
+          checked
+        {% } %}
       >
-    </div>
-    <div class="flex-auto">
+    </span>
+    <span class="flex-auto">
       <span class="label-required">
-        {{ ctx.t([`${ctx.component.key}.label`, `${ctx.component.key}_label`, ctx.input.label]) }}
+        {{ ctx.tk('label') }}
       </span>
-      {% var description = ctx.t([`${ctx.component.key}.description`, `${ctx.component.key}_description`, ctx.component.tooltip]) %}
-      {% if (description) { %}
-        <div class="field-description small mt-1">{{ description }}</div>
+
+      {% const desc = ctx.tk('description') %}
+      {% if (desc) { %}
+        <span class="d-block fg-light-slate small">
+          {{ desc }}
+        </span>
       {% } %}
-    </div>
+    </span>
   </label>
 </div>

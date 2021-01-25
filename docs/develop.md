@@ -1,3 +1,7 @@
+---
+title: Development
+---
+
 # Development
 
 ## Workflow
@@ -5,9 +9,10 @@
 1. [Set up your local development environment](#setup)
 2. Make some changes and push to a new branch
 3. [Open a pull request](https://github.com/SFDigitalServices/formio-sfds/compare?expand=1)
-4. Wait for status checks to pass and use the [published version](#publishing)
+4. [Test your form](#proxy-testing)
+5. Wait for status checks to pass and use the [published version](#publishing)
    in your form on sf.gov
-5. Get your pull request reviewed and bump the package version by either:
+6. Get your pull request reviewed and bump the package version by either:
     - running `script/version <version|patch|minor|major>` and pushing the commit(s), or
     - merging your pull request into a release branch
 
@@ -30,18 +35,19 @@ available scripts, most notably:
   `NODE_ENV=production npm run build` to build minified assets
 
 ### Local testing
-There are a collection of HTML documents in the repo root that you can use to
-test the theme against different form.io data and scenarios:
+There are a collection of HTML documents that power "views" in the Vercel app
+deployment, and which you can use to test the theme against different form.io
+data and scenarios:
 
-- [index.html](../index.html) is the "kitchen sink" demo, which renders a
-  separate form for each example described in
-  [examples.yml](../src/examples.yml). The schema is an array of example
-  objects, each of which should conform to the [form.io form schema] and
-  provide an additional, unique `id` property that allows you to deep-link to
-  it on the page.
+- [index.html](../views/index.html) is the home page of the Vercel deployment,
+  and renders each example defined in [examples.yml](../src/examples.yml).
 
-- [standalone.html](../standalone.html) is for testing the "standalone" JS
-  bundle against the latest version of [formiojs] and a snapshot of CSS from
+  The schema is an array of example objects, each of which should conform to
+  the [form.io form schema] and provide an additional, unique `id` property
+  that allows you to deep-link to it on the page.
+
+- [standalone.html](../views/standalone.html) is for testing the "standalone"
+  JS bundle against the latest version of [formiojs] and a snapshot of CSS from
   [sf.gov]. It respects the following query string parameters:
 
   - `res` overrides the default resource or form URL so that you can test it
@@ -53,26 +59,54 @@ test the theme against different form.io data and scenarios:
   - `hooks` can be used to pass [declarative hooks] that
     modify form behavior.
 
-- [hooks.html](../hooks.html) is geared toward testing [declarative hooks], and
-  without any query string parameters renders a form that validates SF employee
-  DSW numbers using an external web service, then passes submission data via
-  the query string to the `on.submit.redirect.url`.
+- [portal.html](../views/portal.html) is where you can test the "portal"
+  bundle, which we add as a custom script on [form.io](https://form.io) to
+  modify the form builder UI.
 
-  This page also includes a textarea containing JSON that can be copied and
-  pasted into the sf.gov form page editing UI to publish forms that follow the
-  same logic, which works well with query string parameters:
+- [example.htm](../views/example.html) is used to render an isolated test case
+  for each example in [examples.yml](../src/examples.yml). These are linked to
+  in the heading of each example rendered on the home page.
 
-  - `res` overrides the default resource or form URL so that you can test it
-    with live forms. E.g. `?res=https://sfds.form.io/some-other-form`
+### Proxy testing
+The deployed app includes a serverless API endpoint that proxies sf.gov,
+modifies the HTML, then returns it to the browser, effectively "injecting"
+whatever version of formio-sfds you want _into_ sf.gov (or the Pantheon test
+environment). Here's how it works:
 
-  - `on` can be used to specify a JSON payload for
-  [declarative event listeners][declarative hooks], e.g.
+1. Visit the Vercel deployment's
+   [/api/preview](https://formio-sfds.vercel.app/api/preview) endpoint. By
+   default, this will fetch [sf.gov/feedback](https://sf.gov/feedback) and
+   replace whatever version of formio-sfds it's running with the bundle built
+   with your deployment. (On the production Vercel deployment, this is the
+   [latest release](https://github.com/SFDigitalServices/formio-sfds/releases).)
 
-    ```
-    ?on={"submit":{"redirect":{"url":"javascript:alert('hi!')"}}}
-    ```
+2. Change the query string parameters to modify the preview by appending a `?`
+   and one or more of the following, separated with `&`:
 
-  - `hooks` overrides the [declarative hooks] example with JSON, just like `on`.
+    - `form=<url>` sets the form.io data source URL of the rendered form
+    - `options=<json>` sets the formio.js render options JSON
+    - `version=<semver>` changes the published version of formio-sfds, rather
+      than using the bundle built by the Vercel deployment
+    - `env=<env>` changes the name of the sf.gov environment from the default
+      (sf.gov). `env=test` will set the hostname to the test environment.
+    - `path=<path>` changes the request path from `/feedback`, so that you can
+      test other pages on sf.gov that might have forms embedded on them.
+
+    Some examples:
+
+    - `/api/preview` (without any query string parameters) renders the
+      [sf.gov feedback form](https://sf.gov/feedback) with the local build of
+      formio-sfds.
+
+    - `/api/preview?version=6.0.0&path=/node/1061` fetches
+      [sf.gov/node/1061](https://sf.gov/node/1061) and renders it with
+      [formio-sfds@6.0.0](http://unpkg.com/formio-sfds@6.0.0/)
+
+    - `/api/preview?form=https://sfds-test.form.io/shawntest1` renders a test
+      form on sf.gov with the local build of formio-sfds.
+
+    - `/api/preview?options={"i18n":"..."}` can be used to render the feedback
+      form with a different set of translations.
 
 ## Publishing
 This repo uses [primer/publish] to publish new releases of the `formio-sfds`
@@ -100,16 +134,16 @@ on the status icon of the most recent commit:
 | Branch tree view | ![image](https://user-images.githubusercontent.com/113896/80157168-6b3ebf00-857a-11ea-9563-47e41985da39.png)
 
 ### unpkg
-We use [unpkg] as our CDN. As soon as a release is published, you can access it
-on unpkg.com via the version's unique URL:
+We use [unpkg] as our CDN. You can access every release published on npm via the version's unique URL:
 
 ```
 https://unpkg.com/formio-sfds@<version>/
 ```
 
 The trailing slash allows you to browse the published package file hierarchy.
-From there you can navigate to any of the HTML files and then click the <kbd>View
-Raw</kbd> link to render the examples live.
+Previously, our example and test pages were "hosted" as raw HTML from these URLs,
+but you should view them [on the Vercel deployment](https://formio-sfds.vercel.app)
+instead.
 
 **Note:** unpkg.com will strip the query string from any URL you give it, but
 query string parameters can be passed to those URLs (once, on load) via the

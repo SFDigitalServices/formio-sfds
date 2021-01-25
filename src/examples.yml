@@ -1,3 +1,7 @@
+- id: shared-components
+  title: Shared components
+  form: https://sfds.form.io/sharedcomponents
+
 - id: single-file
   title: Single file upload
   form:
@@ -126,6 +130,23 @@
         description: This is the description
         tooltip: And this is the tooltip
 
+- id: fieldset-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: well
+        components:
+          - type: fieldset
+            legend: This is the fieldset legend
+            description: This is the fieldset description
+            components:
+              - type: textfield
+                key: name
+                label: Your name
+              - type: number
+                key: age
+                label: Your age
+
 - id: review
   title: Review (custom component)
   options:
@@ -253,6 +274,97 @@
         description: This is the description
         enableDate: false
 
+- id: well
+  title: Well
+  form:
+    components:
+      - type: well
+        label: This is a well
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
+
+- id: fieldset
+  title: Fieldset
+  form:
+    components:
+      - type: fieldset
+        legend: The fieldset legend
+        description: This fieldset description
+        components:
+          - type: textfield
+            label: A text field
+            key: some-text-field
+          - type: number
+            label: A number field
+            key: numero
+          - type: textarea
+            label: A text area field
+            key: textarea
+            value: ''
+          - type: checkbox
+            label: A checkbox
+            description: The checkbox description
+          - type: select
+            label: Select field
+            data:
+              values:
+                - label: Option 1
+                  value: 1
+                - label: Option 2
+                  value: 2
+
+- id: fieldset-in-well
+  title: Fieldset in a well
+  form:
+    components:
+      - type: well
+        label: The well label
+        components:
+          - type: fieldset
+            legend: The fieldset legend
+            description: The fieldset description
+            components:
+              - type: textfield
+                label: A text field
+                key: some-text-field
+              - type: number
+                label: A number field
+                key: numero
+              - type: textarea
+                label: A text area field
+                key: textarea
+                value: ''
+              - type: checkbox
+                label: A checkbox
+                description: The checkbox description
+              - type: select
+                label: Select field
+                data:
+                  values:
+                    - label: Option 1
+                      value: 1
+                    - label: Option 2
+                      value: 2
 
 - id: kitchen-sink
   title: Kitchen sink
@@ -260,14 +372,19 @@
     components:
       - type: textfield
         label: A text field
+        description: The description
       - type: number
         label: A number field
+        description: The description
       - type: textarea
         label: A text area field
+        description: The description
       - type: checkbox
         label: A checkbox
+        description: The description
       - type: select
         label: Select field
+        description: The description
         data:
           values:
             - label: Option 1
@@ -276,6 +393,7 @@
               value: 2
       - type: selectboxes
         label: Select boxes
+        description: The description
         values:
           - label: Select box 1
             value: 1
@@ -284,6 +402,7 @@
           - label: Select box 3
             value: 3
       - type: radio
+        description: The description
         values:
           - label: Radio 1
             value: 1
@@ -293,16 +412,132 @@
             value: 3
       - type: button
         label: This is a button
+        description: The description
       - type: email
         label: Email field
+        description: The description
       - type: phoneNumber
         label: Phone number field
+        description: The description
       - type: address
         label: Address field
+        description: The description
       - type: datetime
         label: Datetime field
+        description: The description
       - type: currency
         label: Currency field
+        description: The description
       - type: file
         label: File field
         storage: base64
+        description: The description
+
+- id: error-messages
+  title: Error messages
+  options:
+    example:
+      submit: true
+  form:
+    components:
+
+      - type: fieldset
+        legend: Textfield
+        components:
+          - type: textfield
+            key: textfieldMaxLength
+            label: Max length
+            defaultValue: this is too long
+            validate:
+              maxLength: 10
+          - type: textfield
+            key: textfieldMaxLengthCustom
+            label: Max length + custom message
+            defaultValue: this is too long
+            validate:
+              maxLength: 10
+              customMessage: Custom error message
+          - type: textfield
+            key: textfieldMaxLengthRequired
+            label: Max length (required)
+            defaultValue: this is too long
+            validate:
+              required: true
+              maxLength: 10
+          - type: textfield
+            key: textfieldMaxLengthRequiredCustom
+            label: Max length (required) custom message
+            defaultValue: this is too long
+            validate:
+              required: true
+              maxLength: 10
+              customMessage: Custom error message
+
+      - type: fieldset
+        legend: Email
+        components:
+          - type: email
+            key: emailInvalid
+            label: Email (invalid)
+            defaultValue: not an email
+          - type: email
+            key: emailRequiredInvalid
+            label: Email (invalid + required)
+            defaultValue: not an email
+            validate:
+              required: true
+          - type: email
+            key: emailRequiredInvalidEmpty
+            label: Email (invalid + required, empty)
+            validate:
+              required: true
+
+      - type: fieldset
+        legend: Radio
+        components:
+          - type: radio
+            key: radioRequired
+            label: Radio (required)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+          - type: radio
+            key: radioRequiredCustom
+            label: Radio (required, custom message)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+              customMessage: Please choose an option.
+
+      - type: fieldset
+        legend: Checkboxes (select boxes)
+        components:
+          - type: selectboxes
+            key: selectboxesRequired
+            label: Select boxes (required)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+          - type: selectboxes
+            key: selectboxesRequiredCustom
+            label: Select boxes (required, custom message)
+            values:
+              - label: One option
+                value: 1
+              - label: Another option
+                value: 2
+            validate:
+              required: true
+              customMessage: Please choose an option.

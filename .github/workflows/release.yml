@@ -1,0 +1,53 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        name: Version
+        description: 'The version (or semver identifier, e.g. "patch" or "minor") to release'
+        required: true
+        default: patch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: |
+          npm version --no-git-tag-version "${{ github.event.inputs.version }}"
+          echo "RELEASE_VERSION=$(node -e "console.log(require('./package.json').version)")" >> $GITHUB_ENV
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ github.token }}
+          title: Release ${{ env.RELEASE_VERSION }}
+          branch: release-${{ env.RELEASE_VERSION }}
+          commit-message: bump v${{ env.RELEASE_VERSION }}
+          draft: true
+          body: |
+            **This is a pull request template.** Next steps:
+
+            - [ ] If there are pull requests that you plan to include in this release, list them below and check them off as they're merged.
+            - [ ] When merging pull requests, update the change log entries below.
+            - [ ] Once all of the pull requests are merged, checks pass, and the change log is up to date, mark this pull request as ready for review.
+            - [ ] Delete this checklist! :tada:
+
+            ## Pull requests
+            - [ ] #000 Some pull request
+
+            ### :bomb: Breaking changes
+            - Breaking changes here
+
+            ### :rocket: Features
+            - New features here
+
+            ### :bug: Bug fixes
+            - Bug fixes here
+
+            ### :memo: Documentation
+            - Documentation changes here
+
+            ### :house: Internal
+            - npm, workflow, build, and deployment updates

@@ -1,7 +1,8 @@
+import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
-import loadTranslations from './i18n/load'
+import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
 import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import 'flatpickr/dist/l10n/es'
@@ -12,8 +13,7 @@ import 'flatpickr/dist/l10n/zh-tw'
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
-const { NODE_ENV } = process.env
-const debugDefault = NODE_ENV !== 'test'
+const debugDefault = process.env.NODE_ENV !== 'test'
 
 const defaultEvalContext = {
   inputId () {
@@ -25,21 +25,31 @@ const defaultEvalContext = {
     return parts.join('-')
   },
 
+  tk (field, defaultValue = '') {
+    const { component = {} } = this
+    const { type, key = type } = component
+    return key ? this.t([
+      `${key}.${field}`,
+      // this is the "legacy" naming scheme
+      `${key}_${field}`,
+      `component.${type}.${field}`,
+      dot.get(component, field) || defaultValue || ''
+    ]) : defaultValue
+  },
+
   requiredAttributes () {
     return this.component?.validate?.required ? 'required' : ''
   }
 }
 
-let util
-const forms = []
+const { FormioUtils } = window
+
+export const forms = []
 
 export default Formio => {
   if (Formio[PATCHED]) {
     return
   }
-
-  const { FormioUtils } = window
-  util = FormioUtils
 
   patch(Formio)
   Formio[PATCHED] = true
@@ -108,37 +118,16 @@ function patch (Formio) {
         return form
       }
 
-      if (debug) console.log('SFDS form created!')
+      if (debug) {
+        // console.log('SFDS form created!')
+      }
 
       const phrase = new Phrase(form)
       form.phrase = phrase
 
       let { googleTranslate } = opts
 
-      try {
-        const loaded = await phrase.loadTranslations()
-        if (loaded) {
-          googleTranslate = false
-
-          if (loaded.projectId && userIsTranslating()) {
-            phrase.enableEditor()
-          } else if (debug) {
-            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
-          }
-        }
-      } catch (error) {
-        if (debug) console.warn('Failed to load translations:', error)
-      }
-
-      if (opts.scroll !== false) {
-        form.on('nextPage', scrollToTop)
-        form.on('prevPage', scrollToTop)
-        form.on('nextPage', () => { warnBeforeLeaving = true })
-        form.on('submit', () => { warnBeforeLeaving = false })
-      }
-
       const { element } = form
-
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
 
       if (googleTranslate === false) {
@@ -154,9 +143,30 @@ function patch (Formio) {
         wrapper.appendChild(element)
       }
 
+      try {
+        const loaded = await phrase.load(loadTranslations)
+        if (loaded) {
+          googleTranslate = false
+
+          if (loaded.projectId && userIsTranslating(opts)) {
+            phrase.enableEditor()
+          } else if (debug) {
+            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
+          }
+        }
+      } catch (error) {
+        if (debug) console.warn('Failed to load translations:', error)
+      }
+
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
+      if (opts.disableConditionals) {
+        disableConditionals(model.components)
+      }
+
+      loadEmbeddedTranslations(model, form.i18next)
+
       patchSelectMode(model)
       patchValidateOnBlur(model)
       form.form = model
@@ -167,6 +177,13 @@ function patch (Formio) {
 
       if (opts.data) {
         form.submission = { data: opts.data }
+      }
+
+      if (opts.scroll !== false) {
+        form.on('nextPage', scrollToTop)
+        form.on('prevPage', scrollToTop)
+        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('submit', () => { warnBeforeLeaving = false })
       }
 
       if (opts.prefill) {
@@ -203,7 +220,6 @@ function patch (Formio) {
         }
       }
 
-      updateLanguage(form)
       forms.push(form)
 
       return form
@@ -212,7 +228,7 @@ function patch (Formio) {
 }
 
 function patchSelectMode (model) {
-  const selects = util.searchComponents(model.components, { type: 'select' })
+  const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
   for (const component of selects) {
     if (component.tags && component.tags.includes('autocomplete')) {
       component.customOptions = Object.assign({
@@ -248,10 +264,18 @@ function patchLanguageObserver () {
   return observer
 }
 
-function updateLanguage (form) {
+async function updateLanguage (form) {
   const closestLangElement = form.element.closest('[lang]:not([class*=sfgov-translate-lang-])')
   if (closestLangElement) {
-    form.language = closestLangElement.getAttribute('lang')
+    const lang = closestLangElement.getAttribute('lang')
+    const currentLang = form.language || form.i18next.language
+    if (currentLang === lang) {
+      await form.redraw()
+      return lang
+    } else {
+      await (form.language = lang)
+      return lang
+    }
   }
 }
 
@@ -299,9 +323,13 @@ function patchDateTimeLabels () {
       const { id } = el
       const labelId = `label-${id}`
       const label = el.querySelector(`label[for="input-${id}"]`)
+      if (label) {
+        label.setAttribute('id', labelId)
+      }
       const input = el.querySelector('input.form-control[type=text]')
-      label.setAttribute('id', labelId)
-      input.setAttribute('aria-labelledby', labelId)
+      if (input) {
+        input.setAttribute('aria-labelledby', labelId)
+      }
     }
   })
 }
@@ -349,7 +377,17 @@ function scrollToTop () {
   window.scroll(0, 0)
 }
 
-function userIsTranslating () {
+function disableConditionals (components) {
+  FormioUtils.eachComponent(components, comp => {
+    comp.properties.conditional = comp.conditional
+    comp.conditional = {}
+  })
+}
+
+function userIsTranslating (opts) {
+  if (opts?.translate === true) {
+    return true
+  }
   const uid = window.drupalSettings?.user?.uid
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')

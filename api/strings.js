@@ -9,7 +9,7 @@ const formatters = {
 }
 
 module.exports = (req, res) => {
-  const { formUrl, format = 'debug', ...params } = req.query
+  const { formUrl, format = 'nested', ...params } = req.query
   if (!formUrl) {
     res.json({
       status: 502,

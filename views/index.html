@@ -50,8 +50,8 @@
                       <sfgov-form
                         id="form-{{ ex.id }}"
                         style="width: 100%;"
-                        data-form="{{ ex.form | dump }}"
-                        data-options="{{ ex.options | dump }}">
+                        data-form="{{ ex.form | dump | e }}"
+                        data-options="{{ ex.options | dump | e }}">
                       </sfgov-form>
                     </div>
 

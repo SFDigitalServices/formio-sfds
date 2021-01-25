@@ -1,9 +1,16 @@
 <div class="formio-component formio-component-address round-1 bg-blue-1 p-2">
-  {% var desc = ctx.t([`${ctx.component.key}.description`, `${ctx.component.key}_description`, ctx.component.description]) %}
-  {% if (desc) { %}
-    <p class="description mt-0 mb-1">{{ desc }}</p>
-  {% } %}
-  <div ref="{{ ctx.nestedKey }}">
-    {{ ctx.children }}
-  </div>
+  <fieldset class="formio-nested">
+    {% const desc = ctx.tk('description') %}
+    <legend class="{{ desc ? '' : 'mb-1' }}">
+      {{ ctx.tk('label') }}
+    </legend>
+
+    {% if (desc) { %}
+      <div class="mb-2">{{ desc }}</div>
+    {% } %}
+
+    <div ref="{{ ctx.nestedKey }}">
+      {{ ctx.children }}
+    </div>
+  </fieldset>
 </div>

@@ -1,202 +1,226 @@
 [
   {
-    "name": "Alabama",
-    "code": "AL"
+    "label": "Alabama",
+    "value": "AL"
   },
   {
-    "name": "Alaska",
-    "code": "AK"
+    "label": "Alaska",
+    "value": "AK"
   },
   {
-    "name": "Arizona",
-    "code": "AZ"
+    "label": "American Samoa",
+    "value": "AS"
   },
   {
-    "name": "Arkansas",
-    "code": "AR"
+    "label": "Arizona",
+    "value": "AZ"
   },
   {
-    "name": "California",
-    "code": "CA"
+    "label": "Arkansas",
+    "value": "AR"
   },
   {
-    "name": "Colorado",
-    "code": "CO"
+    "label": "California",
+    "value": "CA"
   },
   {
-    "name": "Connecticut",
-    "code": "CT"
+    "label": "Colorado",
+    "value": "CO"
   },
   {
-    "name": "Delaware",
-    "code": "DE"
+    "label": "Connecticut",
+    "value": "CT"
   },
   {
-    "name": "Florida",
-    "code": "FL"
+    "label": "Delaware",
+    "value": "DE"
   },
   {
-    "name": "Georgia",
-    "code": "GA"
+    "label": "District of Columbia",
+    "value": "DC"
   },
   {
-    "name": "Hawaii",
-    "code": "HI"
+    "label": "Florida",
+    "value": "FL"
   },
   {
-    "name": "Idaho",
-    "code": "ID"
+    "label": "Georgia",
+    "value": "GA"
   },
   {
-    "name": "Illinois",
-    "code": "IL"
+    "label": "Guam",
+    "value": "GU"
   },
   {
-    "name": "Indiana",
-    "code": "IN"
+    "label": "Hawaii",
+    "value": "HI"
   },
   {
-    "name": "Iowa",
-    "code": "IA"
+    "label": "Idaho",
+    "value": "ID"
   },
   {
-    "name": "Kansas",
-    "code": "KS"
+    "label": "Illinois",
+    "value": "IL"
   },
   {
-    "name": "Kentucky",
-    "code": "KY"
+    "label": "Indiana",
+    "value": "IN"
   },
   {
-    "name": "Louisiana",
-    "code": "LA"
+    "label": "Iowa",
+    "value": "IA"
   },
   {
-    "name": "Maine",
-    "code": "ME"
+    "label": "Kansas",
+    "value": "KS"
   },
   {
-    "name": "Maryland",
-    "code": "MD"
+    "label": "Kentucky",
+    "value": "KY"
   },
   {
-    "name": "Massachusetts",
-    "code": "MA"
+    "label": "Louisiana",
+    "value": "LA"
   },
   {
-    "name": "Michigan",
-    "code": "MI"
+    "label": "Maine",
+    "value": "ME"
   },
   {
-    "name": "Minnesota",
-    "code": "MN"
+    "label": "Maryland",
+    "value": "MD"
   },
   {
-    "name": "Mississippi",
-    "code": "MS"
+    "label": "Massachusetts",
+    "value": "MA"
   },
   {
-    "name": "Missouri",
-    "code": "MO"
+    "label": "Michigan",
+    "value": "MI"
   },
   {
-    "name": "Montana",
-    "code": "MT"
+    "label": "Minnesota",
+    "value": "MN"
   },
   {
-    "name": "Nebraska",
-    "code": "NE"
+    "label": "Mississippi",
+    "value": "MS"
   },
   {
-    "name": "Nevada",
-    "code": "NV"
+    "label": "Missouri",
+    "value": "MO"
   },
   {
-    "name": "New Hampshire",
-    "code": "NH"
+    "label": "Montana",
+    "value": "MT"
   },
   {
-    "name": "New Jersey",
-    "code": "NJ"
+    "label": "Nebraska",
+    "value": "NE"
   },
   {
-    "name": "New Mexico",
-    "code": "NM"
+    "label": "Nevada",
+    "value": "NV"
   },
   {
-    "name": "New York",
-    "code": "NY"
+    "label": "New Hampshire",
+    "value": "NH"
   },
   {
-    "name": "North Carolina",
-    "code": "NC"
+    "label": "New Jersey",
+    "value": "NJ"
   },
   {
-    "name": "North Dakota",
-    "code": "ND"
+    "label": "New Mexico",
+    "value": "NM"
   },
   {
-    "name": "Ohio",
-    "code": "OH"
+    "label": "New York",
+    "value": "NY"
   },
   {
-    "name": "Oklahoma",
-    "code": "OK"
+    "label": "North Carolina",
+    "value": "NC"
   },
   {
-    "name": "Oregon",
-    "code": "OR"
+    "label": "North Dakota",
+    "value": "ND"
   },
   {
-    "name": "Pennsylvania",
-    "code": "PA"
+    "label": "Northern Mariana Islands",
+    "value": "MP"
   },
   {
-    "name": "Rhode Island",
-    "code": "RI"
+    "label": "Ohio",
+    "value": "OH"
   },
   {
-    "name": "South Carolina",
-    "code": "SC"
+    "label": "Oklahoma",
+    "value": "OK"
   },
   {
-    "name": "South Dakota",
-    "code": "SD"
+    "label": "Oregon",
+    "value": "OR"
   },
   {
-    "name": "Tennessee",
-    "code": "TN"
+    "label": "Pennsylvania",
+    "value": "PA"
   },
   {
-    "name": "Texas",
-    "code": "TX"
+    "label": "Puerto Rico",
+    "value": "PR"
   },
   {
-    "name": "Utah",
-    "code": "UT"
+    "label": "Rhode Island",
+    "value": "RI"
   },
   {
-    "name": "Vermont",
-    "code": "VT"
+    "label": "South Carolina",
+    "value": "SC"
   },
   {
-    "name": "Virginia",
-    "code": "VA"
+    "label": "South Dakota",
+    "value": "SD"
   },
   {
-    "name": "Washington",
-    "code": "WA"
+    "label": "Tennessee",
+    "value": "TN"
   },
   {
-    "name": "West Virginia",
-    "code": "WV"
+    "label": "Texas",
+    "value": "TX"
   },
   {
-    "name": "Wisconsin",
-    "code": "WI"
+    "label": "Utah",
+    "value": "UT"
   },
   {
-    "name": "Wyoming",
-    "code": "WY"
+    "label": "Vermont",
+    "value": "VT"
+  },
+  {
+    "label": "Virgin Islands",
+    "value": "VI"
+  },
+  {
+    "label": "Virginia",
+    "value": "VA"
+  },
+  {
+    "label": "Washington",
+    "value": "WA"
+  },
+  {
+    "label": "West Virginia",
+    "value": "WV"
+  },
+  {
+    "label": "Wisconsin",
+    "value": "WI"
+  },
+  {
+    "label": "Wyoming",
+    "value": "WY"
   }
 ]

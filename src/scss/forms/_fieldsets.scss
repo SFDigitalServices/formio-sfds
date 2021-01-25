@@ -1,27 +1,11 @@
 fieldset {
-  .fieldset-body {
-    margin: 0 -15px 40px;
-    padding: 15px 15px 1px;
-    border-radius: radius(1);
-  }
+  padding: 0.01em 0 0 0;
+  border: 0;
+  margin: 0;
+  min-width: 0;
 
-  label {
-    font-size: 16px;
-    line-height: 1;
-  }
-
-  .formio-component {
-    margin-bottom: 20px;
-
-    &.row {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.formio-component-radio {
-  fieldset label {
-    letter-spacing: 0;
-    line-height: 24px;
+  legend {
+    padding: 0.01em 0 0 0;
+    margin: 0;
   }
 }
