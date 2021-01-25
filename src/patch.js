@@ -171,9 +171,9 @@ function patch (Formio) {
         disableConditionals(model.components)
       }
 
-      loadEmbeddedTranslations(model, form.i18next)
+      patchSelectWidget(model, form)
 
-      patchSelectMode(model, form)
+      loadEmbeddedTranslations(model, form.i18next)
 
       form.form = model
 
@@ -240,7 +240,7 @@ function patch (Formio) {
   })
 }
 
-function patchSelectMode (model, form) {
+function patchSelectWidget (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
 
   // forEach() instead of for...of gives us a closure,
