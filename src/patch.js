@@ -254,7 +254,7 @@ function patchSelectMode (model, form) {
         // this overrides addItemText if provided
         itemSelectText: t('itemSelectText'),
         searchPlaceholderValue: t('searchPlaceholderValue'),
-        addItemText: component.customOptions.addItemText ? value => {
+        addItemText: component.customOptions?.addItemText ? value => {
           return t('addItemText', {
             value: FormioUtils.sanitize(value, {
               sanitizeConfig: component.customOptions?.sanitize
