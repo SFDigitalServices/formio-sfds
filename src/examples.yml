@@ -30,44 +30,6 @@
         description: And this is the description
         tooltip: And this is the tooltip
 
-- id: language-picker
-  title: Language picker
-  form:
-    components:
-      - type: columns
-        columns:
-          - width: 1
-            components:
-              - type: button
-                label: English
-                action: custom
-                custom: 'form.language = "en"'
-          - width: 1
-            components:
-              - type: button
-                label: Español
-                action: custom
-                custom: 'form.language = "es"'
-          - width: 1
-            components:
-              - type: button
-                label: 中文
-                action: custom
-                custom: 'form.language = "zh"'
-          - width: 1
-            components:
-              - type: button
-                label: Filipino
-                action: custom
-                custom: 'form.language = "fil"'
-      - type: htmlelement
-        key: html
-        content: Chemical and hazardous materials
-        properties:
-          'es:content': Materiales químicos y peligrosos
-          'fil:content': Mga Kemikal at Mapanganib na Materyales
-          'zh:content': 化学物品与危险物质
-
 - id: autocomplete
   title: Autocomplete
   form:
