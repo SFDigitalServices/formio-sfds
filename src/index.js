@@ -10,20 +10,22 @@ const plugin = {
   framework,
   components,
   options: {},
-  forms,
   templates: {
     [framework]: templates
   }
 }
 
-Object.defineProperty(plugin, 'version', {
-  // Formio complains about the "version" key if
-  // the property is enumerable :shrug:
-  enumerable: false,
-  get () {
-    return version
-  }
-})
+const hiddenProps = {
+  forms,
+  version
+}
+
+for (const [prop, value] of Object.entries(hiddenProps)) {
+  Object.defineProperty(plugin, prop, {
+    enumerable: false,
+    get () { return value }
+  })
+}
 
 export default plugin
 export { patch }
