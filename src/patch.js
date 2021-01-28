@@ -382,7 +382,7 @@ function disableConditionals (components) {
   FormioUtils.eachComponent(components, comp => {
     comp.properties.conditional = comp.conditional
     comp.conditional = {}
-  })
+  }, true)
 }
 
 function userIsTranslating (opts) {
