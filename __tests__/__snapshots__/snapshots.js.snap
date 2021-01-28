@@ -1364,7 +1364,6 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
                      placeholder="yyyy-MM-dd hh:mm a"
                      tabindex="0"
                      type="text"
-                     aria-labelledby="label-datetime-basic-2"
               >
             </div>
           </div>
@@ -1450,7 +1449,6 @@ exports[`component snapshots component "datetime" scenario: required matches the
                      required
                      tabindex="0"
                      type="text"
-                     aria-labelledby="label-datetime-required-2"
               >
             </div>
           </div>
