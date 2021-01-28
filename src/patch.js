@@ -12,7 +12,7 @@ const PATCHED = `sfds-patch-${Date.now()}`
 
 const hasProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
 
-const debugDefault = process.env.NODE_ENV !== 'test'
+const debugDefault = process.env.NODE_ENV !== 'production'
 
 const libraryHooks = {}
 
