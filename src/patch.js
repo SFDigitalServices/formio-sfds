@@ -235,6 +235,8 @@ function patch (Formio) {
 
       forms.push(form)
 
+      await form.redraw()
+
       return form
     })
   })
