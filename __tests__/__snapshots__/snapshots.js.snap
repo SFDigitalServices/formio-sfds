@@ -1768,67 +1768,107 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
      class="d-flex flex-column-reverse mb-4"
 >
   <div class="formio-form mb-4">
-    <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
+    <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate"
+        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-3"
              id="wizard-form-basic-1-header"
              aria-label="navigation"
              role="navigation"
         >
-          <ul class="nav-list mt-2 mb-0 mx-0 p-0">
-            <li class="mb-1 d-flex flex-items-start">
-              <span data-icon="square"
-                    class="fg-slate notranslate"
-              >
-                <svg viewbox="0 0 17 20"
-                     fill="currentColor"
-                     height="20"
+          <div data-toggle-container>
+            <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
+                 id="nav-accordion"
+                 aria-controls="nav-content"
+                 aria-expanded="true"
+            >
+              <div class="d-flex">
+                <div style="width:100%"
+                     class="flex-auto"
                 >
-                  <rect x="5"
-                        y="5"
-                        width="7"
-                        height="7"
-                        rx="2"
+                  Sections
+                </div>
+                <div>
+                  <span data-icon="chevron"
+                        class="d-block notranslate"
                   >
-                  </rect>
-                </svg>
-              </span>
-              <button ref="wizard-form-basic-1-link"
-                      aria-current="page"
-                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
-              >
-                Page 1 link title
-              </button>
-            </li>
-            <li class="mb-1 d-flex flex-items-start">
-              <span data-icon="square"
-                    class="fg-none notranslate"
-              >
-                <svg viewbox="0 0 17 20"
-                     fill="currentColor"
-                     height="20"
+                    <svg viewbox="0 0 17 11"
+                         fill="currentColor"
+                         height="11"
+                    >
+                      <path d="M8.462 10.017a1.182 1.182 0 01-.84-.347L.495 2.545A1.189 1.189 0 112.178.864l6.284 6.289 6.284-6.29a1.189 1.189 0 111.682 1.682L9.303 9.67a1.183 1.183 0 01-.841.347z">
+                      </path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="p-md-0"
+                 id="nav-content"
+                 aria-labeledby="nav-accordion"
+            >
+              <ul class="nav-list mt-2 mb-0 mx-0 p-0">
+                <li data-current
+                    style="padding-bottom: 30px"
+                    class="mb-0 d-flex flex-items-start"
                 >
-                  <rect x="5"
-                        y="5"
-                        width="7"
-                        height="7"
-                        rx="2"
+                  <span data-width="10"
+                        data-icon="square"
+                        style="margin: 2px 0 0 -.25em"
+                        class="fg-slate flex-no-shrink notranslate"
                   >
-                  </rect>
-                </svg>
-              </span>
-              <button disabled
-                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u"
-              >
-                Page 2
-              </button>
-            </li>
-          </ul>
+                    <svg viewbox="0 0 20 20"
+                         fill="currentColor"
+                         width="10"
+                    >
+                      <rect width="20"
+                            height="20"
+                            rx="4"
+                      >
+                      </rect>
+                    </svg>
+                  </span>
+                  <button ref="wizard-form-basic-1-link"
+                          style="cursor:default"
+                          aria-current="page"
+                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                  >
+                    Page 1 link title
+                  </button>
+                </li>
+                <li style="padding-bottom: 30px"
+                    class="mb-0 d-flex flex-items-start pb-2"
+                >
+                  <span data-width="10"
+                        data-icon="square"
+                        style="margin: 2px 0 0 -.25em"
+                        class="fg-grey-4 flex-no-shrink notranslate"
+                  >
+                    <svg viewbox="0 0 20 20"
+                         fill="currentColor"
+                         width="10"
+                    >
+                      <rect width="20"
+                            height="20"
+                            rx="4"
+                      >
+                      </rect>
+                    </svg>
+                  </span>
+                  <button style="cursor:default"
+                          disabled
+                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                  >
+                    Page 2
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
       </div>
       <div class="col-md-4">
         <div class="mb-3">
-          <h1 class="d1 mb-4 mr-n2">
+          <h1 class="d1 mb-4 mr-n2 mt-0">
             Page 1
           </h1>
           <div ref="wizard-form-basic-1"
@@ -1871,67 +1911,107 @@ exports[`component snapshots component "form" scenario: translate matches the sn
      class="d-flex flex-column-reverse mb-4"
 >
   <div class="formio-form mb-4">
-    <div class="d-flex flex-column flex-md-row flex-md-auto flex-justify-between">
+    <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate"
+        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-3"
              id="wizard-form-translate-1-header"
              aria-label="navigation"
              role="navigation"
         >
-          <ul class="nav-list mt-2 mb-0 mx-0 p-0">
-            <li class="mb-1 d-flex flex-items-start">
-              <span data-icon="square"
-                    class="fg-slate notranslate"
-              >
-                <svg viewbox="0 0 17 20"
-                     fill="currentColor"
-                     height="20"
+          <div data-toggle-container>
+            <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
+                 id="nav-accordion"
+                 aria-controls="nav-content"
+                 aria-expanded="true"
+            >
+              <div class="d-flex">
+                <div style="width:100%"
+                     class="flex-auto"
                 >
-                  <rect x="5"
-                        y="5"
-                        width="7"
-                        height="7"
-                        rx="2"
+                  Sections
+                </div>
+                <div>
+                  <span data-icon="chevron"
+                        class="d-block notranslate"
                   >
-                  </rect>
-                </svg>
-              </span>
-              <button ref="wizard-form-translate-1-link"
-                      aria-current="page"
-                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-slate fw-medium no-u"
-              >
-                Page 1 link title
-              </button>
-            </li>
-            <li class="mb-1 d-flex flex-items-start">
-              <span data-icon="square"
-                    class="fg-none notranslate"
-              >
-                <svg viewbox="0 0 17 20"
-                     fill="currentColor"
-                     height="20"
+                    <svg viewbox="0 0 17 11"
+                         fill="currentColor"
+                         height="11"
+                    >
+                      <path d="M8.462 10.017a1.182 1.182 0 01-.84-.347L.495 2.545A1.189 1.189 0 112.178.864l6.284 6.289 6.284-6.29a1.189 1.189 0 111.682 1.682L9.303 9.67a1.183 1.183 0 01-.841.347z">
+                      </path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="p-md-0"
+                 id="nav-content"
+                 aria-labeledby="nav-accordion"
+            >
+              <ul class="nav-list mt-2 mb-0 mx-0 p-0">
+                <li data-current
+                    style="padding-bottom: 30px"
+                    class="mb-0 d-flex flex-items-start"
                 >
-                  <rect x="5"
-                        y="5"
-                        width="7"
-                        height="7"
-                        rx="2"
+                  <span data-width="10"
+                        data-icon="square"
+                        style="margin: 2px 0 0 -.25em"
+                        class="fg-slate flex-no-shrink notranslate"
                   >
-                  </rect>
-                </svg>
-              </span>
-              <button disabled
-                      class="btn-link flex-auto align-left m-0 pl-1 py-0 fg-inherit fw-regular no-u"
-              >
-                Page 2
-              </button>
-            </li>
-          </ul>
+                    <svg viewbox="0 0 20 20"
+                         fill="currentColor"
+                         width="10"
+                    >
+                      <rect width="20"
+                            height="20"
+                            rx="4"
+                      >
+                      </rect>
+                    </svg>
+                  </span>
+                  <button ref="wizard-form-translate-1-link"
+                          style="cursor:default"
+                          aria-current="page"
+                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                  >
+                    Page 1 link title
+                  </button>
+                </li>
+                <li style="padding-bottom: 30px"
+                    class="mb-0 d-flex flex-items-start pb-2"
+                >
+                  <span data-width="10"
+                        data-icon="square"
+                        style="margin: 2px 0 0 -.25em"
+                        class="fg-grey-4 flex-no-shrink notranslate"
+                  >
+                    <svg viewbox="0 0 20 20"
+                         fill="currentColor"
+                         width="10"
+                    >
+                      <rect width="20"
+                            height="20"
+                            rx="4"
+                      >
+                      </rect>
+                    </svg>
+                  </span>
+                  <button style="cursor:default"
+                          disabled
+                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                  >
+                    Page 2
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
       </div>
       <div class="col-md-4">
         <div class="mb-3">
-          <h1 class="d1 mb-4 mr-n2">
+          <h1 class="d1 mb-4 mr-n2 mt-0">
             Page 1
           </h1>
           <div ref="wizard-form-translate-1"

@@ -61,6 +61,9 @@ export default Formio => {
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
+
+  // toggles
+  toggleComponent()
 }
 
 // Prevent users from navigating away and losing their entries.
@@ -181,7 +184,14 @@ function patch (Formio) {
       if (opts.scroll !== false) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
-        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('prevPage', () => { doToggle(element) })
+        form.on('nextPage', () => { 
+          warnBeforeLeaving = true
+          doToggle(element)
+        })
+        form.on('wizardNavigationClicked', () => { 
+          doToggle(element, true)
+        })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
 
@@ -383,5 +393,37 @@ function userIsTranslating (opts) {
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
+  }
+}
+
+function toggleComponent() {
+  observe('[data-toggle-container]', {
+    add(el) {
+      const ariaControl = el.querySelector('[aria-controls]')
+
+      ariaControl.addEventListener('click', (event) => {        
+        if (ariaControl.hasAttribute('aria-expanded')) {
+          const expanded = ariaControl.getAttribute('aria-expanded')
+          doToggle(el, expanded !== 'true')
+        }
+      })
+    }
+  })
+}
+
+function doToggle(element, show = false) {
+  const toggler = element.hasAttribute('data-toggle-container') ? element : element.querySelector('[data-toggle-container]')
+  if (toggler) {
+    const ariaControl = toggler.querySelector('[aria-controls]')
+    if(!ariaControl) return
+
+    const content = document.getElementById(ariaControl.getAttribute('aria-controls'));
+    if (show) {
+      ariaControl.setAttribute('aria-expanded', 'true')
+      content.hidden = false
+    } else {
+      ariaControl.setAttribute('aria-expanded', 'false')
+      content.hidden = true
+    }
   }
 }

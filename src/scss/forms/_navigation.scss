@@ -1,16 +1,87 @@
 nav {
-  @media (min-width: $mq-medium) {
-    margin-top: 10rem;
-    position: sticky;
-    top: 170px;
-    margin-right: spacer(5);
-  }
-
-  [data-icon=square] {
-    margin-top: 5px !important;
-  }
-
   .back-link {
     font-size: 20px;
+  }
+
+  [data-toggle-container] {
+    [aria-controls] {
+      padding: 15px 20px;
+
+      [data-icon=chevron] {
+        margin-top: 2px;
+      }
+
+      &[aria-expanded="true"] {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+
+        [data-icon=chevron] {
+          margin-top: -2px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    [aria-labeledby] {
+      background: $grey-1;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
+      padding: 10px 30px;
+    }
+  }
+
+  ul {
+    li {
+      background-color: transparent;
+      background-image: linear-gradient($grey-4 50%, $grey-4 50%);
+      background-size: 2px 100%;
+      background-repeat: no-repeat;
+
+      &:first-of-type {
+        background-image: linear-gradient(transparent 16%, $grey-4 14%);
+      }
+
+      &:last-of-type {
+        background-image: linear-gradient($grey-4 20%, transparent 20%);
+      }
+
+      &:not([data-current]) {
+        [data-icon="check"] {
+          svg {
+            margin-left: 5px;
+            margin-top: 6px;
+            vertical-align: top;
+          }
+        }
+      }
+
+      &[data-complete] {
+        background-image: linear-gradient($green-2 50%, $green-2 50%);
+
+        & + li:not([data-complete]):not(:last-of-type) {
+          background-image: linear-gradient($green-2 20%, $grey-4 20%);
+        }
+
+        &:first-of-type {
+          background-image: linear-gradient(transparent 20%, $green-2 20%);
+        }
+      }
+    }
+  }
+
+  @media (min-width: $mq-medium) {
+    position: sticky;
+    top: 170px;
+
+    [data-toggle-container] {
+      [aria-labeledby] {
+        display: block !important;
+        background: none;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+    }
   }
 }
