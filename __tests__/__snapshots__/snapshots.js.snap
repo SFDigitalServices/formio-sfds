@@ -1071,9 +1071,9 @@ exports[`component snapshots component "columns" scenario: required matches the 
           >
             <div ref="component"
                  class="form-group has-feedback formio-component formio-component-textfield formio-component-left"
-                 id="columns-basic-3"
+                 id="columns-required-3"
             >
-              <label for="input-columns-basic-3"
+              <label for="input-columns-required-3"
                      class
               >
                 Left
@@ -1086,7 +1086,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
                          class="form-control"
                          type="text"
                          name="data[left]"
-                         id="input-columns-basic-3"
+                         id="input-columns-required-3"
                          ref="input"
                   >
                 </div>
@@ -1102,9 +1102,9 @@ exports[`component snapshots component "columns" scenario: required matches the 
           >
             <div ref="component"
                  class="form-group has-feedback formio-component formio-component-textfield formio-component-right"
-                 id="columns-basic-4"
+                 id="columns-required-4"
             >
-              <label for="input-columns-basic-4"
+              <label for="input-columns-required-4"
                      class
               >
                 Right
@@ -1117,7 +1117,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
                          class="form-control"
                          type="text"
                          name="data[right]"
-                         id="input-columns-basic-4"
+                         id="input-columns-required-4"
                          ref="input"
                   >
                 </div>
@@ -1358,12 +1358,12 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
                      id="input-datetime-basic-2"
                      ref="input"
                      placeholder="yyyy-MM-dd hh:mm a"
+                     aria-labelledby="label-datetime-basic-2"
               >
               <input class="form-control form-control input"
                      placeholder="yyyy-MM-dd hh:mm a"
                      tabindex="0"
                      type="text"
-                     aria-labelledby="label-datetime-basic-2"
               >
             </div>
           </div>
@@ -1442,13 +1442,13 @@ exports[`component snapshots component "datetime" scenario: required matches the
                      id="input-datetime-required-2"
                      ref="input"
                      placeholder="yyyy-MM-dd hh:mm a"
+                     aria-labelledby="label-datetime-required-2"
               >
               <input class="form-control form-control input"
                      placeholder="yyyy-MM-dd hh:mm a"
                      required
                      tabindex="0"
                      type="text"
-                     aria-labelledby="label-datetime-required-2"
               >
             </div>
           </div>
@@ -2482,6 +2482,145 @@ exports[`component snapshots component "radio" scenario: required matches the sn
             </span>
           </label>
         </fieldset>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: basic matches the snapshot 1`] = `
+<div id="form-select-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-basic-1"
+  >
+    <label for="input-select-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select"
+           id="select-basic-2"
+      >
+        <label for="input-select-basic-2"
+               class
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-basic-2"
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="a">
+            <span>
+              A
+            </span>
+          </option>
+          <option value="b">
+            <span>
+              B
+            </span>
+          </option>
+          <option value="c">
+            <span>
+              C
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: required matches the snapshot 1`] = `
+<div id="form-select-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-required-1"
+  >
+    <label for="input-select-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select  required"
+           id="select-required-2"
+      >
+        <label for="input-select-required-2"
+               class="field-required"
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-required-2"
+                required
+                ref="selectContainer"
+        >
+          <option value
+                  selected="selected"
+          >
+          </option>
+          <option value="a">
+            <span>
+              A
+            </span>
+          </option>
+          <option value="b">
+            <span>
+              B
+            </span>
+          </option>
+          <option value="c">
+            <span>
+              C
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
         <div ref="messageContainer"
              class="messages"
         >
