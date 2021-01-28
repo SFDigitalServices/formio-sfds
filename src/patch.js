@@ -471,7 +471,9 @@ function toggleComponent () {
 }
 
 function doToggle (element, show = false) {
-  const toggler = element.closest('[data-toggle-container]')
+  const toggler = element.hasAttribute('data-toggle-container')
+    ? element
+    : element.querySelector('[data-toggle-container]')
   if (toggler) {
     const ariaControl = toggler.querySelector('[aria-controls]')
     if (!ariaControl) return false
