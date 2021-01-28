@@ -63,10 +63,10 @@ describe('field translations', () => {
     const form = await createForm({
       components: [
         {
+          ...component,
           properties: {
             'de:label': 'der Name'
-          },
-          ...component
+          }
         }
       ]
     }, {
@@ -74,6 +74,8 @@ describe('field translations', () => {
     })
 
     expect(form.i18next.language).toEqual('de')
+    expect(form.t('name.label')).toEqual('der Name')
+
     const label = form.element.querySelector('label:not(.control-label--hidden)')
     expect(label.textContent.trim()).toEqual('der Name')
     destroyForm(form)
