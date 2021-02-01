@@ -108,5 +108,12 @@
   "words": "words",
   "year": "Year",
   "Year": "Year",
-  "Yes, delete it": "Yes, delete it"
+  "Yes, delete it": "Yes, delete it",
+  "autocomplete": {
+    "noResultsText": "No results found",
+    "itemSelectText": "",
+    "maxItemText": "Only {{count}} values can be added",
+    "noChoicesText": "No choices to choose from",
+    "searchPlaceholderValue": "Type to search"
+  }
 }
