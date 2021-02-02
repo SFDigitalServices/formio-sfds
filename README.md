@@ -14,6 +14,7 @@ This is the [Form.io] theme for [sf.gov](https://sf.gov).
 * [Formio patches](docs/patches.md)
     * [Form options](docs/patches.md#form-options)
     * [Form upgrades](docs/patches.md#form-upgrades)
+    * [Autocomplete components](docs/autocomplete.md)
     * [Icons](docs/patches.md#icons)
     * [Declarative actions](docs/patches.md#declarative-actions)
 * [Localization](docs/localization.md#readme)

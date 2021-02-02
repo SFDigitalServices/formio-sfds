@@ -30,6 +30,78 @@
         description: And this is the description
         tooltip: And this is the tooltip
 
+- id: autocomplete
+  title: Autocomplete
+  form:
+    components:
+      - type: select
+        key: job
+        label: Your job
+        tags:
+          - autocomplete
+        data:
+          values:
+            - label: Healthcare worker
+              value: healthCareWorker
+            - label: Emergency services
+              value: emergencyServices
+            - label: Food and agriculture
+              value: foodAndAgriculture
+            - label: Energy
+              value: energy
+            - label: Water and wastewater
+              value: waterAndWastewater
+      - type: select
+        key: words
+        label: Pick some words
+        tags:
+          - autocomplete
+        multiple: true
+        customOptions:
+          maxItemCount: 3
+        properties:
+          en:autocomplete.maxItemText: "Sorry, {{count}} tags max!"
+        description: |
+          This uses <code>multiple</code> and
+          <code>customOptions.maxItemCount</code> to limit the number of
+          choices, and the <code>autocomplete.maxItemText</code> translation
+          key to change the text that shows up when two are selected.
+        data:
+          values:
+            - label: green
+              value: green
+            - label: empathic
+              value: empathic
+            - label: never
+              value: never
+            - label: eleven
+              value: eleven
+            - label: dry
+              value: dry
+            - label: valuable
+              value: valuable
+            - label: fortify
+              value: fortify
+            - label: whatever
+              value: whatever
+            - label: leaven
+              value: leaven
+      - type: htmlelement
+        tag: div
+        content: |
+          <b>ProTip:</b> Add <a
+          href="?language=debug"><code>?language=debug</code></a> to the
+          query string to see the <code>autocomplete.*</code> translation keys
+          in context.
+  options:
+    i18n:
+      debug:
+        autocomplete.noResultsText: 'autocomplete.noResultsText'
+        autocomplete.itemSelectText: 'autocomplete.itemSelectText'
+        autocomplete.maxItemText: 'autocomplete.maxItemText'
+        autocomplete.noChoicesText: 'autocomplete.noChoicesText'
+        autocomplete.searchPlaceholderValue: 'autocomplete.searchPlaceholderValue'
+
 - id: radio
   title: Radio
   form:
