@@ -228,7 +228,6 @@ function patch (Formio) {
 
 function patchSelectMode (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
-  const keyPrefix = 'autocomplete'
 
   // forEach() instead of for...of gives us a closure,
   // which is important because the component reference needs to
