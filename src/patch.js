@@ -167,7 +167,7 @@ function patch (Formio) {
 
       loadEmbeddedTranslations(model, form.i18next)
 
-      patchSelectMode(model)
+      patchSelectMode(model, form)
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -226,17 +226,48 @@ function patch (Formio) {
   })
 }
 
-function patchSelectMode (model) {
+function patchSelectMode (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
-  for (const component of selects) {
+
+  // forEach() instead of for...of gives us a closure,
+  // which is important because the component reference needs to
+  // persist for functions like searchPlaceholderValue()
+  selects.forEach(component => {
+    const compKey = component.key
     if (component.tags && component.tags.includes('autocomplete')) {
+      const t = (prop, ...rest) => {
+        const key = `autocomplete.${prop}`
+        const fallback = dot.get(defaultTranslations.en, key) || ''
+        return form.t([
+          `${compKey}.${key}`,
+          key,
+          fallback
+        ], ...rest)
+      }
+
       component.customOptions = Object.assign({
-        shouldSort: true
+        // shown when no results match the search input
+        noResultsText: t('noResultsText'),
+        // shown when no options are available (or loaded from an API)
+        noChoicesText: t('noChoicesText'),
+        // this overrides addItemText if provided
+        itemSelectText: t('itemSelectText'),
+        searchPlaceholderValue: t('searchPlaceholderValue'),
+        addItemText: component.customOptions?.addItemText ? value => {
+          return t('addItemText', {
+            value: FormioUtils.sanitize(value, {
+              sanitizeConfig: component.customOptions?.sanitize
+            })
+          })
+        } : false,
+        maxItemText (count) {
+          return t('maxItemText', { count })
+        }
       }, component.customOptions)
     } else {
       component.widget = 'html5'
     }
-  }
+  })
 }
 
 function patchLanguageObserver () {

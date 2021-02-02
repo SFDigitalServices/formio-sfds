@@ -10,9 +10,50 @@ aware of:
 - [Translate generic strings](#translate-generic-strings-content)
 - [Update generic string translations](#update-generic-string-translations-engineering)
 - [Translate a specific form](#translate-a-form)
+- [Manually adding translations](#manual-translations)
+
+But first, it's important to understand how the whole thing works!
+
+## How it works
+There are a bunch of moving pieces involved in coordinating translations
+between form.io, Phrase, and our theme:
+
+- The formio.js library that we extend and patch with this theme uses a
+  localization tool called [i18next], and passes most of the "strings"
+  (individual chunks of text content, like the text of the "Next" and
+  "Previous" buttons, or the label of each form component) through its
+  translation function, `t()`.
+
+- Formio.js accepts an `i18n` option that can include translations. Its shape
+  is an object with language codes at the top level, and translations below. To
+  translate the "Next" button text in page navigation to Spanish, we would pass:
+
+  ```js
+  {
+    es: {
+      Next: 'Siguiente'
+    }
+  }
+  ```
+
+- In our templates we call the `t()` function with automatically generated IDs
+  ("keys") for each unique string. The naming scheme is the component's key and
+  the "path" of the string within the component, separated by `.`. For
+  instance, the string ID for the label of a component with the key `email`
+  would be `email.label`. The `content` field of an HTML element `intro` could
+  be localized with the `intro.content` string.
+
+- We patch several of the third-party libraries that formio.js uses to render
+  more complex components:
+
+    1. We import the Spanish and Chinese translations of [Flatpickr] directly
+       to localize date and time pickers. These are not customizable right now.
+
+    1. We patch the `customOptions` of each [autocomplete component](./autocomplete.md#translation)
+       to translate UI strings in [Choices.js].
 
 ## Translate generic strings (content)
-1. Translate the strings in the [generic strings Phrase project](https://app.phrase.com/accounts/city-county-of-san-francisco/projects/form-io-generic-strings)
+1. Translate the strings in the [generic strings Phrase project]
 1. Ask somebody with access to this repo to pull the new translations (see below)
 
 ## Update generic string translations (engineering)
@@ -45,7 +86,7 @@ Before you can translate a form, you'll need to do some one-time setup in both P
 1. In the <kbd>Custom Properties</kbd> section, add a new entry with `phraseProjectId` in the "Key" field and the Phrase project ID that you copied in the "Value" field:
 
     > ![image of the custom properties in form.io](https://user-images.githubusercontent.com/113896/88114083-fa527780-cb67-11ea-98a1-b85273db617a.png)
-   
+
 1. Visit [/api/strings?formUrl=`<URL>`](https://formio-sfds.vercel.app/api/strings?formUrl=<URL>) where `<URL>` is your form.io data source URL
 1. Save the JSON to your computer
 1. Upload the JSON to your Phrase project:
@@ -79,7 +120,33 @@ Please use [semantic versioning conventions](https://semver.org) to track the ty
 * Minor versions (`1.0.1` → `1.1.0`) when new keys and/or translations are added
 * Major versions (`1.0.0` → `2.0.0`) when keys are deleted
 
+
+### Manual translations
+Because of how automatically generated translation keys (the unique IDs of each
+translatable string) are generated automatically and how the API that
+"extracts" strings from each form works, there may be some situations that call
+for manually adding strings in Phrase. Here are some tips:
+
+1. First, try adding a string with a key in the form `{component}.{path}`, where
+   `{component}` is the component key and `{path}` is the "path" of the
+   component field that you're trying to translate: `label`, `description`, etc.
+
+2. If that doesn't work, please [file an issue]!
+
+3. If your form has been heavily modified on form.io, it's possible that string
+   keys no longer map to the right components. Try re-generating the form
+   strings and importing the JSON into Phrase again.
+
+4. If all else fails, you should still be able to add keys for the English
+   string and translate those. For instance, if a bug is preventing the label
+   of a field with the label "Your address" from translating, you should still
+   be able to target it by adding translations for a "Your address" Phrase key.
+
 When in doubt, drop into **#topic-translations** on Slack and ask for help! 💪
 
-[Phrase]: https://phrase.com
-[Phrase in-context editor]: https://help.phrase.com/help/set-up-in-context-editor
+[phrase]: https://phrase.com
+[phrase in-context editor]: https://help.phrase.com/help/set-up-in-context-editor
+[choices.js]: https://github.com/jshjohnson/Choices#readme
+[generic strings phrase project]: https://app.phrase.com/accounts/city-county-of-san-francisco/projects/form-io-generic-strings
+[flatpickr]: https://flatpickr.js.org/
+[file an issue]: https://github.com/SFDigitalServices/formio-sfds/issues/new
