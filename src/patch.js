@@ -175,6 +175,7 @@ function patch (Formio) {
 
       loadEmbeddedTranslations(model, form.i18next)
 
+      patchSelectMode(model, form)
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -242,7 +243,7 @@ function patch (Formio) {
   })
 }
 
-function patchSelectWidget (model, form) {
+function patchSelectMode (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
 
   // forEach() instead of for...of gives us a closure,

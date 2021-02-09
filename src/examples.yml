@@ -64,7 +64,6 @@
               value: energy
             - label: Water and wastewater
               value: waterAndWastewater
-
       - type: select
         key: words
         label: Pick some words
@@ -100,7 +99,10 @@
               value: whatever
             - label: leaven
               value: leaven
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
       - type: htmlelement
         tag: div
         content: |
@@ -108,7 +110,10 @@
           href="?language=debug"><code>?language=debug</code></a> to the
           query string to see the <code>autocomplete.*</code> translation keys
           in context.
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   options:
     i18n:
       debug:
@@ -118,7 +123,10 @@
         autocomplete.noChoicesText: 'autocomplete.noChoicesText'
         autocomplete.searchPlaceholderValue: 'autocomplete.searchPlaceholderValue'
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 - id: radio
   title: Radio
   form:
