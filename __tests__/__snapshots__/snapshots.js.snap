@@ -1770,7 +1770,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
   <div class="formio-form mb-4">
     <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-3"
+        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-4"
              id="wizard-form-basic-1-header"
              aria-label="navigation"
              role="navigation"
@@ -1913,7 +1913,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
   <div class="formio-form mb-4">
     <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-3"
+        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-4"
              id="wizard-form-translate-1-header"
              aria-label="navigation"
              role="navigation"
