@@ -11,13 +11,7 @@
       </div>
     </div>
     <div aria-labeledby="nav-accordion" id="nav-content" class="p-md-0">
-      {% if (properties.backURL) { %}
-        <a class="back-link fg-black fw-medium" href="{{ properties.backURL }}">
-          {{ ctx.t(['form.backTitle', properties.backTitle || 'Back']) }}
-        </a>
-      {% } %}
-
-      <ul class="nav-list mt-2 mb-0 mx-0 p-0">
+      <ul class="nav-list m-0 p-0">
         {% ctx.panels.forEach(function(panel, index) { %}
           {% if (panel.properties.hideFromNavigation !== "false") { %}
             {%
