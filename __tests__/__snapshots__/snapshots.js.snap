@@ -1806,7 +1806,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
-              <ul class="nav-list m-0 p-0">
+              <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
                 <li data-current
                     style="padding-bottom: 30px"
                     class="mb-0 d-flex flex-items-start"
@@ -1949,7 +1949,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
-              <ul class="nav-list m-0 p-0">
+              <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
                 <li data-current
                     style="padding-bottom: 30px"
                     class="mb-0 d-flex flex-items-start"
