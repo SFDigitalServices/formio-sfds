@@ -194,7 +194,7 @@ function patch (Formio) {
           doToggle(element)
         })
         form.on('wizardNavigationClicked', () => {
-          doToggle(element, true)
+          doToggle(element)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
@@ -471,6 +471,7 @@ function toggleComponent () {
 }
 
 function doToggle (element, show = false) {
+  console.log(show)
   const toggler = element.hasAttribute('data-toggle-container')
     ? element
     : element.querySelector('[data-toggle-container]')
@@ -481,9 +482,11 @@ function doToggle (element, show = false) {
     const content = document.getElementById(ariaControl.getAttribute('aria-controls'))
     if (!content) return false
     if (show) {
+      console.log('here show')
       ariaControl.setAttribute('aria-expanded', 'true')
       content.hidden = false
     } else {
+      console.log('here false')
       ariaControl.setAttribute('aria-expanded', 'false')
       content.hidden = true
     }

@@ -38,7 +38,8 @@ nav {
       background-size: 2px 100%;
       background-repeat: no-repeat;
 
-      &:first-of-type {
+      &:first-of-type,
+      &.first-hidden + li {
         background-image: linear-gradient(transparent 16%, $grey-4 14%);
       }
 
@@ -59,7 +60,7 @@ nav {
       &[data-complete] {
         background-image: linear-gradient($green-2 50%, $green-2 50%);
 
-        & + li:not([data-complete]):not(:last-of-type) {
+        &:not(.first-hidden) + li:not([data-complete]):not(:last-of-type) {
           background-image: linear-gradient($green-2 20%, $grey-4 20%);
         }
 

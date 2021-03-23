@@ -4,7 +4,10 @@
     <div data-toggle-container>
       <div aria-expanded="true" aria-controls="nav-content" id="nav-accordion" class="small d-md-none bg-dark-blue border-0 fg-white round-1">
         <div class="d-flex">
-          <div class="flex-auto" style="width:100%">Sections</div>
+          <div class="flex-auto" style="width:100%">
+            Section
+            <span class="step"> {{ ctx.currentPage }} of {{ ctx.panels.length-1 }}</span>
+          </div>
           <div>
             <span class="d-block" data-icon="chevron"></span>
           </div>
@@ -22,43 +25,41 @@
                 const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
                 const last = index === ctx.panels.length - 1
               %}
-              {% if (index > 0) { %}
-                <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }}" style="padding-bottom: 30px"
-                  {% if (active) { %} 
-                    data-current
-                  {% } %} 
-                  {% if (completed) { %} 
-                    data-complete 
+              <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ index === 0 ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
+                {% if (active) { %} 
+                  data-current
+                {% } %} 
+                {% if (completed) { %} 
+                  data-complete 
+                {% } %}
+              >
+                
+                {% if (completed) { %}
+                  <span class="bg-green-3 round-round fg-white flex-no-shrink" style="margin: 6px -5px 0 -9px;width: 20px;height: 20px;" data-icon="check" data-width="10"></span>
+                {% } else { %}
+                  <span class="{{ active ? color : 'fg-grey-4' }}  flex-no-shrink" style="margin: 2px 0 0 -.25em" data-icon="square" data-width="10"></span>
+                {% } %}
+                <button
+                  class="btn-link flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
+                  {% if (active) { %}
+                    aria-current="page"
+                    style="cursor:default"
                   {% } %}
-                >
-                  
-                  {% if (completed) { %}
-                    <span class="bg-green-3 round-round fg-white flex-no-shrink" style="margin: 6px -5px 0 -9px;width: 20px;height: 20px;" data-icon="check" data-width="10"></span>
+                  {% if (enabled) { %}
+                    ref="{{ ctx.wizardKey }}-link"
                   {% } else { %}
-                    <span class="{{ active ? color : 'fg-grey-4' }}  flex-no-shrink" style="margin: 2px 0 0 -.25em" data-icon="square" data-width="10"></span>
-                  {% } %}
-                  <button
-                    class="btn-link flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
-                    {% if (active) { %}
-                      aria-current="page"
-                      style="cursor:default"
-                    {% } %}
-                    {% if (enabled) { %}
-                      ref="{{ ctx.wizardKey }}-link"
-                    {% } else { %}
-                      disabled
-                      style="cursor:default"
-                    {% } %}>
-                    {{
-                      ctx.t([
-                        `${panel.key}.displayTitle`,
-                        `${panel.key}.title`,
-                        panel.properties.displayTitle || panel.title
-                      ])
-                    }}
-                  </button>
-                </li>
-              {% } %}
+                    disabled
+                    style="cursor:default"
+                  {% } %}>
+                  {{
+                    ctx.t([
+                      `${panel.key}.displayTitle`,
+                      `${panel.key}.title`,
+                      panel.properties.displayTitle || panel.title
+                    ])
+                  }}
+                </button>
+              </li>
             {%
               } else {
                 // if we don't render something, the nav indexes are wrong and nav clicks go to the wrong place
