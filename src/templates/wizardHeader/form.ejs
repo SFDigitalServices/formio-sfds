@@ -2,7 +2,7 @@
 {% if (ctx.currentPage > 0) { %}
   <nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1">
     <div data-toggle-container>
-      <div aria-expanded="true" aria-controls="nav-content" id="nav-accordion" class="small d-md-none bg-dark-blue border-0 fg-white round-1">
+      <div aria-expanded="false" aria-controls="nav-content" id="nav-accordion" class="small d-md-none bg-dark-blue border-0 fg-white round-1">
         <div class="d-flex">
           <div class="flex-auto" style="width:100%">
             Section
@@ -13,7 +13,7 @@
           </div>
         </div>
       </div>
-      <div aria-labeledby="nav-accordion" id="nav-content" class="p-md-0">
+      <div aria-labeledby="nav-accordion" id="nav-content" class="p-md-0" hidden>
         <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
           {% ctx.panels.forEach(function(panel, index) { %}
             {% if (panel.properties.hideFromNavigation !== "false") { %}
