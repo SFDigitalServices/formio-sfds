@@ -1,5 +1,6 @@
 {% const { properties = {} } = ctx.options %}
-{% if (ctx.currentPage > 0) { %}
+
+{% if (ctx.panels[ctx.currentPage].key !== 'intro') { %}
   <nav role="navigation" aria-label="navigation" id="{{ ctx.wizardKey }}-header" class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1">
     <div data-toggle-container>
       <div aria-expanded="false" aria-controls="nav-content" id="nav-accordion" class="small d-md-none bg-dark-blue border-0 fg-white round-1">
@@ -25,7 +26,7 @@
                 const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
                 const last = index === ctx.panels.length - 1
               %}
-              <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ index === 0 ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
+              <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ panel.key === 'intro' ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
                 {% if (active) { %} 
                   data-current
                 {% } %} 
