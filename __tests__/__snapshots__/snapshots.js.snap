@@ -1779,13 +1779,16 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
-                 aria-expanded="true"
+                 aria-expanded="false"
             >
               <div class="d-flex">
                 <div style="width:100%"
                      class="flex-auto"
                 >
-                  Sections
+                  Section
+                  <span class="step">
+                    0 of 1
+                  </span>
                 </div>
                 <div>
                   <span data-icon="chevron"
@@ -1802,7 +1805,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 </div>
               </div>
             </div>
-            <div class="p-md-0"
+            <div hidden
+                 class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
@@ -1922,13 +1926,16 @@ exports[`component snapshots component "form" scenario: translate matches the sn
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
-                 aria-expanded="true"
+                 aria-expanded="false"
             >
               <div class="d-flex">
                 <div style="width:100%"
                      class="flex-auto"
                 >
-                  Sections
+                  Section
+                  <span class="step">
+                    0 of 1
+                  </span>
                 </div>
                 <div>
                   <span data-icon="chevron"
@@ -1945,7 +1952,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 </div>
               </div>
             </div>
-            <div class="p-md-0"
+            <div hidden
+                 class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
