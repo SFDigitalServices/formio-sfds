@@ -193,9 +193,6 @@ function patch (Formio) {
           warnBeforeLeaving = true
           doToggle(element)
         })
-        form.on('wizardNavigationClicked', () => {
-          doToggle(element, true)
-        })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
 
