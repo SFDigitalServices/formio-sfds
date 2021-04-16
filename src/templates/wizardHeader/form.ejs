@@ -1,11 +1,11 @@
 {% 
-  const { properties = {} } = ctx.options
+  const { panels, properties = {} } = ctx.options
   let currentStep = ctx.currentPage + 1
-  let numSteps = ctx.panels.length
-  for(let i=0; i<ctx.panels.length; i++) {
-    if(ctx.panels[i].properties.hideFromNavigation === 'true') {
-      numSteps -= 1
-      currentStep -= 1
+  let numSteps = panels.length
+  for (let i = 0; i < panels.length; i++) {
+    if (panels[i].properties.hideFromNavigation === 'true') {
+      numSteps--
+      currentStep--
     }
   }
 %}
