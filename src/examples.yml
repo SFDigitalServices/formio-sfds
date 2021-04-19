@@ -515,8 +515,8 @@
         description: The description
       - type: file
         label: File field
-        description: The description
         storage: base64
+        description: The description
 
 - id: error-messages
   title: Error messages

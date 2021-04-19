@@ -148,6 +148,43 @@ describe('a11y', () => {
     })
   })
 
+  describe('validateOn patch', () => {
+    it('sets validateOn to "blur" by default', async () => {
+      const form = await createForm({
+        components: [
+          {
+            type: 'textfield',
+            key: 'name',
+            label: 'Name',
+            input: true
+          }
+        ]
+      }, {})
+
+      expect(form.form.components[0].validateOn).toBe('blur')
+      destroyForm(form)
+    })
+
+    it('does not set validateOn to "blur" if properties.validateOn is truthy', async () => {
+      const form = await createForm({
+        components: [
+          {
+            type: 'textfield',
+            key: 'name',
+            label: 'Name',
+            input: true,
+            properties: {
+              validateOn: 'change'
+            }
+          }
+        ]
+      }, {})
+
+      expect(form.form.components[0].validateOn).toBe('change')
+      destroyForm(form)
+    })
+  })
+        
   describe('wizard navigation', () => {
     it('adds aria-current="page" to the current page', async () => {
       const form = await createForm({

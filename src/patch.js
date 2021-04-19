@@ -172,6 +172,7 @@ function patch (Formio) {
       }
 
       patchSelectWidget(model, form)
+      patchValidateOnBlur(model)
 
       loadEmbeddedTranslations(model, form.i18next)
 
@@ -279,6 +280,14 @@ function patchSelectWidget (model, form) {
       }, component.customOptions)
     } else {
       component.widget = 'html5'
+    }
+  })
+}
+
+function patchValidateOnBlur (model) {
+  FormioUtils.eachComponent(model.components, component => {
+    if (component.validateOn === 'change' && !component.properties?.validateOn) {
+      component.validateOn = 'blur'
     }
   })
 }
