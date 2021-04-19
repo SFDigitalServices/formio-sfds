@@ -1786,8 +1786,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                      class="flex-auto"
                 >
                   Section
-                  <span class="step">
-                    0 of 1
+                  <span>
+                    1 of 2
                   </span>
                 </div>
                 <div>
@@ -1933,8 +1933,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                      class="flex-auto"
                 >
                   Section
-                  <span class="step">
-                    0 of 1
+                  <span>
+                    1 of 2
                   </span>
                 </div>
                 <div>
