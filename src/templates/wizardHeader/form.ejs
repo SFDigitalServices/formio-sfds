@@ -1,5 +1,5 @@
 {% 
-  const { panels, properties = {} } = ctx.options
+  const { panels, options: { properties = {} } } = ctx
   let currentStep = ctx.currentPage + 1
   let numSteps = panels.length
   for (let i = 0; i < panels.length; i++) {
