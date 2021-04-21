@@ -1,5 +1,5 @@
 import components from './components'
-import patch from './patch'
+import patch, { forms } from './patch'
 import templates from './templates'
 import { observeIcons } from './icons'
 import { version } from '../package.json'
@@ -15,14 +15,17 @@ const plugin = {
   }
 }
 
-Object.defineProperty(plugin, 'version', {
-  // Formio complains about the "version" key if
-  // the property is enumerable :shrug:
-  enumerable: false,
-  get () {
-    return version
-  }
-})
+const hiddenProps = {
+  forms,
+  version
+}
+
+for (const [prop, value] of Object.entries(hiddenProps)) {
+  Object.defineProperty(plugin, prop, {
+    enumerable: false,
+    get () { return value }
+  })
+}
 
 export default plugin
 export { patch }

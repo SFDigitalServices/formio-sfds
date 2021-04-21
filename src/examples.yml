@@ -21,6 +21,19 @@
         description: This is the description
         multiple: true
 
+- id: select
+  title: Select
+  form:
+    components:
+      - type: select
+        widget: html5
+        data:
+          values:
+            - label: A
+              value: a
+            - label: B
+              value: b
+
 - id: checkbox
   title: Checkbox
   form:

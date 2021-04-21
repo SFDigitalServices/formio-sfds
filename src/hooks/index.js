@@ -1,4 +1,3 @@
-import 'whatwg-fetch'
 import { uriTemplate } from './template'
 import validateDSW from './validateDSW'
 import { getJSON } from '../utils'

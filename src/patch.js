@@ -5,15 +5,16 @@ import buildHooks from './hooks'
 import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
 import Phrase from './phrase'
 import { mergeObjects } from './utils'
-import 'flatpickr/dist/l10n/es'
-// import 'flatpickr/dist/l10n/tl'
-// import 'flatpickr/dist/l10n/zh'
-import 'flatpickr/dist/l10n/zh-tw'
+import flatpickrLocales from './i18n/flatpickr'
 
 const WRAPPER_CLASS = 'formio-sfds'
 const PATCHED = `sfds-patch-${Date.now()}`
 
-const debugDefault = process.env.NODE_ENV !== 'test'
+const hasProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+
+const debugDefault = process.env.NODE_ENV !== 'production'
+
+const libraryHooks = {}
 
 const defaultEvalContext = {
   inputId () {
@@ -54,19 +55,24 @@ export default Formio => {
   patch(Formio)
   Formio[PATCHED] = true
 
+  patchFormioLibraries(Formio)
+
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
-  patchDateTimeLocale(Formio)
+  patchFlatpickrLocales()
 
   // this goes last so that if it fails it doesn't break everything else
   patchLanguageObserver()
+
+  // toggles
+  toggleComponent()
 }
 
 // Prevent users from navigating away and losing their entries.
 let warnBeforeLeaving = false
 
-window.addEventListener('beforeunload', (event) => {
+window.addEventListener('beforeunload', event => {
   if (warnBeforeLeaving) {
     // Most browsers will show a default message instead of this one.
     event.returnValue = 'Leave site? Changes you made may not be saved.'
@@ -165,9 +171,10 @@ function patch (Formio) {
         disableConditionals(model.components)
       }
 
+      patchSelectWidget(model, form)
+
       loadEmbeddedTranslations(model, form.i18next)
 
-      patchSelectMode(model, form)
       form.form = model
 
       for (const [event, handler] of Object.entries(eventHandlers)) {
@@ -181,7 +188,11 @@ function patch (Formio) {
       if (opts.scroll !== false) {
         form.on('nextPage', scrollToTop)
         form.on('prevPage', scrollToTop)
-        form.on('nextPage', () => { warnBeforeLeaving = true })
+        form.on('prevPage', () => { doToggle(element) })
+        form.on('nextPage', () => {
+          warnBeforeLeaving = true
+          doToggle(element)
+        })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
 
@@ -221,12 +232,14 @@ function patch (Formio) {
 
       forms.push(form)
 
+      await form.redraw()
+
       return form
     })
   })
 }
 
-function patchSelectMode (model, form) {
+function patchSelectWidget (model, form) {
   const selects = FormioUtils.searchComponents(model.components, { type: 'select' })
 
   // forEach() instead of for...of gives us a closure,
@@ -308,6 +321,14 @@ function hook (obj, methodName, wrapper) {
   }
 }
 
+function hookLibrary (name, hook) {
+  if (hasProperty(window, name)) {
+    hook(window[name], name)
+  } else {
+    libraryHooks[name] = hook
+  }
+}
+
 function patchDateTimeSuffix () {
   observe('.formio-component-datetime .input-group', {
     add (el) {
@@ -356,22 +377,48 @@ function patchDateTimeLabels () {
   })
 }
 
+function patchFormioLibraries (Formio) {
+  if (typeof Formio.requireLibrary === 'function') {
+    hook(Formio, 'requireLibrary', async (requireLibrary, [name, ...args]) => {
+      if (typeof libraryHooks[name] === 'function') {
+        const lib = await requireLibrary(name, ...args)
+        await libraryHooks[name].call(null, lib, name)
+        return lib
+      }
+      return requireLibrary(name, ...args)
+    })
+  } else {
+    setInterval(() => {
+      for (const name in libraryHooks) {
+        if (hasProperty(window, name)) {
+          libraryHooks[name].call(null, window[name], name)
+          delete libraryHooks[name]
+        }
+      }
+    }, 50)
+  }
+}
+
 /**
- * This patch can go away as soon as we upgrade to formiojs's (eventual)
- * release of 4.12.0, which should include this fix:
+ * This patch originally accounted for a bug in formio.js, which was fixed
+ * in 4.12.0:
  *
  * <https://github.com/formio/formio.js/pull/3129>
+ *
+ * However, now that flatpickr is loaded only as needed by formio.js,
+ * we can't just import the translations at the top of this file and expect
+ * them to be applied. The new fix is to hook into Formio.requireLibrary()
+ * and patch flatpickr when it's loaded, then add the translations to the
+ * library before it's used to render datetime components.
  */
-function patchDateTimeLocale (Formio) {
-  hook(Formio.Components.components.datetime.prototype, 'attach', function (attach, args) {
-    if (this.options.language) {
-      this.component.widget.locale = getFlatpickrLocale(this.options.language)
+function patchFlatpickrLocales () {
+  hookLibrary('flatpickr', async flatpickr => {
+    for (const code in flatpickrLocales) {
+      flatpickr.l10ns[code] = flatpickrLocales[code]
     }
-    return attach(...args)
-  })
-
-  observe('.flatpickr-calendar', {
-    add: disableGoogleTranslate
+    observe('.flatpickr-calendar', {
+      add: disableGoogleTranslate
+    })
   })
 }
 
@@ -383,18 +430,6 @@ function disableGoogleTranslate (el) {
   el.setAttribute('translate', 'no')
 }
 
-function getFlatpickrLocale (code) {
-  if (code in window.flatpickr.l10ns) {
-    return code
-  }
-  // get the language portion of the code, e.g. "zh" from "zh-TW"
-  const lang = code.split('-')[0]
-  return {
-    // Prefer traditional (Taiwan) to simplified (China)
-    zh: 'zh_tw'
-  }[lang] || lang
-}
-
 function scrollToTop () {
   window.scroll(0, 0)
 }
@@ -403,7 +438,7 @@ function disableConditionals (components) {
   FormioUtils.eachComponent(components, comp => {
     comp.properties.conditional = comp.conditional
     comp.conditional = {}
-  })
+  }, true)
 }
 
 function userIsTranslating (opts) {
@@ -414,5 +449,40 @@ function userIsTranslating (opts) {
   if (uid && uid !== '0') {
     const translate = new URLSearchParams(window.location.search).get('translate')
     return translate === 'true'
+  }
+}
+
+function toggleComponent () {
+  observe('[data-toggle-container]', {
+    add (el) {
+      const ariaControl = el.querySelector('[aria-controls]')
+
+      ariaControl.addEventListener('click', event => {
+        if (ariaControl.hasAttribute('aria-expanded')) {
+          const expanded = ariaControl.getAttribute('aria-expanded')
+          doToggle(el, expanded !== 'true')
+        }
+      })
+    }
+  })
+}
+
+function doToggle (element, show = false) {
+  const toggler = element.hasAttribute('data-toggle-container')
+    ? element
+    : element.querySelector('[data-toggle-container]')
+  if (toggler) {
+    const ariaControl = toggler.querySelector('[aria-controls]')
+    if (!ariaControl) return false
+
+    const content = document.getElementById(ariaControl.getAttribute('aria-controls'))
+    if (!content) return false
+    if (show) {
+      ariaControl.setAttribute('aria-expanded', 'true')
+      content.hidden = false
+    } else {
+      ariaControl.setAttribute('aria-expanded', 'false')
+      content.hidden = true
+    }
   }
 }
