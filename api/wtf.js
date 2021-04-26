@@ -1,10 +1,10 @@
-import fetch from 'node-fetch'
-import { URL } from 'url'
-import { join } from 'path'
-import nunjucks from 'nunjucks'
-import Phrase from '../src/phrase'
-import { Proxy } from '../lib/proxy'
-import defaultData from '../views/data'
+const fetch = require('node-fetch')
+const { URL } = require('url')
+const { join } = require('path')
+const nunjucks = require('nunjucks')
+const Phrase = require('../src/phrase')
+const { Proxy } = require('../lib/proxy')
+const defaultData = require('../views/data')
 
 const {
   FORMS_API_URL = 'https://sfgov-forms.vercel.app'

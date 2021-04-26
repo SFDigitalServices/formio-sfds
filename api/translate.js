@@ -1,4 +1,4 @@
-import { Proxy } from '../lib/proxy'
+const { Proxy } = require('../lib/proxy')
 
 module.exports = async (req, res) => {
   const { query } = req
