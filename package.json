@@ -6,6 +6,7 @@
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
   "scripts": {
+    "heroku-prebuild": "script/heroku-prebuild",
     "build": "run-s build-css build-js build-views",
     "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
     "build-js": "rollup -c",
