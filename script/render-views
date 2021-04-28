@@ -47,7 +47,7 @@ globby(['views/*.html', '!views/docs.html'])
       console.warn('rendering example "%s"...', example.id)
       const output = env.render('example.html', Object.assign({ example }, data))
       const outPath = join(exDir, `${example.id}/index.html`)
-      writeFileSync(outPath, output, 'utf8')
+      await writeFile(outPath, output, 'utf8')
     }
   })
 
@@ -75,14 +75,15 @@ globby(['README.md', 'docs/*.md'])
       const output = env.render('docs.html', Object.assign({ content, page, parsed }, data))
       const filename = basename(mdPath)
         .replace('README', 'index')
-        .replace('.md', '.html')
+        .replace('.md', '/index.html')
+        .replace('index/index', 'index')
       const outPath = join(docsDir, filename)
       console.log('docs: %s → %s', mdPath, outPath, page)
-      writeFileSync(outPath, output, 'utf8')
+      await writeFile(outPath, output, 'utf8')
     }
   })
 
-  async function writeFile (path, ...args) {
-    await mkdirp(dirname(path))
-    writeFileSync(path, ...args)
-  }
+async function writeFile (path, ...args) {
+  await mkdirp(dirname(path))
+  writeFileSync(path, ...args)
+}
