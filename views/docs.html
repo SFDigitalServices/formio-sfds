@@ -69,10 +69,12 @@
               Edit this page on GitHub
             </a>
           </div>
-          <div>
-            Last <a href="https://github.com/{{ pkg.repository }}/commit/{{ git.sha }}">edited</a> by
-            <a href="https://github.com/{{ git.author.login }}">{{ git.author.login }}</a>
-          </div>
+          {% if git.sha and git.author.login %}
+            <div>
+              Last <a href="https://github.com/{{ pkg.repository }}/commit/{{ git.sha }}">edited</a> by
+              <a href="https://github.com/{{ git.author.login }}">{{ git.author.login }}</a>
+            </div>
+          {% endif %}
         </div>
 
         {% if debug %}
