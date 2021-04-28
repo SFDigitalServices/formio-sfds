@@ -3,7 +3,7 @@ const globby = require('globby')
 const nunjucks = require('nunjucks')
 const mkdirp = require('mkdirp')
 const yaml = require('js-yaml')
-const { basename, join } = require('path')
+const { basename, dirname, join } = require('path')
 const { readFileSync, writeFileSync } = require('fs')
 const remarkProcessor = require('../lib/remark')
 
@@ -25,14 +25,19 @@ const env = nunjucks.configure(join(__dirname, '../views'), {
 console.warn('finding views...')
 
 globby(['views/*.html', '!views/docs.html'])
-  .then(paths => {
+  .then(async paths => {
     for (const templatePath of paths) {
       const filename = basename(templatePath)
       console.warn('rendering "%s"...', filename)
       const output = env.render(filename, data)
-      const outPath = join(outDir, filename)
+      const outPath = join(
+        outDir,
+        filename
+          .replace('.html', '/index.html')
+          .replace('index/index', 'index')
+      )
       console.warn('writing "%s"...', outPath)
-      writeFileSync(outPath, output, 'utf8')
+      await writeFile(outPath, output, 'utf8')
     }
   })
   .then(async () => {
@@ -41,7 +46,7 @@ globby(['views/*.html', '!views/docs.html'])
     for (const example of examples) {
       console.warn('rendering example "%s"...', example.id)
       const output = env.render('example.html', Object.assign({ example }, data))
-      const outPath = join(exDir, `${example.id}.html`)
+      const outPath = join(exDir, `${example.id}/index.html`)
       writeFileSync(outPath, output, 'utf8')
     }
   })
@@ -76,3 +81,8 @@ globby(['README.md', 'docs/*.md'])
       writeFileSync(outPath, output, 'utf8')
     }
   })
+
+  async function writeFile (path, ...args) {
+    await mkdirp(dirname(path))
+    writeFileSync(path, ...args)
+  }
