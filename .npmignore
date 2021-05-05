@@ -2,5 +2,7 @@
 .*rc.js
 .*rc.yml
 .github/
+app.json
 script/
+Procfile
 __tests__

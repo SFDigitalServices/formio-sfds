@@ -6,8 +6,12 @@ const app = express()
 
 app
   .use('/api', require('./api'))
-  .use('/dist', express.static('dist', {
-  }))
+  /*
+   * FIXME: because of how views are built right now, we have to serve /dist
+   * from both / *and* /dist.
+   */
+  .use('/dist', express.static('dist'))
+  // ...but we really only need to serve HTML from /
   .use('/', express.static('dist', {
     extensions: ['html']
   }))
