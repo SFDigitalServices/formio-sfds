@@ -24,8 +24,8 @@ title: Development
     git clone https://github.com/SFDigitalServices/formio-sfds
     ```
 2. Run `npm install` to install all of the dependencies
-3. Run `npm run watch` to build all of the browser-ready JS and CSS, and
-   rebuild whenever changes are made to the source.
+3. Run `npm run develop` to build all of the browser-ready JS and CSS, rebuild
+   whenever changes are made to the source, and start the development server.
 
 Running `npm run` without any additional arguments will list all of the
 available scripts, most notably:
@@ -35,9 +35,18 @@ available scripts, most notably:
   `NODE_ENV=production npm run build` to build minified assets
 
 ### Local testing
-There are a collection of HTML documents that power "views" in the web app
-deployment, and which you can use to test the theme against different form.io
-data and scenarios:
+Running `npm run develop` (or `npm watch-server` for _just_ the server) starts
+the web app on any old available port and prints out its local address, which
+you can paste into your web browser:
+
+```
+[nodemon] starting `node server.js`
+server listening at localhost:50613
+```
+
+There are a collection of HTML documents that power "views" in the web app, and
+which you can use to test the theme against different form.io data and
+scenarios:
 
 - [index.html](../views/index.html) is the home page of the web deployment,
   and renders each example defined in [examples.yml](../src/examples.yml).
@@ -54,10 +63,7 @@ data and scenarios:
     with live forms. E.g. `?res=https://sfds.form.io/some-other-form`
 
   - `lang` overrides the form's language, for testing localization. E.g.
-    `?lang=zh-TW`.
-
-  - `hooks` can be used to pass [declarative hooks] that
-    modify form behavior.
+    `?lang=zh` for Chinese.
 
 - [portal.html](../views/portal.html) is where you can test the "portal"
   bundle, which we add as a custom script on [form.io](https://form.io) to
