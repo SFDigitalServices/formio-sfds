@@ -300,8 +300,7 @@
   form:
     components:
       - type: signature
-        label: Sign here
-        description: This is the description
+        description: This is the signature description
         validate:
           required: true
 

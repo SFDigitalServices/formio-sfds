@@ -1,19 +1,24 @@
 {{ctx.element}}
-<div class="signature-pad-body"
-  style="width: {{ctx.component.width}};height: {{ctx.component.height}};padding:0;margin:0;"
+<div class="round-1 bg-grey-1 mb-2"
+  style="
+    width: {{ctx.component.width}};
+    height: {{ctx.component.height}};
+  "
   tabindex="{{ctx.component.tabindex || 0}}" ref="padBody">
   <canvas class="signature-pad-canvas" width="{{ctx.component.width}}" height="{{ctx.component.height}}"
     ref="canvas"></canvas>
-  {% if (ctx.required) { %}
-  <span class="form-control-feedback field-required-inline text-danger">
-    <i class="{{ctx.iconClass('asterisk')}}"></i>
-  </span>
-  {% } %}
+  <!--
+    {% if (ctx.required) { %}
+    <span class="form-control-feedback field-required-inline text-danger">
+      <i class="{{ctx.iconClass('asterisk')}}"></i>
+    </span>
+    {% } %}
+  -->
   <img style="width: 100%; display: none;" ref="signatureImage">
 </div>
 {% if (ctx.component.footer) { %}
-<div class="signature-pad-footer">
-  <a class="signature-refresh" ref="refresh">clear</a>
+<div class="d-flex flex-justify-between">
+  <button class="btn bg-slate" ref="refresh">{{ ctx.t('Clear') }}</button>
   {{ctx.t(ctx.component.footer)}}
 </div>
 {% } %}
