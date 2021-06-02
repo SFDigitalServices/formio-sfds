@@ -295,6 +295,16 @@
           - type: review
             label: ''
 
+- id: signature
+  title: Signature
+  form:
+    components:
+      - type: signature
+        label: Sign here
+        description: This is the description
+        validate:
+          required: true
+
 - id: day-default
   title: Day (default)
   form:
