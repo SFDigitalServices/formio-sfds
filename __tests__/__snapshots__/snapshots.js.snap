@@ -2616,6 +2616,7 @@ exports[`component snapshots component "select" scenario: required matches the s
                 type="text"
                 name="data[select]"
                 id="input-select-required-2"
+                aria-required="true"
                 required
                 ref="selectContainer"
         >

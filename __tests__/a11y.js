@@ -230,7 +230,7 @@ describe('a11y', () => {
   })
 
   describe('aria-invalid', () => {
-    it.only('adds aria-invalid="true" to invalid components', async () => {
+    it('adds aria-invalid="true" to invalid components', async () => {
       const form = await createForm({
         components: [
           {
