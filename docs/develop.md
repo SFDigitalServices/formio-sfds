@@ -24,8 +24,8 @@ title: Development
     git clone https://github.com/SFDigitalServices/formio-sfds
     ```
 2. Run `npm install` to install all of the dependencies
-3. Run `npm run watch` to build all of the browser-ready JS and CSS, and
-   rebuild whenever changes are made to the source.
+3. Run `npm run develop` to build all of the browser-ready JS and CSS, rebuild
+   whenever changes are made to the source, and start the development server.
 
 Running `npm run` without any additional arguments will list all of the
 available scripts, most notably:
@@ -35,11 +35,20 @@ available scripts, most notably:
   `NODE_ENV=production npm run build` to build minified assets
 
 ### Local testing
-There are a collection of HTML documents that power "views" in the Vercel app
-deployment, and which you can use to test the theme against different form.io
-data and scenarios:
+Running `npm run develop` (or `npm watch-server` for _just_ the server) starts
+the web app on any old available port and prints out its local address, which
+you can paste into your web browser:
 
-- [index.html](../views/index.html) is the home page of the Vercel deployment,
+```
+[nodemon] starting `node server.js`
+server listening at localhost:50613
+```
+
+There are a collection of HTML documents that power "views" in the web app, and
+which you can use to test the theme against different form.io data and
+scenarios:
+
+- [index.html](../views/index.html) is the home page of the web deployment,
   and renders each example defined in [examples.yml](../src/examples.yml).
 
   The schema is an array of example objects, each of which should conform to
@@ -54,10 +63,7 @@ data and scenarios:
     with live forms. E.g. `?res=https://sfds.form.io/some-other-form`
 
   - `lang` overrides the form's language, for testing localization. E.g.
-    `?lang=zh-TW`.
-
-  - `hooks` can be used to pass [declarative hooks] that
-    modify form behavior.
+    `?lang=zh` for Chinese.
 
 - [portal.html](../views/portal.html) is where you can test the "portal"
   bundle, which we add as a custom script on [form.io](https://form.io) to
@@ -68,17 +74,16 @@ data and scenarios:
   in the heading of each example rendered on the home page.
 
 ### Proxy testing
-The deployed app includes a serverless API endpoint that proxies sf.gov,
-modifies the HTML, then returns it to the browser, effectively "injecting"
-whatever version of formio-sfds you want _into_ sf.gov (or the Pantheon test
-environment). Here's how it works:
+The deployed app includes an API endpoint that proxies sf.gov, modifies the
+HTML, then returns it to the browser, effectively "injecting" whatever version
+of formio-sfds you want _into_ sf.gov (or the Pantheon test environment).
+Here's how it works:
 
-1. Visit the Vercel deployment's
-   [/api/preview](https://formio-sfds.vercel.app/api/preview) endpoint. By
+1. Visit [/api/preview](https://formio-sfds.herokuapp.com/api/preview). By
    default, this will fetch [sf.gov/feedback](https://sf.gov/feedback) and
    replace whatever version of formio-sfds it's running with the bundle built
-   with your deployment. (On the production Vercel deployment, this is the
-   [latest release](https://github.com/SFDigitalServices/formio-sfds/releases).)
+   with your deployment. (On the production app, this is the [latest
+   release](https://github.com/SFDigitalServices/formio-sfds/releases).)
 
 2. Change the query string parameters to modify the preview by appending a `?`
    and one or more of the following, separated with `&`:
@@ -86,7 +91,7 @@ environment). Here's how it works:
     - `form=<url>` sets the form.io data source URL of the rendered form
     - `options=<json>` sets the formio.js render options JSON
     - `version=<semver>` changes the published version of formio-sfds, rather
-      than using the bundle built by the Vercel deployment
+      than using the bundle built by the web app
     - `env=<env>` changes the name of the sf.gov environment from the default
       (sf.gov). `env=test` will set the hostname to the test environment.
     - `path=<path>` changes the request path from `/feedback`, so that you can
@@ -142,7 +147,7 @@ https://unpkg.com/formio-sfds@<version>/
 
 The trailing slash allows you to browse the published package file hierarchy.
 Previously, our example and test pages were "hosted" as raw HTML from these URLs,
-but you should view them [on the Vercel deployment](https://formio-sfds.vercel.app)
+but you should view them [on the web app](https://formio-sfds.herokuapp.com/)
 instead.
 
 **Note:** unpkg.com will strip the query string from any URL you give it, but

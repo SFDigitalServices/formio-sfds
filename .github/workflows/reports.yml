@@ -10,3 +10,4 @@ jobs:
         with:
           repo-token: ${{ github.token }}
           pattern: 'dist/**/*.{css,js}'
+          exclude: 'dist/**/example*'

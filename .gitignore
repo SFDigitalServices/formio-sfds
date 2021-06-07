@@ -49,6 +49,9 @@ jspm_packages/
 .*cache
 .next
 .nuxt
-.vercel/
 .lighthouseci/
 dist/
+
+# Heroku files
+app.json
+Procfile

@@ -1,12 +1,12 @@
-import interpolate from 'interpolate'
+const interpolate = require('interpolate')
+const {
+  I18NEXT_DEFAULT_NAMESPACE,
+  I18N_SERVICE_URL
+} = require('./constants')
 
-const I18NEXT_DEFAULT_NAMESPACE = 'translation' // ???
-const I18N_SERVICE_URL = process.env.I18N_SERVICE_URL || 'https://translate.sf.gov'
 const debugDefault = process.env.NODE_ENV !== 'test'
 
-export { I18N_SERVICE_URL, I18NEXT_DEFAULT_NAMESPACE }
-
-export default class Phrase {
+module.exports = class Phrase {
   static get configDefaults () {
     return {
       prefix: '[[__',

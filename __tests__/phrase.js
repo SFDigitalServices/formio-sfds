@@ -1,6 +1,7 @@
 /* eslint-env jest */
-import Phrase, { I18N_SERVICE_URL } from '../src/phrase'
-import loadTranslations from '../src/i18n/load'
+import Phrase from '../src/phrase'
+import { I18N_SERVICE_URL } from '../src/constants'
+import { loadTranslations } from '../src/i18n/load'
 import patch from '../src/patch'
 import { createForm, destroyForm } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'

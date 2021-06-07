@@ -46,5 +46,8 @@ jobs:
             ### :bug: Bug fixes
             - Bug fixes here
 
-            ### :bug: Bug fixes
-            - Bug fixes here
+            ### :memo: Documentation
+            - Documentation changes here
+
+            ### :house: Internal
+            - npm, workflow, build, and deployment updates

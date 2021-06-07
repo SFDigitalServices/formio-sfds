@@ -2,7 +2,7 @@
 import patch from '../src/patch'
 import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
-import loadTranslations from '../src/i18n/load'
+import { loadTranslations } from '../src/i18n/load'
 import defaultTranslations from '../src/i18n'
 
 jest.mock('../src/i18n/load')
@@ -42,6 +42,15 @@ describe('form localization', () => {
       const lang = 'es'
       document.documentElement.setAttribute('lang', lang)
       const form = await createForm()
+      expect(form.options.language).toEqual(lang)
+      destroyForm(form)
+      document.documentElement.removeAttribute('lang')
+    })
+
+    it('prioritizes "language" option over DOM lang', async () => {
+      const lang = 'es'
+      document.documentElement.setAttribute('lang', 'en')
+      const form = await createForm({}, { language: lang })
       expect(form.options.language).toEqual(lang)
       destroyForm(form)
       document.documentElement.removeAttribute('lang')

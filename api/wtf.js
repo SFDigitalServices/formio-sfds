@@ -1,10 +1,10 @@
-import fetch from 'node-fetch'
-import { URL } from 'url'
-import { join } from 'path'
-import nunjucks from 'nunjucks'
-import Phrase from '../src/phrase'
-import { Proxy } from '../lib/proxy'
-import defaultData from '../views/data'
+const fetch = require('node-fetch')
+const { URL } = require('url')
+const { join } = require('path')
+const nunjucks = require('nunjucks')
+const Phrase = require('../src/phrase')
+const { Proxy } = require('../lib/proxy')
+const defaultData = require('../views/data')
 
 const {
   FORMS_API_URL = 'https://sfgov-forms.vercel.app'
@@ -185,7 +185,7 @@ async function getSFgovData (url, data) {
 
       if (typeof options.i18n === 'string') {
         data.translation.url = options.i18n
-        const match = options.i18n.match(/google\/([^@])/)
+        const match = options.i18n.match(/google\/([^@]+)/)
         data.translation.source = {
           title: 'Google Sheets',
           url: `https://docs.google.com/spreadsheets/d/${match[1]}/edit`

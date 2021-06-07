@@ -1,6 +1,6 @@
-import dot from 'dot-component'
-import fetch from 'node-fetch'
-import { getStrings, getCondition } from '../lib/i18n'
+const dot = require('dot-component')
+const fetch = require('node-fetch')
+const { getStrings, getCondition } = require('../lib/i18n')
 
 const formatters = {
   flat: formatFlatJSON,
