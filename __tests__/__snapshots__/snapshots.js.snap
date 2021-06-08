@@ -1365,11 +1365,10 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
                      name="data[dateTime]"
                      id="input-datetime-basic-2"
                      ref="input"
-                     placeholder="yyyy-MM-dd hh:mm a"
                      aria-labelledby="label-datetime-basic-2"
               >
               <input class="form-control form-control input"
-                     placeholder="yyyy-MM-dd hh:mm a"
+                     placeholder
                      tabindex="0"
                      type="text"
               >
@@ -1450,11 +1449,10 @@ exports[`component snapshots component "datetime" scenario: required matches the
                      required
                      id="input-datetime-required-2"
                      ref="input"
-                     placeholder="yyyy-MM-dd hh:mm a"
                      aria-labelledby="label-datetime-required-2"
               >
               <input class="form-control form-control input"
-                     placeholder="yyyy-MM-dd hh:mm a"
+                     placeholder
                      required
                      tabindex="0"
                      type="text"
