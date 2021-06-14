@@ -21,4 +21,3 @@ function fallbackCSS (el, property, value) {
     el.style.setProperty(property, value)
   }
 }
-
