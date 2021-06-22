@@ -13,7 +13,7 @@
     "build-views": "script/render-views",
     "lint": "run-p lint-js lint-css",
     "lint-css": "stylelint src/scss/**/*.scss",
-    "lint-js": "eslint src lib",
+    "lint-js": "eslint src __tests__ lib api '*.js'",
     "start": "node server.js",
     "test": "jest",
     "update-translations": "script/get-translations > src/i18n/translations.json",
