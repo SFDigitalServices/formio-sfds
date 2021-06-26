@@ -334,7 +334,7 @@ describe('Phrase functionality', () => {
       destroyForm(form)
     })
 
-    xit('does not affect other forms', async () => {
+    it.skip('does not affect other forms', async () => {
       window.location.search = 'translate=true'
       window.drupalSettings = { user: { uid: 12345 } }
 

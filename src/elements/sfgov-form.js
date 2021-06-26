@@ -70,13 +70,15 @@ export default class SFGovForm extends HTMLElement {
       .then(async form => {
         this.form = form
         if (options.example?.submit) {
-          await form.submit()
-            .catch(error => {
-              this.dispatchEvent(new Event('form:error', { error }))
-            })
+          try {
+            await form.submit()
+          } catch (error) {
+            this.dispatchEvent(new Event('form:error', { error }))
+          }
         }
         this.dispatchEvent(new Event('form:ready', { form }))
         this._resolve(form)
+        return form
       })
       .catch(error => {
         this.dispatchEvent(new Event('form:error', { error, data, options }))
