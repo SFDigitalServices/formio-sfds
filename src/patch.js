@@ -26,6 +26,8 @@ const defaultEvalContext = {
     return parts.join('-')
   },
 
+  classnames: require('classnames'),
+
   tk (field, defaultValue = '') {
     const { component = {} } = this
     const { type, key = type } = component
