@@ -6,6 +6,7 @@ const app = express()
 
 app
   .use('/api', require('./api'))
+  .use('/sfgov', require('./lib/sfgov'))
   /*
    * FIXME: because of how views are built right now, we have to serve /dist
    * from both / *and* /dist.
