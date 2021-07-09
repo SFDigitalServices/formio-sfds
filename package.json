@@ -8,7 +8,7 @@
   "scripts": {
     "develop": "run-p watch watch-server",
     "build": "run-s build-css build-js build-views",
-    "build-css": "postcss src/scss/formio-sfds.scss --ext css --dir dist",
+    "build-css": "postcss src/scss/formio-sfds.scss -o dist/formio-sfds.css",
     "build-js": "rollup -c",
     "build-views": "script/render-views",
     "lint": "run-p lint-js lint-css",
@@ -20,8 +20,8 @@
     "snaps": "npm run build-js && npm test -- -u",
     "watch": "run-s build-css watch-all",
     "watch-all": "run-p watch-css watch-js watch-views",
-    "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
-    "watch-js": "rollup -c --watch",
+    "watch-css": "watchy -w src/scss -w '*.config.js' -- npm run build-css",
+    "watch-js": "watchy -w src -w '*.config.js' -- rollup -c",
     "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -w lib/remark.js -- npm run build-views",
     "watch-server": "nodemon server.js",
     "watch-test": "jest --watch"
