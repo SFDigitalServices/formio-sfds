@@ -31,7 +31,11 @@
               const active = index === ctx.currentPage
               const enabled = active || completed || ctx.options.unlockNavigation
               const color = active || completed ? 'fg-slate' : 'fg-inherit'
-              const style = active ? 'cursor-pointer font-medium no-u' : (completed ? 'u' : 'no-u')
+              const style = ctx.classnames({
+                'cursor-pointer': enabled,
+                'font-medium': active,
+                underline: completed
+              })
               const last = index === ctx.panels.length - 1
             %}
             <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ panel.properties.hideFromNavigation === 'true' ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
