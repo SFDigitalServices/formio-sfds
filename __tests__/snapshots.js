@@ -24,6 +24,7 @@ const components = [
   { type: 'container' },
   { type: 'day' },
   { type: 'datetime' },
+  { type: 'file' },
   { type: 'htmlelement', tag: 'h1', content: 'Hello, world!' },
   { type: 'content', html: 'Hello, world!' },
   { type: 'number' },

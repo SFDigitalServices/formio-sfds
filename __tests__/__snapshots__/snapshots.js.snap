@@ -1763,6 +1763,156 @@ exports[`component snapshots component "day" scenario: required matches the snap
 </div>
 `;
 
+exports[`component snapshots component "file" scenario: basic matches the snapshot 1`] = `
+<div id="form-file-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="file-basic-1"
+  >
+    <label for="input-file-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-file formio-component-file"
+           id="file-basic-2"
+      >
+        <label for="input-file-basic-2"
+               class
+        >
+          This is the file label
+        </label>
+        <div ref="fileDrop"
+             class="fileSelector"
+        >
+          <div class="align-center">
+            Drop files to attach, or
+            <button ref="fileBrowse"
+                    class="ml-1 mr-0 mb-0 btn btn-secondary"
+            >
+              Browse
+            </button>
+          </div>
+        </div>
+        <div class="alert alert-warning">
+          <p>
+            No storage has been set for this field. File uploads are disabled until storage is set up.
+          </p>
+        </div>
+        <table class="align-left mt-0 mb-2">
+          <thead hidden>
+            <tr>
+              <th class="col-md-3">
+                File name
+              </th>
+              <th class="col-md-2 text-align-right">
+                Size
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <div class="fg-light-slate mt-1">
+          This is the file description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "file" scenario: required matches the snapshot 1`] = `
+<div id="form-file-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="file-required-1"
+  >
+    <label for="input-file-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-file formio-component-file  required"
+           id="file-required-2"
+      >
+        <label for="input-file-required-2"
+               class="field-required"
+        >
+          This is the file label
+        </label>
+        <div ref="fileDrop"
+             class="fileSelector"
+        >
+          <div class="align-center">
+            Drop files to attach, or
+            <button ref="fileBrowse"
+                    class="ml-1 mr-0 mb-0 btn btn-secondary"
+            >
+              Browse
+            </button>
+          </div>
+        </div>
+        <div class="alert alert-warning">
+          <p>
+            No storage has been set for this field. File uploads are disabled until storage is set up.
+          </p>
+        </div>
+        <table class="align-left mt-0 mb-2">
+          <thead hidden>
+            <tr>
+              <th class="col-md-3">
+                File name
+              </th>
+              <th class="col-md-2 text-align-right">
+                Size
+              </th>
+              <th>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <div class="fg-light-slate mt-1">
+          This is the file description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
 exports[`component snapshots component "form" scenario: basic matches the snapshot 1`] = `
 <div id="form-form-basic"
      class="d-flex flex-column-reverse mb-4"
@@ -1812,12 +1962,12 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
                 <li data-current
-                    style="padding-bottom: 30px"
+                    style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em"
+                        style="margin: 1px 0 0 -.24em;"
                         class="fg-slate flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
@@ -1832,19 +1982,18 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                     </svg>
                   </span>
                   <button ref="wizard-form-basic-1-link"
-                          style="cursor:default"
                           aria-current="page"
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
                   >
                     Page 1 link title
                   </button>
                 </li>
-                <li style="padding-bottom: 30px"
+                <li style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start pb-2"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em"
+                        style="margin: 1px 0 0 -.24em;"
                         class="fg-grey-4 flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
@@ -1860,7 +2009,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </span>
                   <button style="cursor:default"
                           disabled
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
                   </button>
@@ -1959,12 +2108,12 @@ exports[`component snapshots component "form" scenario: translate matches the sn
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
                 <li data-current
-                    style="padding-bottom: 30px"
+                    style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em"
+                        style="margin: 1px 0 0 -.24em;"
                         class="fg-slate flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
@@ -1979,19 +2128,18 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                     </svg>
                   </span>
                   <button ref="wizard-form-translate-1-link"
-                          style="cursor:default"
                           aria-current="page"
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
                   >
                     Page 1 link title
                   </button>
                 </li>
-                <li style="padding-bottom: 30px"
+                <li style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start pb-2"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em"
+                        style="margin: 1px 0 0 -.24em;"
                         class="fg-grey-4 flex-no-shrink notranslate"
                   >
                     <svg viewbox="0 0 20 20"
@@ -2007,7 +2155,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </span>
                   <button style="cursor:default"
                           disabled
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
                   </button>

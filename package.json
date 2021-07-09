@@ -8,7 +8,7 @@
   "scripts": {
     "develop": "run-p watch watch-server",
     "build": "run-s build-css build-js build-views",
-    "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
+    "build-css": "postcss src/scss/formio-sfds.scss --ext css --dir dist",
     "build-js": "rollup -c",
     "build-views": "script/render-views",
     "lint": "run-p lint-js lint-css",
@@ -66,6 +66,7 @@
     "@ungap/global-this": "^0.4.0",
     "autoprefixer": "^9.8.0",
     "babel-plugin-lodash": "^3.3.4",
+    "classnames": "^2.3.1",
     "dot-component": "^0.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

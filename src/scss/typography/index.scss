@@ -3,9 +3,6 @@
 .big-description { @include big-description; }
 .small { @include small-text; }
 
-.u { text-decoration: underline !important; }
-.no-u { text-decoration: none !important; }
-
 .font-inherit { font: inherit !important; }
 
 @each $name, $value in $font-weights {
