@@ -42,6 +42,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                          class="form-control"
                          type="text"
                          name="data[address][line1]"
+                         aria-required="true"
                          required
                          id="input-address-basic-3"
                          ref="input"
@@ -97,6 +98,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                          class="form-control"
                          type="text"
                          name="data[address][city]"
+                         aria-required="true"
                          required
                          id="input-address-basic-5"
                          ref="input"
@@ -135,6 +137,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             type="text"
                             name="data[address][state]"
                             id="input-address-basic-7"
+                            aria-required="true"
                             required
                             ref="selectContainer"
                     >
@@ -337,6 +340,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                                class="form-control"
                                type="text"
                                name="data[address][zip]"
+                               aria-required="true"
                                required
                                id="input-address-basic-8"
                                ref="input"
@@ -409,6 +413,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                          class="form-control"
                          type="text"
                          name="data[address][line1]"
+                         aria-required="true"
                          required
                          id="input-address-required-3"
                          ref="input"
@@ -464,6 +469,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                          class="form-control"
                          type="text"
                          name="data[address][city]"
+                         aria-required="true"
                          required
                          id="input-address-required-5"
                          ref="input"
@@ -502,6 +508,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                             type="text"
                             name="data[address][state]"
                             id="input-address-required-7"
+                            aria-required="true"
                             required
                             ref="selectContainer"
                     >
@@ -704,6 +711,7 @@ exports[`component snapshots component "address" scenario: required matches the 
                                class="form-control"
                                type="text"
                                name="data[address][zip]"
+                               aria-required="true"
                                required
                                id="input-address-required-8"
                                ref="input"
@@ -1438,6 +1446,7 @@ exports[`component snapshots component "datetime" scenario: required matches the
                      class="form-control flatpickr-input"
                      type="hidden"
                      name="data[dateTime]"
+                     aria-required="true"
                      required
                      id="input-datetime-required-2"
                      ref="input"
@@ -1652,6 +1661,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
                       name="month"
                       class="form-control"
                       id="input-day-required-2-month"
+                      aria-required="true"
                       required
                       ref="month"
               >
@@ -1710,6 +1720,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
                        placeholder
                        type="number"
                        class="form-control formio-day-component-day"
+                       aria-required="true"
                        required
                        id="input-day-required-2-day"
                        ref="day"
@@ -1731,6 +1742,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
                        placeholder
                        type="number"
                        class="form-control formio-day-component-year"
+                       aria-required="true"
                        required
                        id="input-day-required-2-year"
                        ref="year"
@@ -2372,6 +2384,7 @@ exports[`component snapshots component "number" scenario: required matches the s
                    class="form-control"
                    type="text"
                    name="data[number]"
+                   aria-required="true"
                    required
                    id="input-number-required-2"
                    ref="input"
@@ -2751,6 +2764,7 @@ exports[`component snapshots component "select" scenario: required matches the s
                 type="text"
                 name="data[select]"
                 id="input-select-required-2"
+                aria-required="true"
                 required
                 ref="selectContainer"
         >
@@ -3217,6 +3231,7 @@ exports[`component snapshots component "state" scenario: required matches the sn
                 type="text"
                 name="data[state]"
                 id="input-state-required-2"
+                aria-required="true"
                 required
                 ref="selectContainer"
         >
@@ -3498,6 +3513,7 @@ exports[`component snapshots component "textfield" scenario: required matches th
                    class="form-control"
                    type="text"
                    name="data[textField]"
+                   aria-required="true"
                    required
                    id="input-textfield-required-2"
                    ref="input"
@@ -3554,6 +3570,7 @@ exports[`component snapshots component "zip" scenario: basic matches the snapsho
                    class="form-control"
                    type="text"
                    name="data[zip]"
+                   aria-required="true"
                    required
                    id="input-zip-basic-2"
                    ref="input"
@@ -3610,6 +3627,7 @@ exports[`component snapshots component "zip" scenario: required matches the snap
                    class="form-control"
                    type="text"
                    name="data[zip]"
+                   aria-required="true"
                    required
                    id="input-zip-required-2"
                    ref="input"
