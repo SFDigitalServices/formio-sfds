@@ -1983,7 +1983,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </span>
                   <button ref="wizard-form-basic-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
@@ -2129,7 +2129,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </span>
                   <button ref="wizard-form-translate-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
