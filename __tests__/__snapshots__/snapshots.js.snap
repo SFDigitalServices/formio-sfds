@@ -1834,7 +1834,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   <button ref="wizard-form-basic-1-link"
                           style="cursor:default"
                           aria-current="page"
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                          class="block font-inherit border-0 bg-none flex-auto align-left m-0 pl-2 py-0 fg-slate cursor-pointer font-medium no-u"
                   >
                     Page 1 link title
                   </button>
@@ -1860,7 +1860,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </span>
                   <button style="cursor:default"
                           disabled
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                          class="block font-inherit border-0 bg-none flex-auto align-left m-0 pl-2 py-0 fg-inherit no-u"
                   >
                     Page 2
                   </button>
@@ -1981,7 +1981,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   <button ref="wizard-form-translate-1-link"
                           style="cursor:default"
                           aria-current="page"
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-slate fw-medium no-u"
+                          class="block font-inherit border-0 bg-none flex-auto align-left m-0 pl-2 py-0 fg-slate cursor-pointer font-medium no-u"
                   >
                     Page 1 link title
                   </button>
@@ -2007,7 +2007,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </span>
                   <button style="cursor:default"
                           disabled
-                          class="btn-link flex-auto align-left m-0 pl-2 py-0 fg-inherit fw-regular no-u"
+                          class="block font-inherit border-0 bg-none flex-auto align-left m-0 pl-2 py-0 fg-inherit no-u"
                   >
                     Page 2
                   </button>
