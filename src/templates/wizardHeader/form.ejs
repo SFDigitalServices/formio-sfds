@@ -37,7 +37,7 @@
               const color = active || completed ? 'fg-slate' : 'fg-inherit'
               const style = ctx.classnames(color, {
                 'font-medium': active,
-                underline: active
+                underline: completed && !active
               }, enabled ? 'cursor-pointer' : 'cursor-default')
               const last = index === ctx.panels.length - 1
             %}
