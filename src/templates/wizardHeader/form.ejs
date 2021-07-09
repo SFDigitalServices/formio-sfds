@@ -25,20 +25,25 @@
     <div aria-labeledby="nav-accordion" id="nav-content" class="p-md-0" hidden>
       <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
         {% ctx.panels.forEach(function(panel, index) { %}
-          {% if (panel.properties.hideFromNavigation !== "false") { %}
+          {%
+            const { hideFromNavigation } = panel.properties
+            const { unlockNavigation } = ctx.options
+          %}
+          {% if (hideFromNavigation !== 'false') { %}
             {%
               const completed = index < ctx.currentPage
               const active = index === ctx.currentPage
-              const enabled = active || completed || ctx.options.unlockNavigation
+              const enabled = active || completed || unlockNavigation
               const color = active || completed ? 'fg-slate' : 'fg-inherit'
-              const style = ctx.classnames({
-                'cursor-pointer': enabled,
+              const style = ctx.classnames(color, {
                 'font-medium': active,
-                underline: completed
-              })
+                underline: active
+              }, enabled ? 'cursor-pointer' : 'cursor-default')
               const last = index === ctx.panels.length - 1
             %}
-            <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ panel.properties.hideFromNavigation === 'true' ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
+            <li
+              class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ hideFromNavigation === 'true' ? 'd-none first-hidden' : '' }}"
+              style="padding-bottom: 30px;"
               {% if (active) { %} 
                 data-current
               {% } %} 
@@ -48,15 +53,28 @@
             >
               
               {% if (completed) { %}
-                <span class="bg-green-3 round-round fg-white flex-no-shrink" style="margin: 6px -5px 0 -9px;width: 20px;height: 20px;" data-icon="check" data-width="10"></span>
+                <span
+                  class="bg-green-3 round-round fg-white flex-no-shrink"
+                  style="
+                    margin-top: 2px;
+                    margin-right: -5px;
+                    margin-left: -9px;
+                    width: 20px;
+                    height: 20px;
+                  "
+                  data-icon="check"
+                  data-width="10"></span>
               {% } else { %}
-                <span class="{{ active ? color : 'fg-grey-4' }}  flex-no-shrink" style="margin: 1px 0 0 -.24em" data-icon="square" data-width="10"></span>
+                <span
+                  class="{{ active ? color : 'fg-grey-4' }} flex-no-shrink"
+                  style="margin: 1px 0 0 -.24em;"
+                  data-icon="square"
+                  data-width="10"></span>
               {% } %}
               <button
-                class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 {{ color }} {{ style }}"
+                class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 {{ style }}"
                 {% if (active) { %}
                   aria-current="page"
-                  style="cursor:default"
                 {% } %}
                 {% if (enabled) { %}
                   ref="{{ ctx.wizardKey }}-link"
