@@ -3,7 +3,7 @@
 .big-description { @include big-description; }
 .small { @include small-text; }
 
-.font-inherit { font: inherit !important; }
+.font-inherit { font: inherit; }
 
 @each $name, $value in $font-weights {
   .fw-#{$name} { font-weight: $value !important; }
