@@ -41,7 +41,9 @@ const defaultEvalContext = {
   },
 
   requiredAttributes () {
-    return this.component?.validate?.required ? 'required' : ''
+    return this.component?.validate?.required
+      ? 'required aria-required="true"'
+      : ''
   }
 }
 
@@ -62,6 +64,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
+  patchAriaInvalid(Formio)
   patchFlatpickrLocales()
 
   // this goes last so that if it fails it doesn't break everything else
@@ -375,6 +378,17 @@ function patchDateTimeLabels () {
       if (input) {
         input.setAttribute('aria-labelledby', labelId)
       }
+    }
+  })
+}
+
+function patchAriaInvalid (Formio) {
+  hook(Formio.Components.components.component.prototype, 'setErrorClasses', function (setErrorClasses, [elements, ...rest]) {
+    setErrorClasses(elements, ...rest)
+    for (const el of elements) {
+      const input = this.performInputMapping(el)
+      const invalid = input.classList.contains('is-invalid')
+      input.setAttribute('aria-invalid', invalid)
     }
   })
 }
