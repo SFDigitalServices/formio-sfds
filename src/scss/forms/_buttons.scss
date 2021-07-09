@@ -2,18 +2,6 @@
   font-family: inherit;
 }
 
-.btn-border {
-  color: $bright-blue;
-  background: $white;
-  border: border-width(1) solid currentColor;
-
-  &:hover {
-    color: $dark-blue;
-    background: $white;
-    border: border-width(1) solid $dark-blue;
-  }
-}
-
 button[ref=removeLink] {
   position: relative;
   z-index: 99;
