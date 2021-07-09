@@ -2,12 +2,6 @@
   font-family: inherit;
 }
 
-// FIXME this is a hack to work around sf.gov's CSS:
-// <https://github.com/SFDigitalServices/sfgov/blob/51bcc6d0289d8fc651cc96017264bc15c9eec868/web/themes/custom/sfgovpl/src/sass/node/_node-form-page.scss#L53-L55>
-.page-node-type-form-page .form-page & button:hover {
-  border-bottom: none;
-}
-
 button[ref=removeLink] {
   position: relative;
   z-index: 99;
