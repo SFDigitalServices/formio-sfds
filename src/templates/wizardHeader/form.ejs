@@ -31,7 +31,7 @@
               const active = index === ctx.currentPage
               const enabled = active || completed || ctx.options.unlockNavigation
               const color = active || completed ? 'fg-slate' : 'fg-inherit'
-              const style = active ? 'fw-medium no-u' : `fw-regular ${completed ? 'u' : 'no-u'}`
+              const style = active ? 'cursor-pointer font-medium no-u' : (completed ? 'u' : 'no-u')
               const last = index === ctx.panels.length - 1
             %}
             <li class="mb-0 d-flex flex-items-start {{ last ? 'pb-2' : '' }} {{ panel.properties.hideFromNavigation === 'true' ? 'd-none first-hidden' : '' }}" style="padding-bottom: 30px"
@@ -49,7 +49,7 @@
                 <span class="{{ active ? color : 'fg-grey-4' }}  flex-no-shrink" style="margin: 1px 0 0 -.24em" data-icon="square" data-width="10"></span>
               {% } %}
               <button
-                class="btn-link flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
+                class="block font-inherit border-0 bg-none flex-auto align-left m-0 pl-2 py-0 {{ color }} {{ style }}"
                 {% if (active) { %}
                   aria-current="page"
                   style="cursor:default"
