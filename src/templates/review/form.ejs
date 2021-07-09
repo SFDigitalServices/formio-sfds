@@ -31,8 +31,11 @@
               <span class="fg-light-slate small">No value</span>
             {% } %}
           </td>
-          <td class="p-1 pr-0 border-0 align-right">
-            <button type="button" class="btn bg-none text-blue-bright hover:text-slate font-regular" ref="focusInput" data-key="{{ c.key }}">
+          <td class="pl-1 py-1 pr-0 border-0 align-right">
+            <button type="button"
+              class="btn bg-none text-blue-bright hover:text-slate font-regular text-right"
+              ref="focusInput"
+              data-key="{{ c.key }}">
               {{ ctx.t('Edit', { context: 'review' }) }}
             </button>
           </td>
