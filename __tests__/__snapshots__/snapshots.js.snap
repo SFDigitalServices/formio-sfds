@@ -1967,8 +1967,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1993,8 +1993,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2113,8 +2113,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2139,8 +2139,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
