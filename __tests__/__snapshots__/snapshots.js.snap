@@ -1923,18 +1923,15 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
         <nav class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1"
              id="wizard-form-basic-1-header"
              aria-label="navigation"
-             role="navigation"
         >
-          <div data-toggle-container>
+          <div data-toggle-container="true">
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
                  aria-expanded="false"
             >
               <div class="d-flex">
-                <div style="width:100%"
-                     class="flex-auto"
-                >
+                <div class="flex-auto w-full">
                   Section
                   <span>
                     1 of 2
@@ -1955,20 +1952,20 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 </div>
               </div>
             </div>
-            <div hidden
+            <div hidden="true"
                  class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
-                <li data-current
+                <li data-current="true"
                     style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1983,7 +1980,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </span>
                   <button ref="wizard-form-basic-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
@@ -1993,8 +1990,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2007,8 +2004,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                       </rect>
                     </svg>
                   </span>
-                  <button style="cursor:default"
-                          disabled
+                  <button style="cursor: default;"
+                          disabled="true"
                           class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
@@ -2069,18 +2066,15 @@ exports[`component snapshots component "form" scenario: translate matches the sn
         <nav class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1"
              id="wizard-form-translate-1-header"
              aria-label="navigation"
-             role="navigation"
         >
-          <div data-toggle-container>
+          <div data-toggle-container="true">
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
                  aria-expanded="false"
             >
               <div class="d-flex">
-                <div style="width:100%"
-                     class="flex-auto"
-                >
+                <div class="flex-auto w-full">
                   Section
                   <span>
                     1 of 2
@@ -2101,20 +2095,20 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 </div>
               </div>
             </div>
-            <div hidden
+            <div hidden="true"
                  class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
-                <li data-current
+                <li data-current="true"
                     style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2129,7 +2123,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </span>
                   <button ref="wizard-form-translate-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
@@ -2139,8 +2133,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2153,8 +2147,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                       </rect>
                     </svg>
                   </span>
-                  <button style="cursor:default"
-                          disabled
+                  <button style="cursor: default;"
+                          disabled="true"
                           class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
