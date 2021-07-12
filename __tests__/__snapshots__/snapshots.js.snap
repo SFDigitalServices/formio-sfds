@@ -1979,8 +1979,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -1995,7 +1995,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   </span>
                   <button ref="wizard-form-basic-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
@@ -2005,8 +2005,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2125,8 +2125,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-slate flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-slate notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
@@ -2141,7 +2141,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   </span>
                   <button ref="wizard-form-translate-1-link"
                           aria-current="page"
-                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium underline cursor-pointer"
+                          class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-slate font-medium cursor-pointer"
                   >
                     Page 1 link title
                   </button>
@@ -2151,8 +2151,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 >
                   <span data-width="10"
                         data-icon="square"
-                        style="margin: 1px 0 0 -.24em;"
-                        class="fg-grey-4 flex-no-shrink notranslate"
+                        style="margin: -1px 0 0 -.24em;"
+                        class="flex-no-shrink fg-grey-4 notranslate"
                   >
                     <svg viewbox="0 0 20 20"
                          fill="currentColor"
