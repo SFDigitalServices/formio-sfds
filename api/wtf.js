@@ -7,7 +7,8 @@ const { Proxy } = require('../lib/proxy')
 const defaultData = require('../views/data')
 
 const {
-  FORMS_API_URL = 'https://sfgov-forms.vercel.app'
+  // TODO: use https://forms.api.sf.gov
+  FORMS_API_URL = 'https://sfgov-forms.herokuapp.com'
 } = process.env
 
 const templates = nunjucks.configure(join(__dirname, '../views'), {
@@ -149,8 +150,10 @@ function getUnpkgVersion (url) {
 }
 
 async function getSFgovData (url, data) {
-  const proxy = new Proxy({ base: url })
-  const { body, document } = await proxy.fetch('')
+  const { pathname } = new URL(url)
+  const base = Object.assign(new URL(url), { pathname: '' }).href
+  const proxy = new Proxy({ base })
+  const { body, document } = await proxy.fetch(pathname)
   data.body = body
 
   data.sfgov.url = url
@@ -173,10 +176,18 @@ async function getSFgovData (url, data) {
       .filter(link => link.lang.code !== lang)
   }
 
-  const element = document.querySelector('[data-source]')
+  const elements = Array.from(
+    document.querySelectorAll('[data-source]')
+  )
+  const element = elements.find(el => {
+    return el.getAttribute('data-source') !== '-'
+  })
   if (element) {
     data.formio.url = element.getAttribute('data-source')
-    const form = await fetch(data.formio.url).then(res => res.json())
+    console.warn('form url:', data.formio.url)
+    const form = await fetch(data.formio.url)
+      .then(res => res.json())
+      .catch(error => console.error('fetch error:', error))
     data.formio.form = form
 
     if (element.hasAttribute('data-options')) {
