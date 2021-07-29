@@ -23,7 +23,7 @@
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
     "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -w lib/remark.js -- npm run build-views",
-    "watch-server": "nodemon server.js",
+    "watch-server": "nodemon server.js --ignore dist",
     "watch-test": "jest --watch"
   },
   "browserslist": [
