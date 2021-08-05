@@ -8,6 +8,29 @@ title: Patches
 Our patched version of `Formio.createForm()` adds support for the following
 options:
 
+#### `page` option
+This sets the initial page of the form by its index (position) in the list of
+_visible_ pages starting from 1 (the first page, 2 is the second, and so
+on). Also note:
+
+- The [`data` option](#data-option) is applied before `page`, so if the desired
+page is conditionally hidden you will need to also provide data that will
+satisfy the conditions.
+- The [`focus` option](#data-option) is applied _after_ `page`, and will override
+the page selection if the focused component is on a different page.
+
+#### `focus` option
+This attempts to focus a specific component by its unique "key" once it's
+loaded. Use this when testing validations on a specific field, or to scroll to
+a specific part of the form. Also note:
+
+- The [`data` option](#data-option) is applied before `focus`, so if components
+(or their pages) are conditionally hidden you may need to pass data that will
+satisfy the conditions.
+- The [`page` option](#data-option) is applied before `focus`, but you shouldn't
+need to use both because the form will set the initial page automatically in
+order to focus the right component.
+
 #### `data` option
 If provided, the `data` option will be passed along as the form's initial
 submission. See also: the [`prefill` option](#prefill-option).
