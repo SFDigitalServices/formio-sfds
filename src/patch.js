@@ -514,7 +514,7 @@ function doToggle (element, show = false) {
   }
 }
 
-export function setPage (form, pageKeyOrIndex) {
+function setPage (form, pageKeyOrIndex) {
   if (!pageKeyOrIndex) return false
 
   const index = Number(pageKeyOrIndex)
@@ -526,7 +526,7 @@ export function setPage (form, pageKeyOrIndex) {
   return setFocus(form, pageKeyOrIndex)
 }
 
-export function setFocus (form, key) {
+function setFocus (form, key) {
   if (!key) return false
 
   const component = form.getComponent(key)
@@ -536,7 +536,7 @@ export function setFocus (form, key) {
   return form.focusOnComponent(key)
 }
 
-export function setPageByReference (form, comp) {
+function setPageByReference (form, comp) {
   const index = form.pages.indexOf(comp)
   if (index > -1) {
     return form.setPage(index)
