@@ -1,0 +1,150 @@
+{
+  "display": "wizard",
+  "title": "Dominic's Pizza Nested",
+  "type": "form",
+  "components": [
+    {
+      "breadcrumbClickable": true,
+      "buttonSettings": {
+        "cancel": true,
+        "next": true,
+        "previous": true
+      },
+      "collapsible": false,
+      "components": [
+        {
+          "input": true,
+          "inputType": "checkbox",
+          "key": "whatWouldYouLikeToOrder",
+          "label": "What would you like to order?",
+          "optionsLabelPosition": "right",
+          "tableView": false,
+          "type": "selectboxes",
+          "values": [
+            {
+              "label": "Pizza",
+              "shortcut": "",
+              "value": "pizza"
+            },
+            {
+              "label": "Sandwich",
+              "shortcut": "",
+              "value": "sandwich"
+            },
+            {
+              "label": "Beverage",
+              "shortcut": "",
+              "value": "beverage"
+            }
+          ]
+        }
+      ],
+      "input": false,
+      "key": "page1",
+      "label": "Page 1",
+      "scrollToTop": false,
+      "tableView": false,
+      "title": "Choose your items",
+      "type": "panel"
+    },
+    {
+      "breadcrumbClickable": true,
+      "buttonSettings": {
+        "cancel": true,
+        "next": true,
+        "previous": true
+      },
+      "collapsible": false,
+      "components": [
+        {
+          "form": "610b2a84a204f26f34184506",
+          "input": true,
+          "key": "step2",
+          "label": "pizza",
+          "lazyLoad": true,
+          "tableView": true,
+          "type": "form",
+          "useOriginalRevision": false
+        }
+      ],
+      "conditional": {
+        "eq": "pizza",
+        "show": true,
+        "when": "whatWouldYouLikeToOrder"
+      },
+      "input": false,
+      "key": "page2",
+      "label": "Page 2",
+      "scrollToTop": false,
+      "tableView": false,
+      "title": "Pizza",
+      "type": "panel"
+    },
+    {
+      "breadcrumbClickable": true,
+      "buttonSettings": {
+        "cancel": true,
+        "next": true,
+        "previous": true
+      },
+      "collapsible": false,
+      "components": [
+        {
+          "form": "610b31f5dc6daa0bbf1ef962",
+          "input": true,
+          "key": "sandwich",
+          "label": "sandwich",
+          "lazyLoad": true,
+          "tableView": true,
+          "type": "form",
+          "useOriginalRevision": false
+        }
+      ],
+      "conditional": {
+        "eq": "sandwich",
+        "show": true,
+        "when": "whatWouldYouLikeToOrder"
+      },
+      "input": false,
+      "key": "page3",
+      "label": "Page 3",
+      "scrollToTop": false,
+      "tableView": false,
+      "title": "Sandwich",
+      "type": "panel"
+    },
+    {
+      "breadcrumbClickable": true,
+      "buttonSettings": {
+        "cancel": true,
+        "next": true,
+        "previous": true
+      },
+      "collapsible": false,
+      "components": [
+        {
+          "form": "610b3564dc6daa5cc41f2876",
+          "input": true,
+          "key": "beverages",
+          "label": "beverages",
+          "lazyLoad": true,
+          "tableView": true,
+          "type": "form",
+          "useOriginalRevision": false
+        }
+      ],
+      "conditional": {
+        "eq": "beverage",
+        "show": true,
+        "when": "whatWouldYouLikeToOrder"
+      },
+      "input": false,
+      "key": "page4",
+      "label": "Beverage",
+      "scrollToTop": false,
+      "tableView": false,
+      "title": "Beverage",
+      "type": "panel"
+    }
+  ]
+}
