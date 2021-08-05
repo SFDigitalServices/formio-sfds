@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import patch from '../src/patch'
+import patch, { setPage } from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'
 
@@ -79,6 +79,86 @@ describe('patch()', () => {
     })
   })
 
+  describe('page navigation', () => {
+    const schema = {
+      display: 'wizard',
+      key: 'form',
+      components: [
+        {
+          type: 'panel',
+          title: 'Page 1',
+          key: 'page1'
+        },
+        {
+          type: 'panel',
+          title: 'Page 2',
+          key: 'page2',
+          components: [
+            {
+              type: 'textfield',
+              key: 'name',
+              label: 'Your name'
+            }
+          ]
+        }
+      ]
+    }
+
+    describe('setPage(form)', () => {
+      it('sets a form page by index (number)', async () => {
+        const form = await createForm(schema)
+        await setPage(form, 2)
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+      })
+    })
+
+    describe('"page" option', () => {
+      it('sets a page by index (number)', async () => {
+        const form = await createForm(schema, { page: 2 })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+
+      it('sets a page by index (string)', async () => {
+        const form = await createForm(schema, { page: '2' })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+
+      it('sets a page by panel key', async () => {
+        const form = await createForm(schema, { page: 'page2' })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+
+      it('respects a page by (nested) component key', async () => {
+        const form = await createForm(schema, { page: 'name' })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+    })
+
+    describe('"focus" option', () => {
+      it('sets the page when focusing an input', async () => {
+        const form = await createForm(schema, { focus: 'name' })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+
+      it.skip('sets the page when focusing a panel', async () => {
+        const form = await createForm(schema, { focus: 'page2' })
+        expect(form.page).toEqual(1)
+        expect(form.currentPage.key).toEqual('page2')
+        destroyForm(form)
+      })
+    })
+  })
 
   describe('form.io model patches', () => {
     describe('select component', () => {

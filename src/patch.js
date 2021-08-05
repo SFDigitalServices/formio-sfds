@@ -242,6 +242,14 @@ function patch (Formio) {
 
       await form.redraw()
 
+      if (opts.page) {
+        await setPage(form, opts.page)
+      }
+
+      if (opts.focus) {
+        await setFocus(form, opts.focus)
+      }
+
       return form
     })
   })
@@ -504,4 +512,43 @@ function doToggle (element, show = false) {
       content.hidden = true
     }
   }
+}
+
+export function setPage (form, pageKeyOrIndex) {
+  if (!pageKeyOrIndex) return false
+
+  const index = Number(pageKeyOrIndex)
+  if (!isNaN(index)) {
+    // indexes are 1-based, so subtract 1
+    return form.setPage(index - 1)
+  }
+
+  return setFocus(form, pageKeyOrIndex)
+}
+
+export function setFocus (form, key) {
+  if (!key) return false
+
+  const component = form.getComponent(key)
+  if (component && isPageComponent(component)) {
+    return setPageByReference(form, component)
+  }
+  return form.focusOnComponent(key)
+}
+
+export function setPageByReference (form, comp) {
+  const index = form.pages.indexOf(comp)
+  if (index > -1) {
+    return form.setPage(index)
+  } else {
+    console.warn(
+      'component with key "%s" is not in form pages:',
+      copm.key, form.pages.map(page => page.key)
+    )
+    return false
+  }
+}
+
+function isPageComponent (comp) {
+  return comp.type === 'panel' || comp.type === 'components'
 }
