@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import patch, { setPage } from '../src/patch'
+import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'
 
@@ -104,15 +104,6 @@ describe('patch()', () => {
       ]
     }
 
-    describe('setPage(form)', () => {
-      it('sets a form page by index (number)', async () => {
-        const form = await createForm(schema)
-        await setPage(form, 2)
-        expect(form.page).toEqual(1)
-        expect(form.currentPage.key).toEqual('page2')
-      })
-    })
-
     describe('"page" option', () => {
       it('sets a page by index (number)', async () => {
         const form = await createForm(schema, { page: 2 })
@@ -151,7 +142,7 @@ describe('patch()', () => {
         destroyForm(form)
       })
 
-      it.skip('sets the page when focusing a panel', async () => {
+      it('sets the page when focusing a panel', async () => {
         const form = await createForm(schema, { focus: 'page2' })
         expect(form.page).toEqual(1)
         expect(form.currentPage.key).toEqual('page2')
