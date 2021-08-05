@@ -1,6 +1,6 @@
 {
   "name": "formio-sfds",
-  "version": "8.2.0",
+  "version": "9.1.0",
   "description": "The Form.io theme for sf.gov",
   "module": "src/index.js",
   "browser": "dist/formio-sfds.standalone.js",
@@ -8,7 +8,7 @@
   "scripts": {
     "develop": "run-p watch watch-server",
     "build": "run-s build-css build-js build-views",
-    "build-css": "postcss src/scss/{common,formio-sfds}.scss --ext css --dir dist",
+    "build-css": "postcss src/scss/formio-sfds.scss --ext css --dir dist",
     "build-js": "rollup -c",
     "build-views": "script/render-views",
     "lint": "run-p lint-js lint-css",
@@ -23,7 +23,7 @@
     "watch-css": "watchy -w 'src/scss/**/*.scss' -- npm run build-css",
     "watch-js": "rollup -c --watch",
     "watch-views": "watchy -w 'views/*' -w src/examples.yml -w script/render-views -w lib/remark.js -- npm run build-views",
-    "watch-server": "nodemon server.js",
+    "watch-server": "nodemon server.js --ignore dist",
     "watch-test": "jest --watch"
   },
   "browserslist": [
@@ -66,6 +66,7 @@
     "@ungap/global-this": "^0.4.0",
     "autoprefixer": "^9.8.0",
     "babel-plugin-lodash": "^3.3.4",
+    "classnames": "^2.3.1",
     "dot-component": "^0.1.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

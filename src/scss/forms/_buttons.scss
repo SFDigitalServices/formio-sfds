@@ -1,61 +1,8 @@
 .btn {
-  appearance: none;
-  color: $white;
-  background: $bright-blue;
-  border: none;
-  border-radius: radius(1);
-  padding: spacer(1) spacer(2);
-  margin: 0;
-  font-family: "Rubik", sans-serif;
-  font-size: 1rem;
-  line-height: 1.75;
-
-  &:hover {
-    background: $dark-blue;
-  }
-}
-
-// FIXME this is a hack to work around sf.gov's CSS
-.page-node-type-form-page .form-page & button:hover {
-  border-bottom: none;
-}
-
-.btn-link {
-  border: none;
-  color: $bright-blue;
-  background: transparent;
-  text-decoration: underline;
-  padding-left: 0;
-  padding-right: 0;
-
-  &:hover {
-    color: $dark-blue;
-    background: transparent;
-  }
-}
-
-.btn-border {
-  color: $bright-blue;
-  background: $white;
-  border: border-width(1) solid currentColor;
-
-  &:hover {
-    color: $dark-blue;
-    background: $white;
-    border: border-width(1) solid $dark-blue;
-  }
+  font-family: inherit;
 }
 
 button[ref=removeLink] {
   position: relative;
   z-index: 99;
-}
-
-button:hover:not(.btn-border) {
-  border-bottom: 0;
-}
-
-// FIXME this is a hack to work around sf.gov's CSS
-.page-node-type-form-page .form-page & button.btn-border:hover {
-  border: border-width(1) solid $dark-blue;
 }
