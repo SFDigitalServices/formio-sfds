@@ -60,6 +60,7 @@ export default Formio => {
   Formio[PATCHED] = true
 
   patchFormioLibraries(Formio)
+  patchNestedFormRoot(Formio)
 
   patchDateTimeSuffix()
   patchDayLabels()
@@ -501,4 +502,22 @@ function doToggle (element, show = false) {
       content.hidden = true
     }
   }
+}
+
+/**
+ * formio.js doesn't properly pass the top-level "root" reference down to
+ * nested ("sub-") forms, so we brute-force it by recursively setting both
+ * .root _and_ .options.root on each component in its tree to the Form
+ * component's own root. This allows them to inherit our defaultEvalContext.
+ */
+function patchNestedFormRoot (Formio) {
+  hook(Formio.Components.components.form.prototype, 'createSubForm', function (createSubForm, args) {
+    return createSubForm(...args)
+      .then(subform => {
+        FormioUtils.eachComponent(subform.components, comp => {
+          comp.root = comp.options.root = this.root
+        })
+        return subform
+      })
+  })
 }

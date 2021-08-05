@@ -3,7 +3,7 @@ import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
 import 'formiojs/dist/formio.full.min.js'
 
-const { Formio } = window
+const { Formio, FormioUtils } = window
 const { createForm: originalCreateForm } = Formio
 
 describe('patch()', () => {
@@ -148,6 +148,25 @@ describe('patch()', () => {
         expect(group.firstChild).toBe(suffix)
         component.remove()
       })
+    })
+  })
+
+  it('nested form root patch', async () => {
+    const fixture = require('./fixtures/nested-form.json')
+    const form = await createForm(fixture, {
+      page: 2,
+      data: {
+        whatWouldYouLikeToOrder: {
+          pizza: true
+        }
+      }
+    })
+
+    // FIXME: this isn't going to the right page
+
+    const rootMatch = expect.objectContaining({ id: form.id })
+    FormioUtils.eachComponent(form.components, comp => {
+      expect(comp.root).toEqual(rootMatch)
     })
   })
 })
