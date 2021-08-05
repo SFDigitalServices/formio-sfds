@@ -3,19 +3,6 @@ import { createForm, destroyForm, sleep } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
 describe('integration tests', () => {
-  describe('nested forms', () => {
-    const fixture = require('./fixtures/nested-form.json')
-
-    it('does not produce errors', async () => {
-      const form = await createForm(fixture)
-      form.element.querySelector('input[value=pizza]').click()
-      await sleep(10)
-      form.element.querySelector('button[ref$=next]').click()
-      await sleep(10)
-      expect(form.element.textContent).not.toContain('t.tk is not a function')
-    })
-  })
-
   describe('weird test case (fixture)', () => {
     const fixture = require('./fixtures/weird-test-case.json')
 
