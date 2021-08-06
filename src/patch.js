@@ -543,7 +543,7 @@ function setPageByReference (form, comp) {
   } else {
     console.warn(
       'component with key "%s" is not in form pages:',
-      copm.key, form.pages.map(page => page.key)
+      comp.key, form.pages.map(page => page.key)
     )
     return false
   }
