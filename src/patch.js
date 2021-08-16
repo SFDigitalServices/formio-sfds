@@ -12,7 +12,10 @@ const PATCHED = `sfds-patch-${Date.now()}`
 
 const hasProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
 
-const debugDefault = process.env.NODE_ENV !== 'production'
+const debugDefault = (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'test'
+)
 
 const libraryHooks = {}
 
@@ -239,6 +242,14 @@ function patch (Formio) {
       forms.push(form)
 
       await form.redraw()
+
+      if (opts.page) {
+        await setPage(form, opts.page)
+      }
+
+      if (opts.focus) {
+        await setFocus(form, opts.focus)
+      }
 
       return form
     })
@@ -520,4 +531,43 @@ function patchNestedFormRoot (Formio) {
         return subform
       })
   })
+}
+
+function setPage (form, pageKeyOrIndex) {
+  if (!pageKeyOrIndex) return false
+
+  const index = Number(pageKeyOrIndex)
+  if (!isNaN(index)) {
+    // indexes are 1-based, so subtract 1
+    return form.setPage(index - 1)
+  }
+
+  return setFocus(form, pageKeyOrIndex)
+}
+
+function setFocus (form, key) {
+  if (!key) return false
+
+  const component = form.getComponent(key)
+  if (component && isPageComponent(component)) {
+    return setPageByReference(form, component)
+  }
+  return form.focusOnComponent(key)
+}
+
+function setPageByReference (form, comp) {
+  const index = form.pages.indexOf(comp)
+  if (index > -1) {
+    return form.setPage(index)
+  } else {
+    console.warn(
+      'component with key "%s" is not in form pages:',
+      comp.key, form.pages.map(page => page.key)
+    )
+    return false
+  }
+}
+
+function isPageComponent (comp) {
+  return comp.type === 'panel' || comp.type === 'components'
 }
