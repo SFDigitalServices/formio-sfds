@@ -1,15 +1,15 @@
 {% if (!ctx.disabled && (ctx.component.multiple || !ctx.files.length)) { %}
   {% if (ctx.self.useWebViewCamera) { %}
     <div class="fileSelector">
-      <button class="btn btn-primary" ref="galleryButton"><i class="fa fa-book"></i> {{ctx.t('Gallery')}}</button>
-      <button class="btn btn-primary" ref="cameraButton"><i class="fa fa-camera"></i> {{ctx.t('Camera')}}</button>
+      <button class="btn btn-primary" ref="galleryButton"><i class="fa fa-book"></i> {{ ctx.t('Gallery') }}</button>
+      <button class="btn btn-primary" ref="cameraButton"><i class="fa fa-camera"></i> {{ ctx.t('Camera') }}</button>
     </div>
   {% } else if (!ctx.self.cameraMode) { %}
     <div class="fileSelector" ref="fileDrop">
       <div class="align-center">
         {{ ctx.t('Drop files to attach, or') }}
         <button class="ml-1 mr-0 mb-0 btn btn-secondary" ref="fileBrowse">
-          {{ ctx.t('Browse')}}
+          {{ ctx.t('Browse') }}
         </button>
       </div>
     </div>
@@ -17,23 +17,23 @@
     <div>
       <video class="video" autoplay="true" ref="videoPlayer"></video>
     </div>
-    <button class="btn btn-primary" ref="takePictureButton"><i class="fa fa-camera"></i> {{ctx.t('Take Picture')}}</button>
-    <button class="btn btn-primary" ref="toggleCameraMode">{{ctx.t('Switch to file upload')}}</button>
+    <button class="btn btn-primary" ref="takePictureButton"><i class="fa fa-camera"></i> {{ ctx.t('Take Picture') }}</button>
+    <button class="btn btn-primary" ref="toggleCameraMode">{{ ctx.t('Switch to file upload') }}</button>
   {% } %}
 {% } %}
 {% if (!ctx.component.storage || ctx.support.hasWarning) { %}
   <div class="alert alert-warning">
     {% if (!ctx.component.storage) { %}
-      <p>{{ctx.t('No storage has been set for this field. File uploads are disabled until storage is set up.')}}</p>
+      <p>{{ ctx.t('No storage has been set for this field. File uploads are disabled until storage is set up.') }}</p>
     {% } %}
     {% if (!ctx.support.filereader) { %}
-      <p>{{ctx.t('File API & FileReader API not supported.')}}</p>
+      <p>{{ ctx.t('File API & FileReader API not supported.') }}</p>
     {% } %}
     {% if (!ctx.support.formdata) { %}
-      <p>{{ctx.t("XHR2's FormData is not supported.")}}</p>
+      <p>{{ ctx.t("XHR2's FormData is not supported.") }}</p>
     {% } %}
     {% if (!ctx.support.progress) { %}
-      <p>{{ctx.t("XHR2's upload progress isn't supported.")}}</p>
+      <p>{{ ctx.t("XHR2's upload progress isn't supported.") }}</p>
     {% } %}
   </div>
 {% } %}
@@ -127,7 +127,7 @@
   {% ctx.statuses.forEach(function(status) { %}
     {% if (status.status === 'error' || status.status === 'warning') { %}
       <div class="status-error bg-red-4 fg-white round-1">
-        {{ctx.t('There was an error uploading the file.')}}
+        {{ ctx.t('There was an error uploading the file.') }}
       </div>
     {% } %}
   {% }) %}
