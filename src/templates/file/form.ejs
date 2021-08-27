@@ -60,9 +60,8 @@
     </thead>
     <tbody>
       {% ctx.files.forEach(function(file) { %}
-        {% var cellClass = '' %}
         <tr>
-          <td class="filename bg-green-1 {{ cellClass }}" style="white-space: nowrap; overflow: hidden;">
+          <td class="filename bg-green-1" style="white-space: nowrap; overflow: hidden;">
             {% if (ctx.component.uploadOnly) { %}
               {{ file.originalName || file.name }}
             {% } else { %}
@@ -72,22 +71,23 @@
               </div>
             {% } %}
           </td>
-          <td class="size text-align-right bg-green-1 {{ cellClass }}">
+          <td class="size text-align-right bg-green-1">
             {{ ctx.fileSize(file.size) }}
           </td>
-          {% if (ctx.self.hasTypes && !ctx.disabled) { %}
-            <td class="{{ cellClass }}">
-              <select class="file-type" ref="fileType">
-                {% ctx.component.fileTypes.forEach(function(type) { %}
-                  <option
-                    value="{{ type.value }}"
-                    {% if (type.label === file.fileType) { %}selected="selected" {% } %}
-                  >{{ type.label }}</option>
-                {% }) %}
-              </select>
+          {% if (ctx.self.hasTypes) { %}
+            <td class="">
+              {% if (ctx.disabled) { %}
+                {{ file.fileType }}
+              {% } else { %}
+                <select class="file-type" ref="fileType">
+                  {% ctx.component.fileTypes.forEach(function(type) { %}
+                    <option
+                      value="{{ type.value }}"
+                      {% if (type.label === file.fileType) { %}selected="selected" {% } %}
+                    >{{ type.label }}</option>
+                  {% }) %}
+                </select>
               {% } %}
-              {% if (ctx.self.hasTypes && ctx.disabled) { %}
-              {{ file.fileType }}
             </td>
           {% } %}
           <td class="remove text-align-right pr-0">
