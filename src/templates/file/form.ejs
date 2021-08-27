@@ -65,8 +65,8 @@
             {% if (ctx.component.uploadOnly) { %}
               {{ file.originalName || file.name }}
             {% } else { %}
-              <div class="d-flex flex-items-center">
-                <div data-icon="check" class="d-flex fg-green-3 mr-1"></div>
+              <div class="flex items-center">
+                <div data-icon="check" class="flex fg-green-3 mr-1"></div>
                 <span style="text-overflow: ellipsis;">{{file.originalName || file.name}}</span>
               </div>
             {% } %}
@@ -93,8 +93,9 @@
           <td class="remove text-align-right pr-0">
             {% if (!ctx.disabled) { %}
               <button ref="removeLink" aria-label="{{ ctx.t('Remove') }}"
-                class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
-                <span data-icon="delete" class="d-flex flex-items-center"></span>
+                class="btn p-8 bg-slate flex items-center"
+              >
+                <span data-icon="delete" class="flex items-center"></span>
               </button>
             {% } %}
           </td>
@@ -113,8 +114,8 @@
             <td class="remove text-align-right pr-0">
               {% if (!ctx.disabled) { %}
                 <button ref="fileStatusRemove" aria-label="{{ ctx.t('Remove') }}"
-                  class="m-0 p-1 bg-blue fg-white border-0 d-flex flex-items-center">
-                  <span data-icon="delete" class="d-flex flex-items-center"></span>
+                  class="btn p-8 bg-slate flex items-center">
+                  <span data-icon="delete" class="flex items-center"></span>
                 </button>
               {% } %}
             </td>
