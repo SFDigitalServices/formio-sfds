@@ -4,9 +4,12 @@ phrase:
     sources:
       - file: src/i18n/en.json
         params:
+          locale_code: en
           file_format: i18next
+          update_translations: true
   pull:
     targets:
       - file: src/i18n/<locale_code>.json
         params:
           file_format: i18next
+          include_unverified_translations: false
