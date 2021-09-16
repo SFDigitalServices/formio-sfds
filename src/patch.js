@@ -87,7 +87,9 @@ window.addEventListener('beforeunload', event => {
 })
 
 function patch (Formio) {
-  if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
+  if (debugDefault) {
+    // console.info('Patching Formio.createForm() with SFDS behaviors...')
+  }
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
