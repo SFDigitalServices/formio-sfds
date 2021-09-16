@@ -1,44 +1,53 @@
+import dot from 'dot-component'
 import { I18NEXT_DEFAULT_NAMESPACE } from '../constants'
-import { getJSON } from '../utils'
 
 const { FormioUtils } = window
 
-export function loadTranslations (url) {
-  return getJSON(url, {}, { method: 'GET' })
-    .then(res => {
-      if (res.status === 'success') {
-        return res.data
-      } else {
-        throw new Error(`Translation load error: ${JSON.stringify(res)}`)
-      }
-    })
-}
-
-export function loadEmbeddedTranslations (model, i18next) {
-  const bundles = getEmbeddedTranslations(model)
+export function loadEmbeddedTranslations (form) {
+  const { component, i18next } = form
+  const bundles = getEmbeddedTranslations(component)
   for (const lang in bundles) {
     i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, bundles[lang])
   }
 }
 
-export function getEmbeddedTranslations (model) {
+export function getEmbeddedTranslations (component) {
   const bundles = {}
-  FormioUtils.eachComponent(model.components, comp => {
+  FormioUtils.eachComponent(component.components, comp => {
     const { key, properties } = comp
-    if (properties) {
+    if (properties instanceof Object) {
       for (const prop in properties) {
+        const value = properties[prop]
         if (/^[-a-z]+:/i.test(prop)) {
           const [lang, field] = prop.split(':')
           const stringId = `${key}.${field}`
-          const value = properties[prop]
-          if (bundles[lang]) {
-            bundles[lang][stringId] = value
-          } else {
-            bundles[lang] = { [stringId]: value }
-          }
+          if (!bundles[lang]) bundles[lang] = {}
+          bundles[lang][stringId] = value
         }
       }
     }
   }, true)
+  if (Object.keys(bundles).length) {
+    console.info('found embedded translations:', bundles)
+  }
   return bundles
+}
+
+export function addReverseLookups (form, languages = ['es', 'fil', 'zh']) {
+  const { i18next } = form
+  const englishStrings = Object.entries(
+    i18next.getResourceBundle('en', I18NEXT_DEFAULT_NAMESPACE)
+  )
+    .filter(([key, value]) => key !== value)
+  for (const lang of languages) {
+    const current = i18next.getResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE) || {}
+    const bundle = {}
+
+    for (const [key, english] of englishStrings) {
+      if (typeof english === 'string' && !current[english]) {
+        bundle[english] = `$t(${key})`
+      }
+    }
+    i18next.addResourceBundle(lang, I18NEXT_DEFAULT_NAMESPACE, bundle)
+  }
 }
