@@ -30,18 +30,6 @@ const defaultEvalContext = {
 
   classnames: require('classnames'),
 
-  tk (field, defaultValue = '') {
-    const { component = {} } = this
-    const { type, key = type } = component
-    return key ? this.t([
-      `${key}.${field}`,
-      // this is the "legacy" naming scheme
-      `${key}_${field}`,
-      `component.${type}.${field}`,
-      dot.get(component, field) || defaultValue || ''
-    ]) : defaultValue
-  },
-
   requiredAttributes () {
     return this.component?.validate?.required
       ? 'required aria-required="true"'
