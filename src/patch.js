@@ -2,8 +2,6 @@ import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
-import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
-import Phrase from './phrase'
 import { mergeObjects } from './utils'
 import flatpickrLocales from './i18n/flatpickr'
 
@@ -97,22 +95,10 @@ function patch (Formio) {
     // get the default language from the element's (inherited) lang property
     const language = el.lang || document.documentElement.lang || 'en'
     // use the translations and language as the base, and merge the provided options
-    const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
-
-    if (typeof opts.i18n === 'string') {
-      const { i18n: translationsURL } = opts
-      if (debug) console.info('loading translations form:', translationsURL)
-      try {
-        const i18n = await loadTranslations(translationsURL)
-        if (debug) console.info('loaded translations:', i18n)
-        opts.i18n = mergeObjects({}, opts.i18n, i18n)
-      } catch (error) {
-        if (debug) console.warn('Unable to load translations from:', translationsURL, error)
-        // FIXME: we may want to explicitly *allow* Google Translate (even if
-        // it's been disabled) for this form if translations fail to load.
-        // opts.googleTranslate = true
-      }
-    }
+    const opts = mergeObjects({
+      i18n: defaultTranslations,
+      language
+    }, options)
 
     if (opts.hooks instanceof Object) {
       opts.hooks = buildHooks(opts.hooks)
@@ -136,15 +122,10 @@ function patch (Formio) {
         // console.log('SFDS form created!')
       }
 
-      const phrase = new Phrase(form)
-      form.phrase = phrase
-
-      let { googleTranslate } = opts
-
       const { element } = form
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
 
-      if (googleTranslate === false) {
+      if (opts.googleTranslate === false) {
         disableGoogleTranslate(element)
       }
 
@@ -157,21 +138,6 @@ function patch (Formio) {
         wrapper.appendChild(element)
       }
 
-      try {
-        const loaded = await phrase.load(loadTranslations)
-        if (loaded) {
-          googleTranslate = false
-
-          if (loaded.projectId && userIsTranslating(opts)) {
-            phrase.enableEditor()
-          } else if (debug) {
-            console.warn('loaded Phrase translations, but not the in-context editor', loaded, window.drupalSettings, window.location.search)
-          }
-        }
-      } catch (error) {
-        if (debug) console.warn('Failed to load translations:', error)
-      }
-
       // Note: we create a shallow copy of the form model so the .form setter
       // will treat it as changed. (form.io showed us this trick!)
       const model = { ...form.form }
@@ -180,8 +146,6 @@ function patch (Formio) {
       }
 
       patchSelectWidget(model, form)
-
-      loadEmbeddedTranslations(model, form.i18next)
 
       form.form = model
 
@@ -466,17 +430,6 @@ function disableConditionals (components) {
     comp.properties.conditional = comp.conditional
     comp.conditional = {}
   }, true)
-}
-
-function userIsTranslating (opts) {
-  if (opts?.translate === true) {
-    return true
-  }
-  const uid = window.drupalSettings?.user?.uid
-  if (uid && uid !== '0') {
-    const translate = new URLSearchParams(window.location.search).get('translate')
-    return translate === 'true'
-  }
 }
 
 function toggleComponent () {
