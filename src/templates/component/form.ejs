@@ -19,7 +19,7 @@
       {% } %}
     {% } %}
 
-    {% const customError = ctx.tk('validate.customMessage', ctx.component.validate.customMessage || '') %}
+    {% const customError = ctx.t(ctx.component.validate.customMessage || '') %}
     {% if (customError) { %}
       <div class="fg-red-4 mt-1">
         <b>Custom error message:</b> {{ customError }}

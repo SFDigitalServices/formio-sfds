@@ -1,7 +1,7 @@
 {%
-  let prefix = ctx.tk('prefix') || ctx.prefix
+  let prefix = ctx.t(ctx.component.prefix) || ctx.prefix
   if (prefix instanceof HTMLElement) prefix = prefix.outerHTML
-  let suffix = ctx.tk('suffix') || ctx.suffix
+  let suffix = ctx.t(ctx.component.suffix) || ctx.suffix
   if (suffix instanceof HTMLElement) suffix = suffix.outerHTML
 %}
 {% if (prefix || suffix) { %}

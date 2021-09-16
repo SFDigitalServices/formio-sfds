@@ -1,11 +1,11 @@
 <fieldset>
   {% if (!ctx.component.hideLabel) { %}
     <legend>
-      {{ ctx.tk('label') }}
+      {{ ctx.t(ctx.component.label) }}
     </legend>
   {% } %}
 
-  {% const desc = ctx.tk('description') %}
+  {% const desc = ctx.t(ctx.component.description) %}
   {% if (desc) { %}
     <div class="fg-light-slate mt-1">
       {{ desc }}
@@ -31,7 +31,7 @@
           id="{{ctx.id}}{{ctx.row}}-{{item.value}}">
       </span>
       <span class="flex-auto">
-        {{ ctx.t([`${ctx.component.key}.values.${item.value}`, item.label]) }}
+        {{ ctx.t(item.label) }}
       </span>
     </label>
   {% } %}

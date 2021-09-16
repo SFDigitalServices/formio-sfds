@@ -15,10 +15,10 @@
     </span>
     <span class="flex-auto">
       <span class="label-required">
-        {{ ctx.tk('label') }}
+        {{ ctx.t(ctx.component.label) }}
       </span>
 
-      {% const desc = ctx.tk('description') %}
+      {% const desc = ctx.t(ctx.component.description) %}
       {% if (desc) { %}
         <span class="d-block fg-light-slate small">
           {{ desc }}
