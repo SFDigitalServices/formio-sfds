@@ -1,2 +1,0 @@
-#!/bin/bash
-phrase --access_token=$PHRASE_ACCESS_TOKEN $*
