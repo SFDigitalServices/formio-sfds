@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { I18NEXT_DEFAULT_NAMESPACE } from '../src/constants'
 import { createForm, destroyForm } from '../lib/test-helpers'
 
 // FIXME: we import the built bundle because we aren't (yet)
@@ -115,5 +116,44 @@ describe('field translations', () => {
     expect(labels[2].textContent.trim()).toEqual('Blue')
 
     destroyForm(form)
+  })
+})
+
+describe('translation', () => {
+  it('adds reverse lookups for English strings', async () => {
+    const form = await createForm({
+      components: [{
+        key: 'hi',
+        type: 'textfield',
+        label: 'Hello'
+      }]
+    }, {
+      language: 'es',
+      i18n: {
+        es: {
+          Hello: 'Hola'
+        }
+      }
+    })
+
+    expect(form.element.textContent.trim()).toContain('Hola')
+  })
+
+  it.skip('finds embedded translations', async () => {
+    const form = await createForm({
+      components: [{
+        key: 'yo',
+        type: 'textfield',
+        label: 'Hi',
+        properties: {
+          'es:label': 'Hola'
+        }
+      }]
+    }, {
+      language: 'es'
+    })
+
+    expect(form.t('Hi')).toEqual('Hola')
+    expect(form.element.textContent.trim()).toContain('Hola')
   })
 })
