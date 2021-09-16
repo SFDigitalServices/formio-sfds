@@ -46,13 +46,12 @@ describe('field translations', () => {
       language: 'es',
       i18n: {
         es: {
-          'name.label': 'Nombre'
+          [component.label]: 'Nombre'
         }
       }
     })
 
     expect(form.i18next.language).toEqual('es')
-    expect(form.t('name.label')).toEqual('Nombre')
 
     const label = form.element.querySelector('label:not(.control-label--hidden)')
     expect(label.textContent.trim()).toEqual('Nombre')
@@ -75,8 +74,6 @@ describe('field translations', () => {
     })
 
     expect(form.i18next.language).toEqual('de')
-    expect(form.t('name.label')).toEqual('der Name')
-
     const label = form.element.querySelector('label:not(.control-label--hidden)')
     expect(label.textContent.trim()).toEqual('der Name')
     destroyForm(form)
@@ -99,14 +96,13 @@ describe('field translations', () => {
       language: 'es',
       i18n: {
         es: {
-          'color.values.red': 'Rojo',
-          'color.values.green': 'Verde'
+          Red: 'Rojo',
+          Green: 'Verde'
         }
       }
     })
 
     expect(form.i18next.language).toEqual('es')
-    expect(form.t('color.values.red')).toEqual('Rojo')
 
     const labels = form.element.querySelectorAll('fieldset label')
     expect(labels).toHaveLength(3)
@@ -139,7 +135,7 @@ describe('translation', () => {
     expect(form.element.textContent.trim()).toContain('Hola')
   })
 
-  it.skip('finds embedded translations', async () => {
+  it('finds embedded translations', async () => {
     const form = await createForm({
       components: [{
         key: 'yo',
