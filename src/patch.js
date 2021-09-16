@@ -1,6 +1,7 @@
 import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
+import { addReverseLookups, loadEmbeddedTranslations } from './i18n/load'
 import buildHooks from './hooks'
 import { mergeObjects } from './utils'
 import flatpickrLocales from './i18n/flatpickr'
@@ -121,6 +122,9 @@ function patch (Formio) {
       if (debug) {
         // console.log('SFDS form created!')
       }
+
+      loadEmbeddedTranslations(form)
+      addReverseLookups(form)
 
       const { element } = form
       element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
