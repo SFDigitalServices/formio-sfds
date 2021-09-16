@@ -73,6 +73,7 @@
     "globby": "^11.0.1",
     "hastscript": "^6.0.0",
     "i18next": "19.7.0",
+    "i18next-parser": "^4.6.0",
     "jest": "^26.4.2",
     "jest-serializer-html": "^7.0.0",
     "js-yaml": "^3.14.0",
