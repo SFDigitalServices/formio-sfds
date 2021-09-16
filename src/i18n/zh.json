@@ -105,15 +105,5 @@
   "Required": "必填",
   "required": "為必填項",
   "Starting upload": "開始上傳",
-  "Submit": "提交",
-  "{{field}} cannot be greater than {{max}}": "{{field}}不能大於{{max}}",
-  "{{field}} cannot be less than {{min}}": "{{field}}不能少於{{min}}",
-  "{{field}} does not match the pattern \"{{pattern}}\"": "{{field}}不符合“ {{pattern}}”的模式",
-  "{{field}} does not match the required mask": "{{field}}不符合所要求的格式",
-  "{{field}} does not match the required pattern": "{{field}}不符合所要求的模式",
-  "{{field}} is not a valid date": "{{field}}不是個有效日期",
-  "{{field}} is required": "為必填項",
-  "{{field}} must be a valid email address": "{{field}}必須是個有效的電郵地址",
-  "{{field}} must be longer than {{length}} characters": "{{field}}必須超過{{length}}個字數",
-  "{{field}} must be shorter than {{length}} characters": "{{field}}必須少於{{length}}個字數"
+  "Submit": "提交"
 }

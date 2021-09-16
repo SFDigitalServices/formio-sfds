@@ -115,15 +115,5 @@
   "required": "{{field}} es requerido",
   "september": "Septiembre",
   "Submit": "Enviar",
-  "year": "Año",
-  "{{field}} cannot be greater than {{max}}": "{{field}} no puede ser mayor a {{max}}",
-  "{{field}} cannot be less than {{min}}": "{{field}} no pude ser menor a {{min}}",
-  "{{field}} does not match the pattern \"{{pattern}}\"": "{{field}} no coincide con el patrón \"{{pattern}}\"",
-  "{{field}} does not match the required mask": "{{field}} no coincide con la máscara requerida",
-  "{{field}} does not match the required pattern": "{{field}} no coincide con el patrón requerido",
-  "{{field}} is not a valid date": "{{field}} no es una fecha válida",
-  "{{field}} is required": "{{field}} es obligatorio",
-  "{{field}} must be a valid email address": "{{field}} debe ser una dirección de correo electrónico válida",
-  "{{field}} must be longer than {{length}} characters": "{{field}} debe tener más de {{length}} caracteres",
-  "{{field}} must be shorter than {{length}} characters": "{{field}} debe tener menos de {{length}} caracteres"
+  "year": "Año"
 }

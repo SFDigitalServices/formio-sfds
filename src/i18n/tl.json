@@ -100,15 +100,5 @@
   "Previous": "Nakaraan",
   "required": "Kinakailangan ang {{field}}",
   "Required": "Kinakailangan",
-  "Submit": "Isumite",
-  "{{field}} cannot be greater than {{max}}": "Ang {{field}} ay hindi dapat mas mataas sa {{max}}",
-  "{{field}} cannot be less than {{min}}": "Ang {{field}} ay hindi dapat mas mababa sa {{min}}",
-  "{{field}} does not match the pattern \"{{pattern}}\"": "Hindi tumutugma ang {{field}} sa pattern na \"{{pattern}}\"",
-  "{{field}} does not match the required mask": "Hindi tumutugma ang {{field}} sa kinakailangang mask",
-  "{{field}} does not match the required pattern": "Hindi tumutugma ang {{field}} sa kinakailangang pattern",
-  "{{field}} is not a valid date": "Hindi valid na petsa ang {{field}}",
-  "{{field}} is required": "Kinakailangan ang {{field}}",
-  "{{field}} must be a valid email address": "Ang {{field}} ay dapat isang valid na email address",
-  "{{field}} must be longer than {{length}} characters": "Ang {{field}} ay dapat mas marami sa {{length}} character",
-  "{{field}} must be shorter than {{length}} characters": "Ang {{field}} ay dapat mas kaunti sa {{length}} character"
+  "Submit": "Isumite"
 }
