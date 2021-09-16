@@ -28,8 +28,6 @@ const defaultEvalContext = {
     return parts.join('-')
   },
 
-  classnames: require('classnames'),
-
   requiredAttributes () {
     return this.component?.validate?.required
       ? 'required aria-required="true"'
