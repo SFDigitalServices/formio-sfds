@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import patch from '../src/patch'
 import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
-import { createElement, createForm, destroyForm } from '../lib/test-helpers'
+import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
 import defaultTranslations from '../src/i18n'
 
 const SENTINEL_I18N_KEY = 'derp'
@@ -51,6 +51,25 @@ describe('form localization', () => {
       expect(form.options.language).toEqual(lang)
       destroyForm(form)
       document.documentElement.removeAttribute('lang')
+    })
+  })
+
+  describe('machine translation', () => {
+    it('disables machine translation if "googleTranslate" === false', async () => {
+      const form = await createForm({}, { googleTranslate: false })
+      expect(form.element.getAttribute('translate')).toEqual('no')
+      expect(Array.from(form.element.classList)).toContain('notranslate')
+      destroyForm(form)
+    })
+
+    it('disables machine translation on .flatpickr-calendar elements', async () => {
+      const el = createElement('div', { class: 'flatpickr-calendar' })
+      document.body.appendChild(el)
+      // selector-observer is async, so we need to wait a bit
+      await sleep(50)
+      expect(el.getAttribute('translate')).toEqual('no')
+      expect(Array.from(el.classList)).toContain('notranslate')
+      el.remove()
     })
   })
 })
