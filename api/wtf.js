@@ -2,7 +2,6 @@ const fetch = require('node-fetch')
 const { URL } = require('url')
 const { join } = require('path')
 const nunjucks = require('nunjucks')
-const Phrase = require('../src/phrase')
 const { Proxy } = require('../lib/proxy')
 const defaultData = require('../views/data')
 
@@ -78,15 +77,6 @@ module.exports = async (req, res) => {
 
     const { form } = data.formio
     if (form) {
-      const phrase = new Phrase(form)
-      const info = phrase.getTranslationInfo()
-      if (info && info.url) {
-        data.translation.url = info.url
-        data.translation.source = {
-          title: `Phrase project <code>${info.projectId}</code>`
-        }
-      }
-
       if (!data.sfgov.url) {
         const dataSourceURL = data.formio.url
         console.warn('Looking up sf.gov page by form URL:', dataSourceURL)
