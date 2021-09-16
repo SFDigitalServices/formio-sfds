@@ -1,11 +1,8 @@
 /* eslint-env jest */
 import patch from '../src/patch'
 import { getStrings, UIString, StringInterpolation } from '../lib/i18n'
-import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
-import { loadTranslations } from '../src/i18n/load'
+import { createElement, createForm, destroyForm } from '../lib/test-helpers'
 import defaultTranslations from '../src/i18n'
-
-jest.mock('../src/i18n/load')
 
 const SENTINEL_I18N_KEY = 'derp'
 const SENTINEL_I18N_VALUE = 'DERP!'
@@ -54,62 +51,6 @@ describe('form localization', () => {
       expect(form.options.language).toEqual(lang)
       destroyForm(form)
       document.documentElement.removeAttribute('lang')
-    })
-  })
-
-  describe('"i18n" option', () => {
-    const mockUrl = 'http://my-translations.example.app'
-    it('gets the default translations with no "i18n" option', async () => {
-      const form = await createForm()
-      expect(form.t(SENTINEL_I18N_KEY)).toEqual(SENTINEL_I18N_VALUE)
-      destroyForm(form)
-    })
-
-    it('fetches translations from the URL if provided a string', async () => {
-      loadTranslations.mockImplementationOnce(() => ({
-        es: {
-          hello: 'hola'
-        }
-      }))
-      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
-      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
-      expect(form.t('hello')).toEqual('hola')
-      destroyForm(form)
-    })
-
-    it('fails gracefully if translations fail to load', async () => {
-      loadTranslations.mockImplementationOnce(() => {
-        throw new Error('eeeek')
-      })
-      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
-      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
-      destroyForm(form)
-    })
-
-    it('fails gracefully if translation data is malformed', async () => {
-      loadTranslations.mockImplementationOnce(() => 'lolwut')
-      const form = await createForm({}, { i18n: mockUrl, language: 'es' })
-      expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
-      destroyForm(form)
-    })
-  })
-
-  describe('machine translation', () => {
-    it('disables machine translation if "googleTranslate" === false', async () => {
-      const form = await createForm({}, { googleTranslate: false })
-      expect(form.element.getAttribute('translate')).toEqual('no')
-      expect(Array.from(form.element.classList)).toContain('notranslate')
-      destroyForm(form)
-    })
-
-    it('disables machine translation on .flatpickr-calendar elements', async () => {
-      const el = createElement('div', { class: 'flatpickr-calendar' })
-      document.body.appendChild(el)
-      // selector-observer is async, so we need to wait a bit
-      await sleep(50)
-      expect(el.getAttribute('translate')).toEqual('no')
-      expect(Array.from(el.classList)).toContain('notranslate')
-      el.remove()
     })
   })
 })
