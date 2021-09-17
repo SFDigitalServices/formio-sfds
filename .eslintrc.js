@@ -5,6 +5,9 @@ module.exports = {
     'plugin:sfgov/babel'
   ],
   rules: {
-    'promise/no-callback-in-promise': 0
+    'promise/no-callback-in-promise': 0,
+    'import/no-unresolved': [2, {
+      ignore: ['^../dist']
+    }]
   }
 }
