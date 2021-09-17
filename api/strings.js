@@ -25,12 +25,12 @@ module.exports = (req, res) => {
     })
   }
 
-  fetch(formUrl)
+  return fetch(formUrl)
     .then(res => res.json())
     .then(form => {
       const strings = getStrings(form)
       const data = formatter(strings, params)
-      res.json(data)
+      return res.json(data)
     })
 }
 

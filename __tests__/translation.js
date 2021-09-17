@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import { I18NEXT_DEFAULT_NAMESPACE } from '../src/constants'
 import { createForm, destroyForm } from '../lib/test-helpers'
 
 // FIXME: we import the built bundle because we aren't (yet)

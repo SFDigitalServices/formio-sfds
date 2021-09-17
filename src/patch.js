@@ -238,13 +238,15 @@ function patchSelectWidget (model, form) {
         // this overrides addItemText if provided
         itemSelectText: t('itemSelectText'),
         searchPlaceholderValue: t('searchPlaceholderValue'),
-        addItemText: component.customOptions?.addItemText ? value => {
-          return t('addItemText', {
-            value: FormioUtils.sanitize(value, {
-              sanitizeConfig: component.customOptions?.sanitize
+        addItemText: component.customOptions?.addItemText
+          ? value => {
+            return t('addItemText', {
+              value: FormioUtils.sanitize(value, {
+                sanitizeConfig: component.customOptions?.sanitize
+              })
             })
-          })
-        } : false,
+          }
+          : false,
         maxItemText (count) {
           return t('maxItemText', { count })
         }
