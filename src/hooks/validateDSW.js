@@ -42,7 +42,7 @@ export default function validateDSW (options) {
           return next({ message: data.message || interp(ERROR_INELIGIBLE, interpolations) })
         } else {
           console.warn('assuming "%s" status:', STATUS_ERROR, status)
-          next({ message: data.message || interp(ERROR_UNKNOWN, interpolations) })
+          return next({ message: data.message || interp(ERROR_UNKNOWN, interpolations) })
         }
       })
       .catch(error => {

@@ -34,13 +34,15 @@ const defaultEvalContext = {
   tk (field, defaultValue = '') {
     const { component = {} } = this
     const { type, key = type } = component
-    return key ? this.t([
-      `${key}.${field}`,
-      // this is the "legacy" naming scheme
-      `${key}_${field}`,
-      `component.${type}.${field}`,
-      dot.get(component, field) || defaultValue || ''
-    ]) : defaultValue
+    return key
+      ? this.t([
+        `${key}.${field}`,
+        // this is the "legacy" naming scheme
+        `${key}_${field}`,
+        `component.${type}.${field}`,
+        dot.get(component, field) || defaultValue || ''
+      ])
+      : defaultValue
   },
 
   requiredAttributes () {
@@ -282,13 +284,15 @@ function patchSelectWidget (model, form) {
         // this overrides addItemText if provided
         itemSelectText: t('itemSelectText'),
         searchPlaceholderValue: t('searchPlaceholderValue'),
-        addItemText: component.customOptions?.addItemText ? value => {
-          return t('addItemText', {
-            value: FormioUtils.sanitize(value, {
-              sanitizeConfig: component.customOptions?.sanitize
+        addItemText: component.customOptions?.addItemText
+          ? value => {
+            return t('addItemText', {
+              value: FormioUtils.sanitize(value, {
+                sanitizeConfig: component.customOptions?.sanitize
+              })
             })
-          })
-        } : false,
+          }
+          : false,
         maxItemText (count) {
           return t('maxItemText', { count })
         }
