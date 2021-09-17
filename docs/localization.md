@@ -8,6 +8,7 @@ directory][src/i18n], which contains a JSON file for each of the languages that
 we officially support:
 
 File | Language | Notes
+:--- | :--- | :---
 [en.json] | English (default)
 [es.json] | Spanish
 [tl.json] | Filipino | technically `fil`, but we use the `tl` (Tagalog) language code

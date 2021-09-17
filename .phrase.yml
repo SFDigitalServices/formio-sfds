@@ -4,7 +4,6 @@ phrase:
     sources:
       - file: src/i18n/en.json
         params:
-          locale_code: en
           file_format: i18next
           update_translations: true
   pull:
