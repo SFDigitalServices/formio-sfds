@@ -45,7 +45,7 @@ describe('patch()', () => {
      * real browsers. There might be something different about how jsdom
      * manages window events.
      */
-    xit('fires if you go to the next page', async () => {
+    it.skip('fires if you go to the next page', async () => {
       const event = new window.Event('beforeunload')
       const form = await createForm({
         display: 'wizard',
