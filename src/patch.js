@@ -484,7 +484,7 @@ function userIsTranslating (opts) {
 }
 
 function toggleComponent () {
-  observe('[data-toggle-container]', {
+  observe(`.${WRAPPER_CLASS} [data-toggle-container]`, {
     add (el) {
       const ariaControl = el.querySelector('[aria-controls]')
 
