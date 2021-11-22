@@ -35,7 +35,7 @@
         class="datagrid-group-label">{{ctx.groups[index].label}}</td>
     </tr>
     {% } %}
-    <tr ref="{{ctx.datagridKey}}-row">
+    <tr ref="{{ctx.datagridKey}}-row" class="v-align-top">
       {% if (ctx.component.reorder) { %}
         <td>
           <button type="button" class="formio-drag-button btn btn-default fa fa-bars"></button>
