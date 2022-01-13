@@ -92,12 +92,12 @@ window.addEventListener('beforeunload', event => {
 function patch (Formio) {
   if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
   
-  var warnBeforeLeaving = false;
+  warnBeforeLeaving = false
   form.on('change', (changed) => {
-    if(changed.changed != undefined) {
-      warnBeforeLeaving = true;
+    if (changed.changed !== undefined) {
+      warnBeforeLeaving = true
     }
-  });
+  })
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
