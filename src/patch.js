@@ -91,6 +91,13 @@ window.addEventListener('beforeunload', event => {
 
 function patch (Formio) {
   if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
+  
+  var warnBeforeLeaving = false;
+  form.on('change', (changed) => {
+    if(changed.changed != undefined) {
+      warnBeforeLeaving = true;
+    }
+  });
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
@@ -196,11 +203,7 @@ function patch (Formio) {
       }
 
       if (opts.scroll !== false) {
-        form.on('nextPage', scrollToTop)
-        form.on('prevPage', scrollToTop)
-        form.on('prevPage', () => { doToggle(element) })
         form.on('nextPage', () => {
-          warnBeforeLeaving = true
           doToggle(element)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
