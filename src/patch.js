@@ -91,7 +91,6 @@ window.addEventListener('beforeunload', event => {
 
 function patch (Formio) {
   if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
-  
   warnBeforeLeaving = false
   form.on('change', (changed) => {
     if (changed.changed !== undefined) {
