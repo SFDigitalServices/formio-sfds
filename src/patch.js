@@ -92,11 +92,6 @@ window.addEventListener('beforeunload', event => {
 function patch (Formio) {
   if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
   warnBeforeLeaving = false
-  form.on('change', (changed) => {
-    if (changed.changed !== undefined) {
-      warnBeforeLeaving = true
-    }
-  })
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
@@ -200,6 +195,12 @@ function patch (Formio) {
       if (opts.data) {
         form.submission = { data: opts.data }
       }
+
+      form.on('change', (changed) => {
+        if (changed.changed !== undefined) {
+          warnBeforeLeaving = true
+        }
+      })
 
       if (opts.scroll !== false) {
         form.on('nextPage', () => {
@@ -461,10 +462,6 @@ function disableGoogleTranslate (el) {
   // Microsoft, Google, et al; see:
   // <https://www.w3.org/International/questions/qa-translate-flag.en>
   el.setAttribute('translate', 'no')
-}
-
-function scrollToTop () {
-  window.scroll(0, 0)
 }
 
 function disableConditionals (components) {
