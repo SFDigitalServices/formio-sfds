@@ -1,0 +1,7 @@
+{
+  "eslint.debug": true,
+  "eslint.enable": true,
+  "eslint.nodePath": "node",
+  "eslint.validate": ["javascript"],
+  "prettier.enable": false
+}
