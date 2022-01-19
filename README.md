@@ -72,3 +72,19 @@ License: [MIT](./LICENSE)
 
 [form.io]: https://form.io
 [unpkg]: https://unpkg.com
+
+
+### Creating new versions
+1. Open a PR in the formio-sfds repo (may need to add you as a collaborator so that you can open PRs directly and GitHub Actions will publish your changes to npm automatically)
+
+2. In the PR checks, when you click “Show all checks”, you can copy the published version from the “publish formio-sfds” check:
+
+3. Pop that 0.0.0-<sha> value into the "Form.io SFDS version" field on /admin/config/services/sfgov_formio in your local and multidev environments (not in the committed settings YAML — we only want to commit published versions)
+
+4. Test your changes and get them reviewed in your multidev
+
+5. Get the changes to formio-sfds approved and released
+
+6. Update config/sfgov_formio.settings.yml by setting formio_sfds_version to the newly published release version (i.e. 9.2.3)
+
+7. Re-test after deploying again to make sure it still works
