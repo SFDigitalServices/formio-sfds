@@ -104,9 +104,10 @@ function patch (Formio) {
     // get the default language from the element's (inherited) lang property
     let language = el.lang || document.documentElement?.lang || 'en'
     language = inputLanguageMap[language] || language
-    
+
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
+    mapLanguageKeys(opts.i18n)
 
     if (typeof opts.i18n === 'string') {
       const { i18n: translationsURL } = opts
@@ -560,4 +561,15 @@ function setPageByReference (form, comp) {
 
 function isPageComponent (comp) {
   return comp.type === 'panel' || comp.type === 'components'
+}
+
+function mapLanguageKeys (obj) {
+  if (!(obj instanceof Object)) return
+  for (const key of Object.keys(obj)) {
+    const mapped = inputLanguageMap[key]
+    if (mapped) {
+      obj[mapped] = obj[key]
+      // delete obj[key]
+    }
+  }
 }
