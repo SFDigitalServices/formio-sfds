@@ -19,6 +19,10 @@ const debugDefault = (
 
 const libraryHooks = {}
 
+const inputLanguageMap = {
+  'zh-hant': 'zh'
+}
+
 const defaultEvalContext = {
   inputId () {
     const parts = [
@@ -98,7 +102,9 @@ function patch (Formio) {
     const { debug = debugDefault } = options
 
     // get the default language from the element's (inherited) lang property
-    const language = el.lang || document.documentElement.lang || 'en'
+    let language = el.lang || document.documentElement?.lang || 'en'
+    language = inputLanguageMap[language] || language
+    
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
 
