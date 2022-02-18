@@ -20,6 +20,7 @@ const debugDefault = (
 const libraryHooks = {}
 
 const inputLanguageMap = {
+  fil: 'tl',
   'zh-hant': 'zh'
 }
 
