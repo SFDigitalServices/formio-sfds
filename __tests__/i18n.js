@@ -57,6 +57,31 @@ describe('form localization', () => {
     })
   })
 
+  describe('"i18n" option as an object', () => {
+    it('translates strings', async () => {
+      const form = await createForm({
+        type: 'form',
+        display: 'form',
+        components: [
+          {
+            type: 'textfield',
+            key: 'name',
+            label: 'Name',
+            input: true
+          }
+        ]
+      }, {
+        language: 'zh',
+        i18n: {
+          'zh-hant': {
+            Name: 'boaty mcboatface'
+          }
+        }
+      })
+      expect(form.element.querySelector('label').textContent).toContain('boaty mcboatface')
+    })
+  })
+
   describe('"i18n" option', () => {
     const mockUrl = 'http://my-translations.example.app'
     it('gets the default translations with no "i18n" option', async () => {
