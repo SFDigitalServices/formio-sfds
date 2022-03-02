@@ -19,6 +19,11 @@ const debugDefault = (
 
 const libraryHooks = {}
 
+const inputLanguageMap = {
+  fil: 'tl',
+  'zh-hant': 'zh'
+}
+
 const defaultEvalContext = {
   inputId () {
     const parts = [
@@ -98,9 +103,14 @@ function patch (Formio) {
     const { debug = debugDefault } = options
 
     // get the default language from the element's (inherited) lang property
-    const language = el.lang || document.documentElement.lang || 'en'
+    let language = el.lang || document.documentElement?.lang || 'en'
+    language = inputLanguageMap[language] || language
+
     // use the translations and language as the base, and merge the provided options
     const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
+    if (opts.i18n instanceof Object) {
+      opts.i18n = mapLanguageKeys(opts.i18n)
+    }
 
     if (typeof opts.i18n === 'string') {
       const { i18n: translationsURL } = opts
@@ -554,4 +564,16 @@ function setPageByReference (form, comp) {
 
 function isPageComponent (comp) {
   return comp.type === 'panel' || comp.type === 'components'
+}
+
+function mapLanguageKeys (obj) {
+  const copy = { ...obj }
+  for (const key of Object.keys(copy)) {
+    const mapped = inputLanguageMap[key]
+    if (mapped) {
+      copy[mapped] = copy[key]
+      // delete copy[key]
+    }
+  }
+  return copy
 }
