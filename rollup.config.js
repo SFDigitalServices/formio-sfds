@@ -24,6 +24,9 @@ const name = 'FormioSFDS'
 const external = []
 
 const commonPlugins = [
+  rewriteImportsPlugin({
+    'jsx-pragmatic': require.resolve('jsx-pragmatic/dist/module')
+  }),
   resolve(),
   commonjs(),
   json(),
@@ -98,3 +101,10 @@ export default [
     }
   }
 ]
+
+function rewriteImportsPlugin (idMap) {
+  return {
+    name: 'rewrite-imports',
+    resolveId: id => idMap[id]
+  }
+}
