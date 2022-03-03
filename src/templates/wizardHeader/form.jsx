@@ -1,8 +1,9 @@
-/** @jsx h */
-import h from 'vhtml'
+/** @jsx node */
+import { node } from 'jsx-pragmatic'
+import { stringRenderer } from '../render'
 import classnames from 'classnames'
 
-export default ctx => {
+export default stringRenderer(ctx => {
   const {
     t,
     currentPage,
@@ -131,4 +132,4 @@ export default ctx => {
       </div>
     </nav>
   )
-}
+})

@@ -763,9 +763,9 @@ exports[`component snapshots component "button" scenario: basic matches the snap
            id="button-basic-2"
       >
         <button lang="en"
+                class="btn btn-primary btn-md"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary"
                 ref="button"
         >
           This is the button label
@@ -808,9 +808,9 @@ exports[`component snapshots component "button" scenario: required matches the s
            id="button-required-2"
       >
         <button lang="en"
+                class="btn btn-primary btn-md"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary"
                 ref="button"
         >
           This is the button label
@@ -2064,7 +2064,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
              id="wizard-form-basic-1-header"
              aria-label="navigation"
         >
-          <div data-toggle-container="true">
+          <div data-toggle-container>
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
@@ -2092,13 +2092,13 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                 </div>
               </div>
             </div>
-            <div hidden="true"
+            <div hidden
                  class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
-                <li data-current="true"
+                <li data-current
                     style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
@@ -2145,7 +2145,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                     </svg>
                   </span>
                   <button style="cursor: default;"
-                          disabled="true"
+                          disabled
                           class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
@@ -2207,7 +2207,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
              id="wizard-form-translate-1-header"
              aria-label="navigation"
         >
-          <div data-toggle-container="true">
+          <div data-toggle-container>
             <div class="small d-md-none bg-dark-blue border-0 fg-white round-1"
                  id="nav-accordion"
                  aria-controls="nav-content"
@@ -2235,13 +2235,13 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                 </div>
               </div>
             </div>
-            <div hidden="true"
+            <div hidden
                  class="p-md-0"
                  id="nav-content"
                  aria-labeledby="nav-accordion"
             >
               <ul class="nav-list m-0 p-0 pt-2 pt-md-0">
-                <li data-current="true"
+                <li data-current
                     style="padding-bottom: 30px;"
                     class="mb-0 d-flex flex-items-start"
                 >
@@ -2288,7 +2288,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                     </svg>
                   </span>
                   <button style="cursor: default;"
-                          disabled="true"
+                          disabled
                           class="font-inherit border-0 bg-none flex-auto align-left pl-2 py-0 fg-inherit cursor-default"
                   >
                     Page 2
@@ -2646,7 +2646,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="1"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2661,7 +2661,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="2"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2676,7 +2676,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="3"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2733,7 +2733,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="1"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2748,7 +2748,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="2"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2763,7 +2763,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="3"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >

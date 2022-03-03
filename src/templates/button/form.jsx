@@ -1,7 +1,8 @@
-/** @jsx h */
-import h from 'vhtml'
+/** @jsx node */
+import { node } from 'jsx-pragmatic'
+import { stringRenderer } from '../render'
 
-export default (ctx) => {
+export default stringRenderer((ctx) => {
   const {
     component,
     input: {
@@ -21,4 +22,4 @@ export default (ctx) => {
       {component.rightIcon && <span data-icon={component.rightIcon} />}
     </Type>
   )
-}
+})
