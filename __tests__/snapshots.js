@@ -24,7 +24,8 @@ const components = [
   { type: 'container' },
   { type: 'day' },
   { type: 'datetime' },
-  { type: 'file' },
+  { type: 'file', storage: 'azure' },
+  { type: 'file', storage: 'azure', multiple: true },
   { type: 'htmlelement', tag: 'h1', content: 'Hello, world!' },
   { type: 'content', html: 'Hello, world!' },
   { type: 'number' },
@@ -115,17 +116,17 @@ describe('component snapshots', () => {
             props.form
           )
           : {
-            components: [
-              Object.assign(
-                {
-                  label: `This is the ${comp.type} label`,
-                  description: `This is the ${comp.type} description`
-                },
-                comp,
-                props.component
-              )
-            ]
-          }
+              components: [
+                Object.assign(
+                  {
+                    label: `This is the ${comp.type} label`,
+                    description: `This is the ${comp.type} description`
+                  },
+                  comp,
+                  props.component
+                )
+              ]
+            }
 
         if (typeof props.filter === 'function' && !props.filter(model, props)) {
           // console.info('Skipping scenario "%s" for component "%s"', name, comp.type)

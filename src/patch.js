@@ -12,7 +12,10 @@ const PATCHED = `sfds-patch-${Date.now()}`
 
 const hasProperty = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
 
-const debugDefault = process.env.NODE_ENV !== 'production'
+const debugDefault = (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NODE_ENV !== 'test'
+)
 
 const libraryHooks = {}
 
@@ -31,17 +34,21 @@ const defaultEvalContext = {
   tk (field, defaultValue = '') {
     const { component = {} } = this
     const { type, key = type } = component
-    return key ? this.t([
-      `${key}.${field}`,
-      // this is the "legacy" naming scheme
-      `${key}_${field}`,
-      `component.${type}.${field}`,
-      dot.get(component, field) || defaultValue || ''
-    ]) : defaultValue
+    return key
+      ? this.t([
+        `${key}.${field}`,
+        // this is the "legacy" naming scheme
+        `${key}_${field}`,
+        `component.${type}.${field}`,
+        dot.get(component, field) || defaultValue || ''
+      ])
+      : defaultValue
   },
 
   requiredAttributes () {
-    return this.component?.validate?.required ? 'required' : ''
+    return this.component?.validate?.required
+      ? 'required aria-required="true"'
+      : ''
   }
 }
 
@@ -62,6 +69,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
+  patchAriaInvalid(Formio)
   patchFlatpickrLocales()
 
   // this goes last so that if it fails it doesn't break everything else
@@ -83,6 +91,7 @@ window.addEventListener('beforeunload', event => {
 
 function patch (Formio) {
   if (debugDefault) console.info('Patching Formio.createForm() with SFDS behaviors...')
+  warnBeforeLeaving = false
 
   hook(Formio, 'createForm', async (createForm, args) => {
     const [el, resourceOrOptions, options = resourceOrOptions || {}] = args
@@ -187,12 +196,14 @@ function patch (Formio) {
         form.submission = { data: opts.data }
       }
 
-      if (opts.scroll !== false) {
-        form.on('nextPage', scrollToTop)
-        form.on('prevPage', scrollToTop)
-        form.on('prevPage', () => { doToggle(element) })
-        form.on('nextPage', () => {
+      form.on('change', (changed) => {
+        if (changed.changed !== undefined) {
           warnBeforeLeaving = true
+        }
+      })
+
+      if (opts.scroll !== false) {
+        form.on('nextPage', () => {
           doToggle(element)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
@@ -236,6 +247,14 @@ function patch (Formio) {
 
       await form.redraw()
 
+      if (opts.page) {
+        await setPage(form, opts.page)
+      }
+
+      if (opts.focus) {
+        await setFocus(form, opts.focus)
+      }
+
       return form
     })
   })
@@ -268,13 +287,15 @@ function patchSelectWidget (model, form) {
         // this overrides addItemText if provided
         itemSelectText: t('itemSelectText'),
         searchPlaceholderValue: t('searchPlaceholderValue'),
-        addItemText: component.customOptions?.addItemText ? value => {
-          return t('addItemText', {
-            value: FormioUtils.sanitize(value, {
-              sanitizeConfig: component.customOptions?.sanitize
+        addItemText: component.customOptions?.addItemText
+          ? value => {
+            return t('addItemText', {
+              value: FormioUtils.sanitize(value, {
+                sanitizeConfig: component.customOptions?.sanitize
+              })
             })
-          })
-        } : false,
+          }
+          : false,
         maxItemText (count) {
           return t('maxItemText', { count })
         }
@@ -379,6 +400,17 @@ function patchDateTimeLabels () {
   })
 }
 
+function patchAriaInvalid (Formio) {
+  hook(Formio.Components.components.component.prototype, 'setErrorClasses', function (setErrorClasses, [elements, ...rest]) {
+    setErrorClasses(elements, ...rest)
+    for (const el of elements) {
+      const input = this.performInputMapping(el)
+      const invalid = input.classList.contains('is-invalid')
+      input.setAttribute('aria-invalid', invalid)
+    }
+  })
+}
+
 function patchFormioLibraries (Formio) {
   if (typeof Formio.requireLibrary === 'function') {
     hook(Formio, 'requireLibrary', async (requireLibrary, [name, ...args]) => {
@@ -432,10 +464,6 @@ function disableGoogleTranslate (el) {
   el.setAttribute('translate', 'no')
 }
 
-function scrollToTop () {
-  window.scroll(0, 0)
-}
-
 function disableConditionals (components) {
   FormioUtils.eachComponent(components, comp => {
     comp.properties.conditional = comp.conditional
@@ -455,7 +483,7 @@ function userIsTranslating (opts) {
 }
 
 function toggleComponent () {
-  observe('[data-toggle-container]', {
+  observe(`.${WRAPPER_CLASS} [data-toggle-container]`, {
     add (el) {
       const ariaControl = el.querySelector('[aria-controls]')
 
@@ -487,4 +515,43 @@ function doToggle (element, show = false) {
       content.hidden = true
     }
   }
+}
+
+function setPage (form, pageKeyOrIndex) {
+  if (!pageKeyOrIndex) return false
+
+  const index = Number(pageKeyOrIndex)
+  if (!isNaN(index)) {
+    // indexes are 1-based, so subtract 1
+    return form.setPage(index - 1)
+  }
+
+  return setFocus(form, pageKeyOrIndex)
+}
+
+function setFocus (form, key) {
+  if (!key) return false
+
+  const component = form.getComponent(key)
+  if (component && isPageComponent(component)) {
+    return setPageByReference(form, component)
+  }
+  return form.focusOnComponent(key)
+}
+
+function setPageByReference (form, comp) {
+  const index = form.pages.indexOf(comp)
+  if (index > -1) {
+    return form.setPage(index)
+  } else {
+    console.warn(
+      'component with key "%s" is not in form pages:',
+      comp.key, form.pages.map(page => page.key)
+    )
+    return false
+  }
+}
+
+function isPageComponent (comp) {
+  return comp.type === 'panel' || comp.type === 'components'
 }
