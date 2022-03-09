@@ -74,6 +74,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
+  patchCustomErrorMessage(Formio)
   patchAriaInvalid(Formio)
   patchFlatpickrLocales()
 
@@ -406,6 +407,26 @@ function patchDateTimeLabels () {
       if (input) {
         input.setAttribute('aria-labelledby', labelId)
       }
+    }
+  })
+}
+
+/**
+ * Patch the Component prototype with a property getter that overrides how the
+ * _.get() call on this line accesses the custom validation message:
+ *
+ * <https://github.com/formio/formio.js/blob/240d1a17eba8f065baac7c84e40caaa6481df7c9/src/validator/Validator.js#L1023>
+ *
+ * _.get() respects defined properties (`Object.prototype.hasOwnProperty()`), so
+ * by defining a property getter for `component.validate.customMessage` on the
+ * Component class prototype we can call the component's `t()` method with the
+ * custom message key and fall back to the default behavior if none is found.
+ */
+function patchCustomErrorMessage (Formio) {
+  Object.defineProperty(Formio.Components.components.component.prototype, 'component.validate.customMessage', {
+    get () {
+      const { component } = this
+      return this.t(`${component.key}.validate.customMessage`) || component.validate?.customMessage
     }
   })
 }

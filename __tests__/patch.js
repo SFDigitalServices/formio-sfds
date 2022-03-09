@@ -221,4 +221,33 @@ describe('patch()', () => {
       })
     })
   })
+
+  describe('validate.customMessage hook', () => {
+    it('works', async () => {
+      const form = await createForm({
+        components: [
+          {
+            key: 'name',
+            type: 'textfield',
+            validate: {
+              required: true,
+              customMessage: 'English error message'
+            }
+          }
+        ]
+      }, {
+        language: 'es',
+        i18n: {
+          es: {
+            'name.validate.customMessage': 'Spanish error message'
+          }
+        }
+      })
+      /* eslint-disable-next-line */
+      await form.submit().catch(() => null)
+      const error = form.element.querySelector('.error')
+      expect(error).not.toBe(null)
+      expect(error.textContent).toContain('Spanish error message')
+    })
+  })
 })
