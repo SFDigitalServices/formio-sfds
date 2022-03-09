@@ -7,9 +7,39 @@ import { createForm, destroyForm } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
 describe('generic string translations', () => {
+  describe('translation string management', () => {
+    it('gets default translations without an "i18n" option', async () => {
+      const form = await createForm()
+      expect(form.options.i18n?.resources).toEqual(
+        expect.objectContaining({
+          en: expect.any(Object),
+          es: expect.any(Object),
+          tl: expect.any(Object),
+          zh: expect.any(Object)
+        })
+      )
+    })
+
+    it('can override translations', async () => {
+      const form = await createForm({
+        components: []
+      }, {
+        language: 'es',
+        i18n: {
+          es: {
+            hello: 'hola'
+          }
+        }
+      })
+      expect(form.t('hello')).toEqual('hola')
+      expect(form.t('Get started')).toEqual('Comenzar')
+    })
+  })
+
   describe('translates validation error types', () => {
     it('without custom translations', async () => {
       const form = await createForm()
+      expect(form.i18next.getDataByLanguage('es')?.translation?.required).toBe('{{field}} es requerido')
       expect(form.t('required', { field: 'foo' })).toEqual('foo is required')
       await (form.language = 'es')
       expect(form.t('required', { field: 'foo' })).toEqual('foo es requerido')
