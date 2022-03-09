@@ -66,14 +66,13 @@ describe('form localization', () => {
           {
             type: 'textfield',
             key: 'name',
-            label: 'Name',
-            input: true
+            label: 'Name'
           }
         ]
       }, {
         language: 'zh',
         i18n: {
-          'zh-hant': {
+          zh: {
             Name: 'boaty mcboatface'
           }
         }
@@ -91,13 +90,18 @@ describe('form localization', () => {
     })
 
     it('fetches translations from the URL if provided a string', async () => {
-      loadTranslations.mockImplementationOnce(() => ({
+      loadTranslations.mockResolvedValueOnce({
         es: {
           hello: 'hola'
         }
-      }))
+      })
       const form = await createForm({}, { i18n: mockUrl, language: 'es' })
       expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
+      expect(form.i18next.getDataByLanguage('es')?.translation).toEqual(
+        expect.objectContaining({
+          hello: 'hola'
+        })
+      )
       expect(form.t('hello')).toEqual('hola')
       destroyForm(form)
     })
