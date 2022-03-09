@@ -16,6 +16,7 @@
   "minWords": "{{field}} 至少要有{{length}}個字",
   "next": "繼續",
   "or": "或",
+  "required": "{{field}} 必填",
   "Size": "大小",
   "Starting upload": "開始上傳",
   "Submit": "提交"
