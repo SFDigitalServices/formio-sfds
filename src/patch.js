@@ -107,26 +107,10 @@ function patch (Formio) {
     let language = el.lang || document.documentElement?.lang || 'en'
     language = inputLanguageMap[language] || language
 
-    // use the translations and language as the base, and merge the provided options
-    const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
-    if (opts.i18n instanceof Object) {
-      opts.i18n = mapLanguageKeys(opts.i18n)
-    }
+    // default to the inferred language, merge the provided options
+    const opts = { language, ...options }
 
-    if (typeof opts.i18n === 'string') {
-      const { i18n: translationsURL } = opts
-      if (debug) console.info('loading translations form:', translationsURL)
-      try {
-        const i18n = await loadTranslations(translationsURL)
-        if (debug) console.info('loaded translations:', i18n)
-        opts.i18n = mergeObjects({}, opts.i18n, i18n)
-      } catch (error) {
-        if (debug) console.warn('Unable to load translations from:', translationsURL, error)
-        // FIXME: we may want to explicitly *allow* Google Translate (even if
-        // it's been disabled) for this form if translations fail to load.
-        // opts.googleTranslate = true
-      }
-    }
+    opts.i18n = await resolveTranslations(opts.i18n, debug)
 
     if (opts.hooks instanceof Object) {
       opts.hooks = buildHooks(opts.hooks)
@@ -615,4 +599,32 @@ function mapLanguageKeys (obj) {
     }
   }
   return copy
+}
+
+/**
+ * Resolve a URL or mapping of custom translations into an object containing
+ * package defaults.
+ *
+ * @param {string | object} value translation URL or map (by language)
+ * @returns {object} resolved translations object with defaults
+ */
+async function resolveTranslations (value, debug) {
+  if (typeof value === 'string') {
+    const url = value
+    if (debug) console.info('loading translations form:', url)
+    try {
+      value = await loadTranslations(url)
+      if (debug) console.info('loaded translations:', value)
+    } catch (error) {
+      if (debug) console.warn('Unable to load translations from:', url, error)
+      return defaultTranslations
+    }
+  }
+
+  if (value instanceof Object) {
+    const merged = mergeObjects({}, defaultTranslations, value)
+    return mapLanguageKeys(merged)
+  } else {
+    return defaultTranslations
+  }
 }
