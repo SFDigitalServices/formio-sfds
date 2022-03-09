@@ -16,7 +16,6 @@
     "lint-js": "eslint src __tests__ lib api '*.js'",
     "start": "node server.js",
     "test": "jest",
-    "update-translations": "script/get-translations > src/i18n/translations.json",
     "snaps": "npm run build-js && npm test -- -u",
     "watch": "run-s build-css watch-all",
     "watch-all": "run-p watch-css watch-js watch-views",
