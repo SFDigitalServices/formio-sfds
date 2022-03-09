@@ -74,7 +74,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
-  patchCustomErrorMessage(Formio)
+  patchErrorTranslations(Formio)
   patchAriaInvalid(Formio)
   patchFlatpickrLocales()
 
@@ -422,13 +422,29 @@ function patchDateTimeLabels () {
  * Component class prototype we can call the component's `t()` method with the
  * custom message key and fall back to the default behavior if none is found.
  */
-function patchCustomErrorMessage (Formio) {
-  Object.defineProperty(Formio.Components.components.component.prototype, 'component.validate.customMessage', {
-    get () {
-      const { component } = this
-      return this.t(`${component.key}.validate.customMessage`) || component.validate?.customMessage
+function patchErrorTranslations (Formio) {
+  Object.defineProperties(
+    Formio.Components.components.component.prototype,
+    {
+      errorLabel: {
+        get () {
+          const { component } = this
+          return this.t([
+            `${component.key}.errorLabel`,
+            `${component.key}.label`,
+            component.errorLabel || component.label || ''
+          ])
+        }
+      },
+      'component.validate.customMessage': {
+        get () {
+          const { component } = this
+          const key = `${component.key}.validate.customMessage`
+          return this.t([key, component.validate?.customMessage || ''])
+        }
+      }
     }
-  })
+  )
 }
 
 function patchAriaInvalid (Formio) {

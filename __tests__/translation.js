@@ -116,4 +116,58 @@ describe('field translations', () => {
 
     destroyForm(form)
   })
+
+  describe('finds the "key.validate.customMessage" translations', () => {
+    it('works', async () => {
+      const form = await createForm({
+        components: [
+          {
+            key: 'name',
+            type: 'textfield',
+            validate: {
+              required: true,
+              customMessage: 'English error message'
+            }
+          }
+        ]
+      }, {
+        language: 'es',
+        i18n: {
+          es: {
+            'name.validate.customMessage': 'Spanish error message'
+          }
+        }
+      })
+      const errors = await form.submit().catch(errors => errors)
+      expect(errors).toHaveLength(1)
+      expect(errors[0].message).toBe('Spanish error message')
+      destroyForm(form)
+    })
+  })
+
+  it('translates the field label in default error messages', async () => {
+    const form = await createForm({
+      components: [
+        {
+          key: 'age',
+          type: 'textfield',
+          label: 'Age',
+          validate: {
+            required: true
+          }
+        }
+      ]
+    }, {
+      language: 'es',
+      i18n: {
+        es: {
+          'age.label': 'Edad'
+        }
+      }
+    })
+    const errors = await form.submit().catch(errors => errors)
+    expect(errors).toHaveLength(1)
+    expect(errors[0].message).toBe('Edad es requerido')
+    destroyForm(form)
+  })
 })
