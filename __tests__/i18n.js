@@ -392,6 +392,28 @@ describe('i18n extraction', () => {
       })
     })
 
+    describe('errorLabel', () => {
+      it('gets the errorLabel', () => {
+        const strings = getStrings({
+          components: [
+            {
+              key: 'a',
+              errorLabel: 'A is required!'
+            },
+            {
+              key: 'b',
+              errorLabel: 'B must match the pattern'
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(2)
+        expect(strings[0].key).toBe('a.errorLabel')
+        expect(strings[0].value).toBe('A is required!')
+        expect(strings[1].key).toBe('b.errorLabel')
+        expect(strings[1].value).toBe('B must match the pattern')
+      })
+    })
     describe('errors map', () => {
       it('gets a string for each non-empty key/value in component.errors', () => {
         const strings = getStrings({
