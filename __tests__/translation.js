@@ -170,4 +170,30 @@ describe('field translations', () => {
     expect(errors[0].message).toBe('Edad es requerido')
     destroyForm(form)
   })
+
+  it('translates Chinese required errors', async () => {
+    const form = await createForm({
+      components: [
+        {
+          key: 'name',
+          label: 'Name',
+          validate: {
+            required: true
+          }
+        }
+      ]
+    }, {
+      language: 'zh',
+      i18n: {
+        zh: {
+          'name.label': '全名'
+        }
+      }
+    })
+
+    const errors = await form.submit().catch(errors => errors)
+    expect(errors).toHaveLength(1)
+    expect(errors[0].message).toBe('全名 必填')
+    destroyForm(form)
+  })
 })
