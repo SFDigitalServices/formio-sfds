@@ -74,6 +74,7 @@ export default Formio => {
   patchDateTimeSuffix()
   patchDayLabels()
   patchDateTimeLabels()
+  patchErrorTranslations(Formio)
   patchAriaInvalid(Formio)
   patchFlatpickrLocales()
 
@@ -106,26 +107,10 @@ function patch (Formio) {
     let language = el.lang || document.documentElement?.lang || 'en'
     language = inputLanguageMap[language] || language
 
-    // use the translations and language as the base, and merge the provided options
-    const opts = mergeObjects({ i18n: defaultTranslations, language }, options)
-    if (opts.i18n instanceof Object) {
-      opts.i18n = mapLanguageKeys(opts.i18n)
-    }
+    // default to the inferred language, merge the provided options
+    const opts = { language, ...options }
 
-    if (typeof opts.i18n === 'string') {
-      const { i18n: translationsURL } = opts
-      if (debug) console.info('loading translations form:', translationsURL)
-      try {
-        const i18n = await loadTranslations(translationsURL)
-        if (debug) console.info('loaded translations:', i18n)
-        opts.i18n = mergeObjects({}, opts.i18n, i18n)
-      } catch (error) {
-        if (debug) console.warn('Unable to load translations from:', translationsURL, error)
-        // FIXME: we may want to explicitly *allow* Google Translate (even if
-        // it's been disabled) for this form if translations fail to load.
-        // opts.googleTranslate = true
-      }
-    }
+    opts.i18n = await resolveTranslations(opts.i18n, debug)
 
     if (opts.hooks instanceof Object) {
       opts.hooks = buildHooks(opts.hooks)
@@ -410,6 +395,44 @@ function patchDateTimeLabels () {
   })
 }
 
+/**
+ * Patch the Component prototype with a property getter that overrides how the
+ * _.get() call on this line accesses the custom validation message:
+ *
+ * <https://github.com/formio/formio.js/blob/240d1a17eba8f065baac7c84e40caaa6481df7c9/src/validator/Validator.js#L1023>
+ *
+ * _.get() respects defined properties (`Object.prototype.hasOwnProperty()`), so
+ * by defining a property getter for `component.validate.customMessage` on the
+ * Component class prototype we can call the component's `t()` method with the
+ * custom message key and fall back to the default behavior if none is found.
+ */
+function patchErrorTranslations (Formio) {
+  Object.defineProperties(
+    Formio.Components.components.component.prototype,
+    {
+      errorLabel: {
+        get () {
+          // based on: <https://github.com/formio/formio.js/blob/796576c8adb9bd4689b4e6c87f287cf653d5b11f/src/components/_classes/component/Component.js#L1604-L1609>
+          const { component } = this
+          return this.t([
+            `${component.key}.errorLabel`,
+            `${component.key}.label`,
+            `${component.key}.placeholder`,
+            component.errorLabel || component.label || component.placeholder || component.key
+          ])
+        }
+      },
+      'component.validate.customMessage': {
+        get () {
+          const { component } = this
+          const key = `${component.key}.validate.customMessage`
+          return this.t([key, component.validate?.customMessage || ''])
+        }
+      }
+    }
+  )
+}
+
 function patchAriaInvalid (Formio) {
   hook(Formio.Components.components.component.prototype, 'setErrorClasses', function (setErrorClasses, [elements, ...rest]) {
     setErrorClasses(elements, ...rest)
@@ -576,4 +599,32 @@ function mapLanguageKeys (obj) {
     }
   }
   return copy
+}
+
+/**
+ * Resolve a URL or mapping of custom translations into an object containing
+ * package defaults.
+ *
+ * @param {string | object} value translation URL or map (by language)
+ * @returns {object} resolved translations object with defaults
+ */
+async function resolveTranslations (value, debug) {
+  if (typeof value === 'string') {
+    const url = value
+    if (debug) console.info('loading translations form:', url)
+    try {
+      value = await loadTranslations(url)
+      if (debug) console.info('loaded translations:', value)
+    } catch (error) {
+      if (debug) console.warn('Unable to load translations from:', url, error)
+      return defaultTranslations
+    }
+  }
+
+  if (value instanceof Object) {
+    const merged = mergeObjects({}, defaultTranslations, value)
+    return mapLanguageKeys(merged)
+  } else {
+    return defaultTranslations
+  }
 }

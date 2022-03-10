@@ -66,14 +66,13 @@ describe('form localization', () => {
           {
             type: 'textfield',
             key: 'name',
-            label: 'Name',
-            input: true
+            label: 'Name'
           }
         ]
       }, {
         language: 'zh',
         i18n: {
-          'zh-hant': {
+          zh: {
             Name: 'boaty mcboatface'
           }
         }
@@ -91,13 +90,18 @@ describe('form localization', () => {
     })
 
     it('fetches translations from the URL if provided a string', async () => {
-      loadTranslations.mockImplementationOnce(() => ({
+      loadTranslations.mockResolvedValueOnce({
         es: {
           hello: 'hola'
         }
-      }))
+      })
       const form = await createForm({}, { i18n: mockUrl, language: 'es' })
       expect(loadTranslations).toHaveBeenCalledWith(mockUrl)
+      expect(form.i18next.getDataByLanguage('es')?.translation).toEqual(
+        expect.objectContaining({
+          hello: 'hola'
+        })
+      )
       expect(form.t('hello')).toEqual('hola')
       destroyForm(form)
     })
@@ -392,6 +396,28 @@ describe('i18n extraction', () => {
       })
     })
 
+    describe('errorLabel', () => {
+      it('gets the errorLabel', () => {
+        const strings = getStrings({
+          components: [
+            {
+              key: 'a',
+              errorLabel: 'A is required!'
+            },
+            {
+              key: 'b',
+              errorLabel: 'B must match the pattern'
+            }
+          ]
+        })
+
+        expect(strings).toHaveLength(2)
+        expect(strings[0].key).toBe('a.errorLabel')
+        expect(strings[0].value).toBe('A is required!')
+        expect(strings[1].key).toBe('b.errorLabel')
+        expect(strings[1].value).toBe('B must match the pattern')
+      })
+    })
     describe('errors map', () => {
       it('gets a string for each non-empty key/value in component.errors', () => {
         const strings = getStrings({

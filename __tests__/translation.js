@@ -7,9 +7,39 @@ import { createForm, destroyForm } from '../lib/test-helpers'
 import '../dist/formio-sfds.standalone.js'
 
 describe('generic string translations', () => {
+  describe('translation string management', () => {
+    it('gets default translations without an "i18n" option', async () => {
+      const form = await createForm()
+      expect(form.options.i18n?.resources).toEqual(
+        expect.objectContaining({
+          en: expect.any(Object),
+          es: expect.any(Object),
+          tl: expect.any(Object),
+          zh: expect.any(Object)
+        })
+      )
+    })
+
+    it('can override translations', async () => {
+      const form = await createForm({
+        components: []
+      }, {
+        language: 'es',
+        i18n: {
+          es: {
+            hello: 'hola'
+          }
+        }
+      })
+      expect(form.t('hello')).toEqual('hola')
+      expect(form.t('Get started')).toEqual('Comenzar')
+    })
+  })
+
   describe('translates validation error types', () => {
     it('without custom translations', async () => {
       const form = await createForm()
+      expect(form.i18next.getDataByLanguage('es')?.translation?.required).toBe('{{field}} es requerido')
       expect(form.t('required', { field: 'foo' })).toEqual('foo is required')
       await (form.language = 'es')
       expect(form.t('required', { field: 'foo' })).toEqual('foo es requerido')
@@ -114,6 +144,86 @@ describe('field translations', () => {
     // this one does not have a translation, but it should still render the English version
     expect(labels[2].textContent.trim()).toEqual('Blue')
 
+    destroyForm(form)
+  })
+
+  describe('finds the "key.validate.customMessage" translations', () => {
+    it('works', async () => {
+      const form = await createForm({
+        components: [
+          {
+            key: 'name',
+            type: 'textfield',
+            validate: {
+              required: true,
+              customMessage: 'English error message'
+            }
+          }
+        ]
+      }, {
+        language: 'es',
+        i18n: {
+          es: {
+            'name.validate.customMessage': 'Spanish error message'
+          }
+        }
+      })
+      const errors = await form.submit().catch(errors => errors)
+      expect(errors).toHaveLength(1)
+      expect(errors[0].message).toBe('Spanish error message')
+      destroyForm(form)
+    })
+  })
+
+  it('translates the field label in default error messages', async () => {
+    const form = await createForm({
+      components: [
+        {
+          key: 'age',
+          type: 'textfield',
+          label: 'Age',
+          validate: {
+            required: true
+          }
+        }
+      ]
+    }, {
+      language: 'es',
+      i18n: {
+        es: {
+          'age.label': 'Edad'
+        }
+      }
+    })
+    const errors = await form.submit().catch(errors => errors)
+    expect(errors).toHaveLength(1)
+    expect(errors[0].message).toBe('Edad es requerido')
+    destroyForm(form)
+  })
+
+  it('translates Chinese required errors', async () => {
+    const form = await createForm({
+      components: [
+        {
+          key: 'name',
+          label: 'Name',
+          validate: {
+            required: true
+          }
+        }
+      ]
+    }, {
+      language: 'zh',
+      i18n: {
+        zh: {
+          'name.label': '全名'
+        }
+      }
+    })
+
+    const errors = await form.submit().catch(errors => errors)
+    expect(errors).toHaveLength(1)
+    expect(errors[0].message).toBe('全名 必填')
     destroyForm(form)
   })
 })
