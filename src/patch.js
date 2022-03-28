@@ -438,8 +438,10 @@ function patchAriaInvalid (Formio) {
     setErrorClasses(elements, ...rest)
     for (const el of elements) {
       const input = this.performInputMapping(el)
-      const invalid = input.classList.contains('is-invalid')
-      input.setAttribute('aria-invalid', invalid)
+      if (input) {
+        const invalid = input.classList.contains('is-invalid')
+        input.setAttribute('aria-invalid', invalid)
+      }
     }
   })
 }
