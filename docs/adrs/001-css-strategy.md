@@ -1,4 +1,4 @@
-# Global CSS
+# CSS strategy
 
 * Status: **proposed**
 * Deciders: @shawnbot @JimBrodbeck @nlsfds
@@ -16,7 +16,7 @@ In order to move [DESSYS-155](https://sfgovdt.jira.com/browse/DESSYS-155) forwar
 
 ## Decision drivers <!-- optional -->
 
-* Time: we need to do this soon, without mucking around in postcss and/or Tailwind
+* Time: we need to do this soon!
 * Maintenance/developer experience: if it's hard to set up or test, that will slow us down
 * Ease of use: does this decision make forms easier or harder to use?
 * Embedding: do we need to consider the use case of forms embedded outside of SF.gov?
@@ -28,27 +28,20 @@ In order to move [DESSYS-155](https://sfgovdt.jira.com/browse/DESSYS-155) forwar
 
 ## Decision Outcome
 
-<!--
-We've chosen to use global CSS because:
+We've chosen to [import CSS from the design system](#import-css-from-the-design-system).
 
-1. It's already set up that way; no additional postcss/Tailwind/etc. config necessary
-2. We can start deleting CSS in the form.io theme sooner
--->
+This will allow us to move forward with form styles in parallel with SF.gov, rather than relying on them.
 
 ### Positive consequences <!-- optional -->
 
-<!--
-* We can start sooner and move faster
--->
+- Easier testing
+- Easier to debug
+- Embedding outside of SF.gov becomes easier
 
 ### Negative consequences <!-- optional -->
 
-<!--
-Continuing to rely on global CSS:
-
-* makes it harder to debug
-* makes it harder to embed our forms on other sites (outside of SF.gov)
--->
+- Tricky to set up
+- Introduces some duplicate CSS (mostly utilities scoped to forms)
 
 ## Pros and cons of the options <!-- optional -->
 
