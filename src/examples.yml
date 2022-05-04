@@ -635,3 +635,76 @@
             validate:
               required: true
               customMessage: Please choose an option.
+
+- id: datagrid-with-select
+  title: Datagrid with select
+  form:
+    components:
+      - {
+        "type": "datagrid",
+        "input": true,
+        "label": "Enter the relevant information for each ADU.",
+        "reorder": false,
+        "addAnotherPosition": "bottom",
+        "defaultOpen": false,
+        "layoutFixed": false,
+        "enableRowGroups": false,
+        "initEmpty": false,
+        "tableView": false,
+        "defaultValue": [
+          {
+            "proposedUnitType": ""
+          }
+        ],
+        "key": "proposedAdUs",
+        "components": [
+          {
+            "label": "Select the unit type",
+            "widget": "choicesjs",
+            "tableView": true,
+            "data": {
+              "values": [
+                {
+                  "label": "Studio",
+                  "value": "Studio"
+                },
+                {
+                  "label": "1 Bedroom",
+                  "value": "1Bedroom"
+                },
+                {
+                  "label": "2 Bedroom",
+                  "value": "2Bedroom"
+                },
+                {
+                  "label": "3 Bedroom or more",
+                  "value": "3Bedroom"
+                }
+              ]
+            },
+            "validate": {
+              "required": true
+            },
+            "key": "proposedUnitType",
+            "type": "select",
+            "input": true,
+            "searchThreshold": 0.3
+          },
+          {
+            "label": "Square footage",
+            "mask": false,
+            "spellcheck": true,
+            "tableView": false,
+            "delimiter": false,
+            "requireDecimal": false,
+            "inputFormat": "plain",
+            "validate": {
+              "required": true
+            },
+            "key": "proposedSquareFootage",
+            "type": "number",
+            "decimalLimit": 0,
+            "input": true
+          }
+        ]
+      }
