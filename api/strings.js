@@ -32,6 +32,12 @@ module.exports = (req, res) => {
       const data = formatter(strings, params)
       return res.json(data)
     })
+    .catch(error => {
+      res.json({
+        status: 500,
+        error: error.message
+      })
+    })
 }
 
 function formatFlatJSON (strings, params) {
