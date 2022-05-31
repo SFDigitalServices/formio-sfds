@@ -1,6 +1,6 @@
 # CSS strategy
 
-* Status: **proposed**
+* Status: **accepted**
 * Deciders: @shawnbot @JimBrodbeck @nlsfds
 * Date: 2022-04-21 <!-- when the decision was last updated -->
 
