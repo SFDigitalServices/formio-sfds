@@ -5,7 +5,8 @@ const { getStrings, getCondition } = require('../lib/i18n')
 const formatters = {
   flat: formatFlatJSON,
   nested: formatNestedJSON,
-  debug: formatDebug
+  debug: formatDebug,
+  drupal: formatDrupalData
 }
 
 module.exports = (req, res) => {
@@ -31,6 +32,12 @@ module.exports = (req, res) => {
       const strings = getStrings(form)
       const data = formatter(strings, params)
       return res.json(data)
+    })
+    .catch(error => {
+      res.json({
+        status: 500,
+        error: error.message
+      })
     })
 }
 
@@ -66,5 +73,32 @@ function formatDebug (strings, options) {
       }
       return str
     })
+  }
+}
+
+function formatDrupalData (strings, options) {
+  const pages = {}
+  let pageCount = 0
+  const values = Object.fromEntries(
+    strings.map(str => {
+      const { key, value, label, page } = str
+      if (page && !pages[page.key]) {
+        pages[page.key] = Object.assign(page, { index: pageCount++ })
+      }
+      const pageIndex = page ? pages[page.key].index : undefined
+      return [
+        key,
+        {
+          value,
+          label,
+          page: pageIndex
+        }
+      ]
+    })
+  )
+
+  return {
+    strings: values,
+    pages: Object.values(pages)
   }
 }
