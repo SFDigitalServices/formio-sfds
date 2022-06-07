@@ -1,6 +1,7 @@
-import { Formio } from 'formiojs'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../dist/formio-sfds.standalone.js'
+
+const { Formio } = window
 
 export function Form (props) {
   const {
@@ -8,10 +9,12 @@ export function Form (props) {
     components,
     dataSource = { components },
     options,
+    on = {},
     ...rest
   } = props
   const ref = useRef()
   const form = useForm(ref, dataSource, options)
+  console.log('form:', form)
   return <div {...rest} ref={ref} />
 }
 
