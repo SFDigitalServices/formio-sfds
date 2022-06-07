@@ -134,6 +134,7 @@
     "stylelint-scss": "^4.2.0",
     "unist-util-visit": "^2.0.3",
     "us": "^2.0.0",
-    "watchy": "^0.9.7"
+    "watchy": "^0.9.7",
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }
