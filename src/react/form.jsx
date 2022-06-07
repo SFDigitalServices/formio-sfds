@@ -24,7 +24,6 @@ export function useForm (
   ] = useState()
   useEffect(() => {
     if (!form && ref.current) {
-      // eslint-disable-next-line promise/catch-or-return
       Formio.createForm(
         ref.current.appendChild(document.createElement('div')),
         dataSource,

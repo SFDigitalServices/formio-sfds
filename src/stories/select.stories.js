@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { Form, useForm } from '../react/form'
-// import { html } from 'lit-html'
 
 export default {
   title: 'Select component',
