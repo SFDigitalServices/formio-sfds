@@ -1,3 +1,4 @@
+/** @type {import('eslint').ESLint.Options} */
 module.exports = {
   plugins: ['sfgov'],
   extends: [
@@ -10,7 +11,10 @@ module.exports = {
     'promise/catch-or-return': 0,
     'promise/no-callback-in-promise': 0,
     'import/no-unresolved': [2, {
-      ignore: ['^../dist']
+      ignore: [
+        '^../dist',
+        '../react/form'
+      ]
     }]
   }
 }

@@ -1,7 +1,6 @@
 module.exports = {
   presets: [
-    ['@babel/preset-env', {
-    }]
+    ['@babel/preset-env', {}]
   ],
   plugins: [
     ['@babel/plugin-proposal-optional-chaining', {
@@ -9,6 +8,7 @@ module.exports = {
     ['@babel/plugin-transform-runtime', {
       regenerator: true
     }],
+    ['@babel/plugin-syntax-jsx', {}],
     ['babel-plugin-lodash', {
     }]
   ]
