@@ -4,3 +4,7 @@ extends: stylelint-config-standard-scss
 syntax: scss
 rules:
   no-descending-specificity: null
+  scss/dollar-variable-empty-line-before: null
+  scss/dollar-variable-pattern: null
+  selector-class-pattern: null
+  string-quotes: double

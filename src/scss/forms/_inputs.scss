@@ -8,6 +8,7 @@ input[type="checkbox"] {
   margin: 0;
   display: inline-block;
   width: $checkbox-size !important;
+
   // the !important is necessary here because sf.gov's CSS sets
   // `height: auto` with a higher specificity
   height: $checkbox-size !important;
