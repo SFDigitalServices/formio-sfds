@@ -1,5 +1,4 @@
 import React from 'react'
-/* eslint-ignore-next-line no-unused-vars */
 import { Form } from '../react/form'
 
 export default {
