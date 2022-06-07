@@ -10,7 +10,7 @@
     "build": "run-s build-css build-js build-views",
     "build-css": "postcss src/scss/formio-sfds.scss --ext css --dir dist",
     "build-js": "rollup -c",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -o public/storybook",
     "build-views": "script/render-views",
     "lint": "run-p lint-js lint-css",
     "lint-css": "stylelint src/scss/**/*.scss",

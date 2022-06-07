@@ -16,6 +16,7 @@ app
   .use('/', express.static('dist', {
     extensions: ['html']
   }))
+  .use('/storybook', express.static('public/storybook'))
   .use((req, res, next) => {
     console.error('404:', req.originalUrl)
     res.set('Content-type', 'text/plain')

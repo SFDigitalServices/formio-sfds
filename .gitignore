@@ -51,6 +51,7 @@ jspm_packages/
 .nuxt
 .lighthouseci/
 dist/
+public/
 
 # Heroku files
 app.json
