@@ -20,7 +20,7 @@ export const argTypes = {
     options: ['en', 'es', 'zh', 'fil'],
     description: 'Render the form in this language',
     type: 'select',
-    control: {      
+    control: {
       labels: {
         en: 'English',
         es: 'Spanish',
