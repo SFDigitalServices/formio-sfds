@@ -10,6 +10,9 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials'
   ],
+  features: {
+    storyStoreV7: true
+  },
   webpackFinal: async (config, { configType }) => {
     // analyze webpack bundle size. To enable run storybook with `cross-env analyze=true`
     // not needed, but helps debug the problem :)
