@@ -1,8 +1,9 @@
 module.exports = {
   plugins: ['sfgov'],
   extends: [
-    'plugin:sfgov/recommended',
-    'plugin:sfgov/babel'
+    'plugin:storybook/recommended',
+    'plugin:sfgov/babel',
+    'plugin:sfgov/recommended'
   ],
   rules: {
     'promise/no-callback-in-promise': 0,
