@@ -52,7 +52,3 @@ jspm_packages/
 .lighthouseci/
 dist/
 public/
-
-# Heroku files
-app.json
-Procfile
