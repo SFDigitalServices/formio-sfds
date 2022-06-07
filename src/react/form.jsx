@@ -9,7 +9,6 @@ export function Form (props) {
     components,
     dataSource = { components },
     options,
-    on = {},
     ...rest
   } = props
   const ref = useRef()
