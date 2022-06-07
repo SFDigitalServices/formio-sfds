@@ -302,7 +302,7 @@ function patchSelectWidget (model, form) {
 }
 
 function patchLanguageObserver () {
-  const observer = new window.MutationObserver(mutations => {
+  const observer = new window.MutationObserver(() => {
     for (const form of forms) {
       updateLanguage(form)
     }
@@ -522,7 +522,7 @@ function toggleComponent () {
     add (el) {
       const ariaControl = el.querySelector('[aria-controls]')
 
-      ariaControl.addEventListener('click', event => {
+      ariaControl.addEventListener('click', () => {
         if (ariaControl.hasAttribute('aria-expanded')) {
           const expanded = ariaControl.getAttribute('aria-expanded')
           doToggle(el, expanded !== 'true')
