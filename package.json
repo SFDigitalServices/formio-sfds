@@ -6,7 +6,7 @@
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
   "engines": {
-    "node": ">=14.x",
+    "node": "14.x || 16.x",
     "npm": ">=8.x"
   },
   "scripts": {
