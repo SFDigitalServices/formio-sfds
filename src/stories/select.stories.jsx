@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from '../react/form'
 
 export default {
-  title: 'Select component',
+  title: 'Select',
   argTypes: {
     label: {
       name: 'Label',
