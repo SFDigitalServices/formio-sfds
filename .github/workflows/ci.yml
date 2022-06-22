@@ -18,6 +18,7 @@ jobs:
       - run: npm test
 
       - uses: primer/publish@v2.0.0
+        if: secrets.NPM_AUTH_TOKEN
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
