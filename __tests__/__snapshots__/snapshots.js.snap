@@ -141,8 +141,8 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             required
                             ref="selectContainer"
                     >
-                      <option value
-                              selected="selected"
+                      <option selected
+                              value
                       >
                       </option>
                       <option value="AL">
@@ -512,8 +512,8 @@ exports[`component snapshots component "address" scenario: required matches the 
                             required
                             ref="selectContainer"
                     >
-                      <option value
-                              selected="selected"
+                      <option selected
+                              value
                       >
                       </option>
                       <option value="AL">
@@ -2825,23 +2825,92 @@ exports[`component snapshots component "select" scenario: basic matches the snap
                 id="input-select-basic-2"
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
-          <option value="a">
+          <option value="red">
             <span>
-              A
+              Red
             </span>
           </option>
-          <option value="b">
+          <option value="green">
             <span>
-              B
+              Green
             </span>
           </option>
-          <option value="c">
+          <option value="blue">
             <span>
-              C
+              Blue
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: basic matches the snapshot 2`] = `
+<div id="form-select-basic"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-basic-1"
+  >
+    <label for="input-select-basic-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select"
+           id="select-basic-2"
+      >
+        <label for="input-select-basic-2"
+               class
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-basic-2"
+                ref="selectContainer"
+        >
+          <option selected
+                  value
+          >
+          </option>
+          <option value="apple">
+            <span>
+              Apple
+            </span>
+          </option>
+          <option value="banana">
+            <span>
+              Banana
+            </span>
+          </option>
+          <option value="cherry">
+            <span>
+              Cherry
             </span>
           </option>
         </select>
@@ -2896,24 +2965,221 @@ exports[`component snapshots component "select" scenario: required matches the s
                 required
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
-          <option value="a">
+          <option value="red">
             <span>
-              A
+              Red
             </span>
           </option>
-          <option value="b">
+          <option value="green">
             <span>
-              B
+              Green
             </span>
           </option>
-          <option value="c">
+          <option value="blue">
             <span>
-              C
+              Blue
             </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: required matches the snapshot 2`] = `
+<div id="form-select-required"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-required-1"
+  >
+    <label for="input-select-required-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select  required"
+           id="select-required-2"
+      >
+        <label for="input-select-required-2"
+               class="field-required"
+        >
+          This is the select label
+        </label>
+        <select lang="en"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-required-2"
+                aria-required="true"
+                required
+                ref="selectContainer"
+        >
+          <option selected
+                  value
+          >
+          </option>
+          <option value="apple">
+            <span>
+              Apple
+            </span>
+          </option>
+          <option value="banana">
+            <span>
+              Banana
+            </span>
+          </option>
+          <option value="cherry">
+            <span>
+              Cherry
+            </span>
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: translate:es matches the snapshot 1`] = `
+<div id="form-select-translate:es"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-translate:es-1"
+  >
+    <label for="input-select-translate:es-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select"
+           id="select-translate:es-2"
+      >
+        <label for="input-select-translate:es-2"
+               class
+        >
+          This is the select label
+        </label>
+        <select lang="es"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-translate:es-2"
+                ref="selectContainer"
+        >
+          <option selected
+                  value
+          >
+          </option>
+          <option value="red">
+            Rojo
+          </option>
+          <option value="green">
+            Verde
+          </option>
+          <option value="blue">
+            Azúl
+          </option>
+        </select>
+        <div class="fg-light-slate mt-1">
+          This is the select description
+        </div>
+        <div ref="messageContainer"
+             class="messages"
+        >
+        </div>
+      </div>
+    </div>
+    <div ref="messageContainer"
+         class="messages"
+    >
+    </div>
+  </div>
+</div>
+`;
+
+exports[`component snapshots component "select" scenario: translate:es matches the snapshot 2`] = `
+<div id="form-select-translate:es"
+     class="d-flex flex-column-reverse mb-4"
+>
+  <div ref="component"
+       class="formio-component formio-component-form  formio-component-label-hidden"
+       id="select-translate:es-1"
+  >
+    <label for="input-select-translate:es-1"
+           class="control-label--hidden"
+    >
+    </label>
+    <div novalidate
+         ref="webform"
+         class="formio-form"
+    >
+      <div ref="component"
+           class="form-group has-feedback formio-component formio-component-select formio-component-select"
+           id="select-translate:es-2"
+      >
+        <label for="input-select-translate:es-2"
+               class
+        >
+          This is the select label
+        </label>
+        <select lang="es"
+                class="form-control"
+                type="text"
+                name="data[select]"
+                id="input-select-translate:es-2"
+                ref="selectContainer"
+        >
+          <option selected
+                  value
+          >
+          </option>
+          <option value="apple">
+            Manzana
+          </option>
+          <option value="banana">
+            Banana
+          </option>
+          <option value="cherry">
+            Cereza
           </option>
         </select>
         <div class="fg-light-slate mt-1">
@@ -3139,8 +3405,8 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
                 id="input-state-basic-2"
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="AL">
@@ -3363,8 +3629,8 @@ exports[`component snapshots component "state" scenario: required matches the sn
                 required
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="AL">

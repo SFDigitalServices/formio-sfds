@@ -75,10 +75,31 @@ const components = [
     widget: 'html5',
     data: {
       values: [
-        { label: 'A', value: 'a' },
-        { label: 'B', value: 'b' },
-        { label: 'C', value: 'c' }
+        { label: 'Red', value: 'red' },
+        { label: 'Green', value: 'green' },
+        { label: 'Blue', value: 'blue' }
       ]
+    },
+    properties: {
+      'es:values.red': 'Rojo',
+      'es:values.green': 'Verde',
+      'es:values.blue': 'Azúl'
+    }
+  },
+  {
+    type: 'select',
+    widget: 'choicesjs',
+    data: {
+      values: [
+        { label: 'Apple', value: 'apple' },
+        { label: 'Banana', value: 'banana' },
+        { label: 'Cherry', value: 'cherry' }
+      ]
+    },
+    properties: {
+      'es:values.apple': 'Manzana',
+      'es:values.banana': 'Banana',
+      'es:values.cherry': 'Cereza'
     }
   },
   { type: 'state' },
@@ -108,7 +129,23 @@ describe('component snapshots', () => {
 
   for (const comp of components) {
     describe(`component "${comp.type}"`, () => {
-      for (const [name, props] of Object.entries(scenarios)) {
+      const componentScenarios = { ...scenarios }
+      const { properties } = comp
+      const translatePropPattern = /^[-\w]+:/
+      if (properties && Object.keys(properties).some(prop => translatePropPattern.test(prop))) {
+        const languages = Object.keys(properties)
+          .filter(prop => translatePropPattern.test(prop))
+          .map(prop => prop.substring(0, prop.indexOf(':')))
+          .filter((lang, i, list) => list.indexOf(lang) === i)
+        for (const lang of languages) {
+          componentScenarios[`translate:${lang}`] = {
+            options: {
+              language: lang
+            }
+          }
+        }
+      }
+      for (const [name, props] of Object.entries(componentScenarios)) {
         const model = comp.type === 'form'
           ? Object.assign(
             {},
