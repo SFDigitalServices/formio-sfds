@@ -141,8 +141,8 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             required
                             ref="selectContainer"
                     >
-                      <option selected
-                              value
+                      <option value
+                              selected="selected"
                       >
                       </option>
                       <option value="AL">
@@ -512,8 +512,8 @@ exports[`component snapshots component "address" scenario: required matches the 
                             required
                             ref="selectContainer"
                     >
-                      <option selected
-                              value
+                      <option value
+                              selected="selected"
                       >
                       </option>
                       <option value="AL">
@@ -2825,8 +2825,8 @@ exports[`component snapshots component "select" scenario: basic matches the snap
                 id="input-select-basic-2"
                 ref="selectContainer"
         >
-          <option selected
-                  value
+          <option value
+                  selected="selected"
           >
           </option>
           <option value="a">
@@ -2896,8 +2896,8 @@ exports[`component snapshots component "select" scenario: required matches the s
                 required
                 ref="selectContainer"
         >
-          <option selected
-                  value
+          <option value
+                  selected="selected"
           >
           </option>
           <option value="a">
@@ -3139,8 +3139,8 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
                 id="input-state-basic-2"
                 ref="selectContainer"
         >
-          <option selected
-                  value
+          <option value
+                  selected="selected"
           >
           </option>
           <option value="AL">
@@ -3363,8 +3363,8 @@ exports[`component snapshots component "state" scenario: required matches the sn
                 required
                 ref="selectContainer"
         >
-          <option selected
-                  value
+          <option value
+                  selected="selected"
           >
           </option>
           <option value="AL">
