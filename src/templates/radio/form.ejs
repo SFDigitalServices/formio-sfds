@@ -1,6 +1,6 @@
 <fieldset>
   {% if (!ctx.component.hideLabel) { %}
-    <legend class="{% if (ctx.component?.validate?.required) { %}field-required{% } %}">
+    <legend class="{% if (ctx.component.validate.required) { %}field-required{% } %}">
       {{ ctx.tk('label') }}
     </legend>
   {% } %}
