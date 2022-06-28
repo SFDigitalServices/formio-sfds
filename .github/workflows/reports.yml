@@ -1,13 +1,11 @@
 name: Reports
-on: [pull_request]
-
-env:
-  AUTHENTICATED: ${{ (secrets.NPM_AUTH_TOKEN && true) || false }}
+on:
+  pull_request:
 
 jobs:
   build:
-    if: env.AUTHENTICATED == 'true'
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v2
       - uses: preactjs/compressed-size-action@v2
