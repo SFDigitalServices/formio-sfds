@@ -6,8 +6,7 @@
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
   "engines": {
-    "node": "12.x || 14.x || 16.x",
-    "npm": "6.x || 7.x || 8.x"
+    "node": "12.x || 14.x || 16.x"
   },
   "scripts": {
     "develop": "run-p watch watch-server",
