@@ -1,8 +1,9 @@
-<option {{ ctx.selected ? 'selected="selected"' : '' }}
-  value="{{ctx.useId ? ctx.id : ctx.option.value}}"
-  {% for (var attr in ctx.attrs) { %}
-  {{attr}}="{{ctx.attrs[attr]}}"
+<option
+  value="{{ ctx.useId ? ctx.id : ctx.option.value }}"
+  {% if (ctx.selected) { %} selected {% } %}
+  {% for (const attr in ctx.attrs) { %}
+    {{ attr }}="{{ ctx.attrs[attr] }}"
   {% } %}
-  >
-  {{ctx.t(ctx.option.label)}}
+>
+  {{ ctx.t([`${ctx.component.key}.values.${ctx.option.value}`, ctx.option.label]) }}
 </option>

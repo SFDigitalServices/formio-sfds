@@ -141,8 +141,8 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             required
                             ref="selectContainer"
                     >
-                      <option value
-                              selected="selected"
+                      <option selected
+                              value
                       >
                       </option>
                       <option value="AL">
@@ -512,8 +512,8 @@ exports[`component snapshots component "address" scenario: required matches the 
                             required
                             ref="selectContainer"
                     >
-                      <option value
-                              selected="selected"
+                      <option selected
+                              value
                       >
                       </option>
                       <option value="AL">
@@ -2640,7 +2640,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
            id="radio-basic-2"
       >
         <fieldset>
-          <legend>
+          <legend class>
             This is the radio label
           </legend>
           <div class="fg-light-slate mt-1">
@@ -2727,7 +2727,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
            id="radio-required-2"
       >
         <fieldset>
-          <legend>
+          <legend class="field-required">
             This is the radio label
           </legend>
           <div class="fg-light-slate mt-1">
@@ -2825,8 +2825,8 @@ exports[`component snapshots component "select" scenario: basic matches the snap
                 id="input-select-basic-2"
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="a">
@@ -2896,8 +2896,8 @@ exports[`component snapshots component "select" scenario: required matches the s
                 required
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="a">
@@ -2954,7 +2954,7 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
            id="selectboxes-basic-2"
       >
         <fieldset>
-          <legend>
+          <legend class>
             This is the selectboxes label
           </legend>
           <div class="fg-light-slate mt-1">
@@ -3041,7 +3041,7 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
            id="selectboxes-required-2"
       >
         <fieldset>
-          <legend>
+          <legend class="field-required">
             This is the selectboxes label
           </legend>
           <div class="fg-light-slate mt-1">
@@ -3139,8 +3139,8 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
                 id="input-state-basic-2"
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="AL">
@@ -3363,8 +3363,8 @@ exports[`component snapshots component "state" scenario: required matches the sn
                 required
                 ref="selectContainer"
         >
-          <option value
-                  selected="selected"
+          <option selected
+                  value
           >
           </option>
           <option value="AL">
