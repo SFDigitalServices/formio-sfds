@@ -1,10 +1,11 @@
 name: Reports
-on: [pull_request]
+on:
+  pull_request:
 
 jobs:
   build:
-    if: secrets.NPM_AUTH_TOKEN
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@v2
       - uses: preactjs/compressed-size-action@v2
