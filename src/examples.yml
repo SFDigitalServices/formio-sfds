@@ -34,6 +34,28 @@
             - label: B
               value: b
 
+- id: select-translation
+  title: Select with translations
+  options:
+    language: es
+    i18n:
+      es:
+        choices.label: ¿Qué dirección?
+        choices.values.up: Arriba
+        choices.values.down: Abajo
+  form:
+    components:
+      - type: select
+        widget: html5
+        key: choices
+        label: Which direction?
+        data:
+          values:
+            - label: Up
+              value: up
+            - label: Down
+              value: down
+
 - id: checkbox
   title: Checkbox
   form:
