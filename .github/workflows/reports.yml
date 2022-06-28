@@ -1,9 +1,12 @@
 name: Reports
 on: [pull_request]
 
+env:
+  AUTHENTICATED: ${{ (secrets.NPM_AUTH_TOKEN && true) || false }}
+
 jobs:
   build:
-    if: secrets.NPM_AUTH_TOKEN
+    if: env.AUTHENTICATED == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
