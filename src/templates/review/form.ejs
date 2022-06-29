@@ -7,7 +7,7 @@
             <h3>{{ ctx.t(c.component.title) }}</h3>
           </th>
         </tr>
-      {% } else if (c.component.type !== 'panel') { %}
+      {% } else if (c.component.type !== 'panel' && c.component.properties?.review !== 'false') { %}
         <tr>
           <th class="px-0 py-1 border-0 align-left">
             {% const required = c.component.validate && c.component.validate.required %}
