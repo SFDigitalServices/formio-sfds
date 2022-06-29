@@ -2652,7 +2652,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="1"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2667,7 +2667,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="2"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2682,7 +2682,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
                      value="3"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-basic-2]"
+                     name="data[radio][radio-basic-1-radio-basic-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2739,7 +2739,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="1"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2754,7 +2754,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="2"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
@@ -2769,7 +2769,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
                      value="3"
                      lang="en"
                      type="radio"
-                     name="data[radio][radio-required-2]"
+                     name="data[radio][radio-required-1-radio-required-2]"
                      class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
