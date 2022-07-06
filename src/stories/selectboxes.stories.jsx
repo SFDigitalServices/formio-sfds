@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form } from '../react/form'
+import PropTypes from 'prop-types'
+import { SingleComponentForm } from '../react/form'
 
 export default {
   title: 'Checkboxes',
@@ -32,36 +33,39 @@ export default {
 }
 
 const Template = ({
-  label,
-  values,
   language,
   translations,
+  options = {},
   required,
-  validateMessage,
-  formOptions = {},
+  validate = { required },
   ...rest
 }) => (
-  <Form
-    components={[
-      {
-        key: 'component',
-        label,
-        type: 'selectboxes',
-        values,
-        validate: {
-          required,
-          customMessage: validateMessage
-        },
-        ...rest
-      }
-    ]}
+  <SingleComponentForm
+    component={{
+      key: 'component',
+      type: 'selectboxes',
+      validate,
+      ...rest
+    }}
     options={{
       language,
       i18n: translations,
-      ...formOptions
+      ...options
     }}
   />
 )
+
+Template.propTypes = {
+  language: PropTypes.string,
+  translations: PropTypes.objectOf(
+    PropTypes.objectOf(
+      PropTypes.string
+    )
+  ),
+  options: PropTypes.object,
+  required: PropTypes.bool,
+  validate: PropTypes.bool
+}
 
 const defaultValues = {
   label: 'Which ways?',
@@ -99,8 +103,10 @@ export const Required = Object.assign(
     args: {
       language: 'en',
       ...defaultValues,
-      required: true,
-      validateMessage: 'Please choose at least one'
+      validate: {
+        required: true,
+        customMessage: 'Please choose at least one'
+      }
     }
   }
 )
