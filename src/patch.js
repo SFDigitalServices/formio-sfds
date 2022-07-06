@@ -411,6 +411,7 @@ function patchErrorTranslations (Formio) {
     Formio.Components.components.component.prototype,
     {
       errorLabel: {
+        configurable: true,
         get () {
           // based on: <https://github.com/formio/formio.js/blob/796576c8adb9bd4689b4e6c87f287cf653d5b11f/src/components/_classes/component/Component.js#L1604-L1609>
           const { component } = this
@@ -423,6 +424,7 @@ function patchErrorTranslations (Formio) {
         }
       },
       'component.validate.customMessage': {
+        configurable: true,
         get () {
           const { component } = this
           const key = `${component.key}.validate.customMessage`
