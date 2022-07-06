@@ -31,7 +31,16 @@ export default {
   }
 }
 
-const Template = ({ label, values, language, translations, required, validate, formOptions, ...rest }) => (
+const Template = ({
+  label,
+  values,
+  language,
+  translations,
+  required,
+  validateMessage,
+  formOptions = {},
+  ...rest
+}) => (
   <Form
     components={[
       {
@@ -41,14 +50,15 @@ const Template = ({ label, values, language, translations, required, validate, f
         values,
         validate: {
           required,
-          ...(validate || {})
+          customMessage: validateMessage
         },
         ...rest
       }
     ]}
     options={{
       language,
-      i18n: translations
+      i18n: translations,
+      ...formOptions
     }}
   />
 )
@@ -90,9 +100,7 @@ export const Required = Object.assign(
       language: 'en',
       ...defaultValues,
       required: true,
-      validate: {
-        customMessage: 'Please choose at least one'
-      }
+      validateMessage: 'Please choose at least one'
     }
   }
 )

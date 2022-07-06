@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import PropTypes from 'prop-types'
 import '../../dist/formio-sfds.standalone.js'
 
 const { Formio } = window
@@ -17,31 +18,52 @@ export function Form (props) {
   return <div {...rest} ref={ref} />
 }
 
+Form.propTypes = {
+  components: PropTypes.arrayOf(
+    PropTypes.object
+  ),
+  dataSource: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  options: PropTypes.shape({
+    language: PropTypes.string
+  })
+}
+
 export function useForm (
   /** @type {import('react').Ref<HTMLElement>} */
   ref,
   /** @type {string | Object} */
   dataSource,
   /** @type {Object} */
-  options
+  options = {}
 ) {
-  const [form, setForm] = useState()
+  const [
+    /** @type {import('formiojs').Form} */
+    form,
+    setForm
+  ] = useState()
+  const {
+    page,
+    on: handlers,
+    submission,
+    ...restOptions
+  } = options || {}
   useEffect(() => {
     if (!form && ref.current) {
       Formio.createForm(
         ref.current.appendChild(document.createElement('div')),
         dataSource,
-        // XXX: options is modified by the form, so we have to dereference it
-        // by spreading here. You can always get them via form.options later.
-        { ...options }
+        restOptions
       ).then(form => {
-        if (options.on instanceof Object) {
-          form.onAny(event => {
-            const handler = hasOwn(options.on, event.type) ? options.on[event.type] : undefined
-            if (typeof handler === 'function') {
-              return handler(event)
-            }
-          })
+        if (handlers instanceof Object) {
+          for (const [event, handler] of Object.entries(handlers)) {
+            form.on(event, handler)
+          }
+        }
+        if (submission) {
+          form.submission = submission
         }
         setForm(form)
       })
@@ -58,11 +80,13 @@ export function useForm (
         setForm(undefined)
       }
     }
-  }, [ref, dataSource, options])
+  }, [ref, dataSource, restOptions])
+
+  useEffect(() => {
+    if (form && !isNaN(page)) {
+      form.setPage(page)
+    }
+  }, [form, page])
 
   return form
-}
-
-function hasOwn (obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop)
 }
