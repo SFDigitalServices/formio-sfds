@@ -85,7 +85,7 @@ module.exports = class Phrase {
     const { form } = this
     const props = Object.assign(
       {},
-      form.properties || form.form.properties,
+      form.properties || (form.form ? form.form.properties : {}),
       form.options
     )
     const {

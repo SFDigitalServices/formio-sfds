@@ -1,5 +1,10 @@
 $input-size: 44px;
 
+.form-control {
+  height: auto;
+  padding: spacer(1);
+}
+
 input[type="checkbox"] {
   $checkbox-size: $input-size;
 

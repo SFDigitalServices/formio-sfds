@@ -3,8 +3,19 @@ plugins:
 extends: stylelint-config-standard-scss
 syntax: scss
 rules:
+  alpha-value-notation: [percentage, { severity: warn }]
+  color-function-notation: [modern, { severity: warn }]
+  function-url-quotes: null
   no-descending-specificity: null
   scss/dollar-variable-empty-line-before: null
   scss/dollar-variable-pattern: null
   selector-class-pattern: null
-  string-quotes: double
+  no-invalid-position-at-import-rule: null
+  scss/at-import-no-partial-leading-underscore: null
+  scss/at-import-partial-extension: null
+  scss/double-slash-comment-empty-line-before: null
+  scss/no-global-function-names: null
+  scss/operator-no-unspaced: null
+  selector-attribute-quotes: [never, { severity: warn }]
+  shorthand-property-no-redundant-values: [true, { severity: warn }]
+  string-quotes: [single, { severity: warn }]
