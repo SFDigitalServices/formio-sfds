@@ -2,7 +2,7 @@
   "name": "formio-sfds",
   "version": "9.2.7",
   "description": "The Form.io theme for sf.gov",
-  "module": "src/index.js",
+  "module": "dist/formio-sfds.mjs",
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
   "engines": {

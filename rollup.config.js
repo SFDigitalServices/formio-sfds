@@ -96,5 +96,15 @@ export default [
       file: 'dist/portal.js',
       sourcemap: true
     }
+  },
+  {
+    input: 'src/index.js',
+    external,
+    plugins: [...commonPlugins],
+    output: {
+      format: 'esm',
+      file: pkg.module,
+      sourcemap: true
+    }
   }
 ]
