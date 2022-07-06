@@ -1,33 +1,34 @@
+import '../dist/formio-sfds.css'
 import components from './components'
 import patch, { forms } from './patch'
 import templates from './templates'
+import evalContext from './context'
 import { observeIcons } from './icons'
 import { version } from '../package.json'
 
 const framework = 'sfds'
 
-const plugin = {
+const plugin = Object.defineProperties({
   framework,
   components,
-  options: {},
+  options: {
+    form: {
+      evalContext
+    }
+  },
   templates: {
     [framework]: templates
   }
-}
-
-const hiddenProps = {
-  forms,
-  version
-}
-
-for (const [prop, value] of Object.entries(hiddenProps)) {
-  Object.defineProperty(plugin, prop, {
+}, {
+  forms: {
     enumerable: false,
-    get () { return value }
-  })
-}
+    get: () => forms
+  },
+  version: {
+    enumerable: false,
+    get: () => version
+  }
+})
 
 export default plugin
-export { patch }
-
-observeIcons()
+export { patch, observeIcons }

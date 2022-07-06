@@ -1,9 +1,11 @@
+/* global FormioUtils */
 import dot from 'dotmap'
 import { observe } from 'selector-observer'
 import defaultTranslations from './i18n'
 import buildHooks from './hooks'
 import { loadTranslations, loadEmbeddedTranslations } from './i18n/load'
 import Phrase from './phrase'
+import { observeIcons } from './icons'
 import { mergeObjects } from './utils'
 import flatpickrLocales from './i18n/flatpickr'
 
@@ -23,41 +25,6 @@ const inputLanguageMap = {
   fil: 'tl',
   'zh-hant': 'zh'
 }
-
-const defaultEvalContext = {
-  inputId () {
-    const parts = [
-      'input',
-      this.component.row,
-      this.id || this.input?.attr?.name
-    ].filter(Boolean)
-    return parts.join('-')
-  },
-
-  classnames: require('classnames'),
-
-  tk (field, defaultValue = '') {
-    const { component = {} } = this
-    const { type, key = type } = component
-    return key
-      ? this.t([
-        `${key}.${field}`,
-        // this is the "legacy" naming scheme
-        `${key}_${field}`,
-        `component.${type}.${field}`,
-        dot.get(component, field) || defaultValue || ''
-      ])
-      : defaultValue
-  },
-
-  requiredAttributes () {
-    return this.component?.validate?.required
-      ? 'required aria-required="true"'
-      : ''
-  }
-}
-
-const { FormioUtils } = window
 
 export const forms = []
 
@@ -83,6 +50,8 @@ export default Formio => {
 
   // toggles
   toggleComponent()
+
+  observeIcons()
 }
 
 // Prevent users from navigating away and losing their entries.
@@ -120,8 +89,6 @@ function patch (Formio) {
     if (opts.on instanceof Object) {
       eventHandlers = buildHooks(opts.on)
     }
-
-    opts.evalContext = Object.assign({}, defaultEvalContext, opts.evalContext)
 
     const rest = resourceOrOptions ? [resourceOrOptions, opts] : [opts]
     return createForm(el, ...rest).then(async form => {

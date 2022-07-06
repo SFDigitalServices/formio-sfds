@@ -1,4 +1,3 @@
-import '../dist/formio-sfds.css'
 import FormioSFDS, { patch } from './index.js'
 
 const { Formio } = window
