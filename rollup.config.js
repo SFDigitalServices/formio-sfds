@@ -50,6 +50,10 @@ const commonPlugins = [
   babel({
     babelHelpers: 'runtime'
   }),
+  postcss({
+    extensions: ['.css'],
+    inject: true
+  }),
   prod ? terser() : null
 ].filter(Boolean)
 
@@ -58,11 +62,7 @@ export default [
     input: 'src/standalone.js',
     external,
     plugins: [
-      ...commonPlugins,
-      postcss({
-        extensions: ['.css'],
-        inject: true
-      })
+      ...commonPlugins
     ],
     output: {
       format: 'umd',
