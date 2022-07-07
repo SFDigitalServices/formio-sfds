@@ -20,6 +20,7 @@ jobs:
 
       - uses: primer/publish@v2.0.0
         if: github.actor != 'dependabot[bot]'
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
