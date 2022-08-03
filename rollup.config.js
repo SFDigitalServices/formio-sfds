@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import jst from 'rollup-plugin-jst'
 import pkg from './package.json'
-import postcss from 'rollup-plugin-postcss'
+import styles from 'rollup-plugin-styles'
 import resolve from '@rollup/plugin-node-resolve'
 import svgo from 'rollup-plugin-svgo'
 import define from 'rollup-plugin-define'
@@ -59,9 +59,9 @@ export default [
     external,
     plugins: [
       ...commonPlugins,
-      postcss({
-        extensions: ['.css'],
-        inject: true
+      styles({
+        mode: 'inject',
+        extensions: ['.css']
       })
     ],
     output: {
