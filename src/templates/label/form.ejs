@@ -1,5 +1,0 @@
-{% if (!ctx.component.hideLabel && ['address', 'button', 'checkbox', 'radio', 'selectboxes'].indexOf(ctx.component.type) === -1) { %}
-  <label class="{{ ctx.label.className }}" for="{{ ctx.inputId() }}">
-    {{ ctx.tk('label') }}
-  </label>
-{% } %}

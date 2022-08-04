@@ -1,2 +1,3 @@
-import form from './form.ejs'
+import form from './form'
+
 export default { form }
