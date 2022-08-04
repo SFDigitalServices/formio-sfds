@@ -1,4 +1,4 @@
-import form from './form.ejs'
+import form from './form'
 import html from './html.ejs'
 
 export default {
