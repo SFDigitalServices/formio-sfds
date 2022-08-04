@@ -78,6 +78,7 @@
     "express": "^4.17.1",
     "globby": "^11.0.1",
     "hastscript": "^6.0.0",
+    "htm": "^3.1.1",
     "i18next": "19.7.0",
     "jest": "^26.4.2",
     "jest-serializer-html": "^7.0.0",
@@ -116,6 +117,7 @@
     "stylelint-scss": "^4.2.0",
     "unist-util-visit": "^2.0.3",
     "us": "^2.0.0",
+    "vhtml": "^2.2.0",
     "watchy": "^0.9.7"
   }
 }
