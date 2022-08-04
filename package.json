@@ -5,8 +5,10 @@
   "module": "src/index.js",
   "browser": "dist/formio-sfds.standalone.js",
   "style": "dist/formio-sfds.css",
+  "engineStrict": true,
   "engines": {
-    "node": "12.x || 14.x || 16.x"
+    "node": "12.x || 14.x || 16.x",
+    "npm": ">= 8"
   },
   "scripts": {
     "develop": "run-p watch watch-server",
