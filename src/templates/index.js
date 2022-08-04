@@ -1,4 +1,5 @@
 import address from './address'
+/*
 import builder from './builder'
 import builderComponent from './builderComponent'
 import builderComponents from './builderComponents'
@@ -7,6 +8,7 @@ import builderPlaceholder from './builderPlaceholder'
 import builderSidebar from './builderSidebar'
 import builderSidebarGroup from './builderSidebarGroup'
 import builderWizard from './builderWizard'
+*/
 import button from './button'
 import checkbox from './checkbox'
 import columns from './columns'
@@ -56,6 +58,7 @@ import transform from './transform'
 
 export default {
   address,
+  /*
   builder,
   builderComponent,
   builderComponents,
@@ -64,6 +67,7 @@ export default {
   builderSidebar,
   builderSidebarGroup,
   builderWizard,
+  */
   button,
   checkbox,
   columns,
