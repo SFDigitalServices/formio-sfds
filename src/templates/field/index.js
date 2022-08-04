@@ -1,4 +1,4 @@
-import form from './form.ejs'
-import align from './align.ejs'
+import form from './form'
+import align from './align'
 
 export default { form, align }
