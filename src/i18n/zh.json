@@ -1,4 +1,5 @@
 {
+  "Back": "返回",
   "Browse": "瀏覽",
   "Cancel": "取消",
   "characters": "字",
@@ -15,7 +16,7 @@
   "march": "三月",
   "may": "五月",
   "minWords": "{{field}} 至少要有{{length}}個字",
-  "next": "繼續",
+  "Next": "繼續",
   "or": "或",
   "required": "{{field}} 必填",
   "Size": "大小",
