@@ -2,7 +2,7 @@
 
 exports[`component snapshots component "address" scenario: basic matches the snapshot 1`] = `
 <div id="form-address-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -136,10 +136,10 @@ exports[`component snapshots component "address" scenario: basic matches the sna
                             class="form-control"
                             type="text"
                             name="data[address][state]"
-                            aria-required="true"
-                            required="true"
-                            ref="selectContainer"
                             id="input-address-basic-7"
+                            aria-required="true"
+                            required
+                            ref="selectContainer"
                     >
                       <option selected
                               value
@@ -373,7 +373,7 @@ exports[`component snapshots component "address" scenario: basic matches the sna
 
 exports[`component snapshots component "address" scenario: required matches the snapshot 1`] = `
 <div id="form-address-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -507,10 +507,10 @@ exports[`component snapshots component "address" scenario: required matches the 
                             class="form-control"
                             type="text"
                             name="data[address][state]"
-                            aria-required="true"
-                            required="true"
-                            ref="selectContainer"
                             id="input-address-required-7"
+                            aria-required="true"
+                            required
+                            ref="selectContainer"
                     >
                       <option selected
                               value
@@ -744,7 +744,7 @@ exports[`component snapshots component "address" scenario: required matches the 
 
 exports[`component snapshots component "button" scenario: basic matches the snapshot 1`] = `
 <div id="form-button-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -765,7 +765,7 @@ exports[`component snapshots component "button" scenario: basic matches the snap
         <button lang="en"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary btn-md"
+                class="btn btn-primary"
                 ref="button"
         >
           This is the button label
@@ -789,7 +789,7 @@ exports[`component snapshots component "button" scenario: basic matches the snap
 
 exports[`component snapshots component "button" scenario: required matches the snapshot 1`] = `
 <div id="form-button-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -810,7 +810,7 @@ exports[`component snapshots component "button" scenario: required matches the s
         <button lang="en"
                 type="submit"
                 name="data[submit]"
-                class="btn btn-primary btn-md"
+                class="btn btn-primary"
                 ref="button"
         >
           This is the button label
@@ -834,7 +834,7 @@ exports[`component snapshots component "button" scenario: required matches the s
 
 exports[`component snapshots component "checkbox" scenario: basic matches the snapshot 1`] = `
 <div id="form-checkbox-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -855,10 +855,10 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
         <div class="form-checkbox">
           <label class="d-flex flex-items-center fs-inherit fg-inherit">
             <span class="flex-shrink-0 flex-self-start">
-              <input lang="en"
+              <input value="0"
+                     lang="en"
                      type="checkbox"
                      name="data[checkbox]"
-                     value="0"
                      ref="input"
                      class="input-checkbox position-relative d-block mr-2 mb-0"
               >
@@ -889,7 +889,7 @@ exports[`component snapshots component "checkbox" scenario: basic matches the sn
 
 exports[`component snapshots component "checkbox" scenario: required matches the snapshot 1`] = `
 <div id="form-checkbox-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -910,10 +910,10 @@ exports[`component snapshots component "checkbox" scenario: required matches the
         <div class="form-checkbox">
           <label class="d-flex flex-items-center fs-inherit fg-inherit">
             <span class="flex-shrink-0 flex-self-start">
-              <input lang="en"
+              <input value="0"
+                     lang="en"
                      type="checkbox"
                      name="data[checkbox]"
-                     value="0"
                      ref="input"
                      class="input-checkbox position-relative d-block mr-2 mb-0"
               >
@@ -944,7 +944,7 @@ exports[`component snapshots component "checkbox" scenario: required matches the
 
 exports[`component snapshots component "columns" scenario: basic matches the snapshot 1`] = `
 <div id="form-columns-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1050,7 +1050,7 @@ exports[`component snapshots component "columns" scenario: basic matches the sna
 
 exports[`component snapshots component "columns" scenario: required matches the snapshot 1`] = `
 <div id="form-columns-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1156,7 +1156,7 @@ exports[`component snapshots component "columns" scenario: required matches the 
 
 exports[`component snapshots component "container" scenario: basic matches the snapshot 1`] = `
 <div id="form-container-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1195,7 +1195,7 @@ exports[`component snapshots component "container" scenario: basic matches the s
 
 exports[`component snapshots component "container" scenario: required matches the snapshot 1`] = `
 <div id="form-container-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1234,7 +1234,7 @@ exports[`component snapshots component "container" scenario: required matches th
 
 exports[`component snapshots component "content" scenario: basic matches the snapshot 1`] = `
 <div id="form-content-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1252,7 +1252,9 @@ exports[`component snapshots component "content" scenario: basic matches the sna
            class="formio-component formio-component-content formio-component-content"
            id="content-basic-2"
       >
-        <div ref="html">
+        <div ref="html"
+             class
+        >
           Hello, world!
         </div>
         <div ref="messageContainer"
@@ -1271,7 +1273,7 @@ exports[`component snapshots component "content" scenario: basic matches the sna
 
 exports[`component snapshots component "content" scenario: required matches the snapshot 1`] = `
 <div id="form-content-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1289,7 +1291,9 @@ exports[`component snapshots component "content" scenario: required matches the 
            class="formio-component formio-component-content formio-component-content"
            id="content-required-2"
       >
-        <div ref="html">
+        <div ref="html"
+             class
+        >
           Hello, world!
         </div>
         <div ref="messageContainer"
@@ -1308,7 +1312,7 @@ exports[`component snapshots component "content" scenario: required matches the 
 
 exports[`component snapshots component "datetime" scenario: basic matches the snapshot 1`] = `
 <div id="form-datetime-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1390,7 +1394,7 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
 
 exports[`component snapshots component "datetime" scenario: required matches the snapshot 1`] = `
 <div id="form-datetime-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1475,7 +1479,7 @@ exports[`component snapshots component "datetime" scenario: required matches the
 
 exports[`component snapshots component "day" scenario: basic matches the snapshot 1`] = `
 <div id="form-day-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1501,7 +1505,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
         <div class="d-flex">
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-day"
+                   for="input-day-basic-2-month"
             >
               Month
             </label>
@@ -1509,8 +1513,8 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
               <select lang="en"
                       name="month"
                       class="form-control"
+                      id="input-day-basic-2-month"
                       ref="month"
-                      id="day-month"
               >
                 <option value>
                 </option>
@@ -1555,7 +1559,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-basic-2-year"
+                   for="input-day-basic-2-day"
             >
               Day
             </label>
@@ -1575,7 +1579,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="day-year"
+                   for="input-day-basic-2-year"
             >
               Year
             </label>
@@ -1620,7 +1624,7 @@ exports[`component snapshots component "day" scenario: basic matches the snapsho
 
 exports[`component snapshots component "day" scenario: required matches the snapshot 1`] = `
 <div id="form-day-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1646,7 +1650,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
         <div class="d-flex">
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-required-2-day"
+                   for="input-day-required-2-month"
             >
               Month
             </label>
@@ -1654,10 +1658,10 @@ exports[`component snapshots component "day" scenario: required matches the snap
               <select lang="en"
                       name="month"
                       class="form-control"
+                      id="input-day-required-2-month"
                       aria-required="true"
-                      required="true"
+                      required
                       ref="month"
-                      id="day-month"
               >
                 <option value>
                 </option>
@@ -1702,7 +1706,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
           </div>
           <div class="col-2 pr-1">
             <label class="fg-slate-65"
-                   for="input-day-required-2-year"
+                   for="input-day-required-2-day"
             >
               Day
             </label>
@@ -1724,7 +1728,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
           </div>
           <div class="col-2">
             <label class="fg-slate-65"
-                   for="day-year"
+                   for="input-day-required-2-year"
             >
               Year
             </label>
@@ -1771,7 +1775,7 @@ exports[`component snapshots component "day" scenario: required matches the snap
 
 exports[`component snapshots component "file" scenario: basic matches the snapshot 1`] = `
 <div id="form-file-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1841,7 +1845,7 @@ exports[`component snapshots component "file" scenario: basic matches the snapsh
 
 exports[`component snapshots component "file" scenario: basic matches the snapshot 2`] = `
 <div id="form-file-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1911,7 +1915,7 @@ exports[`component snapshots component "file" scenario: basic matches the snapsh
 
 exports[`component snapshots component "file" scenario: required matches the snapshot 1`] = `
 <div id="form-file-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -1981,7 +1985,7 @@ exports[`component snapshots component "file" scenario: required matches the sna
 
 exports[`component snapshots component "file" scenario: required matches the snapshot 2`] = `
 <div id="form-file-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2051,12 +2055,12 @@ exports[`component snapshots component "file" scenario: required matches the sna
 
 exports[`component snapshots component "form" scenario: basic matches the snapshot 1`] = `
 <div id="form-form-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
-  <div class="formio-form mb-4">
+  <div class="formio-form mb-60">
     <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1"
+        <nav class="fg-light-slate mb-60 mb-md-0 ml-md-96 mt-md-1"
              id="wizard-form-basic-1-header"
              aria-label="navigation"
              role="navigation"
@@ -2157,7 +2161,7 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
       </div>
       <div class="col-md-4">
         <div class="mb-3">
-          <h1 class="d1 mb-4 mr-n2 mt-0">
+          <h1 class="d1 mb-60 mr-n2 mt-0">
             Page 1
           </h1>
           <div ref="wizard-form-basic-1"
@@ -2197,12 +2201,12 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
 
 exports[`component snapshots component "form" scenario: translate matches the snapshot 1`] = `
 <div id="form-form-translate"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
-  <div class="formio-form mb-4">
+  <div class="formio-form mb-60">
     <div class="d-flex flex-column flex-md-row-reverse flex-md-auto flex-justify-between">
       <div class="col-md-2">
-        <nav class="fg-light-slate mb-4 mb-md-0 ml-md-5 mt-md-1"
+        <nav class="fg-light-slate mb-60 mb-md-0 ml-md-96 mt-md-1"
              id="wizard-form-translate-1-header"
              aria-label="navigation"
              role="navigation"
@@ -2303,7 +2307,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
       </div>
       <div class="col-md-4">
         <div class="mb-3">
-          <h1 class="d1 mb-4 mr-n2 mt-0">
+          <h1 class="d1 mb-60 mr-n2 mt-0">
             Page 1
           </h1>
           <div ref="wizard-form-translate-1"
@@ -2343,7 +2347,7 @@ exports[`component snapshots component "form" scenario: translate matches the sn
 
 exports[`component snapshots component "htmlelement" scenario: basic matches the snapshot 1`] = `
 <div id="form-htmlelement-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2361,7 +2365,9 @@ exports[`component snapshots component "htmlelement" scenario: basic matches the
            class="formio-component formio-component-htmlelement"
            id="htmlelement-basic-2"
       >
-        <h1 ref="html">
+        <h1 ref="html"
+            class
+        >
           Hello, world!
         </h1>
         <div ref="messageContainer"
@@ -2380,7 +2386,7 @@ exports[`component snapshots component "htmlelement" scenario: basic matches the
 
 exports[`component snapshots component "htmlelement" scenario: required matches the snapshot 1`] = `
 <div id="form-htmlelement-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2398,7 +2404,9 @@ exports[`component snapshots component "htmlelement" scenario: required matches 
            class="formio-component formio-component-htmlelement"
            id="htmlelement-required-2"
       >
-        <h1 ref="html">
+        <h1 ref="html"
+            class
+        >
           Hello, world!
         </h1>
         <div ref="messageContainer"
@@ -2417,7 +2425,7 @@ exports[`component snapshots component "htmlelement" scenario: required matches 
 
 exports[`component snapshots component "number" scenario: basic matches the snapshot 1`] = `
 <div id="form-number-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2473,7 +2481,7 @@ exports[`component snapshots component "number" scenario: basic matches the snap
 
 exports[`component snapshots component "number" scenario: required matches the snapshot 1`] = `
 <div id="form-number-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2531,7 +2539,7 @@ exports[`component snapshots component "number" scenario: required matches the s
 
 exports[`component snapshots component "panel" scenario: basic matches the snapshot 1`] = `
 <div id="form-panel-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2549,10 +2557,10 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
            class="formio-component formio-component-panel formio-component-panel"
            id="panel-basic-2"
       >
-        <section class="border-1 border-grey-2 p-2 round-1 mb-4"
+        <section class="border-1 border-grey-2 p-2 round-1 mb-60"
                  id="panel-panel"
         >
-          <h1 class="d1 mt-0 mb-4">
+          <h1 class="d1 mt-0 mb-60">
             Panel title
           </h1>
         </section>
@@ -2572,7 +2580,7 @@ exports[`component snapshots component "panel" scenario: basic matches the snaps
 
 exports[`component snapshots component "panel" scenario: required matches the snapshot 1`] = `
 <div id="form-panel-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2590,10 +2598,10 @@ exports[`component snapshots component "panel" scenario: required matches the sn
            class="formio-component formio-component-panel formio-component-panel"
            id="panel-required-2"
       >
-        <section class="border-1 border-grey-2 p-2 round-1 mb-4"
+        <section class="border-1 border-grey-2 p-2 round-1 mb-60"
                  id="panel-panel"
         >
-          <h1 class="d1 mt-0 mb-4">
+          <h1 class="d1 mt-0 mb-60">
             Panel title
           </h1>
         </section>
@@ -2613,7 +2621,7 @@ exports[`component snapshots component "panel" scenario: required matches the sn
 
 exports[`component snapshots component "radio" scenario: basic matches the snapshot 1`] = `
 <div id="form-radio-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2643,9 +2651,9 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
               <input id="radio-basic-2-1"
                      value="1"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-basic-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2658,9 +2666,9 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
               <input id="radio-basic-2-2"
                      value="2"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-basic-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2673,9 +2681,9 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
               <input id="radio-basic-2-3"
                      value="3"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-basic-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2700,7 +2708,7 @@ exports[`component snapshots component "radio" scenario: basic matches the snaps
 
 exports[`component snapshots component "radio" scenario: required matches the snapshot 1`] = `
 <div id="form-radio-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2730,9 +2738,9 @@ exports[`component snapshots component "radio" scenario: required matches the sn
               <input id="radio-required-2-1"
                      value="1"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-required-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2745,9 +2753,9 @@ exports[`component snapshots component "radio" scenario: required matches the sn
               <input id="radio-required-2-2"
                      value="2"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-required-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2760,9 +2768,9 @@ exports[`component snapshots component "radio" scenario: required matches the sn
               <input id="radio-required-2-3"
                      value="3"
                      lang="en"
-                     class="input-radio position-relative d-block mr-2 mb-0"
                      type="radio"
                      name="data[radio][radio-required-2]"
+                     class="input-radio position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2787,7 +2795,7 @@ exports[`component snapshots component "radio" scenario: required matches the sn
 
 exports[`component snapshots component "select" scenario: basic matches the snapshot 1`] = `
 <div id="form-select-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2814,8 +2822,8 @@ exports[`component snapshots component "select" scenario: basic matches the snap
                 class="form-control"
                 type="text"
                 name="data[select]"
-                ref="selectContainer"
                 id="input-select-basic-2"
+                ref="selectContainer"
         >
           <option selected
                   value
@@ -2856,7 +2864,7 @@ exports[`component snapshots component "select" scenario: basic matches the snap
 
 exports[`component snapshots component "select" scenario: required matches the snapshot 1`] = `
 <div id="form-select-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2883,10 +2891,10 @@ exports[`component snapshots component "select" scenario: required matches the s
                 class="form-control"
                 type="text"
                 name="data[select]"
-                aria-required="true"
-                required="true"
-                ref="selectContainer"
                 id="input-select-required-2"
+                aria-required="true"
+                required
+                ref="selectContainer"
         >
           <option selected
                   value
@@ -2927,7 +2935,7 @@ exports[`component snapshots component "select" scenario: required matches the s
 
 exports[`component snapshots component "selectboxes" scenario: basic matches the snapshot 1`] = `
 <div id="form-selectboxes-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -2957,9 +2965,9 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
               <input id="selectboxes-basic-2-a"
                      value="a"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2972,9 +2980,9 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
               <input id="selectboxes-basic-2-b"
                      value="b"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -2987,9 +2995,9 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
               <input id="selectboxes-basic-2-c"
                      value="c"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -3014,7 +3022,7 @@ exports[`component snapshots component "selectboxes" scenario: basic matches the
 
 exports[`component snapshots component "selectboxes" scenario: required matches the snapshot 1`] = `
 <div id="form-selectboxes-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3044,9 +3052,9 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
               <input id="selectboxes-required-2-a"
                      value="a"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -3059,9 +3067,9 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
               <input id="selectboxes-required-2-b"
                      value="b"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -3074,9 +3082,9 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
               <input id="selectboxes-required-2-c"
                      value="c"
                      lang="en"
-                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      type="checkbox"
                      name="data[selectBoxes][]"
+                     class="input-checkbox position-relative d-block mr-2 mb-0"
                      ref="input"
               >
             </span>
@@ -3101,7 +3109,7 @@ exports[`component snapshots component "selectboxes" scenario: required matches 
 
 exports[`component snapshots component "state" scenario: basic matches the snapshot 1`] = `
 <div id="form-state-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3128,8 +3136,8 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
                 class="form-control"
                 type="text"
                 name="data[state]"
-                ref="selectContainer"
                 id="input-state-basic-2"
+                ref="selectContainer"
         >
           <option selected
                   value
@@ -3323,7 +3331,7 @@ exports[`component snapshots component "state" scenario: basic matches the snaps
 
 exports[`component snapshots component "state" scenario: required matches the snapshot 1`] = `
 <div id="form-state-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3350,10 +3358,10 @@ exports[`component snapshots component "state" scenario: required matches the sn
                 class="form-control"
                 type="text"
                 name="data[state]"
-                aria-required="true"
-                required="true"
-                ref="selectContainer"
                 id="input-state-required-2"
+                aria-required="true"
+                required
+                ref="selectContainer"
         >
           <option selected
                   value
@@ -3547,7 +3555,7 @@ exports[`component snapshots component "state" scenario: required matches the sn
 
 exports[`component snapshots component "textfield" scenario: basic matches the snapshot 1`] = `
 <div id="form-textfield-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3602,7 +3610,7 @@ exports[`component snapshots component "textfield" scenario: basic matches the s
 
 exports[`component snapshots component "textfield" scenario: required matches the snapshot 1`] = `
 <div id="form-textfield-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3659,7 +3667,7 @@ exports[`component snapshots component "textfield" scenario: required matches th
 
 exports[`component snapshots component "zip" scenario: basic matches the snapshot 1`] = `
 <div id="form-zip-basic"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
@@ -3716,7 +3724,7 @@ exports[`component snapshots component "zip" scenario: basic matches the snapsho
 
 exports[`component snapshots component "zip" scenario: required matches the snapshot 1`] = `
 <div id="form-zip-required"
-     class="d-flex flex-column-reverse mb-4"
+     class="d-flex flex-column-reverse mb-60"
 >
   <div ref="component"
        class="formio-component formio-component-form  formio-component-label-hidden"
