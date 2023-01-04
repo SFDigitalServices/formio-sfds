@@ -140,7 +140,7 @@ function patch (Formio) {
       let { googleTranslate } = opts
 
       const { element } = form
-      element.classList.add('d-flex', 'flex-column-reverse', 'mb-4')
+      element.classList.add('d-flex', 'flex-column-reverse', 'mb-60')
 
       if (googleTranslate === false) {
         disableGoogleTranslate(element)
