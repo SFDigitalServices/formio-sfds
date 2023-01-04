@@ -22,10 +22,10 @@ describe('patch()', () => {
       destroyForm(form)
     })
 
-    it('adds .d-flex.flex-column-reverse.mb-4 to the element', async () => {
+    it('adds .d-flex.flex-column-reverse.mb-60 to the element', async () => {
       const form = await createForm()
       expect(Array.from(form.element.classList)).toEqual(
-        expect.arrayContaining(['d-flex', 'flex-column-reverse', 'mb-4'])
+        expect.arrayContaining(['d-flex', 'flex-column-reverse', 'mb-60'])
       )
       destroyForm(form)
     })

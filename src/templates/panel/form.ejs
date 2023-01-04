@@ -1,4 +1,4 @@
-<section id="panel-{{ ctx.component.key }}" class="border-1 border-grey-2 p-2 round-1 mb-4">
+<section id="panel-{{ ctx.component.key }}" class="border-1 border-grey-2 p-2 round-1 mb-60">
   {% if (ctx.options.translate) { %}
     {% const displayTitle = ctx.tk('displayTitle', ctx.component.properties.displayTitle) %}
     {% if (displayTitle) { %}
@@ -8,7 +8,7 @@
       </h2>
     {% } %}
   {% } %}
-  <h1 class="d1 mt-0 mb-4">
+  <h1 class="d1 mt-0 mb-60">
     {{ ctx.tk('title') }}
   </h1>
   {% if (!ctx.collapsed || ctx.builder) { %}
