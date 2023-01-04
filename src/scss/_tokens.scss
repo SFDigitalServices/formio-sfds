@@ -22,7 +22,7 @@ $CSS_BORDER_EDGE_CORNERS: (
 $grid-columns: 6 !default;
 
 $breakpoint-aliases: (
-  xs: $mq-tiny,
+  // xs: $mq-tiny,
   sm: $mq-small,
   // narrow: $mq-narrow,
   md: $mq-medium,
@@ -34,8 +34,8 @@ $spacers: (
   1: 10px,
   2: 20px,
   3: 40px,
-  4: 60px,
-  5: 96px,
+  // 4: 60px,
+  // 5: 96px,
   // absolute sizes
   8: 8px,
   12: 12px,
@@ -44,8 +44,8 @@ $spacers: (
   28: 28px,
   40: 40px,
   60: 60px,
-  80: 80px,
-  96: 96px,
+  // 80: 80px,
+  // 96: 96px,
 ) !default;
 
 $border-widths: (
