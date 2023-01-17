@@ -221,4 +221,35 @@ describe('patch()', () => {
       })
     })
   })
+
+  describe('options.sanitizeConfig defaults', () => {
+    it('it has the right defaults', async () => {
+      const form = await createForm()
+      expect(form.options.sanitizeConfig).toEqual({
+        addTags: ['sfgov-icon'],
+        addAttr: ['symbol']
+      })
+    })
+
+    it('merges options.sanitizeConfig into the defaults', async () => {
+      let form = await createForm({}, {
+        sanitizeConfig: {
+          addTags: ['x-foo']
+        }
+      })
+      expect(form.options.sanitizeConfig).toEqual({
+        addTags: ['sfgov-icon', 'x-foo'],
+        addAttr: ['symbol']
+      })
+      form = await createForm({}, {
+        sanitizeConfig: {
+          addAttr: ['x-attr']
+        }
+      })
+      expect(form.options.sanitizeConfig).toEqual({
+        addTags: ['sfgov-icon'],
+        addAttr: ['symbol', 'x-attr']
+      })
+    })
+  })
 })
