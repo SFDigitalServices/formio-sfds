@@ -46,7 +46,7 @@
     "choices.js": "^9.0.1",
     "dotmap": "^0.1.0",
     "flatpickr": "^4.6.3",
-    "formiojs": "4.13.2",
+    "formiojs": "4.14.8",
     "interpolate": "^0.1.0",
     "uri-template-lite": "^19.12.0",
     "whatwg-fetch": "^3.0.0"

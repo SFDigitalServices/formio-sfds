@@ -108,7 +108,14 @@ function patch (Formio) {
     language = inputLanguageMap[language] || language
 
     // default to the inferred language, merge the provided options
-    const opts = { language, ...options }
+    const opts = {
+      language,
+      ...options,
+      sanitizeConfig: {
+        addTags: ['sfgov-icon', ...options.sanitizeConfig?.addTags || []],
+        addAttr: ['symbol', ...options.sanitizeConfig?.addAttr || []]
+      }
+    }
 
     opts.i18n = await resolveTranslations(opts.i18n, debug)
 
