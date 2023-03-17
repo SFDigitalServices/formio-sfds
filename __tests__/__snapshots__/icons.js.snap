@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`icons <sfgov-icon> replacement preserves legacy "square" icons 1`] = `
+<span data-icon="square"
+      class="notranslate"
+>
+  <svg viewbox="0 0 20 20"
+       fill="currentColor"
+       height="20"
+  >
+    <rect width="20"
+          height="20"
+          rx="4"
+    >
+    </rect>
+  </svg>
+</span>
+`;

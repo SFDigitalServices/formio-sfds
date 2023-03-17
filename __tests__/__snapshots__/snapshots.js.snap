@@ -1345,15 +1345,9 @@ exports[`component snapshots component "datetime" scenario: basic matches the sn
                 <i style
                    class="d-flex notranslate"
                    ref="icon"
-                   data-icon="calendar"
                 >
-                  <svg viewbox="0 0 20 20"
-                       fill="currentColor"
-                       height="20"
-                  >
-                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
-                    </path>
-                  </svg>
+                  <sfgov-icon symbol="calendar">
+                  </sfgov-icon>
                 </i>
               </span>
             </div>
@@ -1427,15 +1421,9 @@ exports[`component snapshots component "datetime" scenario: required matches the
                 <i style
                    class="d-flex notranslate"
                    ref="icon"
-                   data-icon="calendar"
                 >
-                  <svg viewbox="0 0 20 20"
-                       fill="currentColor"
-                       height="20"
-                  >
-                    <path d="M20 9.25v-5A1.244 1.244 0 0018.75 3H16V1.5a1.25 1.25 0 00-2.5 0V3h-7V1.5a1.25 1.25 0 00-2.5 0V3H1.25a1.275 1.275 0 00-.885.365A1.275 1.275 0 000 4.25v14.5c.002.331.133.649.365.885.236.232.554.363.885.365h17.5A1.244 1.244 0 0020 18.75v-9.5zM17.5 5.5V8h-15V5.5h15zm-15 5h15v7h-15v-7z">
-                    </path>
-                  </svg>
+                  <sfgov-icon symbol="calendar">
+                  </sfgov-icon>
                 </i>
               </span>
             </div>
@@ -2084,13 +2072,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
                   <span data-icon="chevron"
                         class="d-block notranslate"
                   >
-                    <svg viewbox="0 0 17 11"
-                         fill="currentColor"
-                         height="11"
-                    >
-                      <path d="M8.462 10.017a1.182 1.182 0 01-.84-.347L.495 2.545A1.189 1.189 0 112.178.864l6.284 6.289 6.284-6.29a1.189 1.189 0 111.682 1.682L9.303 9.67a1.183 1.183 0 01-.841.347z">
-                      </path>
-                    </svg>
+                    <sfgov-icon symbol="chevron-down">
+                    </sfgov-icon>
                   </span>
                 </div>
               </div>
@@ -2182,13 +2165,8 @@ exports[`component snapshots component "form" scenario: basic matches the snapsh
               <span class="d-flex flex-items-center ml-1 notranslate"
                     data-icon="next"
               >
-                <svg viewbox="0 0 20 20"
-                     fill="currentColor"
-                     height="20"
-                >
-                  <path d="M19.635 9.115L13.27 2.75A1.25 1.25 0 0011.5 4.5l4.23 4.23H1.25a1.25 1.25 0 100 2.5h14.5L11.5 15.5a1.252 1.252 0 001.77 1.77l6.365-6.385a1.255 1.255 0 000-1.77z">
-                  </path>
-                </svg>
+                <sfgov-icon symbol="arrow-right">
+                </sfgov-icon>
               </span>
             </div>
           </button>
@@ -2230,13 +2208,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
                   <span data-icon="chevron"
                         class="d-block notranslate"
                   >
-                    <svg viewbox="0 0 17 11"
-                         fill="currentColor"
-                         height="11"
-                    >
-                      <path d="M8.462 10.017a1.182 1.182 0 01-.84-.347L.495 2.545A1.189 1.189 0 112.178.864l6.284 6.289 6.284-6.29a1.189 1.189 0 111.682 1.682L9.303 9.67a1.183 1.183 0 01-.841.347z">
-                      </path>
-                    </svg>
+                    <sfgov-icon symbol="chevron-down">
+                    </sfgov-icon>
                   </span>
                 </div>
               </div>
@@ -2328,13 +2301,8 @@ exports[`component snapshots component "form" scenario: translate matches the sn
               <span class="d-flex flex-items-center ml-1 notranslate"
                     data-icon="next"
               >
-                <svg viewbox="0 0 20 20"
-                     fill="currentColor"
-                     height="20"
-                >
-                  <path d="M19.635 9.115L13.27 2.75A1.25 1.25 0 0011.5 4.5l4.23 4.23H1.25a1.25 1.25 0 100 2.5h14.5L11.5 15.5a1.252 1.252 0 001.77 1.77l6.365-6.385a1.255 1.255 0 000-1.77z">
-                  </path>
-                </svg>
+                <sfgov-icon symbol="arrow-right">
+                </sfgov-icon>
               </span>
             </div>
           </button>
