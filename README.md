@@ -28,7 +28,7 @@ browser-like environment) via `<script>` tags. You'll need to include the
 formiojs library in your document _before_ formio-sfds, like so:
 
 ```html
-<script src="https://unpkg.com/formiojs@4.11.2/dist/formio.full.min.js"></script>
+<script src="https://unpkg.com/formiojs@4.11.2/dist/formio.form.min.js"></script>
 <script src="https://unpkg.com/formio-sfds@7.x/dist/formio-sfds.standalone.js"></script>
 ```
 
