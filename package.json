@@ -110,7 +110,7 @@
     "selector-observer": "^2.1.6",
     "sf-design-system": "^1.3.0",
     "source-map": "^0.7.4",
-    "stylelint": "^14.9.1",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard-scss": "^4.0.0",
     "stylelint-scss": "^4.2.0",
     "unist-util-visit": "^2.0.3",
