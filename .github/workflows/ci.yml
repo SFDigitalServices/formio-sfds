@@ -17,9 +17,8 @@ jobs:
         env:
           NODE_ENV: production
       - run: npm test
-
-      - uses: primer/publish@v3.0.0
-        if: github.actor != 'dependabot[bot]'
+      - if: github.actor != 'dependabot[bot]'
+        run: npm run publish-auto
         env:
-          GITHUB_TOKEN: ${{ github.token }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
