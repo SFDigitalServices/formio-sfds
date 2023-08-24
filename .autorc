@@ -3,6 +3,7 @@
   "noVersionPrefix": true,
   "onlyPublishWithReleaseLabel": true,
   "canary": {
-    "target": "status"
+    "target": "status",
+    "force": true
   }
 }
