@@ -1,0 +1,8 @@
+{
+  "baseBranch": "main",
+  "noVersionPrefix": true,
+  "onlyPublishWithReleaseLabel": true,
+  "canary": {
+    "target": "status"
+  }
+}
