@@ -4,7 +4,7 @@ import { I18N_SERVICE_URL } from '../src/constants'
 import { loadTranslations } from '../src/i18n/load'
 import patch from '../src/patch'
 import { createForm, destroyForm } from '../lib/test-helpers'
-import 'formiojs/dist/formio.full.min.js'
+import 'formiojs/dist/formio.form.min.js'
 
 jest.mock('../src/i18n/load')
 

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import patch from '../src/patch'
 import { createElement, createForm, destroyForm, sleep } from '../lib/test-helpers'
-import 'formiojs/dist/formio.full.min.js'
+import 'formiojs/dist/formio.form.min.js'
 
 const { Formio } = window
 const { createForm: originalCreateForm } = Formio
