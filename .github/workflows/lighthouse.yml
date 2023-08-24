@@ -6,14 +6,14 @@ jobs:
     if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: determine branch
         uses: SFDigitalServices/git-the-branch@v1
         with:
           checkout: true
 
-      - uses: treosh/lighthouse-ci-action@v3
+      - uses: treosh/lighthouse-ci-action@v9
         with:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
