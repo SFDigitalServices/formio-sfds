@@ -13,7 +13,7 @@ jobs:
         with:
           checkout: true
 
-      - uses: treosh/lighthouse-ci-action@v3
+      - uses: treosh/lighthouse-ci-action@v9
         with:
           serverToken: ${{ secrets.LHCI_BUILD_TOKEN }}
           serverBaseUrl: https://lighthouse-ci-sfgov.herokuapp.com
