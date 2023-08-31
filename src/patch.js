@@ -206,9 +206,7 @@ function patch (Formio) {
 
       if (opts.scroll !== false) {
         form.on('nextPage', () => {
-          const topPos = document.querySelector('h1')?.offsetTop ?? 0
           doToggle(element)
-          window.scrollTo(0, topPos)
         })
         form.on('submit', () => { warnBeforeLeaving = false })
       }
