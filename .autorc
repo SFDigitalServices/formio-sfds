@@ -4,5 +4,8 @@
   "canary": {
     "target": "pr-body",
     "force": true
-  }
+  },
+  "plugins": [
+    "protected-branch"
+  ]
 }
