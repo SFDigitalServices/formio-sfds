@@ -1,11 +1,11 @@
 {% if (!ctx.disabled && (ctx.component.multiple || !ctx.files.length)) { %}
   {% if (ctx.self.useWebViewCamera) { %}
-    <div class="fileSelector">
+    <div class="fileSelector bg-white">
       <button class="btn btn-primary" ref="galleryButton"><i class="fa fa-book"></i> {{ ctx.t('Gallery') }}</button>
       <button class="btn btn-primary" ref="cameraButton"><i class="fa fa-camera"></i> {{ ctx.t('Camera') }}</button>
     </div>
   {% } else if (!ctx.self.cameraMode) { %}
-    <div class="fileSelector" ref="fileDrop">
+    <div class="fileSelector bg-white" ref="fileDrop">
       <div class="align-center">
         {{ ctx.t('Drop files to attach, or') }}
         <button class="ml-1 mr-0 mb-0 btn btn-secondary" ref="fileBrowse">

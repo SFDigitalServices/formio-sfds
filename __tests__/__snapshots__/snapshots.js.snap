@@ -1799,7 +1799,7 @@ exports[`component snapshots component "file" scenario: basic matches the snapsh
           This is the file label
         </label>
         <div ref="fileDrop"
-             class="fileSelector"
+             class="fileSelector bg-white"
         >
           <div class="align-center">
             Drop files to attach, or
@@ -1869,7 +1869,7 @@ exports[`component snapshots component "file" scenario: basic matches the snapsh
           This is the file label
         </label>
         <div ref="fileDrop"
-             class="fileSelector"
+             class="fileSelector bg-white"
         >
           <div class="align-center">
             Drop files to attach, or
@@ -1939,7 +1939,7 @@ exports[`component snapshots component "file" scenario: required matches the sna
           This is the file label
         </label>
         <div ref="fileDrop"
-             class="fileSelector"
+             class="fileSelector bg-white"
         >
           <div class="align-center">
             Drop files to attach, or
@@ -2009,7 +2009,7 @@ exports[`component snapshots component "file" scenario: required matches the sna
           This is the file label
         </label>
         <div ref="fileDrop"
-             class="fileSelector"
+             class="fileSelector bg-white"
         >
           <div class="align-center">
             Drop files to attach, or
