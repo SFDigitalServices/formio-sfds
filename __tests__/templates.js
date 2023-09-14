@@ -4,7 +4,7 @@ import '../dist/formio-sfds.standalone.js'
 
 describe('template tests', () => {
   describe('htmlelement component', () => {
-    const content = 'Hello, world!'
+    const expectedContent = 'Hello, world!'
     let form
     beforeAll(async () => {
       form = await createForm({
@@ -15,7 +15,12 @@ describe('template tests', () => {
             attrs: [
               { attr: 'id', value: 'foo' }
             ],
-            content
+            content: `
+              <div style="white-space: pre-wrap;">
+                  ${expectedContent}
+                  Your estimated total cost to reopen is
+                  \${{ 100 + (data.equipment || 0) }}.</div>
+            `
           }
         ]
       })
@@ -32,7 +37,12 @@ describe('template tests', () => {
     })
 
     it('renders content', async () => {
-      expect(form.element.querySelector('kbd').textContent).toContain(content)
+      expect(form.element.querySelector('kbd').textContent).toContain(expectedContent)
+    })
+
+    it('renders data in template strings (${{}})', () => {
+      expect(form.element.querySelector('kbd').textContent)
+        .toContain('$100')
     })
   })
 
