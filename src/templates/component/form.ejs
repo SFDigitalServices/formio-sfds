@@ -6,7 +6,9 @@
 >
   {% if (ctx.visible) { %}
     {{ ctx.children }}
+    {% if (['content', 'htmlelement'].indexOf(ctx.component.type) === -1) { %}
     <div class="messages" ref="messageContainer"></div>
+    {% } %}
   {% } %}
 
   {% if (ctx.options.translate && ['panel', 'content', 'htmlelement'].indexOf(ctx.component.type) === -1) { %}
