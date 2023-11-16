@@ -1257,10 +1257,6 @@ exports[`component snapshots component "content" scenario: basic matches the sna
         >
           Hello, world!
         </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
     </div>
     <div ref="messageContainer"
@@ -1295,10 +1291,6 @@ exports[`component snapshots component "content" scenario: required matches the 
              class
         >
           Hello, world!
-        </div>
-        <div ref="messageContainer"
-             class="messages"
-        >
         </div>
       </div>
     </div>
@@ -2370,10 +2362,6 @@ exports[`component snapshots component "htmlelement" scenario: basic matches the
         >
           Hello, world!
         </h1>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
     </div>
     <div ref="messageContainer"
@@ -2409,10 +2397,6 @@ exports[`component snapshots component "htmlelement" scenario: required matches 
         >
           Hello, world!
         </h1>
-        <div ref="messageContainer"
-             class="messages"
-        >
-        </div>
       </div>
     </div>
     <div ref="messageContainer"

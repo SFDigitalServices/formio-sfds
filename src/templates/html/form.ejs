@@ -3,4 +3,4 @@
   {% ctx.attrs.forEach(function(attr) { %}
     {{attr.attr}}="{{attr.value}}"
   {% }) %}
->{{ ctx.tk(key, ctx.content) }}{% if (!ctx.singleTags || ctx.singleTags.indexOf(ctx.tag) === -1) { %}</{{ctx.tag}}>{% } %}
+>{{ ctx.content }}{% if (!ctx.singleTags || ctx.singleTags.indexOf(ctx.tag) === -1) { %}</{{ctx.tag}}>{% } %}
