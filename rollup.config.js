@@ -10,8 +10,6 @@ import svgo from 'rollup-plugin-svgo'
 import define from 'rollup-plugin-define'
 import { terser } from 'rollup-plugin-terser'
 import rollupYAML from '@rollup/plugin-yaml'
-import yaml from 'js-yaml'
-import { readFileSync } from 'fs'
 
 const {
   NODE_ENV = 'development',
@@ -42,11 +40,7 @@ const commonPlugins = [
       'process.env.I18N_SERVICE_URL': JSON.stringify(I18N_SERVICE_URL)
     }
   }),
-  svgo(
-    yaml.safeLoad(
-      readFileSync('svgo.config.yml', 'utf8')
-    )
-  ),
+  svgo(require('./svgo.config')),
   babel({
     babelHelpers: 'runtime'
   }),
